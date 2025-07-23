@@ -1,0 +1,50 @@
+{
+  "name": "Spirit Lexus",
+  "base_url": "https://www.spiritlexus.com",
+  "scraper_type": "api",
+  "api_platform": "algolia",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Spirit Lexus"
+      },
+      "api_filters": {
+        "facet_filters": [
+          "searchable_dealer_name:Spirit Lexus"
+        ]
+      },
+      "allowed_conditions": [
+        "new",
+        "used",
+        "certified"
+      ],
+      "price_range": {
+        "min": 25000,
+        "max": 200000
+      },
+      "year_range": {
+        "min": 2015,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "spiritlexus",
+  "created_at": "2025-07-18T23:02:26.486194",
+  "updated_at": "2025-07-18T23:02:26.486197",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:26.486176"
+}

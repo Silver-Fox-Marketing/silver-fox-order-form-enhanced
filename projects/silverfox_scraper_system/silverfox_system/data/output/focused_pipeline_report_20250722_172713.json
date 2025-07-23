@@ -1,0 +1,81 @@
+{
+  "normalization": {
+    "status": "passed",
+    "input_count": 3,
+    "output_count": 3,
+    "quality_score": 100.0,
+    "test_file": "normalization_test_output.csv"
+  },
+  "order_processing": {
+    "status": "failed",
+    "error": "[Errno 2] No such file or directory: ''"
+  },
+  "qr_generation": {
+    "status": "passed",
+    "qr_files": [
+      "vin",
+      "url",
+      "qr_path_1",
+      "qr_path_2",
+      "generated_at"
+    ],
+    "test_vin": "1HGCM82633A123456"
+  },
+  "apps_script": {
+    "status": "passed",
+    "processor_created": true,
+    "methods_available": [
+      "__class__",
+      "__delattr__",
+      "__dict__",
+      "__dir__",
+      "__doc__",
+      "__eq__",
+      "__format__",
+      "__ge__",
+      "__getattribute__",
+      "__gt__",
+      "__hash__",
+      "__init__",
+      "__init_subclass__",
+      "__le__",
+      "__lt__",
+      "__module__",
+      "__ne__",
+      "__new__",
+      "__reduce__",
+      "__reduce_ex__",
+      "__repr__",
+      "__setattr__",
+      "__sizeof__",
+      "__str__",
+      "__subclasshook__",
+      "__weakref__",
+      "_apply_dealership_specific_processing",
+      "_get_all_vehicle_data",
+      "_load_dealership_configs",
+      "copy_and_paste_data",
+      "copy_spreadsheet_to_folder",
+      "database_path",
+      "dealership_configs",
+      "erase_qr_folders",
+      "fill_scraper_datetime",
+      "generate_qr_codes_for_links",
+      "get_apps_script_compatibility_report",
+      "get_progress_tracker_data",
+      "handle_error",
+      "order_processor",
+      "process_dealership_order",
+      "qr_folder_ids",
+      "qr_processor",
+      "run_function_based_on_selection",
+      "set_plain_text_format",
+      "sheets_filters"
+    ]
+  },
+  "web_compatibility": {
+    "status": "passed",
+    "dealership_count": 44,
+    "web_ready": true
+  }
+}

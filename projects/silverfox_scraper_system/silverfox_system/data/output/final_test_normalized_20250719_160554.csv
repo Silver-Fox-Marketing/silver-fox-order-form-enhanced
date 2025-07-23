@@ -1,0 +1,6 @@
+vin,stock_number,year,make,model,trim,price,msrp,mileage,exterior_color,interior_color,body_style,fuel_type,transmission,engine,original_status,normalized_status,condition,dealer_name,dealer_id,url,scraped_at
+1HGBH41JXMN109186,,2026,Honda,Civic,Sport,27745,,,,,,,,,In Stock,onlot,In Stock,Columbia Honda,columbiahonda,,2025-07-19T16:05:54.320026
+1HGBH41JXMN109187,,2025,Honda,Accord,LX,25000,,,,,,,,,Certified Used,cpo,,Columbia Honda,columbiahonda,,2025-07-19T16:05:54.320026
+1HGBH41JXMN109188,,2024,Honda,CR-V,EX,32000,,,,,,,,,In-transit,offlot,In-transit,Columbia Honda,columbiahonda,,2025-07-19T16:05:54.320026
+1HGBH41JXMN109189,,2023,Honda,Pilot,Touring,45000,,,,,,,,,Used,po,,Columbia Honda,columbiahonda,,2025-07-19T16:05:54.320026
+1HGBH41JXMN109190,,2022,Honda,Odyssey,EX-L,38000,,,,,,,,,Available,onlot,,Columbia Honda,columbiahonda,,2025-07-19T16:05:54.320026

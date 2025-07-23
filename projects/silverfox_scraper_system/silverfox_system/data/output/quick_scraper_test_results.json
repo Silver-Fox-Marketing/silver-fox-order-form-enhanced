@@ -1,0 +1,26 @@
+{
+  "bmwofweststlouis": {
+    "file_exists": true,
+    "has_pagination": true,
+    "has_verification": true,
+    "has_api_calls": true,
+    "file_size": 34595,
+    "last_modified": "2025-07-22T01:33:26.207626"
+  },
+  "columbiahonda": {
+    "file_exists": true,
+    "has_pagination": true,
+    "has_verification": false,
+    "has_api_calls": true,
+    "file_size": 36638,
+    "last_modified": "2025-07-20T20:28:37.710583"
+  },
+  "frankletahonda": {
+    "file_exists": true,
+    "has_pagination": true,
+    "has_verification": true,
+    "has_api_calls": true,
+    "file_size": 32500,
+    "last_modified": "2025-07-22T09:25:14.333380"
+  }
+}

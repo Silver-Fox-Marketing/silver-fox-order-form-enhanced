@@ -1,0 +1,1228 @@
+{
+  "assessment_timestamp": "2025-07-22T19:42:56.414854",
+  "total_scrapers": 45,
+  "results": [
+    {
+      "file_name": "audiranchomirage_working.py",
+      "dealership_id": "audiranchomirage",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.audiranchomirage.com",
+      "file_size": 28609,
+      "lines_of_code": 730,
+      "complexity": "High",
+      "last_modified": "2025-07-21T18:55:03.212033",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "audiranchomirage",
+        "test_timestamp": "2025-07-22T19:42:56.415581",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'audiranchomirage_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "auffenberghyundai_working.py",
+      "dealership_id": "auffenberghyundai",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.auffenberghyundai.com",
+      "file_size": 28851,
+      "lines_of_code": 717,
+      "complexity": "High",
+      "last_modified": "2025-07-21T18:56:51.178573",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "auffenberghyundai",
+        "test_timestamp": "2025-07-22T19:42:56.583431",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'auffenberghyundai_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "bmwofweststlouis_working.py",
+      "dealership_id": "bmwofweststlouis",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://sewjn80htn-dsn.algolia.net/1/indexes",
+      "file_size": 34595,
+      "lines_of_code": 818,
+      "complexity": "High",
+      "last_modified": "2025-07-22T01:33:26.207626",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "bmwofweststlouis",
+        "test_timestamp": "2025-07-22T19:42:56.584653",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'bmwofweststlouis_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "bmwstlouis_working.py",
+      "dealership_id": "bmwstlouis",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://hnhxbvdj8k-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 34314,
+      "lines_of_code": 857,
+      "complexity": "High",
+      "last_modified": "2025-07-20T20:25:53.742403",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "bmwstlouis",
+        "test_timestamp": "2025-07-22T19:42:56.586191",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'bmwstlouis_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "bommaritocadillac_working.py",
+      "dealership_id": "bommaritocadillac",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.bommaritocadillac.com",
+      "file_size": 27201,
+      "lines_of_code": 658,
+      "complexity": "High",
+      "last_modified": "2025-07-20T14:57:00.310888",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "bommaritocadillac",
+        "test_timestamp": "2025-07-22T19:42:56.587383",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'bommaritocadillac_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "bommaritocadillacwestcounty_working.py",
+      "dealership_id": "bommaritocadillacwestcounty",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.bommaritocadillacwestcounty.com",
+      "file_size": 27494,
+      "lines_of_code": 658,
+      "complexity": "High",
+      "last_modified": "2025-07-20T20:15:34.997641",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "bommaritocadillacwestcounty",
+        "test_timestamp": "2025-07-22T19:42:56.588544",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'bommaritocadillacwestcounty_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "bommaritowestcounty_working.py",
+      "dealership_id": "bommaritowestcounty",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.bommaritowestcounty.com",
+      "file_size": 34255,
+      "lines_of_code": 840,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:17:50.696727",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "bommaritowestcounty",
+        "test_timestamp": "2025-07-22T19:42:56.590019",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'bommaritowestcounty_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "columbiabmw_working.py",
+      "dealership_id": "columbiabmw",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.columbiabmw.com",
+      "file_size": 31921,
+      "lines_of_code": 794,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:08:31.576519",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "columbiabmw",
+        "test_timestamp": "2025-07-22T19:42:56.591545",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'columbiabmw_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "columbiahonda_working.py",
+      "dealership_id": "columbiahonda",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.columbiahonda.com",
+      "file_size": 36638,
+      "lines_of_code": 921,
+      "complexity": "High",
+      "last_modified": "2025-07-20T20:28:37.710583",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "columbiahonda",
+        "test_timestamp": "2025-07-22T19:42:56.592720",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'columbiahonda_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "davesinclairlincolnsouth_working.py",
+      "dealership_id": "davesinclairlincolnsouth",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.davesinclairlincolnsouth.com",
+      "file_size": 26252,
+      "lines_of_code": 646,
+      "complexity": "High",
+      "last_modified": "2025-07-20T14:28:17.147804",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "davesinclairlincolnsouth",
+        "test_timestamp": "2025-07-22T19:42:56.593787",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'davesinclairlincolnsouth_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "davesinclairlincolnstpeters_working.py",
+      "dealership_id": "davesinclairlincolnstpeters",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.davesinclairlincolnstpeters.com",
+      "file_size": 27424,
+      "lines_of_code": 654,
+      "complexity": "High",
+      "last_modified": "2025-07-20T14:32:27.997685",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "davesinclairlincolnstpeters",
+        "test_timestamp": "2025-07-22T19:42:56.594904",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'davesinclairlincolnstpeters_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "frankletahonda_working.py",
+      "dealership_id": "frankletahonda",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://v2mzlxx99f-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 32500,
+      "lines_of_code": 793,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:25:14.333380",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "frankletahonda",
+        "test_timestamp": "2025-07-22T19:42:56.596265",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'frankletahonda_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "glendalechryslerjeep_working.py",
+      "dealership_id": "glendalechryslerjeep",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.glendalechryslerjeep.net",
+      "file_size": 29669,
+      "lines_of_code": 747,
+      "complexity": "High",
+      "last_modified": "2025-07-21T19:02:28.009067",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "glendalechryslerjeep",
+        "test_timestamp": "2025-07-22T19:42:56.597270",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'glendalechryslerjeep_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "hondafrontenac_working.py",
+      "dealership_id": "hondafrontenac",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.hondafrontenac.com",
+      "file_size": 38470,
+      "lines_of_code": 958,
+      "complexity": "High",
+      "last_modified": "2025-07-21T13:44:07.049309",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "hondafrontenac",
+        "test_timestamp": "2025-07-22T19:42:56.598501",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'hondafrontenac_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "hwkia_working.py",
+      "dealership_id": "hwkia",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.hwkia.com",
+      "file_size": 33883,
+      "lines_of_code": 848,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.416015",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "hwkia",
+        "test_timestamp": "2025-07-22T19:42:56.607098",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'hwkia_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "indigoautogroup_working.py",
+      "dealership_id": "indigoautogroup",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.indigoautogroup.com",
+      "file_size": 35775,
+      "lines_of_code": 874,
+      "complexity": "High",
+      "last_modified": "2025-07-22T00:56:29.434159",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "indigoautogroup",
+        "test_timestamp": "2025-07-22T19:42:56.611914",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'indigoautogroup_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "jaguarranchomirage_working.py",
+      "dealership_id": "jaguarranchomirage",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://sewjn80htn-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 32795,
+      "lines_of_code": 804,
+      "complexity": "High",
+      "last_modified": "2025-07-22T00:59:56.239138",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "jaguarranchomirage",
+        "test_timestamp": "2025-07-22T19:42:56.613373",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'jaguarranchomirage_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "joe_machens_hyundai_working.py",
+      "dealership_id": "joemachenshyundai",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://{self.algolia_app_id}-dsn.algolia.net/1/indexes/{self.algolia_index}/query",
+      "file_size": 30844,
+      "lines_of_code": 762,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:47:05.256476",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "joemachenshyundai",
+        "test_timestamp": "2025-07-22T19:42:56.615004",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'joe_machens_hyundai_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "joemachenscdjr_working.py",
+      "dealership_id": "joemachenscdjr",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.joemachenscdjr.com",
+      "file_size": 22115,
+      "lines_of_code": 569,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.411453",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": true
+      },
+      "test_result": {
+        "dealership_id": "joemachenscdjr",
+        "test_timestamp": "2025-07-22T19:42:56.616727",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "unexpected character after line continuation character (joemachenscdjr_working.py, line 569)",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "joemachenshyundai_working.py",
+      "dealership_id": "joemachenshyundai",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://2591j46p8g-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 33876,
+      "lines_of_code": 857,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.419781",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "joemachenshyundai",
+        "test_timestamp": "2025-07-22T19:42:56.618850",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "unexpected character after line continuation character (joemachenshyundai_working.py, line 1)",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "joemachensnissan_working.py",
+      "dealership_id": "joemachensnissan",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.joemachensnissan.com",
+      "file_size": 18361,
+      "lines_of_code": 469,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:54:19.069114",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": true
+      },
+      "test_result": {
+        "dealership_id": "joemachensnissan",
+        "test_timestamp": "2025-07-22T19:42:56.619481",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'joemachensnissan_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "joemachenstoyota_working.py",
+      "dealership_id": "joemachenstoyota",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.joemachenstoyota.com",
+      "file_size": 25533,
+      "lines_of_code": 637,
+      "complexity": "High",
+      "last_modified": "2025-07-21T18:20:42.583793",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "joemachenstoyota",
+        "test_timestamp": "2025-07-22T19:42:56.620716",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'joemachenstoyota_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "kiaofcolumbia_working.py",
+      "dealership_id": "kiaofcolumbia",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.kiaofcolumbia.com",
+      "file_size": 40004,
+      "lines_of_code": 977,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.418380",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "kiaofcolumbia",
+        "test_timestamp": "2025-07-22T19:42:56.622124",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'kiaofcolumbia_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "landroverranchomirage_working.py",
+      "dealership_id": "landroverranchomirage",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://sewjn80htn-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 33873,
+      "lines_of_code": 817,
+      "complexity": "High",
+      "last_modified": "2025-07-22T01:02:58.809416",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "landroverranchomirage",
+        "test_timestamp": "2025-07-22T19:42:56.629522",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'landroverranchomirage_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "miniofstlouis_working.py",
+      "dealership_id": "miniofstlouis",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.miniofstlouis.com",
+      "file_size": 35859,
+      "lines_of_code": 854,
+      "complexity": "High",
+      "last_modified": "2025-07-22T10:13:37.967810",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "miniofstlouis",
+        "test_timestamp": "2025-07-22T19:42:56.630929",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'miniofstlouis_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "pappastoyota_working.py",
+      "dealership_id": "pappastoyota",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://sewjn80htn-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 34394,
+      "lines_of_code": 841,
+      "complexity": "High",
+      "last_modified": "2025-07-22T10:13:41.269229",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "pappastoyota",
+        "test_timestamp": "2025-07-22T19:42:56.632305",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'pappastoyota_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "porschestlouis_working.py",
+      "dealership_id": "porschestlouis",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.porschestlouis.com",
+      "file_size": 31819,
+      "lines_of_code": 782,
+      "complexity": "High",
+      "last_modified": "2025-07-22T10:13:45.136933",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "porschestlouis",
+        "test_timestamp": "2025-07-22T19:42:56.633675",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'porschestlouis_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "pundmannford_working.py",
+      "dealership_id": "pundmannford",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://2591j46p8g-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 35095,
+      "lines_of_code": 857,
+      "complexity": "High",
+      "last_modified": "2025-07-22T10:13:48.310714",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "pundmannford",
+        "test_timestamp": "2025-07-22T19:42:56.725663",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'pundmannford_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "rustydrewingcadillac_working.py",
+      "dealership_id": "rustydrewingcadillac",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.rustydrewingcadillac.com",
+      "file_size": 38231,
+      "lines_of_code": 900,
+      "complexity": "High",
+      "last_modified": "2025-07-22T10:13:52.126352",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "rustydrewingcadillac",
+        "test_timestamp": "2025-07-22T19:42:56.727350",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'rustydrewingcadillac_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "rustydrewingchevroletbuickgmc_working.py",
+      "dealership_id": "rustydrewingchevroletbuickgmc",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.rustydrewingchevroletbuickgmc.com",
+      "file_size": 35803,
+      "lines_of_code": 811,
+      "complexity": "High",
+      "last_modified": "2025-07-22T01:43:21.468918",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "rustydrewingchevroletbuickgmc",
+        "test_timestamp": "2025-07-22T19:42:56.728918",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'rustydrewingchevroletbuickgmc_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "serrahondaofallon_working.py",
+      "dealership_id": "serrahondaofallon",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://equ6hxb6wg-dsn.algolia.net/1/indexes",
+      "file_size": 33140,
+      "lines_of_code": 795,
+      "complexity": "High",
+      "last_modified": "2025-07-22T01:46:36.214708",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "serrahondaofallon",
+        "test_timestamp": "2025-07-22T19:42:56.730325",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'serrahondaofallon_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "southcountyautos_working.py",
+      "dealership_id": "southcountyautos",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.southcountyautos.com",
+      "file_size": 35798,
+      "lines_of_code": 878,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.414613",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "southcountyautos",
+        "test_timestamp": "2025-07-22T19:42:56.731700",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'southcountyautos_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "spiritlexus_working.py",
+      "dealership_id": "spiritlexus",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://v2mzlxx99f-dsn.algolia.net/1/indexes",
+      "file_size": 34042,
+      "lines_of_code": 807,
+      "complexity": "High",
+      "last_modified": "2025-07-22T01:54:20.995086",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "spiritlexus",
+        "test_timestamp": "2025-07-22T19:42:56.737207",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'spiritlexus_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "stehouwerauto_working.py",
+      "dealership_id": "stehouwerauto",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://2591j46p8g-dsn.algolia.net/1/indexes",
+      "file_size": 39859,
+      "lines_of_code": 925,
+      "complexity": "High",
+      "last_modified": "2025-07-22T02:01:49.353648",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "stehouwerauto",
+        "test_timestamp": "2025-07-22T19:42:56.739245",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'stehouwerauto_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "stellantis_ddc_working.py",
+      "dealership_id": "stellantisddc",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.example-stellantis-dealer.com",
+      "file_size": 14937,
+      "lines_of_code": 405,
+      "complexity": "High",
+      "last_modified": "2025-07-21T18:47:39.985304",
+      "features": {
+        "has_selenium": false,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "stellantisddc",
+        "test_timestamp": "2025-07-22T19:42:56.740221",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'stellantis_ddc_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "suntrupbuickgmc_working.py",
+      "dealership_id": "suntrupbuickgmc",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.suntrupbuickgmc.com",
+      "file_size": 32528,
+      "lines_of_code": 800,
+      "complexity": "High",
+      "last_modified": "2025-07-22T02:07:16.403286",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "suntrupbuickgmc",
+        "test_timestamp": "2025-07-22T19:42:56.741649",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'suntrupbuickgmc_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "suntrupfordkirkwood_working.py",
+      "dealership_id": "suntrupfordkirkwood",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.suntrupfordkirkwood.com",
+      "file_size": 33306,
+      "lines_of_code": 814,
+      "complexity": "High",
+      "last_modified": "2025-07-22T02:12:55.478622",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "suntrupfordkirkwood",
+        "test_timestamp": "2025-07-22T19:42:56.742842",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'suntrupfordkirkwood_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "suntrupfordwest_working.py",
+      "dealership_id": "suntrupfordwest",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.suntrupfordwest.com",
+      "file_size": 31327,
+      "lines_of_code": 780,
+      "complexity": "High",
+      "last_modified": "2025-07-21T18:25:42.191244",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "suntrupfordwest",
+        "test_timestamp": "2025-07-22T19:42:56.743983",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'suntrupfordwest_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "suntruphyundaisouth_working.py",
+      "dealership_id": "suntruphyundaisouth",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://1wnybzleen-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 32326,
+      "lines_of_code": 791,
+      "complexity": "High",
+      "last_modified": "2025-07-22T02:27:10.248276",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "suntruphyundaisouth",
+        "test_timestamp": "2025-07-22T19:42:56.745184",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'suntruphyundaisouth_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "suntrupkiasouth_working.py",
+      "dealership_id": "suntrupkiasouth",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://sewjn80htn-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 34377,
+      "lines_of_code": 825,
+      "complexity": "High",
+      "last_modified": "2025-07-22T08:45:08.788746",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "suntrupkiasouth",
+        "test_timestamp": "2025-07-22T19:42:56.746310",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'suntrupkiasouth_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "thoroughbredford_working.py",
+      "dealership_id": "thoroughbredford",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.thoroughbredford.com",
+      "file_size": 32735,
+      "lines_of_code": 804,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:29:35.358482",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "thoroughbredford",
+        "test_timestamp": "2025-07-22T19:42:56.747642",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'thoroughbredford_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "twincitytoyota_working.py",
+      "dealership_id": "twincitytoyota",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://smartpath.twincitytoyota.com",
+      "file_size": 32194,
+      "lines_of_code": 802,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:32:34.450793",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "twincitytoyota",
+        "test_timestamp": "2025-07-22T19:42:56.748882",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'twincitytoyota_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "verified_working_dealerships.py",
+      "dealership_id": "verifieddealerships",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.example.com",
+      "file_size": 1767,
+      "lines_of_code": 55,
+      "complexity": "Low",
+      "last_modified": "2025-07-22T17:29:20.477950",
+      "features": {
+        "has_selenium": false,
+        "has_requests": false,
+        "has_api_calls": false,
+        "has_pagination": false,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "verifieddealerships",
+        "test_timestamp": "2025-07-22T19:42:56.749542",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'verified_working_dealerships' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "wcvolvocars_working.py",
+      "dealership_id": "wcvolvocars",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://www.wcvolvocars.com",
+      "file_size": 31455,
+      "lines_of_code": 794,
+      "complexity": "High",
+      "last_modified": "2025-07-22T18:41:35.413229",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "wcvolvocars",
+        "test_timestamp": "2025-07-22T19:42:56.750909",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'wcvolvocars_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    },
+    {
+      "file_name": "weberchev_working.py",
+      "dealership_id": "weberchev",
+      "class_name": "DealershipScraperBase:\n        def __init__",
+      "base_url": "https://equ6hxb6wg-dsn.algolia.net/1/indexes/*/queries",
+      "file_size": 31711,
+      "lines_of_code": 777,
+      "complexity": "High",
+      "last_modified": "2025-07-22T09:38:28.256604",
+      "features": {
+        "has_selenium": true,
+        "has_requests": true,
+        "has_api_calls": true,
+        "has_pagination": true,
+        "has_error_handling": false
+      },
+      "test_result": {
+        "dealership_id": "weberchev",
+        "test_timestamp": "2025-07-22T19:42:56.754861",
+        "status": "runtime_error",
+        "vehicles_found": 0,
+        "execution_time": 0,
+        "error_message": "module 'weberchev_working' has no attribute 'DealershipScraperBase:\n        def __init__'",
+        "data_quality": 0,
+        "needs_optimization": true
+      }
+    }
+  ],
+  "summary": {
+    "excellent": 0,
+    "good": 0,
+    "partial": 0,
+    "no_vehicles": 0,
+    "errors": 45
+  }
+}

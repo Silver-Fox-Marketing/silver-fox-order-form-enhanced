@@ -1,0 +1,83 @@
+{
+  "joemachensnissan": {
+    "dealership_id": "joemachensnissan",
+    "status": "UNKNOWN",
+    "website_inventory_count": 0,
+    "scraper_inventory_count": 0,
+    "coverage_percentage": 0.0,
+    "issues": [
+      "Website accessibility error: attempted relative import with no known parent package"
+    ],
+    "recommendations": [
+      "Improve pagination to capture more vehicles",
+      "Implement complete pagination system",
+      "Verify website inventory detection method",
+      "Fix scraper functionality issues"
+    ],
+    "api_type": "unknown",
+    "test_timestamp": "2025-07-22T18:44:30.105411",
+    "website_accessible": false,
+    "scraper_functional": false,
+    "pagination_working": false,
+    "sample_vehicles": [],
+    "website_url": "",
+    "response_time": 0.0,
+    "scraper_errors": [
+      "Scraper test error: unexpected character after line continuation character (joemachensnissan_working.py, line 469)"
+    ]
+  },
+  "stellantis_ddc": {
+    "dealership_id": "stellantis_ddc",
+    "status": "UNKNOWN",
+    "website_inventory_count": 0,
+    "scraper_inventory_count": 0,
+    "coverage_percentage": 0.0,
+    "issues": [
+      "Website accessibility error: attempted relative import with no known parent package"
+    ],
+    "recommendations": [
+      "Improve pagination to capture more vehicles",
+      "Implement complete pagination system",
+      "Verify website inventory detection method",
+      "Fix scraper functionality issues"
+    ],
+    "api_type": "unknown",
+    "test_timestamp": "2025-07-22T18:44:32.122014",
+    "website_accessible": false,
+    "scraper_functional": false,
+    "pagination_working": false,
+    "sample_vehicles": [],
+    "website_url": "",
+    "response_time": 0.0,
+    "scraper_errors": [
+      "Scraper test error: __init__() missing 1 required positional argument: 'dealership_config'"
+    ]
+  },
+  "spiritlexus": {
+    "dealership_id": "spiritlexus",
+    "status": "UNKNOWN",
+    "website_inventory_count": 0,
+    "scraper_inventory_count": 0,
+    "coverage_percentage": 0.0,
+    "issues": [
+      "Website accessibility error: attempted relative import with no known parent package"
+    ],
+    "recommendations": [
+      "Improve pagination to capture more vehicles",
+      "Implement complete pagination system",
+      "Verify website inventory detection method",
+      "Fix scraper functionality issues"
+    ],
+    "api_type": "unknown",
+    "test_timestamp": "2025-07-22T18:44:34.131896",
+    "website_accessible": false,
+    "scraper_functional": false,
+    "pagination_working": false,
+    "sample_vehicles": [],
+    "website_url": "",
+    "response_time": 0.0,
+    "scraper_errors": [
+      "Scraper test error: __init__() missing 1 required positional argument: 'dealership_config'"
+    ]
+  }
+}

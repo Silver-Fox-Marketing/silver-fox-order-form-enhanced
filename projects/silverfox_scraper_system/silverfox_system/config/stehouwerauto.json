@@ -1,0 +1,43 @@
+{
+  "name": "Stehouwer Auto",
+  "base_url": "https://www.stehouwerauto.com",
+  "scraper_type": "api",
+  "api_platform": "custom",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Stehouwer Auto"
+      },
+      "allowed_conditions": [
+        "used"
+      ],
+      "price_range": {
+        "min": 5000,
+        "max": 40000
+      },
+      "year_range": {
+        "min": 2005,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "stehouwerauto",
+  "created_at": "2025-07-18T23:02:26.787727",
+  "updated_at": "2025-07-18T23:02:26.787728",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:26.787720"
+}

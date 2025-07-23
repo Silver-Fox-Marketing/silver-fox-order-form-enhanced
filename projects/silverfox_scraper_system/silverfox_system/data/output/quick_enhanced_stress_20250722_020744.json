@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-07-22T02:07:43.012470",
+  "tests_run": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "failures": [],
+  "performance_metrics": {
+    "core_functions": {
+      "functions_tested": 160,
+      "duration": 0.2533111572265625,
+      "functions_per_second": 631.634238901271
+    },
+    "glendale_processing": {
+      "records_processed": 180,
+      "wrangler_transformations": "100",
+      "wrangler_results": "100",
+      "box_removals": "50",
+      "l_transformations": "30",
+      "processing_rate": 5673.941981061175
+    },
+    "ordermatch_logic": {
+      "Twin City Toyota": {
+        "records": 100,
+        "flag_set": "True",
+        "duration": 0.0004999637603759766,
+        "rate": 200014.49690033382
+      },
+      "Bommarito Cadillac": {
+        "records": 100,
+        "flag_set": "True",
+        "duration": 0.00042700767517089844,
+        "rate": 234187.82802903405
+      }
+    },
+    "column_mappings": {
+      "total_configs": 6,
+      "mapping_errors": [],
+      "error_count": 0,
+      "success_rate": 100.0
+    },
+    "dealership_configs": {
+      "total_configurations": 6,
+      "test_selections": 5,
+      "successful_selections": 5,
+      "selection_success_rate": 100.0
+    },
+    "error_handling": {
+      "total_errors": 5,
+      "handled_errors": 5,
+      "handling_success_rate": 100.0
+    },
+    "progress_tracking": {
+      "total_scenarios": 4,
+      "successful_tracking": 4,
+      "tracking_success_rate": 100.0
+    },
+    "qr_integration": {
+      "total_links": 50,
+      "successful": 50,
+      "failed": 0,
+      "success_rate": 100.0,
+      "processing_rate": 57.57000273966135
+    }
+  },
+  "success_rate": 100.0,
+  "overall_status": "EXCELLENT"
+}

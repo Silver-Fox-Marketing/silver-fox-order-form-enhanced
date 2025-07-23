@@ -1,0 +1,57 @@
+{
+  "test_timestamp": "2025-07-22T18:45:12.602314",
+  "scraper_results": {
+    "bmwofweststlouis": {
+      "file_exists": true,
+      "has_pagination": true,
+      "has_verification": true,
+      "has_api_calls": true,
+      "file_size": 34595,
+      "last_modified": "2025-07-22T01:33:26.207626"
+    },
+    "columbiahonda": {
+      "file_exists": true,
+      "has_pagination": true,
+      "has_verification": false,
+      "has_api_calls": true,
+      "file_size": 36638,
+      "last_modified": "2025-07-20T20:28:37.710583"
+    },
+    "frankletahonda": {
+      "file_exists": true,
+      "has_pagination": true,
+      "has_verification": true,
+      "has_api_calls": true,
+      "file_size": 32500,
+      "last_modified": "2025-07-22T09:25:14.333380"
+    }
+  },
+  "website_results": {
+    "BMW of West St. Louis": {
+      "accessible": false,
+      "status_code": 403,
+      "response_time": 0.102007,
+      "content_length": 5490
+    },
+    "Columbia Honda": {
+      "accessible": true,
+      "status_code": 200,
+      "response_time": 0.123044,
+      "content_length": 431775,
+      "has_inventory_page": true,
+      "has_vehicle_content": true
+    },
+    "Frank Leta Honda": {
+      "accessible": false,
+      "status_code": 403,
+      "response_time": 0.128056,
+      "content_length": 5490
+    }
+  },
+  "summary": {
+    "scrapers_tested": 3,
+    "scrapers_with_pagination": 3,
+    "websites_tested": 3,
+    "websites_accessible": 1
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "timestamp": "2025-07-22T08:43:09.279419",
+  "tests_run": 8,
+  "tests_passed": 6,
+  "tests_failed": 2,
+  "failures": [
+    {
+      "test": "concurrent_access",
+      "error": "Poor handling: 1/2",
+      "timestamp": "2025-07-22T08:43:10.576607"
+    },
+    {
+      "test": "system_recovery",
+      "error": "'list' object has no attribute 'update'",
+      "timestamp": "2025-07-22T08:43:13.777828"
+    }
+  ],
+  "critical_edge_cases": {
+    "database": [
+      {
+        "test": "concurrent_database_locks",
+        "total_operations": 100,
+        "successful_operations": 100,
+        "total_errors": 0,
+        "success_rate": 100.0
+      },
+      {
+        "test": "connection_exhaustion",
+        "max_connections_opened": 100,
+        "handled_gracefully": true
+      },
+      {
+        "test": "large_transaction_rollback",
+        "records_in_transaction": 1000,
+        "final_records": 0,
+        "rollback_successful": true
+      }
+    ],
+    "pipeline_failures": [
+      {
+        "test": "stage_failure_propagation",
+        "failed_stage": "Stage 1",
+        "remaining_stages_status": [
+          "pending",
+          "pending"
+        ],
+        "failure_contained": true
+      },
+      {
+        "test": "pipeline_interruption",
+        "completed_before_interrupt": 1,
+        "cleanup_successful": true
+      },
+      {
+        "test": "resource_exhaustion_handling",
+        "stage_completed": true,
+        "memory_managed": true
+      }
+    ],
+    "concurrent_access": [
+      {
+        "test": "message_queue_overflow",
+        "total_messages_attempted": 600,
+        "total_sent": 600,
+        "total_failed": 0,
+        "overflow_handled": false
+      },
+      {
+        "test": "rapid_ui_state_changes",
+        "total_changes_attempted": 500,
+        "successful_changes": 500,
+        "state_consistency": true
+      }
+    ],
+    "resource_exhaustion": [
+      {
+        "test": "memory_pressure_cleanup",
+        "initial_memory_mb": 22.828125,
+        "peak_memory_mb": 311.5625,
+        "final_memory_mb": 16.90625,
+        "cleanup_triggered": false,
+        "memory_recovered": true
+      },
+      {
+        "test": "cpu_intensive_with_timeout",
+        "iterations_completed": 45232,
+        "completed_within_timeout": true
+      }
+    ],
+    "apps_script": {
+      "total_tests": 10,
+      "well_handled": 10,
+      "handling_rate": 100.0,
+      "test_details": [
+        {
+          "dealership": "NonExistentDealership",
+          "handled": true,
+          "error_graceful": true
+        },
+        {
+          "dealership": "",
+          "handled": true,
+          "error_graceful": true
+        },
+        {
+          "dealership": "None",
+          "handled": true,
+          "error_graceful": true
+        },
+        {
+          "dealership": "Dealership with 'special' chars!@#$",
+          "handled": true,
+          "error_graceful": true
+        },
+        {
+          "dealership": "VeryLongDealershipNameThatExceedsNormalLimitsVeryL",
+          "handled": true,
+          "error_graceful": true
+        },
+        {
+          "error_type": "Exception",
+          "handled_correctly": true,
+          "result_structure_valid": true
+        },
+        {
+          "error_type": "RuntimeError",
+          "handled_correctly": true,
+          "result_structure_valid": true
+        },
+        {
+          "error_type": "MemoryError",
+          "handled_correctly": true,
+          "result_structure_valid": true
+        },
+        {
+          "error_type": "KeyboardInterrupt",
+          "handled_correctly": true,
+          "result_structure_valid": true
+        },
+        {
+          "error_type": "SystemExit",
+          "handled_correctly": true,
+          "result_structure_valid": true
+        }
+      ]
+    }
+  },
+  "performance_under_stress": {
+    "ui_responsiveness": {
+      "total_operations": 10000,
+      "duration_seconds": 0.01595902442932129,
+      "operations_per_second": 626604.717869041,
+      "responsive": true
+    }
+  },
+  "recovery_scenarios": [
+    {
+      "test": "partial_file_corruption",
+      "corruption_detected": true,
+      "recovery_attempted": true,
+      "recovery_successful": true,
+      "data_salvaged": true
+    },
+    {
+      "test": "database_integrity_check",
+      "initial_integrity_ok": true,
+      "repair_attempted": false,
+      "repair_successful": true
+    }
+  ],
+  "success_rate": 75.0,
+  "overall_status": "GOOD"
+}

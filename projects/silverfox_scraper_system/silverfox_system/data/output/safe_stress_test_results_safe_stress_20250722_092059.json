@@ -1,0 +1,118 @@
+{
+  "test_id": "safe_stress_20250722_092059",
+  "start_time": "2025-07-22T09:20:59.359213",
+  "tests_run": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "performance_metrics": {
+    "database": {
+      "total_operations": 25000,
+      "duration": 2.4335176944732666,
+      "operations_per_second": 10273.194255697095,
+      "vehicle_records": 25000,
+      "pipeline_records": 25000
+    },
+    "concurrent_processing": {
+      "dealerships_processed": 20,
+      "total_vehicles": 400,
+      "total_errors": 0,
+      "average_success_rate": 100.0,
+      "duration": 0.4080030918121338,
+      "vehicles_per_second": 980.3847275357932
+    },
+    "memory_management": {
+      "initial_memory_mb": 13.046875,
+      "peak_memory_mb": 420.21875,
+      "final_memory_mb": 104.046875,
+      "memory_growth_mb": 91.0,
+      "average_memory_mb": 361.1109375
+    },
+    "pipeline_simulation": {
+      "pipelines_executed": 3,
+      "pipeline_success_rate": 60.0,
+      "total_dealerships": 9,
+      "average_pipeline_duration": 10.071946700414022,
+      "total_test_duration": 10.079105854034424
+    },
+    "data_processing": {
+      "vehicles_processed": 10000,
+      "processing_errors": 0,
+      "success_rate": 100.0,
+      "duration": 0.0047550201416015625,
+      "processing_rate": 2103040.5134376255
+    },
+    "error_recovery": {
+      "scenarios_tested": 5,
+      "successful_recoveries": 5,
+      "recovery_rate": 100.0,
+      "scenarios": [
+        {
+          "scenario": "database_connection_error",
+          "error": "unable to open database file",
+          "recovered": true,
+          "recovery_action": "Fallback to in-memory database"
+        },
+        {
+          "scenario": "file_system_error",
+          "error": "[Errno 2] No such file or directory: '/nonexistent/path/test.txt'",
+          "recovered": true,
+          "recovery_action": "Use temporary directory"
+        },
+        {
+          "scenario": "memory_pressure",
+          "error": "Memory usage exceeded threshold",
+          "recovered": true,
+          "recovery_action": "Garbage collection and data cleanup"
+        },
+        {
+          "scenario": "thread_interruption",
+          "error": "Task interrupted",
+          "recovered": true,
+          "recovery_action": "Graceful thread termination"
+        },
+        {
+          "scenario": "data_corruption",
+          "error": "JSON decode error",
+          "recovered": true,
+          "recovery_action": "Used fallback data structure"
+        }
+      ]
+    },
+    "resource_limits": {
+      "duration": 0.3844599723815918,
+      "tasks_completed": 10,
+      "initial_stats": {
+        "memory_mb": 95.59375,
+        "cpu_percent": 0.0,
+        "threads": 1,
+        "open_files": 1
+      },
+      "final_stats": {
+        "memory_mb": 98.96875,
+        "cpu_percent": 0.0,
+        "threads": 1,
+        "open_files": 1
+      },
+      "resource_changes": {
+        "memory_mb": 3.375,
+        "cpu_percent": 0.0,
+        "threads": 0,
+        "open_files": 0
+      }
+    },
+    "thread_safety": {
+      "workers": 10,
+      "expected_counter": 10000,
+      "actual_counter": 10000,
+      "expected_items": 10000,
+      "actual_items": 10000,
+      "queue_messages": 10000,
+      "thread_safety_passed": true,
+      "duration": 1.2725389003753662
+    }
+  },
+  "errors": [],
+  "success_rate": 100.0,
+  "status": "EXCELLENT",
+  "end_time": "2025-07-22T09:21:22.403328"
+}

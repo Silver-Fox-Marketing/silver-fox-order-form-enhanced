@@ -1,0 +1,80 @@
+{
+  "name": "BMW of West St. Louis",
+  "base_url": "https://www.bmwofweststlouis.com",
+  "scraper_type": "api",
+  "api_platform": "algolia",
+  "api_config": {
+    "algolia_app_id": "YAUO1QHBQ9",
+    "algolia_api_key": "c0b6c7faee6b9e27d4bd3b9ae5c5bb3e",
+    "index_name": "prod_STITCHED_vehicle_search_feeds",
+    "primary_endpoint": "https://yauo1qhbq9-dsn.algolia.net/1/indexes/prod_STITCHED_vehicle_search_feeds/query",
+    "headers": {
+      "X-Algolia-API-Key": "c0b6c7faee6b9e27d4bd3b9ae5c5bb3e",
+      "X-Algolia-Application-Id": "YAUO1QHBQ9",
+      "Content-Type": "application/json"
+    }
+  },
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "BMW of West St. Louis"
+      },
+      "api_filters": {
+        "facet_filters": [
+          "searchable_dealer_name:BMW of West St. Louis"
+        ]
+      },
+      "allowed_conditions": [
+        "new",
+        "used"
+      ],
+      "price_range": {
+        "min": 20000,
+        "max": 200000
+      },
+      "year_range": {
+        "min": 2015,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "skip_if_missing": [],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "extraction_config": {
+    "method": "api_request",
+    "pagination": true,
+    "items_per_page": 20,
+    "data_fields": [
+      "vin",
+      "stock_number",
+      "year",
+      "make",
+      "model",
+      "trim",
+      "price",
+      "msrp",
+      "mileage",
+      "exterior_color",
+      "fuel_type",
+      "url"
+    ]
+  },
+  "id": "bmwofweststlouis",
+  "created_at": "2025-07-18T23:02:16.839792",
+  "updated_at": "2025-07-18T23:02:16.839795",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:16.839754"
+}

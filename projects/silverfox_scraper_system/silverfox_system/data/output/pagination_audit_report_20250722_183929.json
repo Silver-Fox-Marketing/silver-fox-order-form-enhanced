@@ -1,0 +1,865 @@
+{
+  "audit_timestamp": "2025-07-22T18:39:29.315472",
+  "total_scrapers": 44,
+  "summary_stats": {
+    "excellent": 37,
+    "good": 3,
+    "needs_improvement": 2,
+    "critical": 2
+  },
+  "critical_issues": [
+    {
+      "dealership": "joemachensnissan",
+      "score": 2,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found",
+        "No inventory verification system"
+      ]
+    },
+    {
+      "dealership": "joemachenshyundai",
+      "score": 7,
+      "issues": [
+        "No inventory verification system"
+      ]
+    },
+    {
+      "dealership": "joemachenscdjr",
+      "score": 2,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found",
+        "No inventory verification system"
+      ]
+    },
+    {
+      "dealership": "hwkia",
+      "score": 6,
+      "issues": [
+        "No completion validation found",
+        "No inventory verification system"
+      ]
+    },
+    {
+      "dealership": "wcvolvocars",
+      "score": 4,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found"
+      ]
+    },
+    {
+      "dealership": "southcountyautos",
+      "score": 4,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found"
+      ]
+    },
+    {
+      "dealership": "kiaofcolumbia",
+      "score": 6,
+      "issues": [
+        "No completion validation found",
+        "No inventory verification system"
+      ]
+    }
+  ],
+  "detailed_results": {
+    "joemachensnissan": {
+      "status": "CRITICAL_ISSUES",
+      "pagination_score": 2,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found",
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Implement proper pagination with while/for loop",
+        "Add checks for total_pages/empty results",
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": false,
+      "has_completion_check": false,
+      "has_inventory_verification": false,
+      "pagination_patterns": [],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "stellantis_ddc": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "spiritlexus": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "pundmannford": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "pappastoyota": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "audiranchomirage": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "rustydrewingcadillac": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "miniofstlouis": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "joe_machens_hyundai": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "auffenberghyundai": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "porschestlouis": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "landroverranchomirage": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "bmwstlouis": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "bommaritowestcounty": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "davesinclairlincolnstpeters": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "suntrupfordwest": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "columbiabmw": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "for.*page.*in.*range"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "joemachenshyundai": {
+      "status": "GOOD",
+      "pagination_score": 7,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "joemachenscdjr": {
+      "status": "CRITICAL_ISSUES",
+      "pagination_score": 2,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found",
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Implement proper pagination with while/for loop",
+        "Add checks for total_pages/empty results",
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": false,
+      "has_completion_check": false,
+      "has_inventory_verification": false,
+      "pagination_patterns": [],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "weberchev": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "hwkia": {
+      "status": "GOOD",
+      "pagination_score": 6,
+      "issues": [
+        "No completion validation found",
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Add checks for total_pages/empty results",
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": false,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "wcvolvocars": {
+      "status": "NEEDS_IMPROVEMENT",
+      "pagination_score": 4,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found"
+      ],
+      "recommendations": [
+        "Implement proper pagination with while/for loop",
+        "Add checks for total_pages/empty results"
+      ],
+      "has_pagination": false,
+      "has_completion_check": false,
+      "has_inventory_verification": true,
+      "pagination_patterns": [],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "suntrupkiasouth": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "southcountyautos": {
+      "status": "NEEDS_IMPROVEMENT",
+      "pagination_score": 4,
+      "issues": [
+        "No pagination loop detected",
+        "No completion validation found"
+      ],
+      "recommendations": [
+        "Implement proper pagination with while/for loop",
+        "Add checks for total_pages/empty results"
+      ],
+      "has_pagination": false,
+      "has_completion_check": false,
+      "has_inventory_verification": true,
+      "pagination_patterns": [],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "stehouwerauto": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "glendalechryslerjeep": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "bommaritocadillac": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "twincitytoyota": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "columbiahonda": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "kiaofcolumbia": {
+      "status": "GOOD",
+      "pagination_score": 6,
+      "issues": [
+        "No completion validation found",
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Add checks for total_pages/empty results",
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": false,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "joemachenstoyota": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "suntrupfordkirkwood": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "davesinclairlincolnsouth": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No completion validation found"
+      ],
+      "recommendations": [
+        "Add checks for total_pages/empty results"
+      ],
+      "has_pagination": true,
+      "has_completion_check": false,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [],
+      "api_type": "chrome_driver"
+    },
+    "jaguarranchomirage": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "rustydrewingchevroletbuickgmc": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "stellantis_ddc"
+    },
+    "thoroughbredford": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "indigoautogroup": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "bommaritocadillacwestcounty": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    },
+    "serrahondaofallon": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "bmwofweststlouis": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "suntrupbuickgmc": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "dealeron"
+    },
+    "frankletahonda": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "suntruphyundaisouth": {
+      "status": "EXCELLENT",
+      "pagination_score": 10,
+      "issues": [],
+      "recommendations": [],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": true,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "total_pages|nbPages|totalCount|total_count"
+      ],
+      "api_type": "algolia"
+    },
+    "hondafrontenac": {
+      "status": "EXCELLENT",
+      "pagination_score": 8,
+      "issues": [
+        "No inventory verification system"
+      ],
+      "recommendations": [
+        "Integrate InventoryVerificationMixin"
+      ],
+      "has_pagination": true,
+      "has_completion_check": true,
+      "has_inventory_verification": false,
+      "pagination_patterns": [
+        "while.*page.*<.*max_pages"
+      ],
+      "completion_patterns": [
+        "not.*hits|not.*vehicles|not.*results"
+      ],
+      "api_type": "chrome_driver"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Jaguar Ranch Mirage",
+  "base_url": "https://www.jaguarranchomirage.com",
+  "scraper_type": "api",
+  "api_platform": "stellantis_ddc",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Jaguar Ranch Mirage"
+      },
+      "allowed_conditions": [
+        "new",
+        "used",
+        "certified"
+      ],
+      "price_range": {
+        "min": 30000,
+        "max": 200000
+      },
+      "year_range": {
+        "min": 2015,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "jaguarranchomirage",
+  "created_at": "2025-07-18T23:02:20.944655",
+  "updated_at": "2025-07-18T23:02:20.944656",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:20.944648"
+}

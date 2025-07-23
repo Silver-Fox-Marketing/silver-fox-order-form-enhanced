@@ -1,0 +1,6 @@
+id,vin,year,make,model,trim,price,condition,dealer_name,dealer_id,status,vehicle_status,availability
+test_1,1HGBH41JXMN109186,2026,Honda,Civic,Sport,27745,In Stock,Columbia Honda,columbiahonda,,,
+test_2,1HGBH41JXMN109187,2025,Honda,Accord,LX,25000,,Columbia Honda,columbiahonda,Certified Used,,
+test_3,1HGBH41JXMN109188,2024,Honda,CR-V,EX,32000,In-transit,Columbia Honda,columbiahonda,,,
+test_4,1HGBH41JXMN109189,2023,Honda,Pilot,Touring,45000,,Columbia Honda,columbiahonda,,Used,
+test_5,1HGBH41JXMN109190,2022,Honda,Odyssey,EX-L,38000,,Columbia Honda,columbiahonda,,,Available

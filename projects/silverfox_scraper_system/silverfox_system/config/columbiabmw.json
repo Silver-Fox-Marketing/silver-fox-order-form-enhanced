@@ -1,0 +1,71 @@
+{
+  "name": "Columbia BMW",
+  "base_url": "https://www.columbiabmw.com",
+  "scraper_type": "api",
+  "api_platform": "stellantis_ddc",
+  "api_config": {
+    "primary_endpoint": "https://www.columbiabmw.com/inventory/feed/vehicles",
+    "dealership_code": "65001",
+    "headers": {
+      "User-Agent": "Mozilla/5.0",
+      "Accept": "application/json"
+    }
+  },
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Columbia BMW"
+      },
+      "allowed_conditions": [
+        "new",
+        "used",
+        "certified"
+      ],
+      "price_range": {
+        "min": 20000,
+        "max": 200000
+      },
+      "year_range": {
+        "min": 2015,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "skip_if_missing": [],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "extraction_config": {
+    "method": "api_request",
+    "pagination": true,
+    "data_fields": [
+      "vin",
+      "stock_number",
+      "year",
+      "make",
+      "model",
+      "trim",
+      "price",
+      "mileage",
+      "exterior_color",
+      "body_style",
+      "url"
+    ]
+  },
+  "id": "columbiabmw",
+  "created_at": "2025-07-18T23:02:18.029576",
+  "updated_at": "2025-07-18T23:02:18.029578",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:18.029568"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Rusty Drewing Cadillac",
+  "base_url": "https://www.rustydrewingcadillac.com",
+  "scraper_type": "api",
+  "api_platform": "custom",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Rusty Drewing Cadillac"
+      },
+      "allowed_conditions": [
+        "new",
+        "used"
+      ],
+      "price_range": {
+        "min": 20000,
+        "max": 150000
+      },
+      "year_range": {
+        "min": 2015,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "rustydrewingcadillac",
+  "created_at": "2025-07-18T23:02:24.896658",
+  "updated_at": "2025-07-18T23:02:24.896659",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:24.896648"
+}

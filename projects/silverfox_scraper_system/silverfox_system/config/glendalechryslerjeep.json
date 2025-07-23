@@ -1,0 +1,44 @@
+{
+  "name": "Glendale Chrysler Jeep",
+  "base_url": "https://www.glendalechryslerjeep.com",
+  "scraper_type": "api",
+  "api_platform": "stellantis_ddc",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Glendale Chrysler Jeep"
+      },
+      "allowed_conditions": [
+        "new",
+        "used"
+      ],
+      "price_range": {
+        "min": 12000,
+        "max": 100000
+      },
+      "year_range": {
+        "min": 2010,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "glendalechryslerjeep",
+  "created_at": "2025-07-18T23:02:19.790014",
+  "updated_at": "2025-07-18T23:02:19.790015",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:19.790007"
+}

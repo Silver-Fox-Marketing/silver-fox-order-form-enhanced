@@ -1,0 +1,3 @@
+vin,stock_number,year,make,model,trim,price,msrp,mileage,exterior_color,interior_color,body_style,fuel_type,transmission,engine,original_status,normalized_status,condition,dealer_name,dealer_id,url,scraped_at
+1HGCM82633A123456,H12345,2024,Honda,Accord,LX,28500,30000,0,White,Black,Sedan,Gasoline,CVT,1.5L Turbo,Available,onlot,New,Sample Honda,sample_honda,https://example.com/vehicle/123456,2025-07-22T17:22:53.757628
+1FTFW1ET5DFC12345,F67890,2023,Ford,F-150,XLT,35000,37000,15000,Blue,Gray,Pickup,Gasoline,10-Speed Automatic,3.5L V6,Available,onlot,Used,Sample Ford,sample_ford,https://example.com/vehicle/67890,2025-07-22T17:22:53.757635

@@ -1,0 +1,60 @@
+{
+  "test_suite": "Quick Stress Test",
+  "start_time": "2025-07-22T01:41:32.814427",
+  "end_time": "2025-07-22T01:41:33.465721",
+  "total_duration": 0.651294,
+  "summary": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100.0
+  },
+  "detailed_results": [
+    {
+      "test_name": "Data Generation Speed",
+      "vehicles_generated": 5000,
+      "generation_time": 0.04680299758911133,
+      "vehicles_per_second": 106830.76421505201,
+      "status": "PASSED"
+    },
+    {
+      "test_name": "CSV Processing Performance",
+      "records_processed": 2000,
+      "write_time": 0.013920783996582031,
+      "read_time": 0.007188081741333008,
+      "write_speed": 143670.0691922998,
+      "read_speed": 278238.3495306644,
+      "status": "PASSED"
+    },
+    {
+      "test_name": "Database Operations",
+      "records_inserted": 3000,
+      "insert_time": 0.008826255798339844,
+      "insert_speed": 339894.97568881686,
+      "query_time": 4.887580871582031e-05,
+      "indexed_query_time": 0.0001380443572998047,
+      "total_records": 3000,
+      "status": "PASSED"
+    },
+    {
+      "test_name": "Google Sheets Logic Simulation",
+      "vehicles_processed": 1000,
+      "dealership_filters": 3,
+      "duplicates_found": 0,
+      "matrix_rows_created": 30,
+      "processing_time": 0.009778022766113281,
+      "records_per_second": 102270.16482980592,
+      "status": "PASSED"
+    },
+    {
+      "test_name": "Memory Usage Pattern",
+      "initial_memory_mb": 62.515625,
+      "peak_memory_mb": 72.0625,
+      "final_memory_mb": 71.0625,
+      "memory_growth_mb": 9.546875,
+      "memory_recovered_mb": 1.0,
+      "status": "PASSED"
+    }
+  ]
+}

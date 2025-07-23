@@ -1,0 +1,50 @@
+{
+  "name": "Frank Leta Honda",
+  "base_url": "https://www.frankletahonda.com",
+  "scraper_type": "api",
+  "api_platform": "algolia",
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Frank Leta Honda"
+      },
+      "api_filters": {
+        "facet_filters": [
+          "searchable_dealer_name:Frank Leta Honda"
+        ]
+      },
+      "allowed_conditions": [
+        "new",
+        "used",
+        "certified"
+      ],
+      "price_range": {
+        "min": 10000,
+        "max": 80000
+      },
+      "year_range": {
+        "min": 2010,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "id": "frankletahonda",
+  "created_at": "2025-07-18T23:02:19.131654",
+  "updated_at": "2025-07-18T23:02:19.131657",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:19.131628"
+}

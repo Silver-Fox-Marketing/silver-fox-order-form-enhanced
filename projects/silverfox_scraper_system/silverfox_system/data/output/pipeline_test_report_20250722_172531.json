@@ -1,0 +1,30 @@
+{
+  "scraping": {
+    "status": "failed",
+    "error": "No vehicles found"
+  },
+  "normalization": {
+    "status": "passed",
+    "input_count": 2,
+    "output_count": 2,
+    "column_count": 22,
+    "quality_score": 100.0,
+    "elapsed_time": 0.009201765060424805
+  },
+  "order_processing": {
+    "status": "failed",
+    "error": "Component not initialized"
+  },
+  "qr_generation": {
+    "status": "failed",
+    "error": "'QRProcessor' object has no attribute 'generate_vehicle_qr'"
+  },
+  "apps_script": {
+    "status": "failed",
+    "error": "'AppsScriptProcessor' object has no attribute 'validate_configuration'"
+  },
+  "end_to_end": {
+    "status": "failed",
+    "error": "'QRProcessor' object has no attribute 'generate_vehicle_qr'"
+  }
+}

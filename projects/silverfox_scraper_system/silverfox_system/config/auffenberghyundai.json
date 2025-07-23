@@ -1,0 +1,71 @@
+{
+  "name": "Auffenberg Hyundai",
+  "base_url": "https://www.auffenberghyundai.com",
+  "scraper_type": "api",
+  "api_platform": "custom_widget",
+  "api_config": {
+    "primary_endpoint": "https://www.auffenberghyundai.com/api/inventory/vehicles",
+    "headers": {
+      "User-Agent": "Mozilla/5.0",
+      "Accept": "application/json"
+    }
+  },
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Auffenberg Hyundai"
+      },
+      "allowed_conditions": [
+        "new",
+        "used"
+      ],
+      "price_range": {
+        "min": 5000,
+        "max": 100000
+      },
+      "year_range": {
+        "min": 2010,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "skip_if_missing": [
+        "price"
+      ],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "extraction_config": {
+    "method": "api_request",
+    "pagination": true,
+    "data_fields": [
+      "vin",
+      "stock_number",
+      "year",
+      "make",
+      "model",
+      "trim",
+      "price",
+      "mileage",
+      "exterior_color",
+      "condition",
+      "url"
+    ]
+  },
+  "id": "auffenberghyundai",
+  "created_at": "2025-07-18T23:02:16.577362",
+  "updated_at": "2025-07-18T23:02:16.577365",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:16.577342"
+}

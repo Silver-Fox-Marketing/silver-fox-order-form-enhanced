@@ -1,0 +1,4 @@
+vin,stock_number,year,make,model,trim,price,msrp,mileage,exterior_color,interior_color,body_style,fuel_type,transmission,engine,original_status,normalized_status,condition,dealer_name,dealer_id,url,scraped_at
+1HGCM82633A123456,H12345,2024,Honda,Accord,LX,28500.0,30000.0,"15,234",Pearl White,Black Leather,4DR SEDAN,Gasoline,CVT Automatic,1.5L 4-Cylinder Turbo,unknown,unknown,po,Sample Honda Dealership,,https://example.com/vehicle/123456,2025-07-22T17:31:13.936229
+1FTFW1ET5DFC12345,F67890,2023,Ford,F-150,XLT SuperCrew,,,0,Oxford White,,SuperCrew Pickup,Gas,,,unknown,new,new,Sample Ford Dealership,,https://example.com/vehicle/67890,2025-07-22T17:31:13.936229
+1G1ZD5ST0HF123789,,2025,Chevrolet,MALIBU,,25995.0,,,,,,,,,unknown,unknown,cpo,Sample Chevy Dealer,,,2025-07-22T17:31:13.936229

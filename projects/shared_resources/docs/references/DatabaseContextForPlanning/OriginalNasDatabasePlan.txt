@@ -1,0 +1,549 @@
+Silver Fox Marketing - Master Database Development Plan
+Complete Business Intelligence System for Dealership Operations & Analytics
+Executive Summary
+Project: Core Business Intelligence System for Silver Fox Marketing Purpose: Dealership scraper data
+management, order processing, and business analytics with PipeDrive integration Future Expansion:
+Social media integration layer (Phase 2)
+Business Context
+Silver Fox Marketing is an 18+ year established St. Louis graphics company serving:
+~60% Automotive Dealerships (windshield banners, body-side graphics, shortcuts, vehicle
+merchandising)
+~40% Local St. Louis Businesses (signage, banners, professional graphics)
+Core Competitive Advantage: Same-day delivery speed across all client types
+LotSherpa Product: Premium automotive dealership graphics focused on bridging customer online
+research and on-lot experience under the tagline "Give Your Car a Voice" | "Guide your customer, sell
+more"
+Module I: Database Foundation (Primary Implementation)
+Project Overview
+Goal: Create a robust database foundation for Silver Fox's dealership scraper system to replace
+Google Sheets dependencies and enable advanced automation.
+Current Status: Architecture finalized, ready for implementation
+Next Phase: Database creation and CSV import script development
+System Architecture Understanding
+Current Data Flow
+39 Dealership Scrapers → complete_data.csv
+39 Dealership Scrapers → complete_data.csv
+→ Google Sheets → Manual Processing → Adobe Illustrator
+→ Google Sheets → Manual Processing → Adobe Illustrator
+Target Data Flow (Module I)
+39 Dealership Scrapers → complete_data.csv
+39 Dealership Scrapers → complete_data.csv
+Order Processing
+Order Processing
+→ Database Import Script → PostgreSQL
+→ Database Import Script → PostgreSQL
+→ Normalized Data →
+→ Normalized Data →
+Key Technical Decisions Made
+1. Database Storage Strategy
+Decision: Separate raw and normalized tables
+Raw Table: Exact CSV copy for legal/audit purposes (never modified)
+Normalized Table: Processed data with standardized formats
+Retention: Daily snapshots of
+both raw and normalized data
+2. Configuration Management
+Decision: JSON-based dealership rules stored in database
+Filtering R
+ules: Which vehicles make it onto orders (e.g., "used Toyota only")
+utput R
+O
+ules: Data formatting for Adobe Illustrator integration
+User Access: Kaleb, Nick, Grayson, Joe, Matt can all modify
+via f
+uture UI
+3. Data Quality & Error Handling
+Decision: Required field validation with filtering
+Required Fields: VIN, Stock Number (missing = exclude from orders)
+Auto-Filter: Remove off-lot vehicles, missing stock vehicles
+Error Handling: Flag problematic data for manual review
+Blank Cell Solution: Filter out incomplete records rather than using asterisks
+4. QR Code Management
+Decision: Configurable file path generation
+File Paths: Dynamically generate based on user-configured output folder
+Future Enhancement: User account system for personalized folder paths
+O
+utput Requirement: Final CSV must include correct QR code file paths for Illustrator
+Database Schema (Finalized)
+Raw Vehicle Data Table
+sql
+CREATE TABLE
+CREATE
+TABLE raw_vehicle_data
+raw_vehicle_data ((
+id id SERIAL
+SERIAL PRIMARY
+PRIMARY KEY
+KEY,,
+import_date DATE
+import_date
+DATE DEFAULT
+CU
+DEFAULT CU
+RRENT_DATE,,
+RRENT_DATE
+import_timestamp TIMESTAMP
+import_timestamp
+TIMESTAMP DEFAULT
+CU
+DEFAULT CU
+vin vin VARCHAR
+VARCHAR((17 17)),,
+stock VARCHAR
+stock
+VARCHAR((100
+100)),,
+type VARCHAR
+type
+VARCHAR((50 50)),,
+year INTEGER
+year
+INTEGER,,
+make VARCHAR
+make
+VARCHAR((100
+100)),,
+model VARCHAR
+model
+VARCHAR((200
+200)),,
+trim VARCHAR
+trim
+VARCHAR((200
+200)),,
+ext_color VARCHAR
+ext_color
+VARCHAR((100
+100)),,
+status VARCHAR
+status
+VARCHAR((50 50)),,
+price DECIMAL
+price
+DECIMAL((10 10,,22)),,
+body_style body_style VARCHAR
+VARCHAR((100
+100)),,
+f
+f
+uel_type VARCHAR
+uel_type
+VARCHAR((100
+100)),,
+msrp DECIMAL
+msrp
+DECIMAL((10 10,,22)),,
+date_in_stock VARCHAR
+date_in_stock
+-- R
+VARCHAR((50 50)),,-- R
+aw f
+aw f
+orma
+orma
+t
+t
+street_address TEXT
+street_address
+TEXT,,
+locality VARCHAR
+locality
+VARCHAR((100
+100)),,
+postal_code VARCHAR
+postal_code
+VARCHAR((20 20)),,
+region VARCHAR
+region
+VARCHAR((50 50)),,
+country VARCHAR
+country
+VARCHAR((10 10)),,
+location VARCHAR
+location
+VARCHAR((200
+-- Dealership identifier
+200)),,-- Dealership identifier
+vehicle_url vehicle_url TEXT
+TEXT
+));;
+RRENT_TIMESTAMP,,
+RRENT_TIMESTAMP
+Normalized Vehicle Data Table (Simplified)
+sql
+CREATE TABLE
+CREATE
+TABLE normalized_vehicle_data
+normalized_vehicle_data ((
+id id SERIAL
+SERIAL PRIMARY
+PRIMARY KEY
+KEY,,
+raw_data_id INTEGER
+raw_data_id
+INTEGER REFERENCESREFERENCES raw_vehicle_data
+raw_vehicle_data((id id)),,
+import_date DATE
+import_date
+DATE DEFAULT
+CU
+DEFAULT CU
+RRENT_DATE,,
+RRENT_DATE
+vin vin VARCHAR
+VARCHAR((17 17))NOT
+NOT NULL
+NULL,,
+stock VARCHAR
+stock
+VARCHAR((100
+100))NOT
+NOT NULL
+NULL,,
+vehicle_condition vehicle_condition VARCHAR
+-- new/po/cpo
+VARCHAR((10 10)),,-- new/po/cpo
+(normalized)
+(normalized)
+year INTEGER
+year
+INTEGER,,
+make VARCHAR
+make
+VARCHAR((100
+100)),,
+model VARCHAR
+model
+VARCHAR((200
+200)),,
+trim VARCHAR
+trim
+VARCHAR((200
+200)),,
+status VARCHAR
+status
+VARCHAR((50 50)),,
+price DECIMAL
+price
+DECIMAL((10 10,,22)),,
+msrp DECIMAL
+msrp
+DECIMAL((10 10,,22)),,
+date_in_stock DATE
+date_in_stock
+-- Normalized f
+DATE,,-- Normalized f
+orma
+orma
+t
+t
+dealership_name VARCHAR
+dealership_name
+VARCHAR((200
+-- From lo
+200)),,-- From lo
+c
+c
+a
+a
+tion field
+tion field
+vehicle_url vehicle_url TEXT
+TEXT,,
+vin_scan_count vin_scan_count INTEGER
+INTEGER DEFAULT
+-- Tra
+DEFAULT 11,,-- Tra
+ck multiple sc
+ck multiple sc
+ans
+ans
+created_at TIMESTAMP
+created_at
+TIMESTAMP DEFAULT
+CU
+DEFAULT CU
+RRENT_TIMESTAMP,,
+RRENT_TIMESTAMP
+-- Constraints f
+-- Constraints f
+or required fields
+or required fields
+CONSTRAINT
+CONSTRAINT
+valid_vin valid_vin CHECK
+CHECK ((
+vin vin IS IS NOT
+NOT NULL
+AND
+NULL AND
+vin vin != != '''')),,
+CONSTRAINT
+CONSTRAINT
+valid_stock valid_stock CHECK
+CHECK ((stock
+stock IS IS NOT
+NOT NULL
+NULL AND
+AND stock
+stock != != ''''))
+));;
+VIN Tracking Table
+sql
+TABLE
+CREATE TABLE
+CREATE
+vin_history ((
+vin_history
+id id SERIAL
+SERIAL PRIMARY
+PRIMARY KEY
+KEY,,
+vin vin VARCHAR
+VARCHAR((17 17))NOT
+NOT NULL
+NULL,,
+dealership_name VARCHAR
+dealership_name
+VARCHAR((200
+200)),,
+scan_date DATE
+scan_date
+DATE DEFAULT
+CU
+DEFAULT CU
+RRENT_DATE,,
+RRENT_DATE
+raw_data_id INTEGER
+raw_data_id
+INTEGER REFERENCESREFERENCES raw_vehicle_data
+raw_vehicle_data((id id)),,
+created_at TIMESTAMP
+created_at
+TIMESTAMP DEFAULT
+CU
+DEFAULT CU
+RRENT_TIMESTAMP
+RRENT_TIMESTAMP
+));;
+Dealership Configuration Table
+sql
+CREATE TABLE
+CREATE
+TABLE dealership_configs
+dealership_configs ((
+id id SERIAL
+SERIAL PRIMARY
+PRIMARY KEY
+KEY,,
+name VARCHAR
+name
+VARCHAR((200
+200))UNIQUE
+UNIQUE NOT
+NOT NULL
+NULL,,
+-- JSON c
+filtering_rules JSONB,,-- JSON c
+filtering_rules JSONB
+onfigura
+onfigura
+tion
+tion
+-- Output f
+output_rules JSONB,,-- Output f
+output_rules JSONB
+orma
+orma
+tting rules
+tting rules
+qr_output_path VARCHAR
+qr_output_path
+VARCHAR((500
+-- User-c
+500)),,-- User-c
+onfigurable QR
+onfigurable QR
+is_active BOOLEAN
+is_active
+BOOLEAN DEFAULT
+DEFAULT true
+true,,
+created_at TIMESTAMP
+created_at
+TIMESTAMP DEFAULT
+CU
+DEFAULT CU
+updated_at TIMESTAMP
+updated_at
+TIMESTAMP DEFAULT
+CU
+DEFAULT CU
+RRENT_TIMESTAMP,,
+RRENT_TIMESTAMP
+RRENT_TIMESTAMP
+RRENT_TIMESTAMP
+f
+f
+older
+older
+));;
+Data Processing R
+ules
+Vehicle Condition Normalization
+Raw Value Normalized Value
+"Certified Used", "Certified Pre-Owned", "Certified" "cpo"
+"Used", "Pre-Owned", "pre-owned" "po"
+"New", "new" "new"
+"In-transit", "In-Transit", "Arriving Soon", etc. "offlot"
+"On-Lot", "In-Lot", "InStock", "Available" "onlot"
+Required Field Validation
+VIN: Must be present and non-empty
+Stock: Must be present and non-empty
+Missing Data Action: Exclude from normalized table, log in error tracking
+Removed Fields (From Normalized Data)
+Body Style
+Fuel Type
+Exterior Color
+Street Address
+Locality
+Postal Code
+Region
+Country
+Note: These fields remain in raw_vehicle_da
+ta f
+or audit purposes
+CSV Import Process
+Headers Structure (from headers.json)
+json
+[[
+"Vin"
+"Vin",,"Stock"
+"Stock",,"Type"
+"Type",,"Year"
+"Year",,"Make"
+"Make",,"Model"
+"Model",,"Trim"
+"Trim",,
+"Ext Color"
+"Ext Color",,"Status"
+"Status",,"Price"
+"Price",,"Body Style"
+"Body Style",,"Fuel Type"
+"Fuel Type",,
+"MSRP",,"Date In Stock"
+"MSRP"
+"Date In Stock",,"Street Address"
+"Street Address",,"Locality"
+"Locality",,
+"Postal Code",,"Region"
+"Postal Code"
+"Region",,"Country"
+"Country",,"Location"
+"Vehicle U
+"Location",,"Vehicle U
+R
+R
+L"
+L"
+]]
+Import Script Requirements
+1. Read complete_data.csv
+using headers.json structure
+2. Store raw copy in raw_vehicle_data table with timestamp
+3. Validate required fields (VIN, Stock)
+4. Normalize data:
+Vehicle condition mapping
+Date standardization (various formats → DATE)
+Dealership identification (from Location field)
+5. Track VIN history for multiple scan detection
+6. Generate error reports for problematic data
+7. Performance target: Complete within 15-30 minutes
+Infrastructure Details
+Database Location
+Host: WD My Cloud EX4100 NAS (local network)
+Database: PostgreSQL
+Backup Strategy: Daily snapshots on NAS
+File Processing
+Input: complete_data.csv (~3-5MB per dealership × 39 = ~195MB total)
+Processing: Parallel processing for performance
+Error Handling: Comprehensive logging and validation
+O
+utstanding Questions for Implementation
+QR Code File Path Generation
+Decision Made: Configurable output folders per user
+Implementation Need: User configuration system
+O
+utput Format: Full file paths in final CSV for Illustrator
+User Account System
+Future Enhancement: Individual user settings
+Current Approach: Single configuration for Phase 1
+Extension Point: Ready for multi-user setup
+Next Steps - Implementation Checklist
+Phase 1A: Database Setup
+Install PostgreSQL on NAS
+Create database schema (tables, indexes, constraints)
+Set up automated backup procedures
+Test database performance with sample data
+Phase 1B: CSV Import Script
+Build Python import script using existing scraper helper_class.py patterns
+Implement vehicle condition normalization logic
+Add required field validation
+Create error reporting system
+Test with actual complete_data.csv files
+Phase 1C: VIN Tracking System
+Implement VIN scan counting logic
+Create dealership movement tracking
+Build duplicate detection algorithms
+Phase 1D: Configuration System
+Design JSON structure for dealership rules
+Implement configuration loading/saving
+Create dealership-specific filtering logic
+Success Criteria
+Functional Requirements
+Successf
+ully import complete_data.csv
+without data loss
+Normalize vehicle conditions accurately
+Track VIN scan history across dealerships
+Filter out vehicles missing required fields
+Generate clean output for Adobe Illustrator integration
+Performance Requirements
+Complete import process in 15-30 minutes
+Handle 195MB+ daily data volumes
+Maintain system uptime for production use
+Audit Requirements
+Preserve raw data for legal proof
+Track all data transformations
+Maintain complete processing logs
+Integration Points for Future Phases
+Phase 2: PipeDrive Integration
+Database ready for CR
+M synchronization
+Business analytics foundation established
+Order processing automation hooks
+Phase 3: Advanced UI
+Configuration management system prepared
+User account system extension points
+Real-time monitoring capabilities
+Phase 4: Social Media Integration
+Database schema expandable for social data
+Analytics framework ready for R
+OI tracking
+Extended System Architecture (Future Development)
+Core Business Requirements
+1. 39+ Dealership Website Scrapers - Automated inventory monitoring
+2. Same-Day Delivery Preservation - Critical operational speed requirement
+3. PipeDrive CR
+M Integration - Central business intelligence hub
+4. Automated Order Processing - Eliminate manual bottlenecks
+5. VIN Management System - Streamlined transcription and verification
+6. QR Code Verification - Installation quality control
+7. Business Analytics - Joe's executive dashboard and R
+OI tracking
+Critical Bottlenecks to Solve
+Scraper System Failures - When scrapers malf
+unction, entire dealership pipeline stops
+Manual Data Processing - CSV filtering creates significant delays
+VIN Transcription Workflow - Hours of manual work daily (Logan's current burden)
+QR Verification Process - Manual verification before installation
+Nick Dependency - Eliminate single points of failure

@@ -1,0 +1,70 @@
+{
+  "name": "Bommarito West County",
+  "base_url": "https://www.bommaritowestcounty.com",
+  "scraper_type": "api",
+  "api_platform": "dealeron_cosmos",
+  "api_config": {
+    "primary_endpoint": "https://www.bommaritowestcounty.com/api/vhcliaa/vehicle-pages/cosmos/srp/vehicles",
+    "dealer_id": "68426",
+    "headers": {
+      "User-Agent": "Mozilla/5.0",
+      "Accept": "application/json"
+    }
+  },
+  "filtering_rules": {
+    "conditional_filters": {
+      "location_filters": {
+        "required_location": "Bommarito West County"
+      },
+      "allowed_conditions": [
+        "new",
+        "used"
+      ],
+      "price_range": {
+        "min": 15000,
+        "max": 120000
+      },
+      "year_range": {
+        "min": 2010,
+        "max": 2024
+      }
+    },
+    "validation_rules": {
+      "required_fields": [
+        "vin",
+        "make",
+        "model",
+        "year"
+      ],
+      "skip_if_missing": [],
+      "field_types": {
+        "price": "price",
+        "year": "year",
+        "mileage": "mileage"
+      }
+    }
+  },
+  "extraction_config": {
+    "method": "api_request",
+    "pagination": true,
+    "data_fields": [
+      "vin",
+      "stock_number",
+      "year",
+      "make",
+      "model",
+      "trim",
+      "price",
+      "mileage",
+      "exterior_color",
+      "condition",
+      "url"
+    ]
+  },
+  "id": "bommaritowestcounty",
+  "created_at": "2025-07-18T23:02:17.366969",
+  "updated_at": "2025-07-18T23:02:17.366971",
+  "exact_replica": true,
+  "original_patterns_preserved": 7,
+  "generated_exact_replica_at": "2025-07-18T23:02:17.366957"
+}

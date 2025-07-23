@@ -1,0 +1,230 @@
+{
+  "timestamp": "2025-07-22T02:25:55.742726",
+  "config": {
+    "max_concurrent_pipelines": 3,
+    "max_dealerships_per_test": 10,
+    "max_vehicles_per_dealership": 50,
+    "database_operation_count": 5000,
+    "ui_update_frequency": 100,
+    "test_duration_minutes": 5,
+    "memory_threshold_mb": 800,
+    "cpu_threshold_percent": 85.0
+  },
+  "tests_run": 22,
+  "tests_passed": 22,
+  "tests_failed": 0,
+  "failures": [],
+  "performance_metrics": {
+    "data_generation": {
+      "total_vehicles": 500,
+      "total_dealerships": 10,
+      "generation_time": 0.01155996322631836,
+      "vehicles_per_second": 43252.73274759724
+    },
+    "pipeline_stage_management": {
+      "total_stages": 100,
+      "total_updates": 13000,
+      "duration": 0.005139827728271484,
+      "updates_per_second": 2529267.6500603026
+    },
+    "concurrent_pipelines": {
+      "total_pipelines": 3,
+      "successful_pipelines": 3,
+      "success_rate": 100.0,
+      "total_errors": 2,
+      "avg_processing_time": 1.8739996147413323,
+      "total_duration": 2.101004123687744,
+      "pipelines_per_second": 1.4278886776929842
+    },
+    "message_queue": {
+      "messages_sent": 5000,
+      "messages_processed": 5000,
+      "processing_rate": 44914.781610475504,
+      "queue_efficiency": 100.0,
+      "duration": 0.11132192611694336
+    },
+    "memory_management": {
+      "initial_memory_mb": 25.578125,
+      "peak_memory_mb": 54.203125,
+      "final_memory_mb": 5.6875,
+      "memory_increase_mb": 28.625,
+      "memory_recovered_mb": 48.515625,
+      "recovery_rate": 169.48689956331876
+    }
+  },
+  "ui_performance": {
+    "animated_progress_bars": {
+      "simulated_bars": 20,
+      "total_updates": 101635,
+      "duration": 0.016860008239746094,
+      "updates_per_second": 6028170.244923355
+    },
+    "responsiveness": {
+      "total_operations": 6025,
+      "operation_breakdown": {
+        "tab_switches": 1000,
+        "dealership_selections": 307,
+        "progress_updates": 3518,
+        "log_entries": 200,
+        "status_updates": 1000
+      },
+      "duration": 1.325908899307251,
+      "operations_per_second": 4544.052764973437
+    },
+    "real_time_updates": {
+      "total_updates": 100,
+      "duration": 1.642967939376831,
+      "updates_per_second": 60.86546036797861,
+      "avg_latency_ms": 16.420772075653076,
+      "max_latency_ms": 53.74288558959961,
+      "min_latency_ms": 1.558065414428711
+    }
+  },
+  "database_performance": {
+    "concurrent_operations_duration": 1.176771879196167,
+    "connection_errors": 0,
+    "health_checks_duration": 0.06911802291870117,
+    "avg_health_check_time": 0.0013823604583740234,
+    "database_size_mb": 0.22,
+    "vehicle_count": 500,
+    "connection_pooling": {
+      "total_connections": 500,
+      "successful_connections": 500,
+      "failed_connections": 0,
+      "success_rate": 100.0,
+      "avg_connection_time": 0.0008969345092773438,
+      "max_connection_time": 0.005882978439331055,
+      "total_duration": 0.04922986030578613,
+      "connections_per_second": 10156.437513620844
+    }
+  },
+  "memory_usage": [
+    {
+      "timestamp": "2025-07-22T02:25:55.774207",
+      "memory_mb": 67.39
+    },
+    {
+      "timestamp": "2025-07-22T02:25:56.776428",
+      "memory_mb": 35.77
+    },
+    {
+      "timestamp": "2025-07-22T02:25:57.779737",
+      "memory_mb": 23.67
+    },
+    {
+      "timestamp": "2025-07-22T02:25:58.785838",
+      "memory_mb": 22.53
+    },
+    {
+      "timestamp": "2025-07-22T02:25:59.790790",
+      "memory_mb": 14.12
+    },
+    {
+      "timestamp": "2025-07-22T02:26:00.797074",
+      "memory_mb": 42.67
+    },
+    {
+      "timestamp": "2025-07-22T02:26:01.802929",
+      "memory_mb": 9.92
+    },
+    {
+      "timestamp": "2025-07-22T02:26:02.808251",
+      "memory_mb": 19.39
+    },
+    {
+      "timestamp": "2025-07-22T02:26:03.815773",
+      "memory_mb": 7.16
+    },
+    {
+      "timestamp": "2025-07-22T02:26:04.818567",
+      "memory_mb": 27.73
+    },
+    {
+      "timestamp": "2025-07-22T02:26:05.824771",
+      "memory_mb": 9.38
+    }
+  ],
+  "cpu_usage": [
+    {
+      "timestamp": "2025-07-22T02:25:55.774364",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:25:56.776516",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:25:57.780133",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:25:58.786327",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:25:59.790908",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:00.797202",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:01.803039",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:02.808650",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:03.817036",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:04.818612",
+      "cpu_percent": 0.0
+    },
+    {
+      "timestamp": "2025-07-22T02:26:05.824930",
+      "cpu_percent": 0.0
+    }
+  ],
+  "error_recovery_tests": {
+    "database_connection_error": {
+      "handled": true,
+      "recovery_time": 0.008632659912109375,
+      "error": null
+    },
+    "invalid_data_processing": {
+      "handled": true,
+      "recovery_time": 2.002716064453125e-05,
+      "error": null
+    },
+    "thread_crash_simulation": {
+      "handled": true,
+      "recovery_time": 0.0055103302001953125,
+      "error": null
+    },
+    "resource_exhaustion": {
+      "handled": true,
+      "recovery_time": 0.00042319297790527344,
+      "error": null
+    },
+    "network_timeout": {
+      "handled": true,
+      "recovery_time": 0.060553789138793945,
+      "error": null
+    }
+  },
+  "success_rate": 100.0,
+  "overall_status": "EXCELLENT",
+  "memory_summary": {
+    "average_mb": 25.43,
+    "peak_mb": 67.39
+  },
+  "cpu_summary": {
+    "average_percent": 0.0,
+    "peak_percent": 0.0
+  }
+}

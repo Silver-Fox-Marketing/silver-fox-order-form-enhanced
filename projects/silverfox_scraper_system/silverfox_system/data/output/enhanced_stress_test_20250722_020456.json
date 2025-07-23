@@ -1,0 +1,95 @@
+{
+  "timestamp": "2025-07-22T02:04:35.613940",
+  "tests_run": 9,
+  "tests_passed": 7,
+  "tests_failed": 2,
+  "failures": [
+    {
+      "test": "dealership_processing",
+      "error": "",
+      "timestamp": "2025-07-22T02:04:37.498816"
+    },
+    {
+      "test": "column_mappings",
+      "error": "Found 2 mapping errors",
+      "timestamp": "2025-07-22T02:04:37.515813"
+    }
+  ],
+  "performance_metrics": {
+    "apps_script_functions": {
+      "functions_tested": 1600,
+      "duration_seconds": 0.8120040893554688,
+      "functions_per_second": 1970.433426351345,
+      "average_response_time": 0.0005075025558471679
+    },
+    "glendale_cdjr_special": {
+      "total_records_processed": 1800,
+      "wrangler_unlimited_transformed": "1000",
+      "wrangler_result_count": "1000",
+      "box_indicators_removed": "500",
+      "l_designations_transformed": "300",
+      "l_models_created": "300",
+      "processing_duration": 0.01003885269165039,
+      "records_per_second": 179303.35819123164
+    },
+    "ordermatch_processing": {
+      "Twin City Toyota": {
+        "records_processed": 1000,
+        "ordermatch_flag_set": "True",
+        "processing_duration": 0.00029015541076660156,
+        "processing_rate": 3446428.92358258
+      },
+      "Bommarito Cadillac": {
+        "records_processed": 1000,
+        "ordermatch_flag_set": "True",
+        "processing_duration": 0.0001690387725830078,
+        "processing_rate": 5915802.538787024
+      }
+    },
+    "column_mappings": {
+      "total_dealership_configs": 6,
+      "mapping_errors": [
+        "Columbia Honda: Invalid source column format: AF2:AF",
+        "Columbia Honda: Invalid links column format: AF2:AF"
+      ],
+      "error_count": 2,
+      "success_rate": 95.83333333333334
+    },
+    "concurrent_processing": {
+      "total_dealerships": 10,
+      "successful": 10,
+      "failed": 0,
+      "success_rate": 100.0,
+      "total_duration": 1.8549659252166748,
+      "average_concurrent_time": 0.18549659252166747
+    },
+    "qr_integration_scale": {
+      "total_links": 1000,
+      "successful": 1000,
+      "failed": 0,
+      "success_rate": 100.0,
+      "processing_duration": 17.535778999328613,
+      "qr_codes_per_second": 57.02626612928269
+    },
+    "progress_tracking": {
+      "progress_tests_run": 5,
+      "all_tests_passed": true
+    },
+    "error_handling": {
+      "scenarios_tested": 5,
+      "all_handled_successfully": true,
+      "average_error_handling_time": 0.0006829738616943359,
+      "error_types_tested": [
+        "Exception",
+        "ValueError",
+        "FileNotFoundError",
+        "KeyError",
+        "TimeoutError"
+      ]
+    }
+  },
+  "dealership_specific_results": {},
+  "apps_script_compatibility": {},
+  "success_rate": 77.77777777777779,
+  "overall_status": "NEEDS_WORK"
+}
