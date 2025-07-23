@@ -24,36 +24,47 @@ except ImportError:
 # Add parent directories to path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
+utils_dir = os.path.join(parent_dir, 'utils')
+base_dir = os.path.join(parent_dir, 'base')
 sys.path.append(parent_dir)
+sys.path.append(utils_dir)
+sys.path.append(base_dir)
 
 # Import inventory verification system
-from inventory_verification_mixin import InventoryVerificationMixin
+try:
+    from inventory_verification_mixin import InventoryVerificationMixin
+except ImportError:
+    from utils.inventory_verification_mixin import InventoryVerificationMixin
 
 # Try to import base classes, create simple fallbacks if not available
 try:
     from dealership_base import DealershipScraperBase
     from exceptions import NetworkError, ParsingError
 except ImportError:
-    # Create simple fallback base class for standalone testing
-    class DealershipScraperBase:
-        def __init__(self, dealership_config, scraper_config=None):
-            self.dealership_config = dealership_config
-            self.dealership_name = dealership_config.get('name', 'Unknown')
-            self.config = scraper_config or self._create_default_config()
-            self.logger = logging.getLogger(__name__)
-            self.rate_limiter = SimpleRateLimiter()
+    try:
+        from base.dealership_base import DealershipScraperBase
+        from base.exceptions import NetworkError, ParsingError
+    except ImportError:
+        # Create simple fallback base class for standalone testing
+        class DealershipScraperBase:
+            def __init__(self, dealership_config, scraper_config=None):
+                self.dealership_config = dealership_config
+                self.dealership_name = dealership_config.get('name', 'Unknown')
+                self.config = scraper_config or self._create_default_config()
+                self.logger = logging.getLogger(__name__)
+                self.rate_limiter = SimpleRateLimiter()
+            
+            def _create_default_config(self):
+                class DefaultConfig:
+                    request_delay = 2.0
+                    timeout = 30
+                return DefaultConfig()
         
-        def _create_default_config(self):
-            class DefaultConfig:
-                request_delay = 2.0
-                timeout = 30
-            return DefaultConfig()
-    
-    class NetworkError(Exception):
-        pass
-    
-    class ParsingError(Exception):
-        pass
+        class NetworkError(Exception):
+            pass
+        
+        class ParsingError(Exception):
+            pass
 
 class SimpleRateLimiter:
     def __init__(self):
@@ -127,7 +138,7 @@ class BMWofWestStLouisWorkingScraper(DealershipScraperBase, InventoryVerificatio
             # Step 1: Get expected totals for each vehicle type
             self.logger.info("🔍 STEP 1: Detecting expected inventory totals...")
             try:
-                inventory_verification['expected_totals'] = self._get_expected_inventory_totals_bmw()
+                inventory_verification['expected_totals'] = self._get_expected_inventory_totals()
             except Exception as e:
                 self.logger.warning(f"Could not get expected totals: {str(e)}")
                 inventory_verification['expected_totals'] = {}
@@ -206,13 +217,6 @@ class BMWofWestStLouisWorkingScraper(DealershipScraperBase, InventoryVerificatio
         self.logger.info(f"API scraping complete: {len(all_vehicles)} total vehicles")
         return all_vehicles
     
-    def _get_expected_inventory_totals_bmw(self) -> Dict[str, int]:
-        """Get expected inventory totals for BMW dealership - simplified version"""
-        return {
-            'new': 0,  # Will be detected during scraping
-            'used': 0,
-            'certified': 0
-        }
     
     def _scrape_vehicle_type_api(self, vehicle_type: str) -> List[Dict[str, Any]]:
         """Scrape vehicles for a specific type using Algolia API with pagination"""

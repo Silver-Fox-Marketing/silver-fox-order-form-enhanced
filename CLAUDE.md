@@ -58,7 +58,74 @@ I am Claude, your expert-level coding and social media management assistant, con
 
 ---
 
+## 🛠️ Development Environment & Extensions
+
+### **Installed VSCode Extensions**
+
+#### **Currently Active Extensions:**
+1. **MarkdownLint** - Documentation quality and consistency
+2. **npm IntelliSense** - Enhanced Node.js package management
+3. **Debugger for Firefox** - Cross-browser testing capabilities
+4. **Microsoft Edge Tools for VS Code** - Edge DevTools integration
+5. **ESLint** - JavaScript/TypeScript code quality and consistency
+6. **GitLens** - Git supercharged with enhanced version control
+7. **Kubernetes** - Container orchestration and deployment
+8. **VIM** - Advanced text editing with VIM keybindings
+9. **Claude Code** - AI-powered development assistant (primary tool)
+
+#### **Recommended Additional Extensions for Silver Fox Assistant:**
+
+**🚀 Essential for Our Workflow:**
+- **Python** - Enhanced Python development (critical for scrapers)
+- **Pylance** - Advanced Python language server
+- **Python Debugger** - Debug scraper issues efficiently
+- **autoDocstring** - Generate Python docstrings automatically
+- **Black Formatter** - Python code formatting consistency
+
+**📊 Data & Database:**
+- **SQLTools** - Database management and queries
+- **MongoDB for VS Code** - NoSQL database management
+- **CSV to Table** - Better CSV file visualization
+- **Excel Viewer** - View spreadsheets in VSCode
+
+**🌐 Web Development & APIs:**
+- **REST Client** - Test API endpoints directly in VSCode
+- **Postman** - Advanced API testing and documentation
+- **Live Server** - Local development server
+- **Auto Rename Tag** - HTML/XML tag synchronization
+
+**🔄 Integration & Automation:**
+- **Google Apps Script** - Direct GAS development
+- **GitHub Copilot** - AI code completion (complements Claude Code)
+- **GitHub Actions** - CI/CD workflow management
+- **Docker** - Container development and management
+
+**📋 Project Management:**
+- **Todo Tree** - Track TODO comments across codebase
+- **Project Manager** - Switch between project contexts
+- **Bookmarks** - Navigate large codebases efficiently
+- **Error Lens** - Inline error highlighting
+
+**🎨 Documentation & Collaboration:**
+- **Draw.io Integration** - Create technical diagrams
+- **Mermaid Markdown Syntax Highlighting** - Flowcharts and diagrams
+- **Code Spell Checker** - Prevent typos in code and docs
+- **Better Comments** - Enhanced comment visibility
+
+### **How Extensions Enhance Our Silver Fox Workflow:**
+
+1. **Scraper Development**: Python extensions + ESLint for quality code
+2. **API Testing**: REST Client for testing dealership APIs
+3. **Database Management**: SQLTools for inventory data analysis
+4. **Documentation**: MarkdownLint + autoDocstring for comprehensive docs
+5. **Version Control**: GitLens for tracking scraper improvements
+6. **Debugging**: Python Debugger + Error Lens for rapid issue resolution
+
+---
+
 ## 🔗 External Platform Integrations
+
+### **Current Integration Capabilities:**
 
 ### **For Context & Data Access:**
 
@@ -82,6 +149,29 @@ I am Claude, your expert-level coding and social media management assistant, con
 - **Analytics Data**: Export performance data for analysis
 - **Content Planning**: Develop strategies and schedules locally
 - **Asset Management**: Store creative assets in organized folders
+
+#### **🆕 Enhanced Business Integrations**
+
+**Notion Integration:**
+- **Project Documentation**: Link Notion databases to our development workflow
+- **Client Notes**: Import Notion pages for context-aware development
+- **Task Management**: Sync development tasks with Notion project boards
+- **Knowledge Base**: Access company procedures and brand guidelines
+- **Setup**: Share Notion page URLs or export markdown for local processing
+
+**Gmail Integration:**
+- **Client Communications**: Import relevant email threads for project context
+- **Automated Reporting**: Generate and send scraper performance reports
+- **Issue Notifications**: Email alerts for scraper failures or data anomalies
+- **Business Intelligence**: Process email data for client engagement insights
+- **Setup**: Forward key emails or use Gmail API for automated access
+
+**Google Drive Integration:**
+- **Document Processing**: Import client contracts, specifications, and requirements
+- **Asset Management**: Access brand assets, logos, and marketing materials
+- **Data Backup**: Automated backup of scraper outputs and reports
+- **Collaboration**: Share development progress and technical documentation
+- **Setup**: Use Google Drive API or manual file exports for processing
 
 ---
 
