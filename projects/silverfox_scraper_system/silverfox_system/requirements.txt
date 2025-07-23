@@ -1,0 +1,32 @@
+# Silver Fox Assistant - Complete System Dependencies
+
+# Web Scraping Framework
+requests>=2.31.0
+selenium>=4.15.0
+beautifulsoup4>=4.12.0
+undetected-chromedriver>=3.5.0
+
+# Data Processing & Analysis  
+pandas>=2.1.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# Database Management
+sqlite3  # Built-in with Python
+
+# GUI Framework
+tkinter  # Built-in with Python
+
+# QR Code System
+qrcode>=7.4.2
+Pillow>=10.0.0
+
+# Google Sheets Integration
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+google-api-python-client>=2.100.0
+
+# Date/Time Processing
+python-dateutil>=2.8.0
+pytz>=2023.3
