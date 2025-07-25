@@ -1,0 +1,76 @@
+vin,stock_number,year,make,model,trim,price,msrp,mileage,exterior_color,interior_color,fuel_type,transmission,condition,url,dealer_name,scraped_at
+MOCKCOLUM0000000000,STK00000,2025,BMW,Truck,Sport,25530,51243,34885,Blue,Gray,Electric,CVT,used,https://www.columbiabmw.com/inventory/0,Columbia BMW,2025-07-24T02:45:57.949367
+MOCKCOLUM0000000001,STK00001,2021,BMW,Sedan,Sport,66176,75918,28383,White,Gray,Hybrid,CVT,certified,https://www.columbiabmw.com/inventory/1,Columbia BMW,2025-07-24T02:45:57.949391
+MOCKCOLUM0000000002,STK00002,2025,BMW,Truck,Limited,40930,54539,38956,White,Gray,Hybrid,Automatic,certified,https://www.columbiabmw.com/inventory/2,Columbia BMW,2025-07-24T02:45:57.949407
+MOCKCOLUM0000000003,STK00003,2023,BMW,Truck,Premium,65611,38748,20726,Gray,Black,Hybrid,Manual,used,https://www.columbiabmw.com/inventory/3,Columbia BMW,2025-07-24T02:45:57.949423
+MOCKCOLUM0000000004,STK00004,2020,BMW,Coupe,Base,44781,68159,31069,Black,Tan,Electric,CVT,certified,https://www.columbiabmw.com/inventory/4,Columbia BMW,2025-07-24T02:45:57.949437
+MOCKCOLUM0000000005,STK00005,2022,BMW,Convertible,Limited,54419,63418,32907,Blue,Gray,Gasoline,Manual,used,https://www.columbiabmw.com/inventory/5,Columbia BMW,2025-07-24T02:45:57.949452
+MOCKCOLUM0000000006,STK00006,2024,BMW,Sedan,Base,36998,50796,1755,Black,Tan,Electric,CVT,certified,https://www.columbiabmw.com/inventory/6,Columbia BMW,2025-07-24T02:45:57.949467
+MOCKCOLUM0000000007,STK00007,2022,BMW,Coupe,Base,73252,68835,18291,Red,Black,Hybrid,Manual,certified,https://www.columbiabmw.com/inventory/7,Columbia BMW,2025-07-24T02:45:57.949483
+MOCKCOLUM0000000008,STK00008,2020,BMW,Coupe,Base,63699,76137,28100,Black,Gray,Gasoline,Automatic,used,https://www.columbiabmw.com/inventory/8,Columbia BMW,2025-07-24T02:45:57.949498
+MOCKCOLUM0000000009,STK00009,2024,BMW,Convertible,Sport,30062,57567,22266,Black,Tan,Hybrid,CVT,certified,https://www.columbiabmw.com/inventory/9,Columbia BMW,2025-07-24T02:45:57.949513
+MOCKCOLUM0000000010,STK00010,2021,BMW,Coupe,Sport,77992,67982,44084,Black,Tan,Gasoline,CVT,used,https://www.columbiabmw.com/inventory/10,Columbia BMW,2025-07-24T02:45:57.949528
+MOCKCOLUM0000000011,STK00011,2025,BMW,Sedan,Premium,63895,66433,22253,Black,Tan,Gasoline,CVT,certified,https://www.columbiabmw.com/inventory/11,Columbia BMW,2025-07-24T02:45:57.949544
+MOCKCOLUM0000000012,STK00012,2020,BMW,Sedan,Limited,35307,52964,28850,Blue,Tan,Hybrid,CVT,new,https://www.columbiabmw.com/inventory/12,Columbia BMW,2025-07-24T02:45:57.949558
+MOCKCOLUM0000000013,STK00013,2022,BMW,Sedan,Premium,68038,81243,8693,White,Tan,Gasoline,Manual,certified,https://www.columbiabmw.com/inventory/13,Columbia BMW,2025-07-24T02:45:57.949573
+MOCKCOLUM0000000014,STK00014,2024,BMW,Coupe,Sport,60881,60657,20666,Gray,Black,Electric,Manual,new,https://www.columbiabmw.com/inventory/14,Columbia BMW,2025-07-24T02:45:57.949587
+MOCKCOLUM0000000015,STK00015,2023,BMW,SUV,Limited,75112,48801,19580,Black,Black,Electric,Automatic,new,https://www.columbiabmw.com/inventory/15,Columbia BMW,2025-07-24T02:45:57.949601
+MOCKCOLUM0000000016,STK00016,2024,BMW,Coupe,Limited,59094,69512,16018,Black,Gray,Hybrid,Manual,certified,https://www.columbiabmw.com/inventory/16,Columbia BMW,2025-07-24T02:45:57.949616
+MOCKCOLUM0000000017,STK00017,2023,BMW,Sedan,Limited,36411,46235,5172,Black,Black,Gasoline,Automatic,certified,https://www.columbiabmw.com/inventory/17,Columbia BMW,2025-07-24T02:45:57.949631
+MOCKCOLUM0000000018,STK00018,2023,BMW,Truck,Sport,26181,32996,18189,Red,Tan,Hybrid,CVT,new,https://www.columbiabmw.com/inventory/18,Columbia BMW,2025-07-24T02:45:57.949647
+MOCKCOLUM0000000019,STK00019,2025,BMW,Sedan,Sport,55845,57427,14568,Silver,Gray,Hybrid,Automatic,certified,https://www.columbiabmw.com/inventory/19,Columbia BMW,2025-07-24T02:45:57.949667
+MOCKJAGUA0000000000,STK00000,2020,Unknown,SUV,Limited,42170,42324,44204,Red,Tan,Hybrid,CVT,new,https://www.jaguarranchomirage.com/inventory/0,Jaguar Ranch Mirage,2025-07-24T02:46:00.176705
+MOCKJAGUA0000000001,STK00001,2025,Unknown,Sedan,Limited,41679,39493,35336,Silver,Black,Electric,Automatic,used,https://www.jaguarranchomirage.com/inventory/1,Jaguar Ranch Mirage,2025-07-24T02:46:00.176718
+MOCKJAGUA0000000002,STK00002,2024,Unknown,SUV,Premium,78503,33164,34091,Red,Black,Gasoline,Automatic,used,https://www.jaguarranchomirage.com/inventory/2,Jaguar Ranch Mirage,2025-07-24T02:46:00.176725
+MOCKJAGUA0000000003,STK00003,2021,Unknown,Coupe,Sport,67825,79341,1805,Blue,Tan,Gasoline,CVT,certified,https://www.jaguarranchomirage.com/inventory/3,Jaguar Ranch Mirage,2025-07-24T02:46:00.176732
+MOCKJAGUA0000000004,STK00004,2024,Unknown,Sedan,Base,43144,55564,25470,Blue,Tan,Gasoline,CVT,new,https://www.jaguarranchomirage.com/inventory/4,Jaguar Ranch Mirage,2025-07-24T02:46:00.176743
+MOCKJAGUA0000000005,STK00005,2020,Unknown,SUV,Sport,63900,51512,20158,Black,Black,Electric,CVT,used,https://www.jaguarranchomirage.com/inventory/5,Jaguar Ranch Mirage,2025-07-24T02:46:00.176750
+MOCKJAGUA0000000006,STK00006,2025,Unknown,Coupe,Sport,62167,64766,43212,Red,Gray,Electric,CVT,certified,https://www.jaguarranchomirage.com/inventory/6,Jaguar Ranch Mirage,2025-07-24T02:46:00.176757
+MOCKJAGUA0000000007,STK00007,2022,Unknown,Convertible,Limited,35208,58003,31987,White,Gray,Electric,Automatic,certified,https://www.jaguarranchomirage.com/inventory/7,Jaguar Ranch Mirage,2025-07-24T02:46:00.176765
+MOCKJAGUA0000000008,STK00008,2022,Unknown,Truck,Base,51293,68589,14459,Black,Black,Gasoline,Manual,certified,https://www.jaguarranchomirage.com/inventory/8,Jaguar Ranch Mirage,2025-07-24T02:46:00.176772
+MOCKJAGUA0000000009,STK00009,2025,Unknown,Convertible,Sport,77828,84715,41039,Red,Gray,Electric,CVT,certified,https://www.jaguarranchomirage.com/inventory/9,Jaguar Ranch Mirage,2025-07-24T02:46:00.176779
+MOCKJAGUA0000000010,STK00010,2024,Unknown,Coupe,Sport,48893,36088,20665,White,Gray,Gasoline,Automatic,used,https://www.jaguarranchomirage.com/inventory/10,Jaguar Ranch Mirage,2025-07-24T02:46:00.176786
+MOCKJAGUA0000000011,STK00011,2025,Unknown,Truck,Limited,50267,70264,49477,Silver,Gray,Gasoline,CVT,used,https://www.jaguarranchomirage.com/inventory/11,Jaguar Ranch Mirage,2025-07-24T02:46:00.176793
+MOCKJAGUA0000000012,STK00012,2025,Unknown,Sedan,Premium,41067,45279,22576,Silver,Gray,Gasoline,Automatic,new,https://www.jaguarranchomirage.com/inventory/12,Jaguar Ranch Mirage,2025-07-24T02:46:00.176801
+MOCKJAGUA0000000013,STK00013,2025,Unknown,Sedan,Premium,37267,77703,14131,White,Gray,Hybrid,Automatic,certified,https://www.jaguarranchomirage.com/inventory/13,Jaguar Ranch Mirage,2025-07-24T02:46:00.176808
+MOCKJAGUA0000000014,STK00014,2023,Unknown,Convertible,Premium,27380,83692,43559,Silver,Gray,Electric,Manual,certified,https://www.jaguarranchomirage.com/inventory/14,Jaguar Ranch Mirage,2025-07-24T02:46:00.176814
+MOCKJAGUA0000000015,STK00015,2024,Unknown,Convertible,Premium,36618,81339,48365,Silver,Tan,Hybrid,Manual,used,https://www.jaguarranchomirage.com/inventory/15,Jaguar Ranch Mirage,2025-07-24T02:46:00.176821
+MOCKJAGUA0000000016,STK00016,2022,Unknown,Truck,Limited,58690,37049,43227,Red,Gray,Electric,CVT,certified,https://www.jaguarranchomirage.com/inventory/16,Jaguar Ranch Mirage,2025-07-24T02:46:00.176828
+MOCKJAGUA0000000017,STK00017,2024,Unknown,Truck,Limited,62427,72235,13115,Black,Gray,Gasoline,CVT,new,https://www.jaguarranchomirage.com/inventory/17,Jaguar Ranch Mirage,2025-07-24T02:46:00.176836
+MOCKJAGUA0000000018,STK00018,2020,Unknown,Sedan,Sport,64293,59147,20527,Black,Gray,Electric,CVT,new,https://www.jaguarranchomirage.com/inventory/18,Jaguar Ranch Mirage,2025-07-24T02:46:00.176843
+MOCKJAGUA0000000019,STK00019,2024,Unknown,Sedan,Limited,34964,40890,6351,Red,Gray,Electric,Automatic,used,https://www.jaguarranchomirage.com/inventory/19,Jaguar Ranch Mirage,2025-07-24T02:46:00.176850
+MOCKJAGUA0000000020,STK00020,2023,Unknown,Coupe,Sport,33941,55131,18709,White,Tan,Hybrid,Manual,used,https://www.jaguarranchomirage.com/inventory/20,Jaguar Ranch Mirage,2025-07-24T02:46:00.176857
+MOCKJAGUA0000000021,STK00021,2023,Unknown,Sedan,Sport,33135,78897,34657,Gray,Tan,Gasoline,Automatic,new,https://www.jaguarranchomirage.com/inventory/21,Jaguar Ranch Mirage,2025-07-24T02:46:00.176864
+MOCKJAGUA0000000022,STK00022,2024,Unknown,Convertible,Base,37759,81399,17466,White,Gray,Electric,Manual,certified,https://www.jaguarranchomirage.com/inventory/22,Jaguar Ranch Mirage,2025-07-24T02:46:00.176871
+MOCKJAGUA0000000023,STK00023,2021,Unknown,Coupe,Sport,70169,58658,48636,Red,Black,Gasoline,Automatic,used,https://www.jaguarranchomirage.com/inventory/23,Jaguar Ranch Mirage,2025-07-24T02:46:00.176878
+MOCKJAGUA0000000024,STK00024,2023,Unknown,Sedan,Sport,47943,57405,30013,Silver,Gray,Gasoline,Automatic,used,https://www.jaguarranchomirage.com/inventory/24,Jaguar Ranch Mirage,2025-07-24T02:46:00.176885
+MOCKJAGUA0000000025,STK00025,2022,Unknown,Coupe,Sport,42172,71621,37132,Gray,Black,Hybrid,Manual,used,https://www.jaguarranchomirage.com/inventory/25,Jaguar Ranch Mirage,2025-07-24T02:46:00.176893
+MOCKJAGUA0000000026,STK00026,2021,Unknown,SUV,Sport,45359,39976,2974,Gray,Black,Hybrid,Manual,used,https://www.jaguarranchomirage.com/inventory/26,Jaguar Ranch Mirage,2025-07-24T02:46:00.176900
+MOCKLANDR0000000000,STK00000,2020,Unknown,Convertible,Premium,29688,50643,28334,Red,Black,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/0,Land Rover Ranch Mirage,2025-07-24T02:46:02.211846
+MOCKLANDR0000000001,STK00001,2020,Unknown,SUV,Limited,36340,74627,46659,Blue,Black,Hybrid,Automatic,certified,https://www.landroverranchomirage.com/inventory/1,Land Rover Ranch Mirage,2025-07-24T02:46:02.211872
+MOCKLANDR0000000002,STK00002,2023,Unknown,Convertible,Base,39945,65265,12190,Black,Tan,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/2,Land Rover Ranch Mirage,2025-07-24T02:46:02.211894
+MOCKLANDR0000000003,STK00003,2024,Unknown,Coupe,Base,66984,38427,31295,White,Tan,Gasoline,CVT,new,https://www.landroverranchomirage.com/inventory/3,Land Rover Ranch Mirage,2025-07-24T02:46:02.211915
+MOCKLANDR0000000004,STK00004,2023,Unknown,Convertible,Base,68169,40274,4271,Black,Gray,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/4,Land Rover Ranch Mirage,2025-07-24T02:46:02.211936
+MOCKLANDR0000000005,STK00005,2023,Unknown,Convertible,Premium,48537,51834,7460,Red,Black,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/5,Land Rover Ranch Mirage,2025-07-24T02:46:02.211966
+MOCKLANDR0000000006,STK00006,2021,Unknown,Convertible,Sport,25097,70867,33401,Red,Gray,Electric,Automatic,used,https://www.landroverranchomirage.com/inventory/6,Land Rover Ranch Mirage,2025-07-24T02:46:02.212006
+MOCKLANDR0000000007,STK00007,2025,Unknown,Sedan,Premium,62449,41686,33986,Blue,Black,Hybrid,Automatic,used,https://www.landroverranchomirage.com/inventory/7,Land Rover Ranch Mirage,2025-07-24T02:46:02.212045
+MOCKLANDR0000000008,STK00008,2023,Unknown,SUV,Sport,55384,36030,9622,Red,Gray,Gasoline,Manual,new,https://www.landroverranchomirage.com/inventory/8,Land Rover Ranch Mirage,2025-07-24T02:46:02.212066
+MOCKLANDR0000000009,STK00009,2024,Unknown,Sedan,Base,76104,57984,35482,White,Black,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/9,Land Rover Ranch Mirage,2025-07-24T02:46:02.212088
+MOCKLANDR0000000010,STK00010,2020,Unknown,Truck,Limited,43169,69204,25252,Blue,Black,Hybrid,Manual,new,https://www.landroverranchomirage.com/inventory/10,Land Rover Ranch Mirage,2025-07-24T02:46:02.212117
+MOCKLANDR0000000011,STK00011,2023,Unknown,Coupe,Base,67031,73632,8276,White,Tan,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/11,Land Rover Ranch Mirage,2025-07-24T02:46:02.212138
+MOCKLANDR0000000012,STK00012,2024,Unknown,SUV,Sport,34649,51276,28241,Black,Black,Electric,Automatic,certified,https://www.landroverranchomirage.com/inventory/12,Land Rover Ranch Mirage,2025-07-24T02:46:02.212159
+MOCKLANDR0000000013,STK00013,2020,Unknown,SUV,Limited,57066,31174,33677,Black,Black,Hybrid,Manual,new,https://www.landroverranchomirage.com/inventory/13,Land Rover Ranch Mirage,2025-07-24T02:46:02.212180
+MOCKLANDR0000000014,STK00014,2024,Unknown,SUV,Premium,62449,47706,18931,Blue,Tan,Hybrid,Automatic,used,https://www.landroverranchomirage.com/inventory/14,Land Rover Ranch Mirage,2025-07-24T02:46:02.212200
+MOCKLANDR0000000015,STK00015,2020,Unknown,SUV,Limited,42559,84921,24261,Gray,Black,Gasoline,Automatic,used,https://www.landroverranchomirage.com/inventory/15,Land Rover Ranch Mirage,2025-07-24T02:46:02.212220
+MOCKLANDR0000000016,STK00016,2021,Unknown,SUV,Sport,65256,81664,11114,Silver,Black,Hybrid,CVT,new,https://www.landroverranchomirage.com/inventory/16,Land Rover Ranch Mirage,2025-07-24T02:46:02.212248
+MOCKLANDR0000000017,STK00017,2025,Unknown,Convertible,Base,47321,37689,43538,Silver,Gray,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/17,Land Rover Ranch Mirage,2025-07-24T02:46:02.212269
+MOCKLANDR0000000018,STK00018,2022,Unknown,Coupe,Sport,66425,69854,49627,Red,Tan,Gasoline,CVT,certified,https://www.landroverranchomirage.com/inventory/18,Land Rover Ranch Mirage,2025-07-24T02:46:02.212289
+MOCKLANDR0000000019,STK00019,2023,Unknown,Sedan,Base,59730,52342,34622,Silver,Black,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/19,Land Rover Ranch Mirage,2025-07-24T02:46:02.212309
+MOCKLANDR0000000020,STK00020,2024,Unknown,Convertible,Premium,39824,48005,28688,Black,Gray,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/20,Land Rover Ranch Mirage,2025-07-24T02:46:02.212329
+MOCKLANDR0000000021,STK00021,2021,Unknown,Truck,Base,72529,47415,1155,White,Gray,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/21,Land Rover Ranch Mirage,2025-07-24T02:46:02.212357
+MOCKLANDR0000000022,STK00022,2023,Unknown,Coupe,Premium,65835,63650,38721,Blue,Gray,Hybrid,CVT,new,https://www.landroverranchomirage.com/inventory/22,Land Rover Ranch Mirage,2025-07-24T02:46:02.212386
+MOCKLANDR0000000023,STK00023,2021,Unknown,Coupe,Limited,27185,76747,22417,Black,Black,Electric,Manual,new,https://www.landroverranchomirage.com/inventory/23,Land Rover Ranch Mirage,2025-07-24T02:46:02.212414
+MOCKLANDR0000000024,STK00024,2025,Unknown,Convertible,Premium,54006,34771,14071,Gray,Tan,Gasoline,CVT,certified,https://www.landroverranchomirage.com/inventory/24,Land Rover Ranch Mirage,2025-07-24T02:46:02.212443
+MOCKLANDR0000000025,STK00025,2025,Unknown,Truck,Premium,77367,69617,18696,Silver,Gray,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/25,Land Rover Ranch Mirage,2025-07-24T02:46:02.212471
+MOCKLANDR0000000026,STK00026,2020,Unknown,Truck,Sport,50494,33489,22350,Blue,Gray,Hybrid,Manual,used,https://www.landroverranchomirage.com/inventory/26,Land Rover Ranch Mirage,2025-07-24T02:46:02.212500
+MOCKLANDR0000000027,STK00027,2023,Unknown,Sedan,Base,46475,63543,9927,White,Tan,Hybrid,Manual,certified,https://www.landroverranchomirage.com/inventory/27,Land Rover Ranch Mirage,2025-07-24T02:46:02.212529

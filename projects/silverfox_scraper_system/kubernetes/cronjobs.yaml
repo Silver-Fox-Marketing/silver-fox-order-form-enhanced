@@ -1,0 +1,549 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: silverfox-ranch-mirage-scraper
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: cronjob
+    dealership-group: ranch-mirage
+spec:
+  schedule: "0 */6 * * *"  # Every 6 hours
+  timeZone: "America/Los_Angeles"  # PST/PDT for California dealerships
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 5
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3600  # 1 hour timeout
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app: silverfox-scraper-job
+            component: ranch-mirage-scraper
+        spec:
+          serviceAccountName: silverfox-scraper-sa
+          imagePullSecrets:
+          - name: silverfox-registry-secret
+          restartPolicy: Never
+          containers:
+          - name: ranch-mirage-scraper
+            image: silverfox/ranch-mirage-scraper:latest
+            imagePullPolicy: Always
+            env:
+            - name: JOB_TYPE
+              value: "ranch_mirage_scraper"
+            - name: DEALERSHIP_GROUP
+              value: "ranch_mirage"
+            - name: LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: LOG_LEVEL
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: redis_password
+            - name: PIPEDRIVE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_api_token
+            - name: PIPEDRIVE_COMPANY_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_company_domain
+            - name: CHROME_BIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: CHROME_BIN
+            - name: CHROMEDRIVER_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: CHROMEDRIVER_PATH
+            volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+            - name: chrome-config-volume
+              mountPath: /app/chrome-config
+              readOnly: true
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: data-volume
+              mountPath: /app/data
+            - name: dev-shm
+              mountPath: /dev/shm
+            resources:
+              requests:
+                cpu: 1000m
+                memory: 2Gi
+              limits:
+                cpu: 3000m
+                memory: 6Gi
+            securityContext:
+              runAsNonRoot: false
+              runAsUser: 0
+              allowPrivilegeEscalation: false
+              capabilities:
+                add:
+                - SYS_ADMIN
+                drop:
+                - ALL
+          volumes:
+          - name: config-volume
+            configMap:
+              name: silverfox-scraper-config
+          - name: chrome-config-volume
+            configMap:
+              name: silverfox-chrome-config
+          - name: logs-volume
+            persistentVolumeClaim:
+              claimName: silverfox-logs-pvc
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: silverfox-data-pvc
+          - name: dev-shm
+            emptyDir:
+              medium: Memory
+              sizeLimit: 2Gi
+          nodeSelector:
+            kubernetes.io/os: linux
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: silverfox-bmw-scraper
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: cronjob
+    dealership-group: bmw
+spec:
+  schedule: "30 */4 * * *"  # Every 4 hours, offset by 30 minutes
+  timeZone: "America/Chicago"  # CST/CDT for Missouri dealerships
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 5
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 2400  # 40 minutes timeout
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app: silverfox-scraper-job
+            component: bmw-scraper
+        spec:
+          serviceAccountName: silverfox-scraper-sa
+          imagePullSecrets:
+          - name: silverfox-registry-secret
+          restartPolicy: Never
+          containers:
+          - name: bmw-scraper
+            image: silverfox/bmw-scraper:latest
+            imagePullPolicy: Always
+            env:
+            - name: JOB_TYPE
+              value: "bmw_scraper"
+            - name: DEALERSHIP_GROUP
+              value: "bmw"
+            - name: LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: LOG_LEVEL
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: redis_password
+            - name: PIPEDRIVE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_api_token
+            - name: PIPEDRIVE_COMPANY_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_company_domain
+            volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: data-volume
+              mountPath: /app/data
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1Gi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+          volumes:
+          - name: config-volume
+            configMap:
+              name: silverfox-scraper-config
+          - name: logs-volume
+            persistentVolumeClaim:
+              claimName: silverfox-logs-pvc
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: silverfox-data-pvc
+          nodeSelector:
+            kubernetes.io/os: linux
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: silverfox-suntrup-scraper
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: cronjob
+    dealership-group: suntrup
+spec:
+  schedule: "15 */3 * * *"  # Every 3 hours, offset by 15 minutes
+  timeZone: "America/Chicago"  # CST/CDT for Missouri dealerships
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 5
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800  # 30 minutes timeout
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app: silverfox-scraper-job
+            component: suntrup-scraper
+        spec:
+          serviceAccountName: silverfox-scraper-sa
+          imagePullSecrets:
+          - name: silverfox-registry-secret
+          restartPolicy: Never
+          containers:
+          - name: suntrup-scraper
+            image: silverfox/suntrup-scraper:latest
+            imagePullPolicy: Always
+            env:
+            - name: JOB_TYPE
+              value: "suntrup_scraper"
+            - name: DEALERSHIP_GROUP
+              value: "suntrup"
+            - name: LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: LOG_LEVEL
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: redis_password
+            - name: PIPEDRIVE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_api_token
+            - name: PIPEDRIVE_COMPANY_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_company_domain
+            - name: CHROME_BIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: CHROME_BIN
+            - name: CHROMEDRIVER_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: CHROMEDRIVER_PATH
+            volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+            - name: chrome-config-volume
+              mountPath: /app/chrome-config
+              readOnly: true
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: data-volume
+              mountPath: /app/data
+            - name: dev-shm
+              mountPath: /dev/shm
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1Gi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
+            securityContext:
+              runAsNonRoot: false
+              runAsUser: 0
+              allowPrivilegeEscalation: false
+              capabilities:
+                add:
+                - SYS_ADMIN
+                drop:
+                - ALL
+          volumes:
+          - name: config-volume
+            configMap:
+              name: silverfox-scraper-config
+          - name: chrome-config-volume
+            configMap:
+              name: silverfox-chrome-config
+          - name: logs-volume
+            persistentVolumeClaim:
+              claimName: silverfox-logs-pvc
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: silverfox-data-pvc
+          - name: dev-shm
+            emptyDir:
+              medium: Memory
+              sizeLimit: 2Gi
+          nodeSelector:
+            kubernetes.io/os: linux
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: silverfox-competitive-analysis
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: cronjob
+    job-type: analytics
+spec:
+  schedule: "0 8,20 * * *"  # Twice daily at 8 AM and 8 PM
+  timeZone: "America/Chicago"  # CST/CDT
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 5
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800  # 30 minutes timeout
+      backoffLimit: 1
+      template:
+        metadata:
+          labels:
+            app: silverfox-scraper-job
+            component: competitive-analysis
+        spec:
+          serviceAccountName: silverfox-scraper-sa
+          imagePullSecrets:
+          - name: silverfox-registry-secret
+          restartPolicy: Never
+          containers:
+          - name: competitive-analysis
+            image: silverfox/competitive-analysis:latest
+            imagePullPolicy: Always
+            env:
+            - name: JOB_TYPE
+              value: "competitive_analysis"
+            - name: LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: LOG_LEVEL
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: redis_password
+            - name: PIPEDRIVE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_api_token
+            - name: PIPEDRIVE_COMPANY_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: pipedrive_company_domain
+            - name: SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: smtp_username
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: smtp_password
+            - name: ALERT_EMAIL_RECIPIENTS
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: alert_email_recipients
+            volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: data-volume
+              mountPath: /app/data
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1Gi
+              limits:
+                cpu: 1500m
+                memory: 3Gi
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+          volumes:
+          - name: config-volume
+            configMap:
+              name: silverfox-scraper-config
+          - name: logs-volume
+            persistentVolumeClaim:
+              claimName: silverfox-logs-pvc
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: silverfox-data-pvc
+          nodeSelector:
+            kubernetes.io/os: linux
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: silverfox-cleanup-job
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: cronjob
+    job-type: maintenance
+spec:
+  schedule: "0 2 * * 0"  # Weekly on Sunday at 2 AM
+  timeZone: "America/Chicago"
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 3
+  startingDeadlineSeconds: 600
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 900  # 15 minutes timeout
+      backoffLimit: 1
+      template:
+        metadata:
+          labels:
+            app: silverfox-scraper-job
+            component: cleanup
+        spec:
+          serviceAccountName: silverfox-scraper-sa
+          imagePullSecrets:
+          - name: silverfox-registry-secret
+          restartPolicy: Never
+          containers:
+          - name: cleanup-job
+            image: silverfox/cleanup:latest
+            imagePullPolicy: Always
+            env:
+            - name: JOB_TYPE
+              value: "cleanup"
+            - name: LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-scraper-env
+                  key: LOG_LEVEL
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: silverfox-api-secrets
+                  key: redis_password
+            - name: CLEANUP_OLDER_THAN_DAYS
+              value: "30"
+            - name: CLEANUP_LOG_FILES
+              value: "true"
+            - name: CLEANUP_TEMP_FILES
+              value: "true"
+            - name: CLEANUP_CHROME_CACHE
+              value: "true"
+            volumeMounts:
+            - name: logs-volume
+              mountPath: /app/logs
+            - name: data-volume
+              mountPath: /app/data
+            - name: chrome-cache-volume
+              mountPath: /app/chrome-cache
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                cpu: 500m
+                memory: 1Gi
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+          volumes:
+          - name: logs-volume
+            persistentVolumeClaim:
+              claimName: silverfox-logs-pvc
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: silverfox-data-pvc
+          - name: chrome-cache-volume
+            persistentVolumeClaim:
+              claimName: silverfox-chrome-cache-pvc
+          nodeSelector:
+            kubernetes.io/os: linux

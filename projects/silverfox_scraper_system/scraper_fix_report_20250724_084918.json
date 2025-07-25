@@ -1,0 +1,442 @@
+{
+  "total_scrapers": 40,
+  "fixed_scrapers": 40,
+  "fix_failures": 0,
+  "fixes_applied": [
+    {
+      "scraper_name": "auffenberghyundai_optimized",
+      "dealer_name": "Auffenberg Hyundai",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "miniofstlouis_optimized",
+      "dealer_name": "MINI of St. Louis",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "hondafrontenac_optimized",
+      "dealer_name": "Honda of Frontenac",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "glendalechryslerjeep_optimized",
+      "dealer_name": "Glendale Chrysler Jeep",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "stehouwerauto_optimized",
+      "dealer_name": "Stehouwer Auto",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "hwkia_optimized",
+      "dealer_name": "H&W Kia",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "davesinclairlincolnstpeters_optimized",
+      "dealer_name": "Dave Sinclair Lincoln St. Peters",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "southcountyautos_optimized",
+      "dealer_name": "South County Autos",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "landroverranchomirage_optimized",
+      "dealer_name": "Land Rover Ranch Mirage",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "wcvolvocars_optimized",
+      "dealer_name": "West County Volvo Cars",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "suntrupbuickgmc_optimized",
+      "dealer_name": "Suntrup Buick GMC",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "spiritlexus_optimized",
+      "dealer_name": "Spirit Lexus",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "porschestlouis_optimized",
+      "dealer_name": "Porsche St. Louis",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "columbiabmw_optimized",
+      "dealer_name": "Columbia BMW",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "twincitytoyota_optimized",
+      "dealer_name": "Twin City Toyota",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "suntrupkiasouth_optimized",
+      "dealer_name": "Suntrup Kia South",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "davesinclairlincolnsouth_optimized",
+      "dealer_name": "Dave Sinclair Lincoln South",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "pundmannford_optimized",
+      "dealer_name": "Pundmann Ford",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "thoroughbredford_optimized",
+      "dealer_name": "Thoroughbred Ford",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "audiranchomirage_optimized",
+      "dealer_name": "Audi Ranch Mirage",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "columbiahonda_optimized",
+      "dealer_name": "Columbia Honda",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "bmwofweststlouis_optimized",
+      "dealer_name": "BMW of West St. Louis",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "joemachenscdjr_optimized",
+      "dealer_name": "Joe Machens Chrysler Dodge Jeep Ram",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "joemachenstoyota_optimized",
+      "dealer_name": "Joe Machens Toyota",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "rustydrewingchevroletbuickgmc_optimized",
+      "dealer_name": "Rusty Drewing Chevrolet Buick GMC",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "joemachensnissan_optimized",
+      "dealer_name": "Joe Machens Nissan",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "indigoautogroup_optimized",
+      "dealer_name": "Indigo Auto Group",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "jaguarranchomirage_optimized",
+      "dealer_name": "Jaguar Ranch Mirage",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "weberchev_optimized",
+      "dealer_name": "Weber Chevrolet",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "kiaofcolumbia_optimized",
+      "dealer_name": "Kia of Columbia",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "pappastoyota_optimized",
+      "dealer_name": "Pappas Toyota",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "bommaritowestcounty_optimized",
+      "dealer_name": "Bommarito West County",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "suntruphyundaisouth_optimized",
+      "dealer_name": "Suntrup Hyundai South",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "joemachenshyundai_optimized",
+      "dealer_name": "Joe Machens Hyundai",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "suntrupfordwest_optimized",
+      "dealer_name": "Suntrup Ford West",
+      "success": true,
+      "status": "Fixed: api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "frankletahonda_optimized",
+      "dealer_name": "Frank Leta Honda",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "rustydrewingcadillac_optimized",
+      "dealer_name": "Rusty Drewing Cadillac",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "bommaritocadillac_optimized",
+      "dealer_name": "Bommarito Cadillac",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "serrahondaofallon_optimized",
+      "dealer_name": "Serra Honda of O'Fallon",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    },
+    {
+      "scraper_name": "suntrupfordkirkwood_optimized",
+      "dealer_name": "Suntrup Ford Kirkwood",
+      "success": true,
+      "status": "Fixed: class_name_corrected, api_configuration_fixed, template_substitutions_fixed",
+      "fixes_applied": [
+        "class_name_corrected",
+        "api_configuration_fixed",
+        "template_substitutions_fixed"
+      ]
+    }
+  ],
+  "start_time": "2025-07-24T08:49:17.993060",
+  "end_time": "2025-07-24T08:49:18.038326"
+}

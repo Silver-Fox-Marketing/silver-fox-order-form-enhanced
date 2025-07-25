@@ -1,0 +1,322 @@
+{
+  "BMW of West St. Louis": {
+    "site_name": "BMW of West St. Louis",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.01928997039794922,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:33.112915"
+  },
+  "Columbia Honda": {
+    "site_name": "Columbia Honda",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.09238576889038086,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:37.705157"
+  },
+  "Jaguar Ranch Mirage": {
+    "site_name": "Jaguar Ranch Mirage",
+    "success": true,
+    "vehicles_found": 40,
+    "duration": 0.053997039794921875,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:46.487852"
+  },
+  "Columbia BMW": {
+    "site_name": "Columbia BMW",
+    "success": true,
+    "vehicles_found": 39,
+    "duration": 0.00978708267211914,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:36.687028"
+  },
+  "Joe Machens Hyundai": {
+    "site_name": "Joe Machens Hyundai",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.010626077651977539,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:48.586955"
+  },
+  "Land Rover Ranch Mirage": {
+    "site_name": "Land Rover Ranch Mirage",
+    "success": true,
+    "vehicles_found": 49,
+    "duration": 0.004368782043457031,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:52.645795"
+  },
+  "Suntrup Ford West": {
+    "site_name": "Suntrup Ford West",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.09588193893432617,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:06.303777"
+  },
+  "Audi Ranch Mirage": {
+    "site_name": "Audi Ranch Mirage",
+    "success": true,
+    "vehicles_found": 48,
+    "duration": 0.32431507110595703,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:30.768490"
+  },
+  "Auffenberg Hyundai": {
+    "site_name": "Auffenberg Hyundai",
+    "success": true,
+    "vehicles_found": 42,
+    "duration": 0.004444122314453125,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:32.101118"
+  },
+  "Bommarito Cadillac": {
+    "site_name": "Bommarito Cadillac",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.2882089614868164,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:34.142721"
+  },
+  "Bommarito West County": {
+    "site_name": "Bommarito West County",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.23713397979736328,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:35.442140"
+  },
+  "Dave Sinclair Lincoln South": {
+    "site_name": "Dave Sinclair Lincoln South",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.2978341579437256,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:38.812545"
+  },
+  "Dave Sinclair Lincoln St. Peters": {
+    "site_name": "Dave Sinclair Lincoln St. Peters",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.2534642219543457,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:40.116240"
+  },
+  "Frank Leta Honda": {
+    "site_name": "Frank Leta Honda",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.01215815544128418,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:41.378953"
+  },
+  "Glendale Chrysler Jeep": {
+    "site_name": "Glendale Chrysler Jeep",
+    "success": true,
+    "vehicles_found": 41,
+    "duration": 0.004370927810668945,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:42.398425"
+  },
+  "H&W Kia": {
+    "site_name": "H&W Kia",
+    "success": true,
+    "vehicles_found": 34,
+    "duration": 0.02675604820251465,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:43.415736"
+  },
+  "Honda of Frontenac": {
+    "site_name": "Honda of Frontenac",
+    "success": true,
+    "vehicles_found": 26,
+    "duration": 0.010728120803833008,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:44.451242"
+  },
+  "Indigo Auto Group": {
+    "site_name": "Indigo Auto Group",
+    "success": true,
+    "vehicles_found": 23,
+    "duration": 0.008827924728393555,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:45.471937"
+  },
+  "Joe Machens Chrysler Dodge Jeep Ram": {
+    "site_name": "Joe Machens Chrysler Dodge Jeep Ram",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.016836881637573242,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:47.559046"
+  },
+  "Joe Machens Nissan": {
+    "site_name": "Joe Machens Nissan",
+    "success": true,
+    "vehicles_found": 40,
+    "duration": 0.005530118942260742,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:49.606169"
+  },
+  "Joe Machens Toyota": {
+    "site_name": "Joe Machens Toyota",
+    "success": true,
+    "vehicles_found": 45,
+    "duration": 0.010892868041992188,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:50.614919"
+  },
+  "Kia of Columbia": {
+    "site_name": "Kia of Columbia",
+    "success": true,
+    "vehicles_found": 35,
+    "duration": 0.005568027496337891,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:51.633379"
+  },
+  "MINI of St. Louis": {
+    "site_name": "MINI of St. Louis",
+    "success": true,
+    "vehicles_found": 38,
+    "duration": 0.00530695915222168,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:53.656983"
+  },
+  "Pappas Toyota": {
+    "site_name": "Pappas Toyota",
+    "success": true,
+    "vehicles_found": 30,
+    "duration": 0.010867118835449219,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:54.669994"
+  },
+  "Porsche St. Louis": {
+    "site_name": "Porsche St. Louis",
+    "success": true,
+    "vehicles_found": 40,
+    "duration": 0.006693124771118164,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:55.685761"
+  },
+  "Pundmann Ford": {
+    "site_name": "Pundmann Ford",
+    "success": true,
+    "vehicles_found": 28,
+    "duration": 0.010189056396484375,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:56.699865"
+  },
+  "Rusty Drewing Cadillac": {
+    "site_name": "Rusty Drewing Cadillac",
+    "success": true,
+    "vehicles_found": 22,
+    "duration": 0.0034019947052001953,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:57.715607"
+  },
+  "Rusty Drewing Chevrolet Buick GMC": {
+    "site_name": "Rusty Drewing Chevrolet Buick GMC",
+    "success": true,
+    "vehicles_found": 26,
+    "duration": 0.005425930023193359,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:58.728037"
+  },
+  "Serra Honda of O'Fallon": {
+    "site_name": "Serra Honda of O'Fallon",
+    "success": true,
+    "vehicles_found": 49,
+    "duration": 0.004579067230224609,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:46:59.736215"
+  },
+  "South County Autos": {
+    "site_name": "South County Autos",
+    "success": true,
+    "vehicles_found": 30,
+    "duration": 0.013585090637207031,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:00.758917"
+  },
+  "Spirit Lexus": {
+    "site_name": "Spirit Lexus",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.007983207702636719,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:01.779773"
+  },
+  "Stehouwer Auto": {
+    "site_name": "Stehouwer Auto",
+    "success": true,
+    "vehicles_found": 48,
+    "duration": 0.0048830509185791016,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:02.795026"
+  },
+  "Suntrup Buick GMC": {
+    "site_name": "Suntrup Buick GMC",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.2552499771118164,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:03.803255"
+  },
+  "Suntrup Ford Kirkwood": {
+    "site_name": "Suntrup Ford Kirkwood",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.22779536247253418,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:05.064657"
+  },
+  "Suntrup Hyundai South": {
+    "site_name": "Suntrup Hyundai South",
+    "success": true,
+    "vehicles_found": 50,
+    "duration": 0.012160062789916992,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:07.409740"
+  },
+  "Suntrup Kia South": {
+    "site_name": "Suntrup Kia South",
+    "success": true,
+    "vehicles_found": 41,
+    "duration": 0.003832101821899414,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:08.429942"
+  },
+  "Thoroughbred Ford": {
+    "site_name": "Thoroughbred Ford",
+    "success": true,
+    "vehicles_found": 28,
+    "duration": 0.015186071395874023,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:09.440927"
+  },
+  "Twin City Toyota": {
+    "site_name": "Twin City Toyota",
+    "success": true,
+    "vehicles_found": 43,
+    "duration": 0.00450587272644043,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:10.462460"
+  },
+  "Weber Chevrolet": {
+    "site_name": "Weber Chevrolet",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.016186237335205078,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:11.474463"
+  },
+  "West County Volvo Cars": {
+    "site_name": "West County Volvo Cars",
+    "success": true,
+    "vehicles_found": 20,
+    "duration": 0.004922151565551758,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:47:12.495444"
+  }
+}

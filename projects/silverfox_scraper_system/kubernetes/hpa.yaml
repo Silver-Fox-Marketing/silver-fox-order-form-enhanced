@@ -1,0 +1,229 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: silverfox-scraper-workers-hpa
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: hpa-workers
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: silverfox-scraper-workers
+  minReplicas: 2
+  maxReplicas: 12
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  # Custom metrics (if Prometheus metrics are available)
+  - type: Pods
+    pods:
+      metric:
+        name: active_scraping_jobs
+      target:
+        type: AverageValue
+        averageValue: "5"
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # 5 minutes
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+      - type: Pods
+        value: 1
+        periodSeconds: 60
+      selectPolicy: Min
+    scaleUp:
+      stabilizationWindowSeconds: 60  # 1 minute
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Max
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: silverfox-analytics-processor-hpa
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: hpa-analytics
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: silverfox-analytics-processor
+  minReplicas: 1
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 85
+  # Custom metrics for queue depth
+  - type: Object
+    object:
+      metric:
+        name: redis_queue_depth
+      target:
+        type: Value
+        value: "100"
+      describedObject:
+        apiVersion: v1
+        kind: Service
+        name: redis-service
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 600  # 10 minutes for analytics
+      policies:
+      - type: Percent
+        value: 25
+        periodSeconds: 120
+      - type: Pods
+        value: 1
+        periodSeconds: 120
+      selectPolicy: Min
+    scaleUp:
+      stabilizationWindowSeconds: 120  # 2 minutes
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 60
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Max
+
+---
+# VerticalPodAutoscaler for coordinator (if VPA is installed)
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: silverfox-coordinator-vpa
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: vpa-coordinator
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: silverfox-scraper-coordinator
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: scraper-coordinator
+      minAllowed:
+        cpu: 100m
+        memory: 256Mi
+      maxAllowed:
+        cpu: 2000m
+        memory: 4Gi
+      controlledResources: ["cpu", "memory"]
+
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: silverfox-workers-vpa
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: vpa-workers
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: silverfox-scraper-workers
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: scraper-worker
+      minAllowed:
+        cpu: 500m
+        memory: 1Gi
+      maxAllowed:
+        cpu: 4000m
+        memory: 8Gi
+      controlledResources: ["cpu", "memory"]
+      controlledValues: RequestsAndLimits
+
+---
+# Custom metrics configuration for Prometheus Adapter
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: silverfox-custom-metrics-config
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: custom-metrics
+data:
+  config.yaml: |
+    rules:
+    - seriesQuery: 'silverfox_active_scraping_jobs{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^silverfox_active_scraping_jobs"
+        as: "active_scraping_jobs"
+      metricsQuery: 'avg(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)'
+    
+    - seriesQuery: 'silverfox_redis_queue_depth{namespace!="",service!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          service: {resource: "service"}
+      name:
+        matches: "^silverfox_redis_queue_depth"
+        as: "redis_queue_depth"
+      metricsQuery: 'max(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)'
+    
+    - seriesQuery: 'silverfox_scraper_response_time_seconds{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^silverfox_scraper_response_time_seconds"
+        as: "scraper_response_time"
+      metricsQuery: 'avg(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)'
+    
+    - seriesQuery: 'silverfox_error_rate{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^silverfox_error_rate"
+        as: "scraper_error_rate"
+      metricsQuery: 'avg(rate(<<.Series>>{<<.LabelMatchers>>}[5m])) by (<<.GroupBy>>)'

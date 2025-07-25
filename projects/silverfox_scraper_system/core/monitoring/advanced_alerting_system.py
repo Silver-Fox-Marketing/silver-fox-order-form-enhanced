@@ -1,0 +1,776 @@
+#!/usr/bin/env python3
+"""
+Advanced Alerting System for Silver Fox Scraper System
+=====================================================
+
+Comprehensive alerting system that integrates with Prometheus metrics,
+PipeDrive CRM, and multiple notification channels for real-time monitoring
+and business intelligence alerts.
+
+Author: Claude (Silver Fox Assistant)
+Created: July 2025
+"""
+
+import asyncio
+import aiohttp
+import json
+import smtplib
+import logging
+import time
+from datetime import datetime, timedelta
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from typing import Dict, List, Any, Optional, Tuple
+from dataclasses import dataclass, asdict
+from enum import Enum
+import redis
+import requests
+from twilio.rest import Client as TwilioClient
+
+
+class AlertSeverity(Enum):
+    """Alert severity levels matching Prometheus standards"""
+    CRITICAL = "critical"
+    WARNING = "warning" 
+    INFO = "info"
+    LOW = "low"
+
+
+class AlertCategory(Enum):
+    """Categories of alerts for proper routing"""
+    SYSTEM = "system"
+    SCRAPER = "scraper"
+    BUSINESS = "business"
+    INVENTORY = "inventory"
+    COMPETITIVE = "competitive"
+    INTEGRATION = "integration"
+
+
+@dataclass
+class Alert:
+    """Alert data structure"""
+    id: str
+    title: str
+    description: str
+    severity: AlertSeverity
+    category: AlertCategory
+    dealership: Optional[str]
+    vehicle_data: Optional[Dict[str, Any]]
+    timestamp: datetime
+    metrics: Dict[str, Any]
+    resolved: bool = False
+    resolution_time: Optional[datetime] = None
+    notification_channels: List[str] = None
+
+
+class NotificationChannel:
+    """Base class for notification channels"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}")
+    
+    async def send_alert(self, alert: Alert) -> bool:
+        """Send alert through this channel"""
+        raise NotImplementedError
+
+
+class EmailNotificationChannel(NotificationChannel):
+    """Email notification channel using SMTP"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.smtp_server = config['smtp_server']
+        self.smtp_port = config['smtp_port']
+        self.username = config['username']
+        self.password = config['password']
+        self.from_email = config['from_email']
+        self.recipients = config['recipients']
+    
+    async def send_alert(self, alert: Alert) -> bool:
+        """Send email alert"""
+        try:
+            msg = MIMEMultipart()
+            msg['From'] = self.from_email
+            msg['To'] = ', '.join(self.recipients)
+            msg['Subject'] = f"[{alert.severity.value.upper()}] Silver Fox Alert: {alert.title}"
+            
+            # Create HTML email body
+            html_body = self._create_email_body(alert)
+            msg.attach(MIMEText(html_body, 'html'))
+            
+            # Send email
+            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                server.starttls()
+                server.login(self.username, self.password)
+                server.send_message(msg)
+            
+            self.logger.info(f"Email alert sent successfully for {alert.id}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Failed to send email alert {alert.id}: {e}")
+            return False
+    
+    def _create_email_body(self, alert: Alert) -> str:
+        """Create HTML email body"""
+        severity_color = {
+            AlertSeverity.CRITICAL: "#FF0000",
+            AlertSeverity.WARNING: "#FFA500", 
+            AlertSeverity.INFO: "#0000FF",
+            AlertSeverity.LOW: "#008000"
+        }
+        
+        return f"""
+        <html>
+        <body>
+            <h2 style="color: {severity_color[alert.severity]}">
+                Silver Fox Scraper Alert
+            </h2>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr><td><b>Alert ID:</b></td><td>{alert.id}</td></tr>
+                <tr><td><b>Severity:</b></td><td>{alert.severity.value.upper()}</td></tr>
+                <tr><td><b>Category:</b></td><td>{alert.category.value}</td></tr>
+                <tr><td><b>Dealership:</b></td><td>{alert.dealership or 'N/A'}</td></tr>
+                <tr><td><b>Time:</b></td><td>{alert.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</td></tr>
+                <tr><td><b>Description:</b></td><td>{alert.description}</td></tr>
+            </table>
+            
+            {self._format_metrics_table(alert.metrics) if alert.metrics else ''}
+            {self._format_vehicle_data(alert.vehicle_data) if alert.vehicle_data else ''}
+            
+            <p style="margin-top: 20px;">
+                <small>
+                    This alert was generated by the Silver Fox Scraper System.<br>
+                    Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+                </small>
+            </p>
+        </body>
+        </html>
+        """
+    
+    def _format_metrics_table(self, metrics: Dict[str, Any]) -> str:
+        """Format metrics data as HTML table"""
+        if not metrics:
+            return ""
+        
+        rows = []
+        for key, value in metrics.items():
+            rows.append(f"<tr><td><b>{key}:</b></td><td>{value}</td></tr>")
+        
+        return f"""
+        <h3>Metrics Data:</h3>
+        <table border="1" cellpadding="5" cellspacing="0">
+            {''.join(rows)}
+        </table>
+        """
+    
+    def _format_vehicle_data(self, vehicle_data: Dict[str, Any]) -> str:
+        """Format vehicle data as HTML table"""
+        if not vehicle_data:
+            return ""
+        
+        rows = []
+        for key, value in vehicle_data.items():
+            rows.append(f"<tr><td><b>{key}:</b></td><td>{value}</td></tr>")
+        
+        return f"""
+        <h3>Vehicle Data:</h3>
+        <table border="1" cellpadding="5" cellspacing="0">
+            {''.join(rows)}
+        </table>
+        """
+
+
+class SlackNotificationChannel(NotificationChannel):
+    """Slack notification channel using webhooks"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.webhook_url = config['webhook_url']
+        self.channel = config.get('channel', '#alerts')
+        self.username = config.get('username', 'Silver Fox Assistant')
+    
+    async def send_alert(self, alert: Alert) -> bool:
+        """Send Slack alert"""
+        try:
+            # Map severity to Slack colors
+            color_map = {
+                AlertSeverity.CRITICAL: "danger",
+                AlertSeverity.WARNING: "warning",
+                AlertSeverity.INFO: "good", 
+                AlertSeverity.LOW: "#439FE0"
+            }
+            
+            payload = {
+                "channel": self.channel,
+                "username": self.username,
+                "icon_emoji": ":rotating_light:" if alert.severity == AlertSeverity.CRITICAL else ":warning:",
+                "attachments": [{
+                    "color": color_map[alert.severity],
+                    "title": f"{alert.severity.value.upper()}: {alert.title}",
+                    "text": alert.description,
+                    "fields": [
+                        {"title": "Category", "value": alert.category.value, "short": True},
+                        {"title": "Dealership", "value": alert.dealership or "N/A", "short": True},
+                        {"title": "Time", "value": alert.timestamp.strftime('%Y-%m-%d %H:%M:%S'), "short": True},
+                        {"title": "Alert ID", "value": alert.id, "short": True}
+                    ],
+                    "footer": "Silver Fox Scraper System",
+                    "ts": int(alert.timestamp.timestamp())
+                }]
+            }
+            
+            async with aiohttp.ClientSession() as session:
+                async with session.post(self.webhook_url, json=payload) as response:
+                    if response.status == 200:
+                        self.logger.info(f"Slack alert sent successfully for {alert.id}")
+                        return True
+                    else:
+                        self.logger.error(f"Slack webhook returned status {response.status}")
+                        return False
+                        
+        except Exception as e:
+            self.logger.error(f"Failed to send Slack alert {alert.id}: {e}")
+            return False
+
+
+class SMSNotificationChannel(NotificationChannel):
+    """SMS notification channel using Twilio"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.client = TwilioClient(config['account_sid'], config['auth_token'])
+        self.from_number = config['from_number']
+        self.to_numbers = config['to_numbers']
+    
+    async def send_alert(self, alert: Alert) -> bool:
+        """Send SMS alert for critical alerts only"""
+        if alert.severity != AlertSeverity.CRITICAL:
+            return True  # Skip non-critical alerts for SMS
+        
+        try:
+            message_body = f"CRITICAL: {alert.title}\n{alert.description}\nTime: {alert.timestamp.strftime('%H:%M')}\nDealership: {alert.dealership or 'N/A'}"
+            
+            for to_number in self.to_numbers:
+                message = self.client.messages.create(
+                    body=message_body,
+                    from_=self.from_number,
+                    to=to_number
+                )
+                self.logger.info(f"SMS sent to {to_number}: {message.sid}")
+            
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Failed to send SMS alert {alert.id}: {e}")
+            return False
+
+
+class PipeDriveNotificationChannel(NotificationChannel):
+    """PipeDrive notification channel for business alerts"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.api_token = config['api_token']
+        self.company_domain = config['company_domain']
+        self.base_url = f"https://{self.company_domain}.pipedrive.com/api/v1"
+    
+    async def send_alert(self, alert: Alert) -> bool:
+        """Create PipeDrive activity for business-relevant alerts"""
+        if alert.category not in [AlertCategory.BUSINESS, AlertCategory.INVENTORY, AlertCategory.COMPETITIVE]:
+            return True  # Skip non-business alerts
+        
+        try:
+            # Create activity in PipeDrive
+            activity_data = {
+                "subject": f"Alert: {alert.title}",
+                "note": self._format_alert_note(alert),
+                "type": "alert",
+                "done": 0
+            }
+            
+            async with aiohttp.ClientSession() as session:
+                url = f"{self.base_url}/activities?api_token={self.api_token}"
+                async with session.post(url, json=activity_data) as response:
+                    if response.status == 201:
+                        result = await response.json()
+                        self.logger.info(f"PipeDrive activity created: {result['data']['id']}")
+                        return True
+                    else:
+                        self.logger.error(f"PipeDrive API returned status {response.status}")
+                        return False
+                        
+        except Exception as e:
+            self.logger.error(f"Failed to create PipeDrive activity for alert {alert.id}: {e}")
+            return False
+    
+    def _format_alert_note(self, alert: Alert) -> str:
+        """Format alert as PipeDrive note"""
+        note = f"""
+Alert Details:
+- Severity: {alert.severity.value.upper()}
+- Category: {alert.category.value}
+- Dealership: {alert.dealership or 'N/A'}
+- Time: {alert.timestamp.strftime('%Y-%m-%d %H:%M:%S')}
+- Description: {alert.description}
+
+Alert ID: {alert.id}
+        """
+        
+        if alert.vehicle_data:
+            note += "\nVehicle Data:\n"
+            for key, value in alert.vehicle_data.items():
+                note += f"- {key}: {value}\n"
+        
+        return note.strip()
+
+
+class AlertRuleEngine:
+    """Rule engine for evaluating metrics and generating alerts"""
+    
+    def __init__(self, redis_client: redis.Redis):
+        self.redis_client = redis_client
+        self.logger = logging.getLogger(f"{__name__}.AlertRuleEngine")
+        self.rules = self._load_alert_rules()
+    
+    def _load_alert_rules(self) -> List[Dict[str, Any]]:
+        """Load alert rules configuration"""
+        return [
+            {
+                "name": "scraper_failure_rate",
+                "metric": "silverfox_scraper_errors_total", 
+                "threshold": 0.1,
+                "comparison": "greater_than",
+                "severity": AlertSeverity.WARNING,
+                "category": AlertCategory.SCRAPER,
+                "description": "High error rate in scraper operations"
+            },
+            {
+                "name": "scraper_down",
+                "metric": "up",
+                "threshold": 0,
+                "comparison": "equals",
+                "severity": AlertSeverity.CRITICAL,
+                "category": AlertCategory.SYSTEM,
+                "description": "Scraper component is down"
+            },
+            {
+                "name": "inventory_drop",
+                "metric": "silverfox_total_inventory_count",
+                "threshold": -10,
+                "comparison": "decrease_by",
+                "severity": AlertSeverity.WARNING,
+                "category": AlertCategory.INVENTORY,
+                "description": "Significant inventory decrease detected"
+            },
+            {
+                "name": "competitive_price_difference",
+                "metric": "silverfox_competitive_price_difference_percent",
+                "threshold": 20,
+                "comparison": "greater_than",
+                "severity": AlertSeverity.WARNING,
+                "category": AlertCategory.COMPETITIVE,
+                "description": "Significant competitive price difference"
+            },
+            {
+                "name": "high_memory_usage",
+                "metric": "container_memory_working_set_bytes",
+                "threshold": 0.9,
+                "comparison": "greater_than",
+                "severity": AlertSeverity.WARNING,
+                "category": AlertCategory.SYSTEM,
+                "description": "High memory usage detected"
+            },
+            {
+                "name": "slow_scraper_response",
+                "metric": "silverfox_scraper_duration_seconds",
+                "threshold": 300,
+                "comparison": "greater_than", 
+                "severity": AlertSeverity.WARNING,
+                "category": AlertCategory.SCRAPER,
+                "description": "Scraper response time exceeds threshold"
+            }
+        ]
+    
+    async def evaluate_metrics(self, metrics_data: Dict[str, Any]) -> List[Alert]:
+        """Evaluate metrics against alert rules"""
+        alerts = []
+        
+        for rule in self.rules:
+            try:
+                alert = await self._evaluate_rule(rule, metrics_data)
+                if alert:
+                    alerts.append(alert)
+            except Exception as e:
+                self.logger.error(f"Error evaluating rule {rule['name']}: {e}")
+        
+        return alerts
+    
+    async def _evaluate_rule(self, rule: Dict[str, Any], metrics_data: Dict[str, Any]) -> Optional[Alert]:
+        """Evaluate a single rule against metrics data"""
+        metric_name = rule['metric']
+        
+        if metric_name not in metrics_data:
+            return None
+        
+        current_value = metrics_data[metric_name]
+        threshold = rule['threshold']
+        comparison = rule['comparison']
+        
+        # Evaluate comparison
+        alert_triggered = False
+        
+        if comparison == "greater_than" and current_value > threshold:
+            alert_triggered = True
+        elif comparison == "less_than" and current_value < threshold:
+            alert_triggered = True
+        elif comparison == "equals" and current_value == threshold:
+            alert_triggered = True
+        elif comparison == "decrease_by":
+            # Check for decrease over time
+            previous_value = await self._get_previous_metric_value(metric_name)
+            if previous_value and (current_value - previous_value) <= threshold:
+                alert_triggered = True
+        
+        if alert_triggered:
+            alert_id = f"{rule['name']}_{int(time.time())}"
+            
+            return Alert(
+                id=alert_id,
+                title=rule['name'].replace('_', ' ').title(),
+                description=f"{rule['description']}. Current value: {current_value}",
+                severity=rule['severity'],
+                category=rule['category'],
+                dealership=metrics_data.get('dealership'),
+                vehicle_data=metrics_data.get('vehicle_data'),
+                timestamp=datetime.now(),
+                metrics={'current_value': current_value, 'threshold': threshold}
+            )
+        
+        return None
+    
+    async def _get_previous_metric_value(self, metric_name: str) -> Optional[float]:
+        """Get previous metric value from Redis for trend analysis"""
+        try:
+            key = f"metric_history:{metric_name}"
+            value = self.redis_client.get(key)
+            return float(value) if value else None
+        except Exception:
+            return None
+
+
+class AdvancedAlertingSystem:
+    """Main alerting system coordinating all components"""
+    
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.logger = logging.getLogger(f"{__name__}.AdvancedAlertingSystem")
+        
+        # Initialize Redis connection
+        self.redis_client = redis.Redis(
+            host=config['redis']['host'],
+            port=config['redis']['port'],
+            password=config['redis'].get('password'),
+            decode_responses=True
+        )
+        
+        # Initialize components
+        self.rule_engine = AlertRuleEngine(self.redis_client)
+        self.notification_channels = self._initialize_notification_channels()
+        
+        # Alert management
+        self.active_alerts: Dict[str, Alert] = {}
+        self.alert_history: List[Alert] = []
+        self.suppression_rules = config.get('suppression_rules', {})
+    
+    def _initialize_notification_channels(self) -> Dict[str, NotificationChannel]:
+        """Initialize notification channels"""
+        channels = {}
+        
+        if 'email' in self.config:
+            channels['email'] = EmailNotificationChannel(self.config['email'])
+        
+        if 'slack' in self.config:
+            channels['slack'] = SlackNotificationChannel(self.config['slack'])
+        
+        if 'sms' in self.config:
+            channels['sms'] = SMSNotificationChannel(self.config['sms'])
+        
+        if 'pipedrive' in self.config:
+            channels['pipedrive'] = PipeDriveNotificationChannel(self.config['pipedrive'])
+        
+        return channels
+    
+    async def process_metrics(self, metrics_data: Dict[str, Any]) -> List[Alert]:
+        """Process incoming metrics and generate alerts"""
+        try:
+            # Store current metric values for trend analysis
+            await self._store_metric_values(metrics_data)
+            
+            # Evaluate rules and generate alerts
+            new_alerts = await self.rule_engine.evaluate_metrics(metrics_data)
+            
+            # Process each alert
+            processed_alerts = []
+            for alert in new_alerts:
+                if await self._should_process_alert(alert):
+                    await self._process_alert(alert)
+                    processed_alerts.append(alert)
+            
+            return processed_alerts
+            
+        except Exception as e:
+            self.logger.error(f"Error processing metrics: {e}")
+            return []
+    
+    async def _store_metric_values(self, metrics_data: Dict[str, Any]):
+        """Store metric values in Redis for trend analysis"""
+        try:
+            timestamp = int(time.time())
+            
+            for metric_name, value in metrics_data.items():
+                if isinstance(value, (int, float)):
+                    # Store current value
+                    key = f"metric_history:{metric_name}"
+                    self.redis_client.set(key, value, ex=3600)  # 1 hour expiry
+                    
+                    # Store in time series for trend analysis
+                    ts_key = f"metric_timeseries:{metric_name}"
+                    self.redis_client.zadd(ts_key, {timestamp: value})
+                    
+                    # Keep only last 24 hours of data
+                    cutoff = timestamp - 86400
+                    self.redis_client.zremrangebyscore(ts_key, 0, cutoff)
+                    
+        except Exception as e:
+            self.logger.error(f"Error storing metric values: {e}")
+    
+    async def _should_process_alert(self, alert: Alert) -> bool:
+        """Check if alert should be processed based on suppression rules"""
+        # Check if similar alert is already active
+        for active_alert in self.active_alerts.values():
+            if (active_alert.category == alert.category and 
+                active_alert.dealership == alert.dealership and
+                not active_alert.resolved):
+                
+                # Check suppression window
+                time_diff = alert.timestamp - active_alert.timestamp
+                suppression_window = self.suppression_rules.get('duplicate_window', 300)  # 5 minutes default
+                
+                if time_diff.total_seconds() < suppression_window:
+                    self.logger.info(f"Suppressing duplicate alert {alert.id}")
+                    return False
+        
+        return True
+    
+    async def _process_alert(self, alert: Alert):
+        """Process a single alert through notification channels"""
+        try:
+            self.active_alerts[alert.id] = alert
+            self.alert_history.append(alert)
+            
+            # Determine notification channels based on severity and category
+            channels_to_use = self._get_notification_channels_for_alert(alert)
+            
+            # Send notifications
+            notification_tasks = []
+            for channel_name in channels_to_use:
+                if channel_name in self.notification_channels:
+                    task = self.notification_channels[channel_name].send_alert(alert)
+                    notification_tasks.append(task)
+            
+            # Wait for all notifications to complete
+            if notification_tasks:
+                results = await asyncio.gather(*notification_tasks, return_exceptions=True)
+                
+                # Log notification results
+                for i, result in enumerate(results):
+                    channel_name = channels_to_use[i]
+                    if isinstance(result, Exception):
+                        self.logger.error(f"Notification failed for {channel_name}: {result}")
+                    elif result:
+                        self.logger.info(f"Alert {alert.id} sent via {channel_name}")
+            
+            # Store alert in Redis
+            await self._store_alert(alert)
+            
+            self.logger.info(f"Processed alert {alert.id}: {alert.title}")
+            
+        except Exception as e:
+            self.logger.error(f"Error processing alert {alert.id}: {e}")
+    
+    def _get_notification_channels_for_alert(self, alert: Alert) -> List[str]:
+        """Determine which notification channels to use for an alert"""
+        channels = []
+        
+        # Always use email for all alerts
+        if 'email' in self.notification_channels:
+            channels.append('email')
+        
+        # Use Slack for warnings and above
+        if alert.severity in [AlertSeverity.WARNING, AlertSeverity.CRITICAL] and 'slack' in self.notification_channels:
+            channels.append('slack')
+        
+        # Use SMS only for critical alerts
+        if alert.severity == AlertSeverity.CRITICAL and 'sms' in self.notification_channels:
+            channels.append('sms')
+        
+        # Use PipeDrive for business-related alerts
+        if alert.category in [AlertCategory.BUSINESS, AlertCategory.INVENTORY, AlertCategory.COMPETITIVE] and 'pipedrive' in self.notification_channels:
+            channels.append('pipedrive')
+        
+        return channels
+    
+    async def _store_alert(self, alert: Alert):
+        """Store alert in Redis for persistence"""
+        try:
+            key = f"alert:{alert.id}"
+            alert_data = asdict(alert)
+            
+            # Convert datetime objects to strings for JSON serialization
+            alert_data['timestamp'] = alert.timestamp.isoformat()
+            if alert_data['resolution_time']:
+                alert_data['resolution_time'] = alert_data['resolution_time'].isoformat()
+            
+            # Convert enum values to strings
+            alert_data['severity'] = alert.severity.value
+            alert_data['category'] = alert.category.value
+            
+            self.redis_client.setex(key, 86400 * 7, json.dumps(alert_data))  # 7 days expiry
+            
+            # Add to alert index
+            self.redis_client.zadd("alerts_index", {alert.id: alert.timestamp.timestamp()})
+            
+        except Exception as e:
+            self.logger.error(f"Error storing alert {alert.id}: {e}")
+    
+    async def resolve_alert(self, alert_id: str) -> bool:
+        """Mark an alert as resolved"""
+        try:
+            if alert_id in self.active_alerts:
+                alert = self.active_alerts[alert_id]
+                alert.resolved = True
+                alert.resolution_time = datetime.now()
+                
+                # Update in Redis
+                await self._store_alert(alert)
+                
+                # Remove from active alerts
+                del self.active_alerts[alert_id]
+                
+                self.logger.info(f"Alert {alert_id} resolved")
+                return True
+            
+            return False
+            
+        except Exception as e:
+            self.logger.error(f"Error resolving alert {alert_id}: {e}")
+            return False
+    
+    async def get_alert_summary(self) -> Dict[str, Any]:
+        """Get summary of current alert status"""
+        try:
+            active_count = len(self.active_alerts)
+            
+            # Count by severity
+            severity_counts = {severity.value: 0 for severity in AlertSeverity}
+            for alert in self.active_alerts.values():
+                severity_counts[alert.severity.value] += 1
+            
+            # Count by category
+            category_counts = {category.value: 0 for category in AlertCategory}
+            for alert in self.active_alerts.values():
+                category_counts[alert.category.value] += 1
+            
+            # Recent activity (last 24 hours)
+            cutoff_time = datetime.now() - timedelta(hours=24)
+            recent_alerts = [a for a in self.alert_history if a.timestamp > cutoff_time]
+            
+            return {
+                "active_alerts": active_count,
+                "severity_breakdown": severity_counts,
+                "category_breakdown": category_counts,
+                "recent_alerts_24h": len(recent_alerts),
+                "total_alerts_today": len(recent_alerts),
+                "system_health": "critical" if severity_counts["critical"] > 0 else "warning" if severity_counts["warning"] > 0 else "healthy"
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error generating alert summary: {e}")
+            return {"error": str(e)}
+    
+    async def start_monitoring(self):
+        """Start the monitoring loop"""
+        self.logger.info("Advanced alerting system started")
+        
+        try:
+            while True:
+                # This would normally be called by external metric collection
+                # For now, we'll just maintain the alert system
+                await asyncio.sleep(30)
+                
+                # Clean up old resolved alerts from memory
+                current_time = datetime.now()
+                cutoff_time = current_time - timedelta(hours=24)
+                
+                self.alert_history = [
+                    alert for alert in self.alert_history 
+                    if alert.timestamp > cutoff_time
+                ]
+                
+        except Exception as e:
+            self.logger.error(f"Error in monitoring loop: {e}")
+
+
+async def main():
+    """Example usage of the advanced alerting system"""
+    # Configuration
+    config = {
+        'redis': {
+            'host': 'localhost',
+            'port': 6379,
+            'password': None
+        },
+        'email': {
+            'smtp_server': 'smtp.gmail.com',
+            'smtp_port': 587,
+            'username': 'alerts@silverfoxmarketing.com',
+            'password': 'your_app_password',
+            'from_email': 'alerts@silverfoxmarketing.com',
+            'recipients': ['admin@silverfoxmarketing.com']
+        },
+        'slack': {
+            'webhook_url': 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK',
+            'channel': '#silverfox-alerts',
+            'username': 'Silver Fox Assistant'
+        },
+        'suppression_rules': {
+            'duplicate_window': 300  # 5 minutes
+        }
+    }
+    
+    # Initialize alerting system
+    alerting_system = AdvancedAlertingSystem(config)
+    
+    # Example metrics data
+    sample_metrics = {
+        'silverfox_scraper_errors_total': 0.15,  # High error rate
+        'silverfox_total_inventory_count': 150,
+        'dealership': 'BMW of St. Louis',
+        'timestamp': datetime.now()
+    }
+    
+    # Process metrics and generate alerts
+    alerts = await alerting_system.process_metrics(sample_metrics)
+    
+    print(f"Generated {len(alerts)} alerts")
+    
+    # Get alert summary
+    summary = await alerting_system.get_alert_summary()
+    print(f"Alert summary: {summary}")
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())

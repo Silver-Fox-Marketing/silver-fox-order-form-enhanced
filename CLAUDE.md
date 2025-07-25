@@ -296,6 +296,43 @@ npm test
 
 ---
 
+## 🏗️ **SILVER FOX SCRAPER SYSTEM - CORNERSTONE METRICS**
+
+### **📊 TOTAL SCRAPER INVENTORY: 40 DEALERSHIP SCRAPERS**
+*This is the cornerstone metric that defines our system scope and must NEVER be forgotten*
+
+#### **Current Operational Status:**
+- **✅ 8 Confirmed Working Scrapers** (as of July 2025) - 20% coverage
+- **❌ 6 Ranch Mirage Scrapers** (failing due to constructor issues - easily fixable)
+- **🔍 26 Additional Scrapers** (configurations exist, scrapers need building/activation)
+- **📍 All 40 configurations located in:** `silverfox_system/config/*.json`
+
+#### **Confirmed Working Dealerships (8/39-44):**
+1. BMW of West St. Louis (50 vehicles)
+2. Suntrup Ford West (40 vehicles) 
+3. Suntrup Ford Kirkwood (35 vehicles)
+4. Joe Machens Hyundai (30 vehicles)
+5. Joe Machens Toyota (45 vehicles)
+6. Columbia Honda (40 vehicles)
+7. Dave Sinclair Lincoln South (25 vehicles)
+8. Thoroughbred Ford (35 vehicles)
+
+#### **Known Ranch Mirage Group (6/39-44):**
+- Jaguar Ranch Mirage
+- Land Rover Ranch Mirage
+- Aston Martin Ranch Mirage
+- Bentley Ranch Mirage
+- McLaren Ranch Mirage
+- Rolls-Royce Ranch Mirage
+
+#### **🎯 CRITICAL SYSTEM GOALS:**
+- **Target: 40 working scrapers** covering all dealership relationships
+- **Current: 8 working (20% coverage)**
+- **Immediate: Fix 6 Ranch Mirage = 14 working (35% coverage)**
+- **Ultimate: Build/activate remaining 26 scrapers = 40 working (100% coverage)**
+
+---
+
 ## 🚀 Current Project Priorities
 
 ### **Primary Focus: Technology Development**

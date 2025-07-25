@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinisForum Database Control - Silver Fox Marketing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="app-title">MinisForum Database Control</h1>
+                    <span class="company-name">Silver Fox Marketing</span>
+                </div>
+                <div class="status-section">
+                    <div class="status-indicator" id="systemStatus">
+                        <i class="fas fa-circle status-icon"></i>
+                        <span class="status-text">System Ready</span>
+                    </div>
+                    <div class="last-scrape" id="lastScrape">
+                        Last Scrape: Never
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Left Sidebar - Terminal Output -->
+            <div class="terminal-sidebar">
+                <div class="terminal-header">
+                    <i class="fas fa-terminal"></i>
+                    <span>System Output</span>
+                    <button class="terminal-clear" id="clearTerminal">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="terminal-content" id="terminalOutput">
+                    <div class="terminal-line">
+                        <span class="timestamp">[{{ moment().format('HH:mm:ss') }}]</span>
+                        <span class="message">System initialized and ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area - Tabs -->
+            <div class="content-area">
+                <!-- Tab Navigation -->
+                <nav class="tab-navigation">
+                    <button class="tab-button active" data-tab="scraper">
+                        <i class="fas fa-spider"></i>
+                        Scraper Control
+                    </button>
+                    <button class="tab-button" data-tab="raw-data">
+                        <i class="fas fa-database"></i>
+                        Raw Data
+                    </button>
+                    <button class="tab-button" data-tab="normalized-data">
+                        <i class="fas fa-filter"></i>
+                        Normalized Data
+                    </button>
+                    <button class="tab-button" data-tab="order-processing">
+                        <i class="fas fa-cogs"></i>
+                        Order Processing
+                    </button>
+                    <button class="tab-button" data-tab="qr-generation">
+                        <i class="fas fa-qrcode"></i>
+                        QR Generation
+                    </button>
+                    <button class="tab-button" data-tab="adobe-export">
+                        <i class="fas fa-file-export"></i>
+                        Adobe Export
+                    </button>
+                </nav>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Scraper Tab -->
+                    <div class="tab-panel active" id="scraper-panel">
+                        <div class="panel-header">
+                            <h2>Scraper Control Center</h2>
+                            <div class="control-buttons">
+                                <button class="btn btn-secondary" id="scheduleBtn">
+                                    <i class="fas fa-clock"></i>
+                                    Schedule
+                                </button>
+                                <button class="btn btn-primary" id="startScrapeBtn">
+                                    <i class="fas fa-play"></i>
+                                    Start Scrape
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dealership Grid -->
+                        <div class="dealership-grid" id="dealershipGrid">
+                            <!-- Dealerships will be loaded dynamically -->
+                        </div>
+
+                        <!-- Scraper Status -->
+                        <div class="scraper-status" id="scraperStatus" style="display: none;">
+                            <div class="status-header">
+                                <h3>Scraper Progress</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                            <div class="status-details" id="statusDetails">
+                                <!-- Progress details will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raw Data Tab -->
+                    <div class="tab-panel" id="raw-data-panel">
+                        <div class="panel-header">
+                            <h2>Raw Data Overview</h2>
+                            <button class="btn btn-secondary" id="refreshRawData">
+                                <i class="fas fa-sync"></i>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="data-overview" id="rawDataOverview">
+                            <!-- Raw data stats will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Normalized Data Tab -->
+                    <div class="tab-panel" id="normalized-data-panel">
+                        <div class="panel-header">
+                            <h2>Normalized Data</h2>
+                            <button class="btn btn-secondary" id="refreshNormalizedData">
+                                <i class="fas fa-sync"></i>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="data-overview" id="normalizedDataOverview">
+                            <!-- Normalized data stats will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Order Processing Tab -->
+                    <div class="tab-panel" id="order-processing-panel">
+                        <div class="panel-header">
+                            <h2>Order Processing Status</h2>
+                            <button class="btn btn-secondary" id="refreshOrderData">
+                                <i class="fas fa-sync"></i>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="order-status" id="orderStatusOverview">
+                            <!-- Order processing status will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- QR Generation Tab -->
+                    <div class="tab-panel" id="qr-generation-panel">
+                        <div class="panel-header">
+                            <h2>QR Code Generation</h2>
+                            <button class="btn btn-secondary" id="refreshQRData">
+                                <i class="fas fa-sync"></i>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="qr-overview" id="qrOverview">
+                            <!-- QR generation status will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Adobe Export Tab -->
+                    <div class="tab-panel" id="adobe-export-panel">
+                        <div class="panel-header">
+                            <h2>Adobe Export Files</h2>
+                            <div class="control-buttons">
+                                <button class="btn btn-secondary" id="generateSummaryBtn">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Summary Report
+                                </button>
+                                <button class="btn btn-primary" id="generateAdobeBtn">
+                                    <i class="fas fa-file-export"></i>
+                                    Generate Adobe Files
+                                </button>
+                            </div>
+                        </div>
+                        <div class="export-files" id="exportFiles">
+                            <!-- Export files will be listed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Dealership Settings Modal -->
+    <div class="modal" id="dealershipModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Dealership Settings</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="dealershipForm">
+                    <div class="form-group">
+                        <label>Vehicle Types to Include:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types" value="new" checked>
+                                <span class="checkmark"></span>
+                                New Vehicles
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types" value="po" checked>
+                                <span class="checkmark"></span>
+                                Pre-Owned Vehicles
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types" value="cpo" checked>
+                                <span class="checkmark"></span>
+                                Certified Pre-Owned
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="minPrice">Minimum Price:</label>
+                        <input type="number" id="minPrice" name="min_price" min="0" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxPrice">Maximum Price:</label>
+                        <input type="number" id="maxPrice" name="max_price" min="0" placeholder="No limit">
+                    </div>
+                    <div class="form-group">
+                        <label for="minYear">Minimum Year:</label>
+                        <input type="number" id="minYear" name="min_year" min="1900" max="2030" placeholder="Any year">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSettings">Cancel</button>
+                <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Scraper Schedule</h3>
+                <button class="modal-close" id="closeScheduleModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="scheduleForm">
+                    <div class="form-group">
+                        <label for="scheduleTime">Daily Scrape Time:</label>
+                        <input type="time" id="scheduleTime" name="schedule_time" value="02:00">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableSchedule" name="enable_schedule">
+                            <span class="checkmark"></span>
+                            Enable Automatic Scheduling
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSchedule">Cancel</button>
+                <button class="btn btn-primary" id="saveSchedule">Save Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

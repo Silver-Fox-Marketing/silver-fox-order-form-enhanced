@@ -1,0 +1,20 @@
+{
+  "scraper_name": "rollsroyce_ranch_mirage",
+  "dealership": "Rolls-Royce Ranch Mirage",
+  "website_url": "https://www.rollsroycemotorcarspalmdesert.com",
+  "test_start_time": "2025-07-23 21:17:42.827849",
+  "test_end_time": "2025-07-23 21:17:42.827849",
+  "duration_seconds": 0.0,
+  "success": true,
+  "total_vehicles_found": 0,
+  "pages_accessed": 0,
+  "first_page_only_detected": false,
+  "data_quality_issues": [],
+  "performance_metrics": {},
+  "validation_details": {
+    "dry_run": true
+  },
+  "recommendations": [
+    "DRY RUN - Use --live flag to test against actual websites"
+  ]
+}

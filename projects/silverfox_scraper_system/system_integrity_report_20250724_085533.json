@@ -1,0 +1,1248 @@
+{
+  "timestamp": "2025-07-24T08:55:33.560500",
+  "scrapers": {
+    "total": 40,
+    "present": 40,
+    "functional": 40,
+    "bug_free": 32,
+    "individual_results": [
+      {
+        "scraper_name": "auffenberghyundai_optimized",
+        "dealer_name": "Auffenberg Hyundai",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/auffenberghyundai_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.033942222595214844,
+          "vehicle_count": 51
+        }
+      },
+      {
+        "scraper_name": "miniofstlouis_optimized",
+        "dealer_name": "MINI of St. Louis",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/miniofstlouis_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0024149417877197266,
+          "vehicle_count": 38
+        }
+      },
+      {
+        "scraper_name": "hondafrontenac_optimized",
+        "dealer_name": "Honda of Frontenac",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/hondafrontenac_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0028867721557617188,
+          "vehicle_count": 82
+        }
+      },
+      {
+        "scraper_name": "glendalechryslerjeep_optimized",
+        "dealer_name": "Glendale Chrysler Jeep",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/glendalechryslerjeep_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0023407936096191406,
+          "vehicle_count": 65
+        }
+      },
+      {
+        "scraper_name": "stehouwerauto_optimized",
+        "dealer_name": "Stehouwer Auto",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/stehouwerauto_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.003432035446166992,
+          "vehicle_count": 71
+        }
+      },
+      {
+        "scraper_name": "hwkia_optimized",
+        "dealer_name": "H&W Kia",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/hwkia_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0018069744110107422,
+          "vehicle_count": 40
+        }
+      },
+      {
+        "scraper_name": "davesinclairlincolnstpeters_optimized",
+        "dealer_name": "Dave Sinclair Lincoln St. Peters",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/davesinclairlincolnstpeters_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 7.200241088867188e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "southcountyautos_optimized",
+        "dealer_name": "South County Autos",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/southcountyautos_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0024902820587158203,
+          "vehicle_count": 41
+        }
+      },
+      {
+        "scraper_name": "landroverranchomirage_optimized",
+        "dealer_name": "Land Rover Ranch Mirage",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/landroverranchomirage_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0020651817321777344,
+          "vehicle_count": 12
+        }
+      },
+      {
+        "scraper_name": "wcvolvocars_optimized",
+        "dealer_name": "West County Volvo Cars",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/wcvolvocars_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0024261474609375,
+          "vehicle_count": 54
+        }
+      },
+      {
+        "scraper_name": "suntrupbuickgmc_optimized",
+        "dealer_name": "Suntrup Buick GMC",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupbuickgmc_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 6.175041198730469e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "spiritlexus_optimized",
+        "dealer_name": "Spirit Lexus",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/spiritlexus_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002193927764892578,
+          "vehicle_count": 65
+        }
+      },
+      {
+        "scraper_name": "porschestlouis_optimized",
+        "dealer_name": "Porsche St. Louis",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/porschestlouis_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0026466846466064453,
+          "vehicle_count": 55
+        }
+      },
+      {
+        "scraper_name": "columbiabmw_optimized",
+        "dealer_name": "Columbia BMW",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/columbiabmw_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0023450851440429688,
+          "vehicle_count": 49
+        }
+      },
+      {
+        "scraper_name": "twincitytoyota_optimized",
+        "dealer_name": "Twin City Toyota",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/twincitytoyota_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0026559829711914062,
+          "vehicle_count": 90
+        }
+      },
+      {
+        "scraper_name": "suntrupkiasouth_optimized",
+        "dealer_name": "Suntrup Kia South",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupkiasouth_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0029189586639404297,
+          "vehicle_count": 74
+        }
+      },
+      {
+        "scraper_name": "davesinclairlincolnsouth_optimized",
+        "dealer_name": "Dave Sinclair Lincoln South",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/davesinclairlincolnsouth_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 6.604194641113281e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "pundmannford_optimized",
+        "dealer_name": "Pundmann Ford",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/pundmannford_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.003339052200317383,
+          "vehicle_count": 118
+        }
+      },
+      {
+        "scraper_name": "thoroughbredford_optimized",
+        "dealer_name": "Thoroughbred Ford",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/thoroughbredford_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0034601688385009766,
+          "vehicle_count": 83
+        }
+      },
+      {
+        "scraper_name": "audiranchomirage_optimized",
+        "dealer_name": "Audi Ranch Mirage",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/audiranchomirage_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0032498836517333984,
+          "vehicle_count": 63
+        }
+      },
+      {
+        "scraper_name": "columbiahonda_optimized",
+        "dealer_name": "Columbia Honda",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/columbiahonda_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 7.82012939453125e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "bmwofweststlouis_optimized",
+        "dealer_name": "BMW of West St. Louis",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bmwofweststlouis_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002727985382080078,
+          "vehicle_count": 69
+        }
+      },
+      {
+        "scraper_name": "joemachenscdjr_optimized",
+        "dealer_name": "Joe Machens Chrysler Dodge Jeep Ram",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenscdjr_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0027418136596679688,
+          "vehicle_count": 70
+        }
+      },
+      {
+        "scraper_name": "joemachenstoyota_optimized",
+        "dealer_name": "Joe Machens Toyota",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenstoyota_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0027511119842529297,
+          "vehicle_count": 71
+        }
+      },
+      {
+        "scraper_name": "rustydrewingchevroletbuickgmc_optimized",
+        "dealer_name": "Rusty Drewing Chevrolet Buick GMC",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/rustydrewingchevroletbuickgmc_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0025408267974853516,
+          "vehicle_count": 99
+        }
+      },
+      {
+        "scraper_name": "joemachensnissan_optimized",
+        "dealer_name": "Joe Machens Nissan",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachensnissan_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002729177474975586,
+          "vehicle_count": 77
+        }
+      },
+      {
+        "scraper_name": "indigoautogroup_optimized",
+        "dealer_name": "Indigo Auto Group",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/indigoautogroup_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002626180648803711,
+          "vehicle_count": 62
+        }
+      },
+      {
+        "scraper_name": "jaguarranchomirage_optimized",
+        "dealer_name": "Jaguar Ranch Mirage",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/jaguarranchomirage_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0023317337036132812,
+          "vehicle_count": 27
+        }
+      },
+      {
+        "scraper_name": "weberchev_optimized",
+        "dealer_name": "Weber Chevrolet",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/weberchev_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002499818801879883,
+          "vehicle_count": 28
+        }
+      },
+      {
+        "scraper_name": "kiaofcolumbia_optimized",
+        "dealer_name": "Kia of Columbia",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/kiaofcolumbia_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002663850784301758,
+          "vehicle_count": 65
+        }
+      },
+      {
+        "scraper_name": "pappastoyota_optimized",
+        "dealer_name": "Pappas Toyota",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/pappastoyota_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002853870391845703,
+          "vehicle_count": 92
+        }
+      },
+      {
+        "scraper_name": "bommaritowestcounty_optimized",
+        "dealer_name": "Bommarito West County",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bommaritowestcounty_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 6.818771362304688e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "suntruphyundaisouth_optimized",
+        "dealer_name": "Suntrup Hyundai South",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntruphyundaisouth_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.002565145492553711,
+          "vehicle_count": 60
+        }
+      },
+      {
+        "scraper_name": "joemachenshyundai_optimized",
+        "dealer_name": "Joe Machens Hyundai",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenshyundai_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0068247318267822266,
+          "vehicle_count": 65
+        }
+      },
+      {
+        "scraper_name": "suntrupfordwest_optimized",
+        "dealer_name": "Suntrup Ford West",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupfordwest_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 8.20159912109375e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "frankletahonda_optimized",
+        "dealer_name": "Frank Leta Honda",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/frankletahonda_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.003312826156616211,
+          "vehicle_count": 53
+        }
+      },
+      {
+        "scraper_name": "rustydrewingcadillac_optimized",
+        "dealer_name": "Rusty Drewing Cadillac",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/rustydrewingcadillac_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.0025720596313476562,
+          "vehicle_count": 39
+        }
+      },
+      {
+        "scraper_name": "bommaritocadillac_optimized",
+        "dealer_name": "Bommarito Cadillac",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bommaritocadillac_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 6.508827209472656e-05,
+          "vehicle_count": 1
+        }
+      },
+      {
+        "scraper_name": "serrahondaofallon_optimized",
+        "dealer_name": "Serra Honda of O'Fallon",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/serrahondaofallon_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": true,
+        "status": "FULLY_OPERATIONAL",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": true,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [],
+        "metrics": {
+          "execution_time": 0.003056764602661133,
+          "vehicle_count": 106
+        }
+      },
+      {
+        "scraper_name": "suntrupfordkirkwood_optimized",
+        "dealer_name": "Suntrup Ford Kirkwood",
+        "file_path": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupfordkirkwood_optimized.py",
+        "present": true,
+        "functional": true,
+        "bug_free": false,
+        "status": "FUNCTIONAL_WITH_ISSUES",
+        "checks": {
+          "file_exists": true,
+          "syntax_valid": true,
+          "imports_successful": true,
+          "class_instantiates": true,
+          "method_callable": true,
+          "data_returned": true,
+          "data_valid": false,
+          "error_handling": true,
+          "performance": true
+        },
+        "issues": [],
+        "bugs": [
+          "Vehicle 0 missing fields: ['vin', 'year', 'make', 'model']"
+        ],
+        "metrics": {
+          "execution_time": 6.389617919921875e-05,
+          "vehicle_count": 1
+        }
+      }
+    ]
+  },
+  "system_scripts": {
+    "total": 15,
+    "present": 9,
+    "functional": 9,
+    "integrated": 8,
+    "individual_results": [
+      {
+        "name": "silverfox_scraper_configurator.py",
+        "description": "Configuration management system",
+        "type": "core",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "main_scraper_orchestrator.py",
+        "description": "Main execution engine",
+        "type": "core",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "generate_missing_scrapers.py",
+        "description": "Scraper generation tool",
+        "type": "tool",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "optimize_all_scrapers.py",
+        "description": "Mass optimization system",
+        "type": "tool",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "comprehensive_scraper_fixer.py",
+        "description": "Issue resolution tool",
+        "type": "tool",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "comprehensive_scraper_test.py",
+        "description": "Testing suite",
+        "type": "test",
+        "present": true,
+        "functional": true,
+        "integrated": false,
+        "status": "FUNCTIONAL_NOT_INTEGRATED",
+        "issues": [
+          "Missing integration points"
+        ]
+      },
+      {
+        "name": "network_utils.py",
+        "description": "Network resilience utilities",
+        "type": "utility",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "production_fallback_handler.py",
+        "description": "Fallback data generation",
+        "type": "utility",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "bmwofweststlouis_production.py",
+        "description": "Production pattern reference",
+        "type": "reference",
+        "present": true,
+        "functional": true,
+        "integrated": true,
+        "status": "FULLY_INTEGRATED",
+        "issues": []
+      },
+      {
+        "name": "real_time_inventory_monitor.py",
+        "description": "Real-time monitoring system",
+        "type": "monitor",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      },
+      {
+        "name": "competitive_pricing_analyzer.py",
+        "description": "Pricing analysis module",
+        "type": "analysis",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      },
+      {
+        "name": "pipedrive_integration.py",
+        "description": "CRM integration",
+        "type": "integration",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      },
+      {
+        "name": "stress_test_framework.py",
+        "description": "Performance testing",
+        "type": "test",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      },
+      {
+        "name": "kubernetes_deployment.yaml",
+        "description": "K8s deployment config",
+        "type": "deployment",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      },
+      {
+        "name": "monitoring_alerting_config.py",
+        "description": "Monitoring configuration",
+        "type": "monitor",
+        "present": false,
+        "functional": false,
+        "integrated": false,
+        "status": "NOT_FOUND",
+        "issues": [
+          "File not found"
+        ]
+      }
+    ]
+  },
+  "overall_health": {
+    "status": "FAIR",
+    "score": 0.8160000000000001,
+    "issues": [],
+    "recommendations": [
+      "Fix bugs in 8 scrapers",
+      "Complete integration for 7 system scripts"
+    ]
+  }
+}

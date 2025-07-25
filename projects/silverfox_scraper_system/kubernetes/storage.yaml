@@ -1,0 +1,160 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: silverfox-logs-pv
+  labels:
+    app: silverfox-scraper-system
+    component: logging
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: silverfox-logs
+  hostPath:
+    path: /data/silverfox-logs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - node1  # Replace with actual node name or use dynamic provisioning
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: silverfox-logs-pvc
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: logging
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: silverfox-logs
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: silverfox-data-pv
+  labels:
+    app: silverfox-scraper-system
+    component: data-storage
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: silverfox-data
+  hostPath:
+    path: /data/silverfox-data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - node1  # Replace with actual node name
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: silverfox-data-pvc
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: data-storage
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: silverfox-data
+  resources:
+    requests:
+      storage: 30Gi
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: silverfox-chrome-cache-pv
+  labels:
+    app: silverfox-scraper-system
+    component: chrome-cache
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: silverfox-cache
+  hostPath:
+    path: /tmp/silverfox-chrome-cache
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: silverfox-chrome-cache-pvc
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: chrome-cache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: silverfox-cache
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+# StorageClass for dynamic provisioning (if supported by your cluster)
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: silverfox-fast-ssd
+  labels:
+    app: silverfox-scraper-system
+provisioner: kubernetes.io/aws-ebs  # Change based on your cloud provider
+parameters:
+  type: gp3
+  fsType: ext4
+  encrypted: "true"
+allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: silverfox-logs
+provisioner: kubernetes.io/no-provisioner  # For local/hostPath volumes
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: silverfox-data
+provisioner: kubernetes.io/no-provisioner  # For local/hostPath volumes
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: silverfox-cache
+provisioner: kubernetes.io/no-provisioner  # For local/hostPath volumes
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete

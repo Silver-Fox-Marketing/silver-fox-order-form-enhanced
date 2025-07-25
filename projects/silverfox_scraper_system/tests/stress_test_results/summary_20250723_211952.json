@@ -1,0 +1,68 @@
+{
+  "test_timestamp": "2025-07-23T21:19:52.886998",
+  "overall_results": {
+    "total_scrapers_tested": 6,
+    "passed": 6,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  "aggregated_metrics": {
+    "total_vehicles_found": 43,
+    "average_data_quality_score": 1.290705128205128,
+    "total_test_duration_seconds": 9.636441,
+    "average_test_duration_seconds": 1.6060735
+  },
+  "individual_results": {
+    "jaguar_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 10,
+      "data_quality_score": 1.2999999999999998,
+      "duration_seconds": 1.60668,
+      "pages_processed": 3,
+      "key_issues": []
+    },
+    "landrover_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 15,
+      "data_quality_score": 1.3025641025641026,
+      "duration_seconds": 1.605625,
+      "pages_processed": 3,
+      "key_issues": []
+    },
+    "astonmartin_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 5,
+      "data_quality_score": 1.2923076923076924,
+      "duration_seconds": 1.605914,
+      "pages_processed": 3,
+      "key_issues": []
+    },
+    "bentley_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 8,
+      "data_quality_score": 1.2980769230769231,
+      "duration_seconds": 1.605538,
+      "pages_processed": 3,
+      "key_issues": []
+    },
+    "mclaren_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 3,
+      "data_quality_score": 1.282051282051282,
+      "duration_seconds": 1.606598,
+      "pages_processed": 3,
+      "key_issues": []
+    },
+    "rollsroyce_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 2,
+      "data_quality_score": 1.2692307692307692,
+      "duration_seconds": 1.606086,
+      "pages_processed": 3,
+      "key_issues": []
+    }
+  },
+  "recommendations": [
+    "All scrapers are performing within acceptable parameters!"
+  ]
+}

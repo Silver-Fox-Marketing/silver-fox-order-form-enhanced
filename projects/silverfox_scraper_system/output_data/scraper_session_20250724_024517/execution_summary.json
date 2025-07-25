@@ -1,0 +1,58 @@
+[
+  {
+    "site_name": "BMW of West St. Louis",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.1308131217956543,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:45:17.506626"
+  },
+  {
+    "site_name": "Columbia BMW",
+    "success": true,
+    "vehicles_found": 27,
+    "duration": 0.008314132690429688,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:45:18.647438"
+  },
+  {
+    "site_name": "Columbia Honda",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.1325829029083252,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:45:19.663910"
+  },
+  {
+    "site_name": "Jaguar Ranch Mirage",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.05158805847167969,
+    "error_message": "__init__() takes 1 positional argument but 2 were given",
+    "timestamp": "2025-07-24T02:45:20.804345"
+  },
+  {
+    "site_name": "Joe Machens Hyundai",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.012911081314086914,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:45:21.862359"
+  },
+  {
+    "site_name": "Land Rover Ranch Mirage",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.0197598934173584,
+    "error_message": "__init__() takes 1 positional argument but 2 were given",
+    "timestamp": "2025-07-24T02:45:22.882847"
+  },
+  {
+    "site_name": "Suntrup Ford West",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.26288700103759766,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:45:23.912481"
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "validation_timestamp": "2025-07-23T21:11:54.205728",
+  "test_mode": "DRY_RUN",
+  "overall_results": {
+    "total_scrapers_validated": 6,
+    "passed": 6,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  "critical_issues": {
+    "scrapers_with_first_page_only_issues": 0,
+    "total_data_quality_issues": 0,
+    "failed_scrapers": []
+  },
+  "performance_summary": {
+    "total_vehicles_found": 0,
+    "average_vehicles_per_scraper": 0.0,
+    "scrapers_with_pagination_issues": []
+  },
+  "individual_results": {
+    "jaguar_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    },
+    "landrover_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    },
+    "astonmartin_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    },
+    "bentley_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    },
+    "mclaren_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    },
+    "rollsroyce_ranch_mirage": {
+      "success": true,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 0,
+      "key_recommendations": [
+        "DRY RUN - Use --live flag to test against actual websites"
+      ]
+    }
+  },
+  "next_steps": [
+    "Run with --live flag to test against actual websites"
+  ]
+}

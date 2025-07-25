@@ -1,0 +1,26 @@
+[
+  {
+    "site_name": "BMW of West St. Louis",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.17495083808898926,
+    "error_message": "Could not import BmwofweststlouisWorkingScraper",
+    "timestamp": "2025-07-24T02:36:13.680662"
+  },
+  {
+    "site_name": "Columbia Honda",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.0035021305084228516,
+    "error_message": "Could not import ColumbiahondaWorkingScraper",
+    "timestamp": "2025-07-24T02:36:14.865221"
+  },
+  {
+    "site_name": "Jaguar Ranch Mirage",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.007941007614135742,
+    "error_message": "Could not import JaguarranchomirageWorkingScraper",
+    "timestamp": "2025-07-24T02:36:15.884033"
+  }
+]

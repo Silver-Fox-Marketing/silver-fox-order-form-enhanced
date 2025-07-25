@@ -1,0 +1,19 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "dealership_db",
+    "user": "postgres",
+    "password": ""
+  },
+  "paths": {
+    "qr_codes_base": "C:\\dealership_database\\qr_codes",
+    "exports_base": "C:\\dealership_database\\exports",
+    "imports_base": "C:\\dealership_database\\imports"
+  },
+  "import_settings": {
+    "batch_size": 1000,
+    "auto_vacuum": true,
+    "skip_mock_data": true
+  }
+}

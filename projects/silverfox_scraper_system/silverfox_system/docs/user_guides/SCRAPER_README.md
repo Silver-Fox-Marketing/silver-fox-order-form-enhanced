@@ -13,6 +13,32 @@ A comprehensive, modular scraping framework designed for dealership inventory mo
 - **Performance Optimization**: Async support and efficient resource usage
 - **Comprehensive Logging**: Detailed logging for monitoring and debugging
 
+## 🔧 Development Philosophy: "If it ain't broke, don't fix it"
+
+Our development approach prioritizes **building upon working scrapers** rather than rebuilding from scratch:
+
+### Core Principles:
+1. **Reference Working Scrapers First**: Always examine successful scrapers (BMW, Honda, Ford) as templates
+2. **Preserve Proven Logic**: Keep the main scraping logic that works, enhance around it
+3. **Iterative Enhancement**: Add better error handling, anti-bot tools, and optimizations to existing patterns
+4. **Pattern Recognition**: Identify successful patterns and replicate them across similar platforms
+
+### Development Workflow:
+```
+1. Examine working scraper for similar platform/brand
+2. Copy proven architecture and patterns  
+3. Adapt for new dealership's specific requirements
+4. Test core functionality first
+5. Add enhancements (anti-bot, error handling, verification)
+6. Optimize performance and reliability
+```
+
+### Working Scraper Templates:
+- **BMW West St Louis**: Algolia API + Chrome fallback pattern
+- **Columbia Honda**: DealerOn Cosmos API + Chrome fallback pattern  
+- **Suntrup Ford**: Direct API + comprehensive pagination
+- **Dave Sinclair Lincoln**: Multi-platform detection + adaptive scraping
+
 ## 📁 Project Structure
 
 ```

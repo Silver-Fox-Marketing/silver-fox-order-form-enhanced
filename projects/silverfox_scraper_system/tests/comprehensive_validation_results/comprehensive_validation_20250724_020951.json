@@ -1,0 +1,195 @@
+{
+  "validation_timestamp": "2025-07-24T02:09:51.679835",
+  "overall_results": {
+    "total_scrapers": 14,
+    "passed": 8,
+    "failed": 6,
+    "success_rate": 0.5714285714285714,
+    "total_vehicles_found": 300,
+    "average_data_quality": 0.5714285714285714
+  },
+  "platform_breakdown": {
+    "DealerOn": {
+      "total": 13,
+      "passed": 7,
+      "vehicles": 250
+    },
+    "BMW": {
+      "total": 1,
+      "passed": 1,
+      "vehicles": 50
+    }
+  },
+  "individual_results": {
+    "jaguar_ranch_mirage": {
+      "scraper_name": "jaguar_ranch_mirage",
+      "dealership": "Jaguar Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.00400090217590332,
+      "error_message": "'JaguarRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "landrover_ranch_mirage": {
+      "scraper_name": "landrover_ranch_mirage",
+      "dealership": "Land Rover Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.01239323616027832,
+      "error_message": "'LandRoverRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "astonmartin_ranch_mirage": {
+      "scraper_name": "astonmartin_ranch_mirage",
+      "dealership": "Aston Martin Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.01034402847290039,
+      "error_message": "'AstonMartinRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "bentley_ranch_mirage": {
+      "scraper_name": "bentley_ranch_mirage",
+      "dealership": "Bentley Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.002315998077392578,
+      "error_message": "'BentleyRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "mclaren_ranch_mirage": {
+      "scraper_name": "mclaren_ranch_mirage",
+      "dealership": "McLaren Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.004456996917724609,
+      "error_message": "'McLarenRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "rollsroyce_ranch_mirage": {
+      "scraper_name": "rollsroyce_ranch_mirage",
+      "dealership": "Rolls-Royce Ranch Mirage",
+      "platform": "DealerOn",
+      "success": false,
+      "vehicles_found": 0,
+      "test_duration": 0.003593921661376953,
+      "error_message": "'RollsRoyceRanchoMirageWorkingScraper' object has no attribute 'scrape_vehicles'",
+      "data_quality_score": 0.0
+    },
+    "bmw_west_st_louis": {
+      "scraper_name": "bmw_west_st_louis",
+      "dealership": "BMW of West St. Louis",
+      "platform": "BMW",
+      "success": true,
+      "vehicles_found": 50,
+      "test_duration": 0.0007579326629638672,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "suntrup_ford_west": {
+      "scraper_name": "suntrup_ford_west",
+      "dealership": "Suntrup Ford West",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 40,
+      "test_duration": 0.0002689361572265625,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "suntrup_ford_kirkwood": {
+      "scraper_name": "suntrup_ford_kirkwood",
+      "dealership": "Suntrup Ford Kirkwood",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 35,
+      "test_duration": 0.001291036605834961,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "joe_machens_hyundai": {
+      "scraper_name": "joe_machens_hyundai",
+      "dealership": "Joe Machens Hyundai",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 30,
+      "test_duration": 0.002259969711303711,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "joe_machens_toyota": {
+      "scraper_name": "joe_machens_toyota",
+      "dealership": "Joe Machens Toyota",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 45,
+      "test_duration": 0.0007102489471435547,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "columbia_honda": {
+      "scraper_name": "columbia_honda",
+      "dealership": "Columbia Honda",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 40,
+      "test_duration": 0.0008740425109863281,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "dave_sinclair_lincoln_south": {
+      "scraper_name": "dave_sinclair_lincoln_south",
+      "dealership": "Dave Sinclair Lincoln South",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 25,
+      "test_duration": 0.000885009765625,
+      "error_message": null,
+      "data_quality_score": 1.0
+    },
+    "thoroughbred_ford": {
+      "scraper_name": "thoroughbred_ford",
+      "dealership": "Thoroughbred Ford",
+      "platform": "DealerOn",
+      "success": true,
+      "vehicles_found": 35,
+      "test_duration": 0.0014159679412841797,
+      "error_message": null,
+      "data_quality_score": 1.0
+    }
+  },
+  "failed_scrapers": [
+    "Jaguar Ranch Mirage",
+    "Land Rover Ranch Mirage",
+    "Aston Martin Ranch Mirage",
+    "Bentley Ranch Mirage",
+    "McLaren Ranch Mirage",
+    "Rolls-Royce Ranch Mirage"
+  ],
+  "top_performers": [
+    [
+      "BMW of West St. Louis",
+      50
+    ],
+    [
+      "Joe Machens Toyota",
+      45
+    ],
+    [
+      "Suntrup Ford West",
+      40
+    ],
+    [
+      "Columbia Honda",
+      40
+    ],
+    [
+      "Suntrup Ford Kirkwood",
+      35
+    ]
+  ]
+}

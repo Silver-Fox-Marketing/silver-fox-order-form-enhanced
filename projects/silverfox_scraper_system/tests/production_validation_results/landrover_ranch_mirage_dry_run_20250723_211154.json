@@ -1,0 +1,20 @@
+{
+  "scraper_name": "landrover_ranch_mirage",
+  "dealership": "Land Rover Ranch Mirage",
+  "website_url": "https://www.landroverpalmdesert.com",
+  "test_start_time": "2025-07-23 21:11:54.205440",
+  "test_end_time": "2025-07-23 21:11:54.205441",
+  "duration_seconds": 0.0,
+  "success": true,
+  "total_vehicles_found": 0,
+  "pages_accessed": 0,
+  "first_page_only_detected": false,
+  "data_quality_issues": [],
+  "performance_metrics": {},
+  "validation_details": {
+    "dry_run": true
+  },
+  "recommendations": [
+    "DRY RUN - Use --live flag to test against actual websites"
+  ]
+}

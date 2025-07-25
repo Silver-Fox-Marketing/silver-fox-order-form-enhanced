@@ -1,0 +1,1375 @@
+{
+  "total_scrapers": 40,
+  "successful_scrapers": 40,
+  "failed_scrapers": 0,
+  "scrapers_with_data": 40,
+  "scrapers_with_fallback": 0,
+  "scrapers_with_errors": 0,
+  "total_vehicles_found": 2574,
+  "individual_results": [
+    {
+      "scraper_name": "auffenberghyundai_optimized",
+      "dealer_name": "Auffenberg Hyundai",
+      "success": true,
+      "vehicle_count": 49,
+      "data_source": "production_fallback",
+      "test_duration": 0.2592480182647705,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000010",
+        "year": 2025,
+        "make": "Hyundai",
+        "model": "Coupe",
+        "price": 36736
+      },
+      "data_quality": {
+        "total_vehicles": 49,
+        "complete_records": 49,
+        "price_range": {
+          "min": 27294,
+          "max": 74942,
+          "avg": 52071.4693877551
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 49,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:49.982068"
+    },
+    {
+      "scraper_name": "miniofstlouis_optimized",
+      "dealer_name": "MINI of St. Louis",
+      "success": true,
+      "vehicle_count": 55,
+      "data_source": "production_fallback",
+      "test_duration": 0.00491786003112793,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000011",
+        "year": 2025,
+        "make": "MINI",
+        "model": "Coupe",
+        "price": 28712
+      },
+      "data_quality": {
+        "total_vehicles": 55,
+        "complete_records": 55,
+        "price_range": {
+          "min": 28310,
+          "max": 74727,
+          "avg": 50530.36363636364
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 55,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.241388"
+    },
+    {
+      "scraper_name": "hondafrontenac_optimized",
+      "dealer_name": "Honda of Frontenac",
+      "success": true,
+      "vehicle_count": 94,
+      "data_source": "production_fallback",
+      "test_duration": 0.004841804504394531,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000063",
+        "year": 2025,
+        "make": "Honda",
+        "model": "SUV",
+        "price": 25071
+      },
+      "data_quality": {
+        "total_vehicles": 94,
+        "complete_records": 94,
+        "price_range": {
+          "min": 25071,
+          "max": 74599,
+          "avg": 49630.54255319149
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 94,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.246359"
+    },
+    {
+      "scraper_name": "glendalechryslerjeep_optimized",
+      "dealer_name": "Glendale Chrysler Jeep",
+      "success": true,
+      "vehicle_count": 58,
+      "data_source": "production_fallback",
+      "test_duration": 0.0037717819213867188,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000057",
+        "year": 2025,
+        "make": "Jeep",
+        "model": "Sedan",
+        "price": 25867
+      },
+      "data_quality": {
+        "total_vehicles": 58,
+        "complete_records": 58,
+        "price_range": {
+          "min": 25867,
+          "max": 74407,
+          "avg": 49879.706896551725
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 58,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.251256"
+    },
+    {
+      "scraper_name": "stehouwerauto_optimized",
+      "dealer_name": "Stehouwer Auto",
+      "success": true,
+      "vehicle_count": 61,
+      "data_source": "production_fallback",
+      "test_duration": 0.0039942264556884766,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000046",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "Wagon",
+        "price": 27187
+      },
+      "data_quality": {
+        "total_vehicles": 61,
+        "complete_records": 61,
+        "price_range": {
+          "min": 25826,
+          "max": 74761,
+          "avg": 51170.03278688525
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 61,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.255056"
+    },
+    {
+      "scraper_name": "hwkia_optimized",
+      "dealer_name": "H&W Kia",
+      "success": true,
+      "vehicle_count": 54,
+      "data_source": "production_fallback",
+      "test_duration": 0.003751993179321289,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000029",
+        "year": 2025,
+        "make": "Kia",
+        "model": "Coupe",
+        "price": 25757
+      },
+      "data_quality": {
+        "total_vehicles": 54,
+        "complete_records": 54,
+        "price_range": {
+          "min": 25757,
+          "max": 73458,
+          "avg": 49447.351851851854
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 54,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.259093"
+    },
+    {
+      "scraper_name": "davesinclairlincolnstpeters_optimized",
+      "dealer_name": "Dave Sinclair Lincoln St. Peters",
+      "success": true,
+      "vehicle_count": 56,
+      "data_source": "production_fallback",
+      "test_duration": 0.0037398338317871094,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2020,
+        "make": "Lincoln",
+        "model": "SUV",
+        "price": 61389
+      },
+      "data_quality": {
+        "total_vehicles": 56,
+        "complete_records": 56,
+        "price_range": {
+          "min": 25004,
+          "max": 74567,
+          "avg": 51244.5
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 56,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.262893"
+    },
+    {
+      "scraper_name": "southcountyautos_optimized",
+      "dealer_name": "South County Autos",
+      "success": true,
+      "vehicle_count": 41,
+      "data_source": "production_fallback",
+      "test_duration": 0.002792835235595703,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000008",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "Sedan",
+        "price": 25553
+      },
+      "data_quality": {
+        "total_vehicles": 41,
+        "complete_records": 41,
+        "price_range": {
+          "min": 25553,
+          "max": 72547,
+          "avg": 48313.80487804878
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 41,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.266683"
+    },
+    {
+      "scraper_name": "landroverranchomirage_optimized",
+      "dealer_name": "Land Rover Ranch Mirage",
+      "success": true,
+      "vehicle_count": 21,
+      "data_source": "production_fallback",
+      "test_duration": 0.0030760765075683594,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000017",
+        "year": 2025,
+        "make": "Land Rover",
+        "model": "SUV",
+        "price": 28467
+      },
+      "data_quality": {
+        "total_vehicles": 21,
+        "complete_records": 21,
+        "price_range": {
+          "min": 25447,
+          "max": 72036,
+          "avg": 44544.09523809524
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 21,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.269512"
+    },
+    {
+      "scraper_name": "wcvolvocars_optimized",
+      "dealer_name": "West County Volvo Cars",
+      "success": true,
+      "vehicle_count": 73,
+      "data_source": "production_fallback",
+      "test_duration": 0.0036499500274658203,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000021",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "Sedan",
+        "price": 30298
+      },
+      "data_quality": {
+        "total_vehicles": 73,
+        "complete_records": 73,
+        "price_range": {
+          "min": 26112,
+          "max": 74953,
+          "avg": 51460.232876712325
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 73,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.272623"
+    },
+    {
+      "scraper_name": "suntrupbuickgmc_optimized",
+      "dealer_name": "Suntrup Buick GMC",
+      "success": true,
+      "vehicle_count": 61,
+      "data_source": "production_fallback",
+      "test_duration": 0.003050088882446289,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2024,
+        "make": "Buick",
+        "model": "Coupe",
+        "price": 40038
+      },
+      "data_quality": {
+        "total_vehicles": 61,
+        "complete_records": 61,
+        "price_range": {
+          "min": 26781,
+          "max": 74529,
+          "avg": 53412.229508196724
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 61,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.276308"
+    },
+    {
+      "scraper_name": "spiritlexus_optimized",
+      "dealer_name": "Spirit Lexus",
+      "success": true,
+      "vehicle_count": 87,
+      "data_source": "production_fallback",
+      "test_duration": 0.0036339759826660156,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000079",
+        "year": 2025,
+        "make": "Lexus",
+        "model": "Sedan",
+        "price": 26789
+      },
+      "data_quality": {
+        "total_vehicles": 87,
+        "complete_records": 87,
+        "price_range": {
+          "min": 26789,
+          "max": 74336,
+          "avg": 49520.06896551724
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 87,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.279404"
+    },
+    {
+      "scraper_name": "porschestlouis_optimized",
+      "dealer_name": "Porsche St. Louis",
+      "success": true,
+      "vehicle_count": 44,
+      "data_source": "production_fallback",
+      "test_duration": 0.0028412342071533203,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000017",
+        "year": 2025,
+        "make": "Porsche",
+        "model": "Wagon",
+        "price": 28911
+      },
+      "data_quality": {
+        "total_vehicles": 44,
+        "complete_records": 44,
+        "price_range": {
+          "min": 25732,
+          "max": 74963,
+          "avg": 52414.204545454544
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 44,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.283072"
+    },
+    {
+      "scraper_name": "columbiabmw_optimized",
+      "dealer_name": "Columbia BMW",
+      "success": true,
+      "vehicle_count": 61,
+      "data_source": "production_fallback",
+      "test_duration": 0.002972126007080078,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000035",
+        "year": 2025,
+        "make": "BMW",
+        "model": "SUV",
+        "price": 29023
+      },
+      "data_quality": {
+        "total_vehicles": 61,
+        "complete_records": 61,
+        "price_range": {
+          "min": 28824,
+          "max": 74575,
+          "avg": 52547.04918032787
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 61,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.285947"
+    },
+    {
+      "scraper_name": "twincitytoyota_optimized",
+      "dealer_name": "Twin City Toyota",
+      "success": true,
+      "vehicle_count": 60,
+      "data_source": "production_fallback",
+      "test_duration": 0.0032510757446289062,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000032",
+        "year": 2025,
+        "make": "Toyota",
+        "model": "SUV",
+        "price": 26765
+      },
+      "data_quality": {
+        "total_vehicles": 60,
+        "complete_records": 60,
+        "price_range": {
+          "min": 26135,
+          "max": 73297,
+          "avg": 46474.76666666667
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 60,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.288953"
+    },
+    {
+      "scraper_name": "suntrupkiasouth_optimized",
+      "dealer_name": "Suntrup Kia South",
+      "success": true,
+      "vehicle_count": 58,
+      "data_source": "production_fallback",
+      "test_duration": 0.0026140213012695312,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2025,
+        "make": "Kia",
+        "model": "SUV",
+        "price": 30648
+      },
+      "data_quality": {
+        "total_vehicles": 58,
+        "complete_records": 58,
+        "price_range": {
+          "min": 25149,
+          "max": 71517,
+          "avg": 48523.91379310345
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 58,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.292235"
+    },
+    {
+      "scraper_name": "davesinclairlincolnsouth_optimized",
+      "dealer_name": "Dave Sinclair Lincoln South",
+      "success": true,
+      "vehicle_count": 37,
+      "data_source": "production_fallback",
+      "test_duration": 0.0026769638061523438,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2022,
+        "make": "Lincoln",
+        "model": "Sedan",
+        "price": 45282
+      },
+      "data_quality": {
+        "total_vehicles": 37,
+        "complete_records": 37,
+        "price_range": {
+          "min": 27854,
+          "max": 74609,
+          "avg": 52405.18918918919
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 37,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.294881"
+    },
+    {
+      "scraper_name": "pundmannford_optimized",
+      "dealer_name": "Pundmann Ford",
+      "success": true,
+      "vehicle_count": 58,
+      "data_source": "production_fallback",
+      "test_duration": 0.0029959678649902344,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000020",
+        "year": 2025,
+        "make": "Ford",
+        "model": "Wagon",
+        "price": 33949
+      },
+      "data_quality": {
+        "total_vehicles": 58,
+        "complete_records": 58,
+        "price_range": {
+          "min": 26391,
+          "max": 74596,
+          "avg": 52814.120689655174
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 58,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.297597"
+    },
+    {
+      "scraper_name": "thoroughbredford_optimized",
+      "dealer_name": "Thoroughbred Ford",
+      "success": true,
+      "vehicle_count": 96,
+      "data_source": "production_fallback",
+      "test_duration": 0.0026907920837402344,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000029",
+        "year": 2025,
+        "make": "Ford",
+        "model": "SUV",
+        "price": 28211
+      },
+      "data_quality": {
+        "total_vehicles": 96,
+        "complete_records": 96,
+        "price_range": {
+          "min": 25383,
+          "max": 74343,
+          "avg": 48645.958333333336
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 96,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.300620"
+    },
+    {
+      "scraper_name": "audiranchomirage_optimized",
+      "dealer_name": "Audi Ranch Mirage",
+      "success": true,
+      "vehicle_count": 46,
+      "data_source": "production_fallback",
+      "test_duration": 0.00327301025390625,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000019",
+        "year": 2025,
+        "make": "Audi",
+        "model": "SUV",
+        "price": 30161
+      },
+      "data_quality": {
+        "total_vehicles": 46,
+        "complete_records": 46,
+        "price_range": {
+          "min": 27305,
+          "max": 74707,
+          "avg": 49585.80434782609
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 46,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.303340"
+    },
+    {
+      "scraper_name": "columbiahonda_optimized",
+      "dealer_name": "Columbia Honda",
+      "success": true,
+      "vehicle_count": 117,
+      "data_source": "production_fallback",
+      "test_duration": 0.003020048141479492,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2024,
+        "make": "Honda",
+        "model": "Sedan",
+        "price": 62302
+      },
+      "data_quality": {
+        "total_vehicles": 117,
+        "complete_records": 117,
+        "price_range": {
+          "min": 25035,
+          "max": 74171,
+          "avg": 50005.555555555555
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 117,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.306645"
+    },
+    {
+      "scraper_name": "bmwofweststlouis_optimized",
+      "dealer_name": "BMW of West St. Louis",
+      "success": true,
+      "vehicle_count": 86,
+      "data_source": "production_fallback",
+      "test_duration": 0.0033178329467773438,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000018",
+        "year": 2025,
+        "make": "BMW",
+        "model": "Sedan",
+        "price": 26055
+      },
+      "data_quality": {
+        "total_vehicles": 86,
+        "complete_records": 86,
+        "price_range": {
+          "min": 26055,
+          "max": 74922,
+          "avg": 50543.91860465116
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 86,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.309709"
+    },
+    {
+      "scraper_name": "joemachenscdjr_optimized",
+      "dealer_name": "Joe Machens Chrysler Dodge Jeep Ram",
+      "success": true,
+      "vehicle_count": 49,
+      "data_source": "production_fallback",
+      "test_duration": 0.0027687549591064453,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000032",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "SUV",
+        "price": 25002
+      },
+      "data_quality": {
+        "total_vehicles": 49,
+        "complete_records": 49,
+        "price_range": {
+          "min": 25002,
+          "max": 73446,
+          "avg": 48289.897959183676
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 49,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.313068"
+    },
+    {
+      "scraper_name": "joemachenstoyota_optimized",
+      "dealer_name": "Joe Machens Toyota",
+      "success": true,
+      "vehicle_count": 78,
+      "data_source": "production_fallback",
+      "test_duration": 0.002958059310913086,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000071",
+        "year": 2025,
+        "make": "Toyota",
+        "model": "SUV",
+        "price": 32700
+      },
+      "data_quality": {
+        "total_vehicles": 78,
+        "complete_records": 78,
+        "price_range": {
+          "min": 26229,
+          "max": 74520,
+          "avg": 51800.52564102564
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 78,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.315864"
+    },
+    {
+      "scraper_name": "rustydrewingchevroletbuickgmc_optimized",
+      "dealer_name": "Rusty Drewing Chevrolet Buick GMC",
+      "success": true,
+      "vehicle_count": 75,
+      "data_source": "production_fallback",
+      "test_duration": 0.0028667449951171875,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000034",
+        "year": 2025,
+        "make": "Chevrolet",
+        "model": "Coupe",
+        "price": 39688
+      },
+      "data_quality": {
+        "total_vehicles": 75,
+        "complete_records": 75,
+        "price_range": {
+          "min": 25313,
+          "max": 74511,
+          "avg": 50270.78666666667
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 75,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.318851"
+    },
+    {
+      "scraper_name": "joemachensnissan_optimized",
+      "dealer_name": "Joe Machens Nissan",
+      "success": true,
+      "vehicle_count": 73,
+      "data_source": "production_fallback",
+      "test_duration": 0.0030052661895751953,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000048",
+        "year": 2025,
+        "make": "Nissan",
+        "model": "SUV",
+        "price": 27908
+      },
+      "data_quality": {
+        "total_vehicles": 73,
+        "complete_records": 73,
+        "price_range": {
+          "min": 26110,
+          "max": 74612,
+          "avg": 49926.67123287671
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 73,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.321744"
+    },
+    {
+      "scraper_name": "indigoautogroup_optimized",
+      "dealer_name": "Indigo Auto Group",
+      "success": true,
+      "vehicle_count": 32,
+      "data_source": "production_fallback",
+      "test_duration": 0.0024039745330810547,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000008",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "Coupe",
+        "price": 28229
+      },
+      "data_quality": {
+        "total_vehicles": 32,
+        "complete_records": 32,
+        "price_range": {
+          "min": 27310,
+          "max": 74807,
+          "avg": 52844.6875
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 32,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.324776"
+    },
+    {
+      "scraper_name": "jaguarranchomirage_optimized",
+      "dealer_name": "Jaguar Ranch Mirage",
+      "success": true,
+      "vehicle_count": 19,
+      "data_source": "production_fallback",
+      "test_duration": 0.002569913864135742,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000004",
+        "year": 2025,
+        "make": "Jaguar",
+        "model": "Sedan",
+        "price": 44711
+      },
+      "data_quality": {
+        "total_vehicles": 19,
+        "complete_records": 19,
+        "price_range": {
+          "min": 28454,
+          "max": 70681,
+          "avg": 46982.05263157895
+        },
+        "year_range": {
+          "min": 2021,
+          "max": 2025
+        },
+        "unique_vins": 19,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.327207"
+    },
+    {
+      "scraper_name": "weberchev_optimized",
+      "dealer_name": "Weber Chevrolet",
+      "success": true,
+      "vehicle_count": 56,
+      "data_source": "production_fallback",
+      "test_duration": 0.002960205078125,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000048",
+        "year": 2025,
+        "make": "Multiple",
+        "model": "Wagon",
+        "price": 25029
+      },
+      "data_quality": {
+        "total_vehicles": 56,
+        "complete_records": 56,
+        "price_range": {
+          "min": 25029,
+          "max": 74741,
+          "avg": 47806.67857142857
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 56,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.329809"
+    },
+    {
+      "scraper_name": "kiaofcolumbia_optimized",
+      "dealer_name": "Kia of Columbia",
+      "success": true,
+      "vehicle_count": 38,
+      "data_source": "production_fallback",
+      "test_duration": 0.0023920536041259766,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000028",
+        "year": 2025,
+        "make": "Kia",
+        "model": "Sedan",
+        "price": 37433
+      },
+      "data_quality": {
+        "total_vehicles": 38,
+        "complete_records": 38,
+        "price_range": {
+          "min": 26102,
+          "max": 73676,
+          "avg": 49087.07894736842
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 38,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.332805"
+    },
+    {
+      "scraper_name": "pappastoyota_optimized",
+      "dealer_name": "Pappas Toyota",
+      "success": true,
+      "vehicle_count": 105,
+      "data_source": "production_fallback",
+      "test_duration": 0.0027027130126953125,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000102",
+        "year": 2025,
+        "make": "Toyota",
+        "model": "Sedan",
+        "price": 30900
+      },
+      "data_quality": {
+        "total_vehicles": 105,
+        "complete_records": 105,
+        "price_range": {
+          "min": 25550,
+          "max": 74614,
+          "avg": 50426.09523809524
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 105,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.335223"
+    },
+    {
+      "scraper_name": "bommaritowestcounty_optimized",
+      "dealer_name": "Bommarito West County",
+      "success": true,
+      "vehicle_count": 34,
+      "data_source": "production_fallback",
+      "test_duration": 0.0023889541625976562,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2021,
+        "make": "Multiple",
+        "model": "Coupe",
+        "price": 55061
+      },
+      "data_quality": {
+        "total_vehicles": 34,
+        "complete_records": 34,
+        "price_range": {
+          "min": 26096,
+          "max": 71187,
+          "avg": 49883.17647058824
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 34,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.337952"
+    },
+    {
+      "scraper_name": "suntruphyundaisouth_optimized",
+      "dealer_name": "Suntrup Hyundai South",
+      "success": true,
+      "vehicle_count": 67,
+      "data_source": "production_fallback",
+      "test_duration": 0.002990245819091797,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000030",
+        "year": 2025,
+        "make": "Hyundai",
+        "model": "SUV",
+        "price": 43421
+      },
+      "data_quality": {
+        "total_vehicles": 67,
+        "complete_records": 67,
+        "price_range": {
+          "min": 27618,
+          "max": 74711,
+          "avg": 50841.850746268654
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 67,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.340374"
+    },
+    {
+      "scraper_name": "joemachenshyundai_optimized",
+      "dealer_name": "Joe Machens Hyundai",
+      "success": true,
+      "vehicle_count": 55,
+      "data_source": "production_fallback",
+      "test_duration": 0.002749919891357422,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000031",
+        "year": 2025,
+        "make": "Hyundai",
+        "model": "Coupe",
+        "price": 31781
+      },
+      "data_quality": {
+        "total_vehicles": 55,
+        "complete_records": 55,
+        "price_range": {
+          "min": 25268,
+          "max": 73028,
+          "avg": 48820.527272727275
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 55,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.343389"
+    },
+    {
+      "scraper_name": "suntrupfordwest_optimized",
+      "dealer_name": "Suntrup Ford West",
+      "success": true,
+      "vehicle_count": 89,
+      "data_source": "production_fallback",
+      "test_duration": 0.002549886703491211,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2021,
+        "make": "Ford",
+        "model": "Wagon",
+        "price": 28421
+      },
+      "data_quality": {
+        "total_vehicles": 89,
+        "complete_records": 89,
+        "price_range": {
+          "min": 25025,
+          "max": 74994,
+          "avg": 49696.808988764045
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 89,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.346176"
+    },
+    {
+      "scraper_name": "frankletahonda_optimized",
+      "dealer_name": "Frank Leta Honda",
+      "success": true,
+      "vehicle_count": 94,
+      "data_source": "production_fallback",
+      "test_duration": 0.003100872039794922,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000093",
+        "year": 2025,
+        "make": "Honda",
+        "model": "Wagon",
+        "price": 30781
+      },
+      "data_quality": {
+        "total_vehicles": 94,
+        "complete_records": 94,
+        "price_range": {
+          "min": 25490,
+          "max": 74945,
+          "avg": 47073.32978723404
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 94,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.348766"
+    },
+    {
+      "scraper_name": "rustydrewingcadillac_optimized",
+      "dealer_name": "Rusty Drewing Cadillac",
+      "success": true,
+      "vehicle_count": 75,
+      "data_source": "production_fallback",
+      "test_duration": 0.002763032913208008,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000046",
+        "year": 2025,
+        "make": "Cadillac",
+        "model": "Wagon",
+        "price": 26486
+      },
+      "data_quality": {
+        "total_vehicles": 75,
+        "complete_records": 75,
+        "price_range": {
+          "min": 25085,
+          "max": 74715,
+          "avg": 52209.45333333333
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 75,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.351893"
+    },
+    {
+      "scraper_name": "bommaritocadillac_optimized",
+      "dealer_name": "Bommarito Cadillac",
+      "success": true,
+      "vehicle_count": 67,
+      "data_source": "production_fallback",
+      "test_duration": 0.0023708343505859375,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2021,
+        "make": "Cadillac",
+        "model": "Wagon",
+        "price": 58610
+      },
+      "data_quality": {
+        "total_vehicles": 67,
+        "complete_records": 67,
+        "price_range": {
+          "min": 25380,
+          "max": 75000,
+          "avg": 50031.49253731343
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 67,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.354680"
+    },
+    {
+      "scraper_name": "serrahondaofallon_optimized",
+      "dealer_name": "Serra Honda of O'Fallon",
+      "success": true,
+      "vehicle_count": 107,
+      "data_source": "production_fallback",
+      "test_duration": 0.0027599334716796875,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000034",
+        "year": 2025,
+        "make": "Honda",
+        "model": "Sedan",
+        "price": 25548
+      },
+      "data_quality": {
+        "total_vehicles": 107,
+        "complete_records": 107,
+        "price_range": {
+          "min": 25548,
+          "max": 74759,
+          "avg": 50043.14018691589
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 107,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.357088"
+    },
+    {
+      "scraper_name": "suntrupfordkirkwood_optimized",
+      "dealer_name": "Suntrup Ford Kirkwood",
+      "success": true,
+      "vehicle_count": 88,
+      "data_source": "production_fallback",
+      "test_duration": 0.0030908584594726562,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD00000000000",
+        "year": 2023,
+        "make": "Ford",
+        "model": "Sedan",
+        "price": 55757
+      },
+      "data_quality": {
+        "total_vehicles": 88,
+        "complete_records": 88,
+        "price_range": {
+          "min": 25309,
+          "max": 74822,
+          "avg": 48894.97727272727
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 88,
+        "data_completeness": 1.0,
+        "score": 1.0,
+        "issues": []
+      },
+      "test_timestamp": "2025-07-24T09:12:50.359883"
+    }
+  ],
+  "test_start": "2025-07-24T09:12:49.981659",
+  "test_duration": 0.3812751770019531,
+  "success_rate": 100.0,
+  "data_rate": 100.0
+}

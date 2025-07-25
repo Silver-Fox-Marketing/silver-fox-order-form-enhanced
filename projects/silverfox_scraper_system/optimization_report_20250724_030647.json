@@ -1,0 +1,495 @@
+{
+  "total_scrapers": 40,
+  "optimized_successfully": 40,
+  "optimization_failures": 0,
+  "scrapers_by_platform": {
+    "custom": 24,
+    "algolia": 6,
+    "luxury_custom": 2,
+    "dealeron": 8
+  },
+  "optimization_summary": [
+    {
+      "scraper_name": "joemachensnissan_working",
+      "dealer_name": "Joemachensnissan",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachensnissan_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "spiritlexus_working",
+      "dealer_name": "Spiritlexus",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/spiritlexus_optimized.py",
+      "expected_inventory_range": [
+        40,
+        90
+      ]
+    },
+    {
+      "scraper_name": "pundmannford_working",
+      "dealer_name": "Pundmannford",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/pundmannford_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "pappastoyota_working",
+      "dealer_name": "Pappastoyota",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/pappastoyota_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "audiranchomirage_working",
+      "dealer_name": "Audiranchomirage",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/audiranchomirage_optimized.py",
+      "expected_inventory_range": [
+        40,
+        90
+      ]
+    },
+    {
+      "scraper_name": "rustydrewingcadillac_working",
+      "dealer_name": "Rustydrewingcadillac",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/rustydrewingcadillac_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "miniofstlouis_working",
+      "dealer_name": "Miniofstlouis",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/miniofstlouis_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "auffenberghyundai_working",
+      "dealer_name": "Auffenberghyundai",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/auffenberghyundai_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "porschestlouis_working",
+      "dealer_name": "Porschestlouis",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/porschestlouis_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "landroverranchomirage_working",
+      "dealer_name": "Land Rover Ranch Mirage",
+      "platform": "luxury_custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/landroverranchomirage_optimized.py",
+      "expected_inventory_range": [
+        10,
+        35
+      ]
+    },
+    {
+      "scraper_name": "bommaritowestcounty_working",
+      "dealer_name": "Bommaritowestcounty",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bommaritowestcounty_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "davesinclairlincolnstpeters_working",
+      "dealer_name": "Davesinclairlincolnstpeters",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/davesinclairlincolnstpeters_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "suntrupfordwest_working",
+      "dealer_name": "Suntrup Ford West",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupfordwest_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "columbiabmw_working",
+      "dealer_name": "Columbia BMW",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/columbiabmw_optimized.py",
+      "expected_inventory_range": [
+        40,
+        90
+      ]
+    },
+    {
+      "scraper_name": "joemachenshyundai_working",
+      "dealer_name": "Joe Machens Hyundai",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenshyundai_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "joemachenscdjr_working",
+      "dealer_name": "Joemachenscdjr",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenscdjr_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "weberchev_working",
+      "dealer_name": "Weberchev",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/weberchev_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "hwkia_working",
+      "dealer_name": "Hwkia",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/hwkia_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "wcvolvocars_working",
+      "dealer_name": "Wcvolvocars",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/wcvolvocars_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "suntrupkiasouth_working",
+      "dealer_name": "Suntrupkiasouth",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupkiasouth_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "southcountyautos_working",
+      "dealer_name": "Southcountyautos",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/southcountyautos_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "stehouwerauto_working",
+      "dealer_name": "Stehouwerauto",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/stehouwerauto_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "glendalechryslerjeep_working",
+      "dealer_name": "Glendalechryslerjeep",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/glendalechryslerjeep_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "bommaritocadillac_working",
+      "dealer_name": "Bommaritocadillac",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bommaritocadillac_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "twincitytoyota_working",
+      "dealer_name": "Twincitytoyota",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/twincitytoyota_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "columbiahonda_working",
+      "dealer_name": "Columbia Honda",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/columbiahonda_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "kiaofcolumbia_working",
+      "dealer_name": "Kiaofcolumbia",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/kiaofcolumbia_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "joemachenstoyota_working",
+      "dealer_name": "Joemachenstoyota",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/joemachenstoyota_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "suntrupfordkirkwood_working",
+      "dealer_name": "Suntrupfordkirkwood",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupfordkirkwood_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "davesinclairlincolnsouth_working",
+      "dealer_name": "Davesinclairlincolnsouth",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/davesinclairlincolnsouth_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "jaguarranchomirage_working",
+      "dealer_name": "Jaguar Ranch Mirage",
+      "platform": "luxury_custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/jaguarranchomirage_optimized.py",
+      "expected_inventory_range": [
+        10,
+        35
+      ]
+    },
+    {
+      "scraper_name": "rustydrewingchevroletbuickgmc_working",
+      "dealer_name": "Rustydrewingchevroletbuickgmc",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/rustydrewingchevroletbuickgmc_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "thoroughbredford_working",
+      "dealer_name": "Thoroughbredford",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/thoroughbredford_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "indigoautogroup_working",
+      "dealer_name": "Indigoautogroup",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/indigoautogroup_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "serrahondaofallon_working",
+      "dealer_name": "Serrahondaofallon",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/serrahondaofallon_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "bmwofweststlouis_working",
+      "dealer_name": "BMW of West St. Louis",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/bmwofweststlouis_optimized.py",
+      "expected_inventory_range": [
+        40,
+        90
+      ]
+    },
+    {
+      "scraper_name": "suntrupbuickgmc_working",
+      "dealer_name": "Suntrupbuickgmc",
+      "platform": "dealeron",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntrupbuickgmc_optimized.py",
+      "expected_inventory_range": [
+        25,
+        75
+      ]
+    },
+    {
+      "scraper_name": "frankletahonda_working",
+      "dealer_name": "Frankletahonda",
+      "platform": "algolia",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/frankletahonda_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    },
+    {
+      "scraper_name": "suntruphyundaisouth_working",
+      "dealer_name": "Suntruphyundaisouth",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/suntruphyundaisouth_optimized.py",
+      "expected_inventory_range": [
+        35,
+        80
+      ]
+    },
+    {
+      "scraper_name": "hondafrontenac_working",
+      "dealer_name": "Hondafrontenac",
+      "platform": "custom",
+      "success": true,
+      "status": "optimized_successfully",
+      "output_file": "/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/silverfox_system/core/scrapers/dealerships/hondafrontenac_optimized.py",
+      "expected_inventory_range": [
+        50,
+        120
+      ]
+    }
+  ],
+  "start_time": "2025-07-24T03:06:47.163475",
+  "end_time": "2025-07-24T03:06:47.178459"
+}

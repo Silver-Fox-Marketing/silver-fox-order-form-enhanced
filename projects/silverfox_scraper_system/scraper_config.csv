@@ -1,0 +1,41 @@
+site_name,config_file,scraper_type,base_url,platform,to_scrap,priority,expected_vehicles,scraper_class,last_updated,status
+Audi Ranch Mirage,audiranchomirage.json,api,https://www.audirancho.com,stellantis_ddc,yes,low,30,AudiranchomirageWorkingScraper,2025-07-24T02:58:25.999292,success
+Auffenberg Hyundai,auffenberghyundai.json,api,https://www.auffenberghyundai.com,custom_widget,yes,medium,40,AuffenberghyundaiWorkingScraper,2025-07-24T02:58:27.036081,success
+BMW of West St. Louis,bmwofweststlouis.json,api,https://www.bmwofweststlouis.com,algolia,yes,high,50,BmwofweststlouisWorkingScraper,2025-07-24T02:46:33.133579,failed
+Bommarito Cadillac,bommaritocadillac.json,api,https://www.bommaritocadillac.com,dealeron_cosmos,yes,low,30,BommaritocadillacWorkingScraper,2025-07-24T02:46:34.432455,failed
+Bommarito West County,bommaritowestcounty.json,api,https://www.bommaritowestcounty.com,dealeron_cosmos,yes,low,30,BommaritowestcountyWorkingScraper,2025-07-24T02:46:35.680672,failed
+Columbia BMW,columbiabmw.json,api,https://www.columbiabmw.com,stellantis_ddc,yes,high,50,ColumbiabmwWorkingScraper,2025-07-24T02:46:36.699259,success
+Columbia Honda,columbiahonda.json,api,https://www.columbiahonda.com,dealeron_cosmos,yes,medium,40,ColumbiahondaWorkingScraper,2025-07-24T02:46:37.800741,failed
+Dave Sinclair Lincoln South,davesinclairlincolnsouth.json,api,https://www.davesinclairlincolnsouth.com,dealeron_cosmos,yes,low,30,DavesinclairlincolnsouthWorkingScraper,2025-07-24T02:46:39.112221,failed
+Dave Sinclair Lincoln St. Peters,davesinclairlincolnstpeters.json,api,https://www.davesinclairlincolnstpeters.com,dealeron_cosmos,yes,low,30,DavesinclairlincolnstpetersWorkingScraper,2025-07-24T02:46:40.371052,failed
+Frank Leta Honda,frankletahonda.json,api,https://www.frankletahonda.com,algolia,yes,medium,40,FrankletahondaWorkingScraper,2025-07-24T02:46:41.392540,failed
+Glendale Chrysler Jeep,glendalechryslerjeep.json,api,https://www.glendalechryslerjeep.com,stellantis_ddc,yes,low,30,GlendalechryslerjeepWorkingScraper,2025-07-24T02:46:42.405880,success
+H&W Kia,hwkia.json,sitemap,https://www.hwkia.com,sitemap_based,yes,low,30,HwkiaWorkingScraper,2025-07-24T02:46:43.444839,success
+Honda of Frontenac,hondafrontenac.json,sitemap,https://www.hondafrontenac.com,sitemap_based,yes,medium,40,HondafrontenacWorkingScraper,2025-07-24T02:46:44.465161,success
+Indigo Auto Group,indigoautogroup.json,api,https://www.indigoautogroup.com,custom,yes,low,30,IndigoautogroupWorkingScraper,2025-07-24T02:46:45.482298,success
+Jaguar Ranch Mirage,jaguarranchomirage.json,api,https://www.jaguarranchomirage.com,stellantis_ddc,yes,high,10,JaguarranchomirageWorkingScraper,2025-07-24T02:46:46.542848,success
+Joe Machens Chrysler Dodge Jeep Ram,joemachenscdjr.json,api,https://www.joemachenscdjr.com,algolia,yes,low,30,JoemachenscdjrWorkingScraper,2025-07-24T02:46:47.579953,failed
+Joe Machens Hyundai,joemachenshyundai.json,api,https://www.joemachenshyundai.com,algolia,yes,medium,40,JoemachenshyundaiWorkingScraper,2025-07-24T02:46:48.599512,failed
+Joe Machens Nissan,joemachensnissan.json,api,https://www.joemachensnissan.com,custom,yes,low,30,JoemachensnissanWorkingScraper,2025-07-24T02:46:49.613048,success
+Joe Machens Toyota,joemachenstoyota.json,api,https://www.joemachenstoyota.com,custom,yes,medium,40,JoemachenstoyotaWorkingScraper,2025-07-24T02:46:50.627125,success
+Kia of Columbia,kiaofcolumbia.json,api,https://www.kiaofcolumbia.com,custom,yes,low,30,KiaofcolumbiaWorkingScraper,2025-07-24T02:46:51.639949,success
+Land Rover Ranch Mirage,landroverranchomirage.json,api,https://www.landroverranchomirage.com,stellantis_ddc,yes,high,15,LandroverranchomirageWorkingScraper,2025-07-24T02:46:52.651175,success
+MINI of St. Louis,miniofstlouis.json,api,https://www.miniofstlouis.com,custom,yes,low,30,MiniofstlouisWorkingScraper,2025-07-24T02:46:53.663773,success
+Pappas Toyota,pappastoyota.json,api,https://www.pappastoyota.com,custom,yes,medium,40,PappastoyotaWorkingScraper,2025-07-24T02:46:54.682951,success
+Porsche St. Louis,porschestlouis.json,api,https://www.porschestlouis.com,custom,yes,low,30,PorschestlouisWorkingScraper,2025-07-24T02:46:55.693582,success
+Pundmann Ford,pundmannford.json,api,https://www.pundmannford.com,custom,yes,medium,40,PundmannfordWorkingScraper,2025-07-24T02:46:56.712440,success
+Rusty Drewing Cadillac,rustydrewingcadillac.json,api,https://www.rustydrewingcadillac.com,custom,yes,low,30,RustydrewingcadillacWorkingScraper,2025-07-24T02:46:57.720007,success
+Rusty Drewing Chevrolet Buick GMC,rustydrewingchevroletbuickgmc.json,api,https://www.rustydrewingchevroletbuickgmc.com,custom,yes,low,30,RustydrewingchevroletbuickgmcWorkingScraper,2025-07-24T02:46:58.734430,success
+Serra Honda of O'Fallon,serrahondaofallon.json,api,https://www.serrahondaofallon.com,custom,yes,medium,40,SerrahondaofallonWorkingScraper,2025-07-24T02:46:59.741805,success
+South County Autos,southcountyautos.json,api,https://www.southcountyautos.com,custom,yes,low,30,SouthcountyautosWorkingScraper,2025-07-24T02:47:00.773708,success
+Spirit Lexus,spiritlexus.json,api,https://www.spiritlexus.com,algolia,yes,low,30,SpiritlexusWorkingScraper,2025-07-24T02:47:01.788784,failed
+Stehouwer Auto,stehouwerauto.json,api,https://www.stehouwerauto.com,custom,yes,low,30,StehouwerautoWorkingScraper,2025-07-24T02:47:02.801021,success
+Suntrup Buick GMC,suntrupbuickgmc.json,api,https://www.suntrupbuickgmc.com,dealeron_cosmos,yes,low,30,SuntrupbuickgmcWorkingScraper,2025-07-24T02:47:04.059836,failed
+Suntrup Ford Kirkwood,suntrupfordkirkwood.json,api,https://www.suntrupfordkirkwood.com,dealeron_cosmos,yes,medium,40,SuntrupfordkirkwoodWorkingScraper,2025-07-24T02:47:05.293732,failed
+Suntrup Ford West,suntrupfordwest.json,api,https://www.suntrupfordwest.com,dealeron_cosmos,yes,medium,40,SuntrupfordwestWorkingScraper,2025-07-24T02:47:06.403152,failed
+Suntrup Hyundai South,suntruphyundaisouth.json,api,https://www.suntruphyundaisouth.com,custom,yes,medium,40,SuntruphyundaisouthWorkingScraper,2025-07-24T02:47:07.424307,success
+Suntrup Kia South,suntrupkiasouth.json,api,https://www.suntrupkiasouth.com,custom,yes,low,30,SuntrupkiasouthWorkingScraper,2025-07-24T02:47:08.434735,success
+Thoroughbred Ford,thoroughbredford.json,api,https://www.thoroughbredford.com,custom,yes,medium,40,ThoroughbredfordWorkingScraper,2025-07-24T02:47:09.458225,success
+Twin City Toyota,twincitytoyota.json,api,https://www.twincitytoyota.com,custom,yes,medium,40,TwincitytoyotaWorkingScraper,2025-07-24T02:47:10.467956,success
+Weber Chevrolet,weberchev.json,api,https://www.weberchev.com,algolia,yes,low,30,WeberchevWorkingScraper,2025-07-24T02:47:11.491823,failed
+West County Volvo Cars,wcvolvocars.json,api,https://www.wcvolvocars.com,custom,yes,low,30,WcvolvocarsWorkingScraper,2025-07-24T02:47:12.501363,success

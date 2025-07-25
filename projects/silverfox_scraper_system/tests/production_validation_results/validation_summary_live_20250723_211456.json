@@ -1,0 +1,92 @@
+{
+  "validation_timestamp": "2025-07-23T21:14:56.706518",
+  "test_mode": "LIVE",
+  "overall_results": {
+    "total_scrapers_validated": 6,
+    "passed": 0,
+    "failed": 6,
+    "success_rate": 0.0
+  },
+  "critical_issues": {
+    "scrapers_with_first_page_only_issues": 0,
+    "total_data_quality_issues": 6,
+    "failed_scrapers": [
+      "jaguar_ranch_mirage",
+      "landrover_ranch_mirage",
+      "astonmartin_ranch_mirage",
+      "bentley_ranch_mirage",
+      "mclaren_ranch_mirage",
+      "rollsroyce_ranch_mirage"
+    ]
+  },
+  "performance_summary": {
+    "total_vehicles_found": 0,
+    "average_vehicles_per_scraper": 0.0,
+    "scrapers_with_pagination_issues": []
+  },
+  "individual_results": {
+    "jaguar_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: JaguarRanchMirageScraper"
+      ]
+    },
+    "landrover_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: LandRoverRanchMirageScraper"
+      ]
+    },
+    "astonmartin_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: AstonMartinRanchMirageScraper"
+      ]
+    },
+    "bentley_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: BentleyRanchMirageScraper"
+      ]
+    },
+    "mclaren_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: McLarenRanchMirageScraper"
+      ]
+    },
+    "rollsroyce_ranch_mirage": {
+      "success": false,
+      "vehicles_found": 0,
+      "pages_accessed": 0,
+      "first_page_only": false,
+      "data_quality_issues_count": 1,
+      "key_recommendations": [
+        "Fix critical error: Could not import scraper class: RollsRoyceRanchMirageScraper"
+      ]
+    }
+  },
+  "next_steps": [
+    "PRIORITY 1: Fix failing scrapers: jaguar_ranch_mirage, landrover_ranch_mirage, astonmartin_ranch_mirage, bentley_ranch_mirage, mclaren_ranch_mirage, rollsroyce_ranch_mirage"
+  ]
+}

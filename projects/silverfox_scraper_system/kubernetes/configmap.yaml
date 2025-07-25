@@ -1,0 +1,198 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: silverfox-scraper-config
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: configuration
+data:
+  # Scraper Configuration
+  scraper_config.json: |
+    {
+      "request_delay": 2.0,
+      "timeout": 60,
+      "max_retries": 3,
+      "rate_limit_enabled": true,
+      "chrome_headless": true,
+      "enable_optimization": true,
+      "enable_verification": true,
+      "enable_alerts": true,
+      "enable_competitive_analysis": true,
+      "enable_pipedrive_sync": true
+    }
+  
+  # Dealership Configurations
+  dealership_config.json: |
+    {
+      "ranch_mirage": {
+        "jaguar": {
+          "name": "Jaguar Rancho Mirage",
+          "base_url": "https://www.jaguarranchomirage.com",
+          "tier": "luxury",
+          "platform": "dealeron",
+          "optimization_level": "enhanced"
+        },
+        "landrover": {
+          "name": "Land Rover Rancho Mirage", 
+          "base_url": "https://www.landroverofranchomirage.com",
+          "tier": "luxury",
+          "platform": "dealeron",
+          "optimization_level": "enhanced"
+        },
+        "astonmartin": {
+          "name": "Aston Martin Rancho Mirage",
+          "base_url": "https://www.astonmartinranchomirage.com", 
+          "tier": "luxury",
+          "platform": "dealeron",
+          "optimization_level": "enhanced"
+        },
+        "bentley": {
+          "name": "Bentley Rancho Mirage",
+          "base_url": "https://www.bentleyofranchomirage.com",
+          "tier": "luxury", 
+          "platform": "dealeron",
+          "optimization_level": "enhanced"
+        },
+        "mclaren": {
+          "name": "McLaren Rancho Mirage",
+          "base_url": "https://www.mclarenranchomirage.com",
+          "tier": "supercar",
+          "platform": "dealeron", 
+          "optimization_level": "maximum"
+        },
+        "rollsroyce": {
+          "name": "Rolls-Royce Motor Cars Rancho Mirage",
+          "base_url": "https://www.rolls-roycemotorcarsranchomirage.com",
+          "tier": "ultra_luxury",
+          "platform": "dealeron",
+          "optimization_level": "maximum"
+        }
+      },
+      "bmw": {
+        "west_st_louis": {
+          "name": "BMW of West St Louis",
+          "base_url": "https://www.bmwofweststlouis.com", 
+          "tier": "luxury",
+          "platform": "algolia",
+          "optimization_level": "enhanced"
+        }
+      },
+      "suntrup": {
+        "ford_west": {
+          "name": "Suntrup Ford West",
+          "base_url": "https://www.suntrupfordwest.com",
+          "tier": "mainstream", 
+          "platform": "dealeron",
+          "optimization_level": "standard"
+        }
+      }
+    }
+  
+  # Alert System Configuration
+  alert_config.json: |
+    {
+      "price_drop_threshold": 5.0,
+      "price_increase_threshold": 10.0,
+      "low_inventory_threshold": 10,
+      "high_inventory_threshold": 200,
+      "stale_inventory_days": 90,
+      "rapid_turnover_days": 7,
+      "notification_channels": ["email", "webhook", "dashboard"],
+      "email_config": {
+        "enabled": true,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "use_tls": true
+      },
+      "webhook_config": {
+        "enabled": true,
+        "timeout": 30
+      },
+      "slack_config": {
+        "enabled": false
+      }
+    }
+  
+  # Competitive Analysis Configuration
+  competitive_config.json: |
+    {
+      "similarity_threshold": 0.85,
+      "price_variance_threshold": 0.05,
+      "trend_analysis_days": 30,
+      "min_market_samples": 3,
+      "enable_cross_dealership_analysis": true,
+      "analysis_frequency_hours": 6
+    }
+  
+  # Logging Configuration
+  logging_config.json: |
+    {
+      "version": 1,
+      "disable_existing_loggers": false,
+      "formatters": {
+        "standard": {
+          "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        },
+        "detailed": {
+          "format": "%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(funcName)s - %(message)s"
+        }
+      },
+      "handlers": {
+        "console": {
+          "class": "logging.StreamHandler",
+          "level": "INFO",
+          "formatter": "standard",
+          "stream": "ext://sys.stdout"
+        },
+        "file": {
+          "class": "logging.handlers.RotatingFileHandler",
+          "level": "DEBUG", 
+          "formatter": "detailed",
+          "filename": "/app/logs/silverfox-scraper.log",
+          "maxBytes": 10485760,
+          "backupCount": 5
+        }
+      },
+      "loggers": {
+        "silverfox": {
+          "level": "DEBUG",
+          "handlers": ["console", "file"],
+          "propagate": false
+        }
+      },
+      "root": {
+        "level": "INFO",
+        "handlers": ["console"]
+      }
+    }
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: silverfox-chrome-config
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: chrome-configuration
+data:
+  chrome_options.json: |
+    {
+      "headless": true,
+      "no_sandbox": true,
+      "disable_dev_shm_usage": true,
+      "disable_gpu": true,
+      "disable_extensions": true,
+      "disable_plugins": true,
+      "disable_images": false,
+      "window_size": "1920,1080",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "additional_options": [
+        "--disable-blink-features=AutomationControlled",
+        "--disable-web-security",
+        "--allow-running-insecure-content",
+        "--disable-features=TranslateUI",
+        "--disable-ipc-flooding-protection"
+      ]
+    }

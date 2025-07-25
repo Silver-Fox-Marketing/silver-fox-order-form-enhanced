@@ -1,0 +1,40 @@
+MINISFORUM DATABASE SETUP CHECKLIST
+===================================
+
+PRE-TRANSFER:
+□ Copy entire minisforum_database_transfer folder to flash drive
+□ Verify all files copied (sql/, scripts/, guides)
+
+ON MINISFORUM PC:
+□ Install PostgreSQL 16
+   □ Write down password: _________________
+   □ Use port 5432
+   □ Data directory: C:\dealership_database\data
+
+□ Create folder structure (PowerShell as Admin)
+□ Copy files from flash drive to correct locations
+□ Set environment variables
+□ Close and reopen PowerShell
+
+□ Create database and tables:
+   □ 01_create_database.sql
+   □ 02_create_tables.sql
+   □ 03_initial_dealership_configs.sql
+   □ 04_performance_settings.sql
+
+□ Install Python (if needed)
+□ Install Python packages: pip install -r requirements.txt
+
+□ Test connection: python database_connection.py
+□ Run health check: python database_maintenance.py --health
+
+VERIFICATION:
+□ Database responds to queries
+□ Can import test CSV
+□ Can export data
+□ Backup works
+
+DAILY OPERATIONS READY:
+□ Import command documented
+□ Export command documented
+□ Backup scheduled

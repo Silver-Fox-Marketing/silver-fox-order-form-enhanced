@@ -1,0 +1,20 @@
+{
+  "scraper_name": "jaguar_ranch_mirage",
+  "dealership": "Jaguar Ranch Mirage",
+  "website_url": "https://www.jaguarranchmirage.com",
+  "test_start_time": "2025-07-23 21:20:03.537693",
+  "test_end_time": "2025-07-23 21:20:03.537694",
+  "duration_seconds": 0.0,
+  "success": true,
+  "total_vehicles_found": 0,
+  "pages_accessed": 0,
+  "first_page_only_detected": false,
+  "data_quality_issues": [],
+  "performance_metrics": {},
+  "validation_details": {
+    "dry_run": true
+  },
+  "recommendations": [
+    "DRY RUN - Use --live flag to test against actual websites"
+  ]
+}

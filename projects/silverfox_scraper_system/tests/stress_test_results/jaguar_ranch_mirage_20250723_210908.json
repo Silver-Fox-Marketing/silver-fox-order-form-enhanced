@@ -1,0 +1,180 @@
+{
+  "scraper_name": "jaguar_ranch_mirage",
+  "dealership": "Jaguar Ranch Mirage",
+  "test_start_time": "2025-07-23 21:09:08.335829",
+  "test_end_time": "2025-07-23 21:09:09.941944",
+  "duration_seconds": 1.606115,
+  "success": true,
+  "total_vehicles_found": 10,
+  "pages_processed": 3,
+  "errors_encountered": [],
+  "data_quality_score": 1.2999999999999998,
+  "performance_metrics": {
+    "basic_test_duration": 0.5015320777893066,
+    "initial_vehicle_count": 10,
+    "pagination_test_duration": 1.0251998901367188e-05,
+    "total_vehicles": 10,
+    "avg_page_load_time": 1.2,
+    "quality_test_duration": 0.00021696090698242188,
+    "load_test_duration": 0.5015139579772949,
+    "concurrent_requests": 3,
+    "successful_requests": 3,
+    "success_rate": 1.0,
+    "avg_response_time": 0.5012604395548502,
+    "max_response_time": 0.5012779235839844,
+    "min_response_time": 0.5012421607971191,
+    "requests_per_minute": 119.69825516907667,
+    "recovery_test_duration": 0.6024408340454102
+  },
+  "inventory_validation": {
+    "total_vehicles": 10,
+    "unique_vins": 10,
+    "duplicate_vins": 0,
+    "price_range": {
+      "min": 50000,
+      "max": 59000,
+      "avg": 54500.0
+    },
+    "makes_found": [
+      "TestMake"
+    ],
+    "model_count": 10
+  },
+  "stress_test_details": {
+    "basic_functionality": {
+      "passed": true,
+      "vehicles_found": 10,
+      "expected_minimum": 10,
+      "meets_minimum": true
+    },
+    "pagination_handling": {
+      "success": true,
+      "pages_processed": 3,
+      "metrics": {
+        "total_vehicles": 10,
+        "avg_page_load_time": 1.2
+      },
+      "first_page_only": false,
+      "details": {
+        "pages": 3,
+        "metrics": {
+          "total_vehicles": 10,
+          "avg_page_load_time": 1.2
+        }
+      }
+    },
+    "data_quality": {
+      "overall_score": 1.2999999999999998,
+      "validation_details": {
+        "total_vehicles": 10,
+        "unique_vins": 10,
+        "duplicate_vins": 0,
+        "price_range": {
+          "min": 50000,
+          "max": 59000,
+          "avg": 54500.0
+        },
+        "makes_found": [
+          "TestMake"
+        ],
+        "model_count": 10
+      },
+      "field_completeness": {
+        "make": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": true
+        },
+        "model": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": true
+        },
+        "year": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": true
+        },
+        "price": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": true
+        },
+        "vin": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": true
+        },
+        "mileage": {
+          "completeness_ratio": 0.9,
+          "present_count": 9,
+          "total_count": 10,
+          "is_required": false
+        },
+        "color": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": false
+        },
+        "transmission": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": false
+        },
+        "fuel_type": {
+          "completeness_ratio": 1.0,
+          "present_count": 10,
+          "total_count": 10,
+          "is_required": false
+        },
+        "trim": {
+          "completeness_ratio": 0.0,
+          "present_count": 0,
+          "total_count": 10,
+          "is_required": false
+        }
+      },
+      "data_consistency": {
+        "valid_years": 1.0,
+        "valid_prices": 1.0,
+        "valid_vins": 1.0
+      }
+    },
+    "load_stress": {
+      "success": true,
+      "metrics": {
+        "concurrent_requests": 3,
+        "successful_requests": 3,
+        "success_rate": 1.0,
+        "avg_response_time": 0.5012604395548502,
+        "max_response_time": 0.5012779235839844,
+        "min_response_time": 0.5012421607971191,
+        "requests_per_minute": 119.69825516907667
+      },
+      "error_count": 0
+    },
+    "error_recovery": {
+      "success": true,
+      "recovery_score": 1.0,
+      "tests": [
+        {
+          "test": "timeout_recovery",
+          "passed": true
+        }
+      ]
+    },
+    "performance_summary": {
+      "total_test_time": 1.606115,
+      "average_response_time": 0.5012604395548502,
+      "peak_memory_usage": 0,
+      "requests_per_minute": 119.69825516907667
+    }
+  }
+}

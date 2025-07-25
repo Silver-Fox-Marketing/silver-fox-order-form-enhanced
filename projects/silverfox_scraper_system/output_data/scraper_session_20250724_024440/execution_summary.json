@@ -1,0 +1,26 @@
+[
+  {
+    "site_name": "BMW of West St. Louis",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.17228007316589355,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:44:40.661074"
+  },
+  {
+    "site_name": "Columbia Honda",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.25019097328186035,
+    "error_message": null,
+    "timestamp": "2025-07-24T02:44:41.839707"
+  },
+  {
+    "site_name": "Jaguar Ranch Mirage",
+    "success": false,
+    "vehicles_found": 0,
+    "duration": 0.06573796272277832,
+    "error_message": "__init__() takes 1 positional argument but 2 were given",
+    "timestamp": "2025-07-24T02:44:43.103948"
+  }
+]

@@ -1,0 +1,956 @@
+vin,stock_number,year,make,model,trim,price,msrp,mileage,exterior_color,interior_color,fuel_type,transmission,condition,url,dealer_name,scraped_at
+MOCKAUDIR0000000000,STK00000,2024,Audi,Coupe,Limited,43230,63279,39858,White,Tan,Electric,Automatic,used,https://www.audirancho.com/inventory/0,Audi Ranch Mirage,2025-07-24T02:46:31.091709
+MOCKAUDIR0000000001,STK00001,2023,Audi,SUV,Sport,26982,54972,38668,Silver,Black,Gasoline,Manual,new,https://www.audirancho.com/inventory/1,Audi Ranch Mirage,2025-07-24T02:46:31.091722
+MOCKAUDIR0000000002,STK00002,2021,Audi,SUV,Premium,53912,68545,44546,White,Gray,Gasoline,Automatic,certified,https://www.audirancho.com/inventory/2,Audi Ranch Mirage,2025-07-24T02:46:31.091730
+MOCKAUDIR0000000003,STK00003,2023,Audi,SUV,Premium,49060,36167,36513,Red,Gray,Gasoline,Automatic,used,https://www.audirancho.com/inventory/3,Audi Ranch Mirage,2025-07-24T02:46:31.091737
+MOCKAUDIR0000000004,STK00004,2025,Audi,Truck,Premium,30077,72339,25216,Blue,Gray,Hybrid,Manual,used,https://www.audirancho.com/inventory/4,Audi Ranch Mirage,2025-07-24T02:46:31.091745
+MOCKAUDIR0000000005,STK00005,2025,Audi,Convertible,Premium,35145,79054,47714,Black,Tan,Electric,CVT,new,https://www.audirancho.com/inventory/5,Audi Ranch Mirage,2025-07-24T02:46:31.091754
+MOCKAUDIR0000000006,STK00006,2023,Audi,Convertible,Limited,49970,72077,9379,Black,Black,Hybrid,Manual,new,https://www.audirancho.com/inventory/6,Audi Ranch Mirage,2025-07-24T02:46:31.091761
+MOCKAUDIR0000000007,STK00007,2021,Audi,Coupe,Base,55225,37134,9256,Blue,Black,Hybrid,Manual,used,https://www.audirancho.com/inventory/7,Audi Ranch Mirage,2025-07-24T02:46:31.091769
+MOCKAUDIR0000000008,STK00008,2021,Audi,Truck,Premium,60864,70434,14226,Gray,Tan,Hybrid,Automatic,certified,https://www.audirancho.com/inventory/8,Audi Ranch Mirage,2025-07-24T02:46:31.091775
+MOCKAUDIR0000000009,STK00009,2020,Audi,Convertible,Base,47181,46441,19588,Black,Black,Hybrid,CVT,certified,https://www.audirancho.com/inventory/9,Audi Ranch Mirage,2025-07-24T02:46:31.091782
+MOCKAUDIR0000000010,STK00010,2022,Audi,SUV,Sport,74582,73615,1495,White,Gray,Hybrid,Automatic,new,https://www.audirancho.com/inventory/10,Audi Ranch Mirage,2025-07-24T02:46:31.091790
+MOCKAUDIR0000000011,STK00011,2024,Audi,Convertible,Base,40472,37492,26753,Gray,Black,Hybrid,Manual,used,https://www.audirancho.com/inventory/11,Audi Ranch Mirage,2025-07-24T02:46:31.091796
+MOCKAUDIR0000000012,STK00012,2020,Audi,Coupe,Sport,41339,80484,36113,Gray,Black,Gasoline,Automatic,used,https://www.audirancho.com/inventory/12,Audi Ranch Mirage,2025-07-24T02:46:31.091803
+MOCKAUDIR0000000013,STK00013,2024,Audi,Truck,Limited,61477,65976,28711,Red,Gray,Hybrid,Automatic,used,https://www.audirancho.com/inventory/13,Audi Ranch Mirage,2025-07-24T02:46:31.091810
+MOCKAUDIR0000000014,STK00014,2020,Audi,Truck,Limited,37266,61251,20250,Black,Tan,Hybrid,Automatic,used,https://www.audirancho.com/inventory/14,Audi Ranch Mirage,2025-07-24T02:46:31.091816
+MOCKAUDIR0000000015,STK00015,2023,Audi,Truck,Limited,39182,78441,29449,White,Black,Gasoline,CVT,used,https://www.audirancho.com/inventory/15,Audi Ranch Mirage,2025-07-24T02:46:31.091823
+MOCKAUDIR0000000016,STK00016,2025,Audi,Convertible,Premium,31058,76480,8445,Black,Tan,Hybrid,Automatic,used,https://www.audirancho.com/inventory/16,Audi Ranch Mirage,2025-07-24T02:46:31.091830
+MOCKAUDIR0000000017,STK00017,2023,Audi,SUV,Premium,30517,50210,48059,Red,Gray,Electric,Automatic,certified,https://www.audirancho.com/inventory/17,Audi Ranch Mirage,2025-07-24T02:46:31.091837
+MOCKAUDIR0000000018,STK00018,2023,Audi,Convertible,Sport,50507,59279,8296,White,Tan,Gasoline,CVT,new,https://www.audirancho.com/inventory/18,Audi Ranch Mirage,2025-07-24T02:46:31.091844
+MOCKAUDIR0000000019,STK00019,2025,Audi,Truck,Base,40908,41586,32314,Blue,Tan,Hybrid,Manual,new,https://www.audirancho.com/inventory/19,Audi Ranch Mirage,2025-07-24T02:46:31.091850
+MOCKAUDIR0000000020,STK00020,2024,Audi,Coupe,Premium,79533,52580,14662,Black,Black,Gasoline,Automatic,used,https://www.audirancho.com/inventory/20,Audi Ranch Mirage,2025-07-24T02:46:31.091857
+MOCKAUDIR0000000021,STK00021,2023,Audi,Truck,Base,41708,55458,17528,Black,Black,Hybrid,CVT,certified,https://www.audirancho.com/inventory/21,Audi Ranch Mirage,2025-07-24T02:46:31.091864
+MOCKAUDIR0000000022,STK00022,2020,Audi,Sedan,Base,45191,68148,1941,Silver,Black,Gasoline,CVT,certified,https://www.audirancho.com/inventory/22,Audi Ranch Mirage,2025-07-24T02:46:31.091870
+MOCKAUDIR0000000023,STK00023,2020,Audi,Coupe,Limited,54004,50172,2979,Red,Gray,Gasoline,CVT,certified,https://www.audirancho.com/inventory/23,Audi Ranch Mirage,2025-07-24T02:46:31.091877
+MOCKAUDIR0000000024,STK00024,2021,Audi,SUV,Base,51455,74236,17035,Red,Gray,Hybrid,Manual,used,https://www.audirancho.com/inventory/24,Audi Ranch Mirage,2025-07-24T02:46:31.091884
+MOCKAUDIR0000000025,STK00025,2025,Audi,SUV,Sport,33761,75776,11288,White,Gray,Electric,CVT,certified,https://www.audirancho.com/inventory/25,Audi Ranch Mirage,2025-07-24T02:46:31.091891
+MOCKAUDIR0000000026,STK00026,2021,Audi,Convertible,Limited,30757,56929,40561,Blue,Tan,Hybrid,Manual,new,https://www.audirancho.com/inventory/26,Audi Ranch Mirage,2025-07-24T02:46:31.091898
+MOCKAUDIR0000000027,STK00027,2024,Audi,Sedan,Premium,45282,37822,38315,Blue,Black,Electric,Manual,used,https://www.audirancho.com/inventory/27,Audi Ranch Mirage,2025-07-24T02:46:31.091904
+MOCKAUDIR0000000028,STK00028,2021,Audi,SUV,Sport,73555,38560,33416,White,Gray,Hybrid,Automatic,certified,https://www.audirancho.com/inventory/28,Audi Ranch Mirage,2025-07-24T02:46:31.091911
+MOCKAUDIR0000000029,STK00029,2022,Audi,Coupe,Limited,39983,46837,46318,Gray,Black,Gasoline,CVT,used,https://www.audirancho.com/inventory/29,Audi Ranch Mirage,2025-07-24T02:46:31.091918
+MOCKAUDIR0000000030,STK00030,2024,Audi,Convertible,Base,35898,44027,6156,Red,Tan,Hybrid,Automatic,certified,https://www.audirancho.com/inventory/30,Audi Ranch Mirage,2025-07-24T02:46:31.091924
+MOCKAUDIR0000000031,STK00031,2024,Audi,SUV,Sport,31476,65199,12229,Silver,Gray,Electric,CVT,new,https://www.audirancho.com/inventory/31,Audi Ranch Mirage,2025-07-24T02:46:31.091931
+MOCKAUDIR0000000032,STK00032,2021,Audi,Truck,Limited,27909,57163,15635,White,Tan,Hybrid,CVT,used,https://www.audirancho.com/inventory/32,Audi Ranch Mirage,2025-07-24T02:46:31.091938
+MOCKAUDIR0000000033,STK00033,2023,Audi,Coupe,Limited,42567,58345,49797,Gray,Tan,Gasoline,Automatic,certified,https://www.audirancho.com/inventory/33,Audi Ranch Mirage,2025-07-24T02:46:31.091946
+MOCKAUDIR0000000034,STK00034,2021,Audi,Convertible,Sport,54818,84693,26751,White,Black,Gasoline,Manual,new,https://www.audirancho.com/inventory/34,Audi Ranch Mirage,2025-07-24T02:46:31.091953
+MOCKAUDIR0000000035,STK00035,2020,Audi,Convertible,Premium,62202,79256,14536,White,Tan,Hybrid,Automatic,used,https://www.audirancho.com/inventory/35,Audi Ranch Mirage,2025-07-24T02:46:31.091960
+MOCKAUDIR0000000036,STK00036,2021,Audi,SUV,Sport,57690,58039,27889,Blue,Gray,Electric,Automatic,used,https://www.audirancho.com/inventory/36,Audi Ranch Mirage,2025-07-24T02:46:31.091967
+MOCKAUDIR0000000037,STK00037,2024,Audi,SUV,Sport,26668,32000,44582,Blue,Tan,Gasoline,CVT,new,https://www.audirancho.com/inventory/37,Audi Ranch Mirage,2025-07-24T02:46:31.091974
+MOCKAUDIR0000000038,STK00038,2023,Audi,Convertible,Base,50270,47367,19832,Gray,Gray,Gasoline,Manual,used,https://www.audirancho.com/inventory/38,Audi Ranch Mirage,2025-07-24T02:46:31.091981
+MOCKAUDIR0000000039,STK00039,2025,Audi,Coupe,Base,77907,60267,31766,Silver,Black,Electric,CVT,certified,https://www.audirancho.com/inventory/39,Audi Ranch Mirage,2025-07-24T02:46:31.091987
+MOCKAUDIR0000000040,STK00040,2020,Audi,Truck,Limited,44720,63149,10630,Black,Black,Hybrid,CVT,new,https://www.audirancho.com/inventory/40,Audi Ranch Mirage,2025-07-24T02:46:31.091994
+MOCKAUDIR0000000041,STK00041,2021,Audi,Sedan,Sport,35085,64116,43586,White,Tan,Electric,Manual,certified,https://www.audirancho.com/inventory/41,Audi Ranch Mirage,2025-07-24T02:46:31.092001
+MOCKAUDIR0000000042,STK00042,2023,Audi,SUV,Base,44375,43057,801,Red,Gray,Hybrid,Manual,used,https://www.audirancho.com/inventory/42,Audi Ranch Mirage,2025-07-24T02:46:31.092008
+MOCKAUDIR0000000043,STK00043,2023,Audi,Truck,Limited,45221,80907,30656,Black,Black,Electric,Automatic,new,https://www.audirancho.com/inventory/43,Audi Ranch Mirage,2025-07-24T02:46:31.092014
+MOCKAUDIR0000000044,STK00044,2021,Audi,Convertible,Limited,62024,61528,17299,Silver,Gray,Hybrid,Manual,new,https://www.audirancho.com/inventory/44,Audi Ranch Mirage,2025-07-24T02:46:31.092021
+MOCKAUDIR0000000045,STK00045,2024,Audi,SUV,Base,36934,75598,8335,Red,Tan,Electric,Automatic,used,https://www.audirancho.com/inventory/45,Audi Ranch Mirage,2025-07-24T02:46:31.092028
+MOCKAUDIR0000000046,STK00046,2025,Audi,Truck,Sport,48727,54231,13994,Blue,Gray,Hybrid,Automatic,used,https://www.audirancho.com/inventory/46,Audi Ranch Mirage,2025-07-24T02:46:31.092035
+MOCKAUDIR0000000047,STK00047,2025,Audi,Sedan,Sport,75840,78280,6904,Black,Tan,Gasoline,Manual,new,https://www.audirancho.com/inventory/47,Audi Ranch Mirage,2025-07-24T02:46:31.092042
+MOCKAUFFE0000000000,STK00000,2024,Hyundai,SUV,Limited,25527,44184,45604,Red,Tan,Electric,CVT,new,https://www.auffenberghyundai.com/inventory/0,Auffenberg Hyundai,2025-07-24T02:46:32.104412
+MOCKAUFFE0000000001,STK00001,2025,Hyundai,Convertible,Limited,71454,58547,38729,Blue,Gray,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/1,Auffenberg Hyundai,2025-07-24T02:46:32.104422
+MOCKAUFFE0000000002,STK00002,2024,Hyundai,Sedan,Limited,60487,70065,20672,Blue,Tan,Gasoline,CVT,new,https://www.auffenberghyundai.com/inventory/2,Auffenberg Hyundai,2025-07-24T02:46:32.104430
+MOCKAUFFE0000000003,STK00003,2023,Hyundai,SUV,Sport,37360,60745,2063,Silver,Gray,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/3,Auffenberg Hyundai,2025-07-24T02:46:32.104437
+MOCKAUFFE0000000004,STK00004,2022,Hyundai,Coupe,Premium,42457,75130,31944,Silver,Black,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/4,Auffenberg Hyundai,2025-07-24T02:46:32.104444
+MOCKAUFFE0000000005,STK00005,2024,Hyundai,Truck,Sport,68911,56517,23213,White,Black,Gasoline,Manual,certified,https://www.auffenberghyundai.com/inventory/5,Auffenberg Hyundai,2025-07-24T02:46:32.104451
+MOCKAUFFE0000000006,STK00006,2025,Hyundai,Convertible,Base,63523,48289,47000,Silver,Tan,Electric,Manual,new,https://www.auffenberghyundai.com/inventory/6,Auffenberg Hyundai,2025-07-24T02:46:32.104458
+MOCKAUFFE0000000007,STK00007,2020,Hyundai,Sedan,Premium,43328,67530,47192,Gray,Gray,Hybrid,CVT,used,https://www.auffenberghyundai.com/inventory/7,Auffenberg Hyundai,2025-07-24T02:46:32.104465
+MOCKAUFFE0000000008,STK00008,2023,Hyundai,SUV,Sport,78569,65842,6026,Gray,Black,Gasoline,Manual,certified,https://www.auffenberghyundai.com/inventory/8,Auffenberg Hyundai,2025-07-24T02:46:32.104472
+MOCKAUFFE0000000009,STK00009,2021,Hyundai,Coupe,Base,62428,72364,29050,Gray,Black,Gasoline,CVT,new,https://www.auffenberghyundai.com/inventory/9,Auffenberg Hyundai,2025-07-24T02:46:32.104478
+MOCKAUFFE0000000010,STK00010,2024,Hyundai,Convertible,Premium,50992,84642,3961,Red,Tan,Electric,CVT,new,https://www.auffenberghyundai.com/inventory/10,Auffenberg Hyundai,2025-07-24T02:46:32.104485
+MOCKAUFFE0000000011,STK00011,2024,Hyundai,Truck,Premium,25574,60632,28322,Black,Gray,Electric,Manual,certified,https://www.auffenberghyundai.com/inventory/11,Auffenberg Hyundai,2025-07-24T02:46:32.104492
+MOCKAUFFE0000000012,STK00012,2020,Hyundai,Coupe,Base,73415,31498,33212,Black,Tan,Electric,Manual,new,https://www.auffenberghyundai.com/inventory/12,Auffenberg Hyundai,2025-07-24T02:46:32.104499
+MOCKAUFFE0000000013,STK00013,2025,Hyundai,Convertible,Limited,28553,67734,7086,Blue,Gray,Electric,Automatic,used,https://www.auffenberghyundai.com/inventory/13,Auffenberg Hyundai,2025-07-24T02:46:32.104508
+MOCKAUFFE0000000014,STK00014,2023,Hyundai,Truck,Premium,56054,53931,43627,Red,Black,Gasoline,CVT,used,https://www.auffenberghyundai.com/inventory/14,Auffenberg Hyundai,2025-07-24T02:46:32.104515
+MOCKAUFFE0000000015,STK00015,2024,Hyundai,Sedan,Limited,70735,82081,42317,Red,Black,Gasoline,Automatic,used,https://www.auffenberghyundai.com/inventory/15,Auffenberg Hyundai,2025-07-24T02:46:32.104521
+MOCKAUFFE0000000016,STK00016,2022,Hyundai,Sedan,Limited,39010,66697,28389,Red,Gray,Hybrid,Automatic,used,https://www.auffenberghyundai.com/inventory/16,Auffenberg Hyundai,2025-07-24T02:46:32.104528
+MOCKAUFFE0000000017,STK00017,2021,Hyundai,SUV,Sport,70917,34471,23012,Blue,Gray,Gasoline,Manual,new,https://www.auffenberghyundai.com/inventory/17,Auffenberg Hyundai,2025-07-24T02:46:32.104535
+MOCKAUFFE0000000018,STK00018,2025,Hyundai,Sedan,Limited,76994,44493,27625,Black,Tan,Hybrid,Automatic,new,https://www.auffenberghyundai.com/inventory/18,Auffenberg Hyundai,2025-07-24T02:46:32.104542
+MOCKAUFFE0000000019,STK00019,2020,Hyundai,Truck,Premium,26892,62452,6606,Black,Black,Electric,Manual,certified,https://www.auffenberghyundai.com/inventory/19,Auffenberg Hyundai,2025-07-24T02:46:32.104549
+MOCKAUFFE0000000020,STK00020,2023,Hyundai,Convertible,Premium,55812,34945,43802,White,Black,Hybrid,Manual,used,https://www.auffenberghyundai.com/inventory/20,Auffenberg Hyundai,2025-07-24T02:46:32.104556
+MOCKAUFFE0000000021,STK00021,2024,Hyundai,SUV,Limited,43046,34710,34252,Red,Gray,Electric,Manual,new,https://www.auffenberghyundai.com/inventory/21,Auffenberg Hyundai,2025-07-24T02:46:32.104563
+MOCKAUFFE0000000022,STK00022,2024,Hyundai,Convertible,Base,33925,44611,27911,Red,Tan,Gasoline,Manual,new,https://www.auffenberghyundai.com/inventory/22,Auffenberg Hyundai,2025-07-24T02:46:32.104570
+MOCKAUFFE0000000023,STK00023,2023,Hyundai,Coupe,Limited,70019,73778,24971,Black,Gray,Gasoline,Automatic,used,https://www.auffenberghyundai.com/inventory/23,Auffenberg Hyundai,2025-07-24T02:46:32.104576
+MOCKAUFFE0000000024,STK00024,2024,Hyundai,Coupe,Sport,48550,46929,27633,Black,Tan,Gasoline,Automatic,used,https://www.auffenberghyundai.com/inventory/24,Auffenberg Hyundai,2025-07-24T02:46:32.104583
+MOCKAUFFE0000000025,STK00025,2022,Hyundai,SUV,Base,66752,44530,18735,Blue,Tan,Hybrid,Automatic,used,https://www.auffenberghyundai.com/inventory/25,Auffenberg Hyundai,2025-07-24T02:46:32.104590
+MOCKAUFFE0000000026,STK00026,2024,Hyundai,SUV,Premium,29810,58204,11868,White,Tan,Gasoline,CVT,certified,https://www.auffenberghyundai.com/inventory/26,Auffenberg Hyundai,2025-07-24T02:46:32.104597
+MOCKAUFFE0000000027,STK00027,2025,Hyundai,Convertible,Base,55372,54657,46261,White,Tan,Electric,Manual,new,https://www.auffenberghyundai.com/inventory/27,Auffenberg Hyundai,2025-07-24T02:46:32.104604
+MOCKAUFFE0000000028,STK00028,2022,Hyundai,Convertible,Limited,44038,33636,10716,Black,Black,Electric,Manual,used,https://www.auffenberghyundai.com/inventory/28,Auffenberg Hyundai,2025-07-24T02:46:32.104611
+MOCKAUFFE0000000029,STK00029,2022,Hyundai,Truck,Sport,73297,74735,11834,Black,Tan,Gasoline,CVT,new,https://www.auffenberghyundai.com/inventory/29,Auffenberg Hyundai,2025-07-24T02:46:32.104618
+MOCKAUFFE0000000030,STK00030,2024,Hyundai,Coupe,Base,45177,60000,35487,Black,Tan,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/30,Auffenberg Hyundai,2025-07-24T02:46:32.104625
+MOCKAUFFE0000000031,STK00031,2025,Hyundai,Convertible,Base,53687,75970,39447,Red,Gray,Hybrid,CVT,new,https://www.auffenberghyundai.com/inventory/31,Auffenberg Hyundai,2025-07-24T02:46:32.104631
+MOCKAUFFE0000000032,STK00032,2025,Hyundai,Convertible,Limited,28961,30705,11556,White,Gray,Hybrid,Automatic,used,https://www.auffenberghyundai.com/inventory/32,Auffenberg Hyundai,2025-07-24T02:46:32.104638
+MOCKAUFFE0000000033,STK00033,2025,Hyundai,SUV,Premium,60053,33132,20783,White,Black,Electric,CVT,used,https://www.auffenberghyundai.com/inventory/33,Auffenberg Hyundai,2025-07-24T02:46:32.104645
+MOCKAUFFE0000000034,STK00034,2020,Hyundai,Sedan,Sport,25548,64638,436,Red,Gray,Electric,Manual,new,https://www.auffenberghyundai.com/inventory/34,Auffenberg Hyundai,2025-07-24T02:46:32.104652
+MOCKAUFFE0000000035,STK00035,2025,Hyundai,Truck,Base,74114,42589,6053,Red,Gray,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/35,Auffenberg Hyundai,2025-07-24T02:46:32.104659
+MOCKAUFFE0000000036,STK00036,2020,Hyundai,SUV,Base,64936,47919,21847,Black,Black,Hybrid,Automatic,used,https://www.auffenberghyundai.com/inventory/36,Auffenberg Hyundai,2025-07-24T02:46:32.104666
+MOCKAUFFE0000000037,STK00037,2020,Hyundai,Coupe,Sport,43807,44175,337,White,Tan,Hybrid,CVT,used,https://www.auffenberghyundai.com/inventory/37,Auffenberg Hyundai,2025-07-24T02:46:32.104673
+MOCKAUFFE0000000038,STK00038,2024,Hyundai,SUV,Limited,52630,57720,38424,Black,Tan,Gasoline,Manual,used,https://www.auffenberghyundai.com/inventory/38,Auffenberg Hyundai,2025-07-24T02:46:32.104680
+MOCKAUFFE0000000039,STK00039,2020,Hyundai,Truck,Premium,36111,48475,34503,Red,Black,Electric,Automatic,used,https://www.auffenberghyundai.com/inventory/39,Auffenberg Hyundai,2025-07-24T02:46:32.104687
+MOCKAUFFE0000000040,STK00040,2023,Hyundai,Truck,Base,53020,70177,34554,Blue,Gray,Hybrid,Manual,certified,https://www.auffenberghyundai.com/inventory/40,Auffenberg Hyundai,2025-07-24T02:46:32.104693
+MOCKAUFFE0000000041,STK00041,2025,Hyundai,Convertible,Limited,73077,32289,38211,Red,Gray,Electric,Automatic,used,https://www.auffenberghyundai.com/inventory/41,Auffenberg Hyundai,2025-07-24T02:46:32.104702
+MOCKCOLUM0000000000,STK00000,2022,BMW,Sedan,Premium,36929,39753,37912,Silver,Gray,Hybrid,CVT,used,https://www.columbiabmw.com/inventory/0,Columbia BMW,2025-07-24T02:46:36.693835
+MOCKCOLUM0000000001,STK00001,2020,BMW,Truck,Base,74316,64057,16359,Black,Black,Gasoline,CVT,certified,https://www.columbiabmw.com/inventory/1,Columbia BMW,2025-07-24T02:46:36.693864
+MOCKCOLUM0000000002,STK00002,2024,BMW,Coupe,Premium,45808,60547,35551,Silver,Black,Hybrid,CVT,certified,https://www.columbiabmw.com/inventory/2,Columbia BMW,2025-07-24T02:46:36.693882
+MOCKCOLUM0000000003,STK00003,2021,BMW,Truck,Base,62150,40979,46364,Blue,Black,Hybrid,Automatic,certified,https://www.columbiabmw.com/inventory/3,Columbia BMW,2025-07-24T02:46:36.693898
+MOCKCOLUM0000000004,STK00004,2021,BMW,Convertible,Base,74145,81980,37250,Gray,Black,Gasoline,CVT,certified,https://www.columbiabmw.com/inventory/4,Columbia BMW,2025-07-24T02:46:36.693913
+MOCKCOLUM0000000005,STK00005,2021,BMW,Sedan,Base,35489,77920,39797,Gray,Gray,Hybrid,Manual,new,https://www.columbiabmw.com/inventory/5,Columbia BMW,2025-07-24T02:46:36.693929
+MOCKCOLUM0000000006,STK00006,2021,BMW,Coupe,Limited,31956,65885,34424,Gray,Black,Hybrid,CVT,certified,https://www.columbiabmw.com/inventory/6,Columbia BMW,2025-07-24T02:46:36.693944
+MOCKCOLUM0000000007,STK00007,2020,BMW,SUV,Limited,38710,50127,49370,Blue,Black,Hybrid,Automatic,new,https://www.columbiabmw.com/inventory/7,Columbia BMW,2025-07-24T02:46:36.693959
+MOCKCOLUM0000000008,STK00008,2025,BMW,Sedan,Premium,67425,45777,626,White,Gray,Electric,CVT,used,https://www.columbiabmw.com/inventory/8,Columbia BMW,2025-07-24T02:46:36.693973
+MOCKCOLUM0000000009,STK00009,2022,BMW,Convertible,Premium,73516,65229,19728,Blue,Gray,Gasoline,Automatic,certified,https://www.columbiabmw.com/inventory/9,Columbia BMW,2025-07-24T02:46:36.693989
+MOCKCOLUM0000000010,STK00010,2024,BMW,Convertible,Premium,36814,67064,49930,Black,Tan,Hybrid,Automatic,new,https://www.columbiabmw.com/inventory/10,Columbia BMW,2025-07-24T02:46:36.694004
+MOCKCOLUM0000000011,STK00011,2020,BMW,Sedan,Limited,68233,80758,10631,Silver,Gray,Hybrid,Manual,new,https://www.columbiabmw.com/inventory/11,Columbia BMW,2025-07-24T02:46:36.694018
+MOCKCOLUM0000000012,STK00012,2023,BMW,Sedan,Sport,44578,64477,2012,Silver,Gray,Hybrid,Manual,certified,https://www.columbiabmw.com/inventory/12,Columbia BMW,2025-07-24T02:46:36.694033
+MOCKCOLUM0000000013,STK00013,2021,BMW,Convertible,Premium,25349,42193,37590,Blue,Gray,Electric,CVT,new,https://www.columbiabmw.com/inventory/13,Columbia BMW,2025-07-24T02:46:36.694048
+MOCKCOLUM0000000014,STK00014,2023,BMW,Coupe,Limited,76831,69067,9013,Blue,Gray,Electric,Manual,used,https://www.columbiabmw.com/inventory/14,Columbia BMW,2025-07-24T02:46:36.694062
+MOCKCOLUM0000000015,STK00015,2024,BMW,Coupe,Base,35205,40065,24214,White,Black,Hybrid,Manual,new,https://www.columbiabmw.com/inventory/15,Columbia BMW,2025-07-24T02:46:36.694077
+MOCKCOLUM0000000016,STK00016,2022,BMW,SUV,Sport,71881,78158,5628,Black,Black,Electric,CVT,certified,https://www.columbiabmw.com/inventory/16,Columbia BMW,2025-07-24T02:46:36.694092
+MOCKCOLUM0000000017,STK00017,2022,BMW,Sedan,Limited,66409,55072,32947,Black,Tan,Gasoline,CVT,used,https://www.columbiabmw.com/inventory/17,Columbia BMW,2025-07-24T02:46:36.694107
+MOCKCOLUM0000000018,STK00018,2022,BMW,SUV,Sport,76130,44987,7386,Silver,Black,Electric,CVT,used,https://www.columbiabmw.com/inventory/18,Columbia BMW,2025-07-24T02:46:36.694121
+MOCKCOLUM0000000019,STK00019,2021,BMW,Coupe,Limited,79705,52349,41966,Silver,Black,Electric,Manual,used,https://www.columbiabmw.com/inventory/19,Columbia BMW,2025-07-24T02:46:36.694135
+MOCKCOLUM0000000020,STK00020,2020,BMW,Convertible,Base,68819,56962,24623,White,Gray,Hybrid,CVT,certified,https://www.columbiabmw.com/inventory/20,Columbia BMW,2025-07-24T02:46:36.694154
+MOCKCOLUM0000000021,STK00021,2022,BMW,SUV,Limited,28030,65778,637,Blue,Black,Gasoline,Manual,new,https://www.columbiabmw.com/inventory/21,Columbia BMW,2025-07-24T02:46:36.694169
+MOCKCOLUM0000000022,STK00022,2021,BMW,Truck,Base,59271,31925,20154,Blue,Black,Gasoline,Automatic,used,https://www.columbiabmw.com/inventory/22,Columbia BMW,2025-07-24T02:46:36.694184
+MOCKCOLUM0000000023,STK00023,2022,BMW,Sedan,Base,33457,37666,3808,Blue,Tan,Electric,Manual,certified,https://www.columbiabmw.com/inventory/23,Columbia BMW,2025-07-24T02:46:36.694208
+MOCKCOLUM0000000024,STK00024,2020,BMW,Sedan,Limited,30622,71971,12437,Blue,Black,Electric,Automatic,certified,https://www.columbiabmw.com/inventory/24,Columbia BMW,2025-07-24T02:46:36.694226
+MOCKCOLUM0000000025,STK00025,2023,BMW,Convertible,Sport,54498,74446,45276,Silver,Tan,Hybrid,Automatic,certified,https://www.columbiabmw.com/inventory/25,Columbia BMW,2025-07-24T02:46:36.694243
+MOCKCOLUM0000000026,STK00026,2023,BMW,Convertible,Limited,70073,30328,25838,Silver,Gray,Electric,Manual,certified,https://www.columbiabmw.com/inventory/26,Columbia BMW,2025-07-24T02:46:36.694260
+MOCKCOLUM0000000027,STK00027,2024,BMW,Sedan,Sport,50553,35117,37946,Red,Tan,Hybrid,Manual,certified,https://www.columbiabmw.com/inventory/27,Columbia BMW,2025-07-24T02:46:36.694277
+MOCKCOLUM0000000028,STK00028,2020,BMW,SUV,Premium,77135,33522,27335,Silver,Black,Electric,Automatic,new,https://www.columbiabmw.com/inventory/28,Columbia BMW,2025-07-24T02:46:36.694294
+MOCKCOLUM0000000029,STK00029,2021,BMW,SUV,Limited,25288,31947,27517,Black,Tan,Electric,Manual,used,https://www.columbiabmw.com/inventory/29,Columbia BMW,2025-07-24T02:46:36.694311
+MOCKCOLUM0000000030,STK00030,2024,BMW,Coupe,Premium,47522,71884,31444,Blue,Black,Gasoline,Manual,certified,https://www.columbiabmw.com/inventory/30,Columbia BMW,2025-07-24T02:46:36.694328
+MOCKCOLUM0000000031,STK00031,2021,BMW,Coupe,Limited,49011,46206,17259,Gray,Tan,Hybrid,Manual,certified,https://www.columbiabmw.com/inventory/31,Columbia BMW,2025-07-24T02:46:36.694345
+MOCKCOLUM0000000032,STK00032,2024,BMW,SUV,Limited,64791,43777,35751,Black,Gray,Electric,Automatic,certified,https://www.columbiabmw.com/inventory/32,Columbia BMW,2025-07-24T02:46:36.694362
+MOCKCOLUM0000000033,STK00033,2024,BMW,Truck,Sport,51477,50536,40640,Black,Gray,Hybrid,CVT,used,https://www.columbiabmw.com/inventory/33,Columbia BMW,2025-07-24T02:46:36.694380
+MOCKCOLUM0000000034,STK00034,2024,BMW,Convertible,Limited,70270,38293,18686,Black,Tan,Gasoline,Automatic,certified,https://www.columbiabmw.com/inventory/34,Columbia BMW,2025-07-24T02:46:36.694398
+MOCKCOLUM0000000035,STK00035,2023,BMW,Truck,Base,71890,59076,10071,Gray,Black,Electric,Automatic,certified,https://www.columbiabmw.com/inventory/35,Columbia BMW,2025-07-24T02:46:36.694416
+MOCKCOLUM0000000036,STK00036,2023,BMW,Coupe,Limited,64754,60765,1157,Black,Tan,Gasoline,CVT,used,https://www.columbiabmw.com/inventory/36,Columbia BMW,2025-07-24T02:46:36.694433
+MOCKCOLUM0000000037,STK00037,2025,BMW,Sedan,Base,36088,41588,29217,Gray,Gray,Gasoline,CVT,used,https://www.columbiabmw.com/inventory/37,Columbia BMW,2025-07-24T02:46:36.694450
+MOCKCOLUM0000000038,STK00038,2023,BMW,SUV,Base,47771,54265,8640,Gray,Tan,Hybrid,Automatic,used,https://www.columbiabmw.com/inventory/38,Columbia BMW,2025-07-24T02:46:36.694468
+MOCKGLEND0000000000,STK00000,2025,Jeep,SUV,Premium,70727,64088,47866,White,Gray,Electric,CVT,new,https://www.glendalechryslerjeep.com/inventory/0,Glendale Chrysler Jeep,2025-07-24T02:46:42.401204
+MOCKGLEND0000000001,STK00001,2024,Jeep,Convertible,Base,77193,58222,43097,Blue,Tan,Hybrid,CVT,used,https://www.glendalechryslerjeep.com/inventory/1,Glendale Chrysler Jeep,2025-07-24T02:46:42.401215
+MOCKGLEND0000000002,STK00002,2023,Jeep,Coupe,Base,45306,51332,14011,Gray,Black,Gasoline,Manual,certified,https://www.glendalechryslerjeep.com/inventory/2,Glendale Chrysler Jeep,2025-07-24T02:46:42.401222
+MOCKGLEND0000000003,STK00003,2025,Jeep,Truck,Base,30681,38501,16295,Red,Tan,Gasoline,Automatic,used,https://www.glendalechryslerjeep.com/inventory/3,Glendale Chrysler Jeep,2025-07-24T02:46:42.401233
+MOCKGLEND0000000004,STK00004,2022,Jeep,SUV,Limited,68763,80231,4609,White,Gray,Hybrid,CVT,used,https://www.glendalechryslerjeep.com/inventory/4,Glendale Chrysler Jeep,2025-07-24T02:46:42.401239
+MOCKGLEND0000000005,STK00005,2025,Jeep,Convertible,Sport,40170,73941,27876,White,Tan,Hybrid,Automatic,used,https://www.glendalechryslerjeep.com/inventory/5,Glendale Chrysler Jeep,2025-07-24T02:46:42.401246
+MOCKGLEND0000000006,STK00006,2023,Jeep,Truck,Limited,25185,60620,8552,Blue,Tan,Hybrid,Manual,used,https://www.glendalechryslerjeep.com/inventory/6,Glendale Chrysler Jeep,2025-07-24T02:46:42.401253
+MOCKGLEND0000000007,STK00007,2024,Jeep,Coupe,Sport,76889,76947,5330,Gray,Tan,Hybrid,CVT,certified,https://www.glendalechryslerjeep.com/inventory/7,Glendale Chrysler Jeep,2025-07-24T02:46:42.401260
+MOCKGLEND0000000008,STK00008,2025,Jeep,Truck,Premium,68410,71400,24690,Silver,Tan,Hybrid,Manual,used,https://www.glendalechryslerjeep.com/inventory/8,Glendale Chrysler Jeep,2025-07-24T02:46:42.401267
+MOCKGLEND0000000009,STK00009,2024,Jeep,Coupe,Sport,31460,33472,27980,Silver,Gray,Gasoline,Manual,certified,https://www.glendalechryslerjeep.com/inventory/9,Glendale Chrysler Jeep,2025-07-24T02:46:42.401274
+MOCKGLEND0000000010,STK00010,2025,Jeep,Convertible,Premium,74392,74369,25543,Gray,Black,Gasoline,Manual,new,https://www.glendalechryslerjeep.com/inventory/10,Glendale Chrysler Jeep,2025-07-24T02:46:42.401281
+MOCKGLEND0000000011,STK00011,2021,Jeep,Convertible,Limited,65683,56670,34658,White,Black,Hybrid,Manual,new,https://www.glendalechryslerjeep.com/inventory/11,Glendale Chrysler Jeep,2025-07-24T02:46:42.401288
+MOCKGLEND0000000012,STK00012,2024,Jeep,Coupe,Base,30891,77799,33310,White,Tan,Electric,Manual,certified,https://www.glendalechryslerjeep.com/inventory/12,Glendale Chrysler Jeep,2025-07-24T02:46:42.401295
+MOCKGLEND0000000013,STK00013,2022,Jeep,Sedan,Base,30899,75441,15231,Blue,Gray,Gasoline,Manual,certified,https://www.glendalechryslerjeep.com/inventory/13,Glendale Chrysler Jeep,2025-07-24T02:46:42.401302
+MOCKGLEND0000000014,STK00014,2021,Jeep,Sedan,Base,57291,36752,23008,White,Black,Electric,Manual,used,https://www.glendalechryslerjeep.com/inventory/14,Glendale Chrysler Jeep,2025-07-24T02:46:42.401308
+MOCKGLEND0000000015,STK00015,2022,Jeep,Sedan,Premium,50801,54839,32041,Silver,Gray,Electric,CVT,used,https://www.glendalechryslerjeep.com/inventory/15,Glendale Chrysler Jeep,2025-07-24T02:46:42.401315
+MOCKGLEND0000000016,STK00016,2022,Jeep,Convertible,Base,76399,84928,24997,Gray,Tan,Gasoline,Automatic,used,https://www.glendalechryslerjeep.com/inventory/16,Glendale Chrysler Jeep,2025-07-24T02:46:42.401321
+MOCKGLEND0000000017,STK00017,2022,Jeep,Truck,Premium,43556,76472,11260,Blue,Black,Gasoline,Automatic,certified,https://www.glendalechryslerjeep.com/inventory/17,Glendale Chrysler Jeep,2025-07-24T02:46:42.401330
+MOCKGLEND0000000018,STK00018,2023,Jeep,SUV,Sport,35346,72440,22667,Silver,Tan,Electric,Manual,used,https://www.glendalechryslerjeep.com/inventory/18,Glendale Chrysler Jeep,2025-07-24T02:46:42.401337
+MOCKGLEND0000000019,STK00019,2021,Jeep,Coupe,Base,78068,34063,6789,Black,Tan,Gasoline,Manual,new,https://www.glendalechryslerjeep.com/inventory/19,Glendale Chrysler Jeep,2025-07-24T02:46:42.401343
+MOCKGLEND0000000020,STK00020,2020,Jeep,Sedan,Limited,76056,34737,8914,Gray,Tan,Electric,Automatic,certified,https://www.glendalechryslerjeep.com/inventory/20,Glendale Chrysler Jeep,2025-07-24T02:46:42.401350
+MOCKGLEND0000000021,STK00021,2024,Jeep,SUV,Sport,40293,31166,20790,Silver,Gray,Hybrid,Automatic,new,https://www.glendalechryslerjeep.com/inventory/21,Glendale Chrysler Jeep,2025-07-24T02:46:42.401356
+MOCKGLEND0000000022,STK00022,2022,Jeep,SUV,Premium,59132,37215,4840,Gray,Black,Gasoline,Manual,used,https://www.glendalechryslerjeep.com/inventory/22,Glendale Chrysler Jeep,2025-07-24T02:46:42.401363
+MOCKGLEND0000000023,STK00023,2020,Jeep,Convertible,Base,67174,63365,20268,Black,Black,Hybrid,Automatic,used,https://www.glendalechryslerjeep.com/inventory/23,Glendale Chrysler Jeep,2025-07-24T02:46:42.401369
+MOCKGLEND0000000024,STK00024,2022,Jeep,Convertible,Sport,47734,47147,30988,Red,Black,Electric,Manual,used,https://www.glendalechryslerjeep.com/inventory/24,Glendale Chrysler Jeep,2025-07-24T02:46:42.401376
+MOCKGLEND0000000025,STK00025,2022,Jeep,Coupe,Limited,79703,74921,33318,Gray,Black,Hybrid,Automatic,new,https://www.glendalechryslerjeep.com/inventory/25,Glendale Chrysler Jeep,2025-07-24T02:46:42.401383
+MOCKGLEND0000000026,STK00026,2024,Jeep,Sedan,Base,53007,72907,6034,Gray,Black,Hybrid,Automatic,new,https://www.glendalechryslerjeep.com/inventory/26,Glendale Chrysler Jeep,2025-07-24T02:46:42.401390
+MOCKGLEND0000000027,STK00027,2024,Jeep,Convertible,Limited,66356,83987,7921,Red,Tan,Electric,CVT,certified,https://www.glendalechryslerjeep.com/inventory/27,Glendale Chrysler Jeep,2025-07-24T02:46:42.401397
+MOCKGLEND0000000028,STK00028,2020,Jeep,Truck,Premium,51661,48450,9835,White,Gray,Gasoline,Automatic,used,https://www.glendalechryslerjeep.com/inventory/28,Glendale Chrysler Jeep,2025-07-24T02:46:42.401403
+MOCKGLEND0000000029,STK00029,2022,Jeep,SUV,Limited,26297,46047,10742,Red,Black,Hybrid,Manual,new,https://www.glendalechryslerjeep.com/inventory/29,Glendale Chrysler Jeep,2025-07-24T02:46:42.401410
+MOCKGLEND0000000030,STK00030,2020,Jeep,Coupe,Premium,48569,33676,17824,Silver,Tan,Hybrid,CVT,used,https://www.glendalechryslerjeep.com/inventory/30,Glendale Chrysler Jeep,2025-07-24T02:46:42.401417
+MOCKGLEND0000000031,STK00031,2020,Jeep,SUV,Sport,33463,41546,42700,Silver,Black,Electric,Manual,new,https://www.glendalechryslerjeep.com/inventory/31,Glendale Chrysler Jeep,2025-07-24T02:46:42.401425
+MOCKGLEND0000000032,STK00032,2025,Jeep,Convertible,Premium,43572,64238,48651,Red,Gray,Hybrid,CVT,used,https://www.glendalechryslerjeep.com/inventory/32,Glendale Chrysler Jeep,2025-07-24T02:46:42.401431
+MOCKGLEND0000000033,STK00033,2021,Jeep,Truck,Sport,71698,51483,32876,Silver,Gray,Gasoline,CVT,certified,https://www.glendalechryslerjeep.com/inventory/33,Glendale Chrysler Jeep,2025-07-24T02:46:42.401438
+MOCKGLEND0000000034,STK00034,2020,Jeep,Truck,Limited,78330,75099,30505,Blue,Gray,Hybrid,CVT,used,https://www.glendalechryslerjeep.com/inventory/34,Glendale Chrysler Jeep,2025-07-24T02:46:42.401445
+MOCKGLEND0000000035,STK00035,2025,Jeep,SUV,Base,65493,59596,13366,White,Gray,Gasoline,Manual,used,https://www.glendalechryslerjeep.com/inventory/35,Glendale Chrysler Jeep,2025-07-24T02:46:42.401452
+MOCKGLEND0000000036,STK00036,2021,Jeep,Convertible,Premium,63197,69091,12077,Blue,Gray,Electric,Manual,certified,https://www.glendalechryslerjeep.com/inventory/36,Glendale Chrysler Jeep,2025-07-24T02:46:42.401458
+MOCKGLEND0000000037,STK00037,2024,Jeep,Coupe,Premium,78386,40387,21181,Blue,Black,Gasoline,Automatic,used,https://www.glendalechryslerjeep.com/inventory/37,Glendale Chrysler Jeep,2025-07-24T02:46:42.401478
+MOCKGLEND0000000038,STK00038,2024,Jeep,Sedan,Base,65034,77960,16548,Silver,Tan,Gasoline,Manual,new,https://www.glendalechryslerjeep.com/inventory/38,Glendale Chrysler Jeep,2025-07-24T02:46:42.401492
+MOCKGLEND0000000039,STK00039,2025,Jeep,SUV,Premium,65967,82610,32486,Blue,Gray,Hybrid,Manual,certified,https://www.glendalechryslerjeep.com/inventory/39,Glendale Chrysler Jeep,2025-07-24T02:46:42.401500
+MOCKGLEND0000000040,STK00040,2023,Jeep,Sedan,Limited,66415,82830,14631,Red,Tan,Electric,Automatic,used,https://www.glendalechryslerjeep.com/inventory/40,Glendale Chrysler Jeep,2025-07-24T02:46:42.401507
+MOCKH&WKI0000000000,STK00000,2021,Kia,Convertible,Base,30105,43331,33707,Black,Black,Hybrid,CVT,new,https://www.hwkia.com/inventory/0,H&W Kia,2025-07-24T02:46:43.423654
+MOCKH&WKI0000000001,STK00001,2022,Kia,Sedan,Premium,31451,30432,31793,Black,Tan,Electric,CVT,certified,https://www.hwkia.com/inventory/1,H&W Kia,2025-07-24T02:46:43.423665
+MOCKH&WKI0000000002,STK00002,2022,Kia,Coupe,Limited,68437,33052,19533,Gray,Tan,Gasoline,Automatic,used,https://www.hwkia.com/inventory/2,H&W Kia,2025-07-24T02:46:43.423673
+MOCKH&WKI0000000003,STK00003,2022,Kia,SUV,Sport,62459,78068,46887,Silver,Tan,Electric,CVT,certified,https://www.hwkia.com/inventory/3,H&W Kia,2025-07-24T02:46:43.423680
+MOCKH&WKI0000000004,STK00004,2022,Kia,Sedan,Premium,30496,58501,43531,Gray,Black,Hybrid,Manual,certified,https://www.hwkia.com/inventory/4,H&W Kia,2025-07-24T02:46:43.423687
+MOCKH&WKI0000000005,STK00005,2025,Kia,SUV,Base,57732,58573,32652,Silver,Tan,Hybrid,Manual,new,https://www.hwkia.com/inventory/5,H&W Kia,2025-07-24T02:46:43.423694
+MOCKH&WKI0000000006,STK00006,2024,Kia,Truck,Premium,40318,43639,37717,Red,Black,Hybrid,Automatic,new,https://www.hwkia.com/inventory/6,H&W Kia,2025-07-24T02:46:43.423701
+MOCKH&WKI0000000007,STK00007,2024,Kia,Convertible,Limited,65516,69697,17026,Gray,Tan,Electric,CVT,certified,https://www.hwkia.com/inventory/7,H&W Kia,2025-07-24T02:46:43.423708
+MOCKH&WKI0000000008,STK00008,2022,Kia,Sedan,Limited,39108,62996,21086,Gray,Black,Electric,Manual,used,https://www.hwkia.com/inventory/8,H&W Kia,2025-07-24T02:46:43.423715
+MOCKH&WKI0000000009,STK00009,2025,Kia,Convertible,Sport,77878,60825,34012,Red,Tan,Gasoline,Manual,new,https://www.hwkia.com/inventory/9,H&W Kia,2025-07-24T02:46:43.423722
+MOCKH&WKI0000000010,STK00010,2021,Kia,Convertible,Premium,29663,77365,10197,Black,Black,Hybrid,CVT,new,https://www.hwkia.com/inventory/10,H&W Kia,2025-07-24T02:46:43.423729
+MOCKH&WKI0000000011,STK00011,2023,Kia,Sedan,Limited,40833,69635,36482,Blue,Gray,Gasoline,Manual,used,https://www.hwkia.com/inventory/11,H&W Kia,2025-07-24T02:46:43.423736
+MOCKH&WKI0000000012,STK00012,2022,Kia,Coupe,Base,51515,41227,47410,Red,Tan,Electric,Automatic,certified,https://www.hwkia.com/inventory/12,H&W Kia,2025-07-24T02:46:43.423742
+MOCKH&WKI0000000013,STK00013,2020,Kia,Truck,Premium,60056,36232,20457,White,Tan,Gasoline,Automatic,certified,https://www.hwkia.com/inventory/13,H&W Kia,2025-07-24T02:46:43.423749
+MOCKH&WKI0000000014,STK00014,2023,Kia,Truck,Premium,71766,50594,13417,Red,Tan,Gasoline,Manual,certified,https://www.hwkia.com/inventory/14,H&W Kia,2025-07-24T02:46:43.423756
+MOCKH&WKI0000000015,STK00015,2022,Kia,Sedan,Limited,68266,65814,2695,Red,Tan,Electric,CVT,new,https://www.hwkia.com/inventory/15,H&W Kia,2025-07-24T02:46:43.423762
+MOCKH&WKI0000000016,STK00016,2022,Kia,Truck,Base,77476,32248,36280,Red,Gray,Hybrid,CVT,certified,https://www.hwkia.com/inventory/16,H&W Kia,2025-07-24T02:46:43.423769
+MOCKH&WKI0000000017,STK00017,2024,Kia,Sedan,Premium,32211,68226,1566,Black,Black,Hybrid,Automatic,certified,https://www.hwkia.com/inventory/17,H&W Kia,2025-07-24T02:46:43.423775
+MOCKH&WKI0000000018,STK00018,2021,Kia,Convertible,Sport,62915,33541,2441,Black,Gray,Electric,Automatic,certified,https://www.hwkia.com/inventory/18,H&W Kia,2025-07-24T02:46:43.423782
+MOCKH&WKI0000000019,STK00019,2024,Kia,Truck,Sport,47358,71846,15744,Blue,Gray,Gasoline,CVT,used,https://www.hwkia.com/inventory/19,H&W Kia,2025-07-24T02:46:43.423789
+MOCKH&WKI0000000020,STK00020,2022,Kia,SUV,Limited,32428,62343,47727,Blue,Tan,Gasoline,CVT,used,https://www.hwkia.com/inventory/20,H&W Kia,2025-07-24T02:46:43.423795
+MOCKH&WKI0000000021,STK00021,2025,Kia,SUV,Premium,40298,64526,44832,Silver,Black,Hybrid,CVT,used,https://www.hwkia.com/inventory/21,H&W Kia,2025-07-24T02:46:43.423802
+MOCKH&WKI0000000022,STK00022,2024,Kia,Coupe,Sport,65226,68019,27907,White,Black,Electric,CVT,certified,https://www.hwkia.com/inventory/22,H&W Kia,2025-07-24T02:46:43.423809
+MOCKH&WKI0000000023,STK00023,2024,Kia,SUV,Limited,27124,55818,25226,Gray,Gray,Hybrid,Automatic,certified,https://www.hwkia.com/inventory/23,H&W Kia,2025-07-24T02:46:43.423816
+MOCKH&WKI0000000024,STK00024,2024,Kia,Sedan,Premium,57494,70787,33634,Blue,Gray,Hybrid,CVT,certified,https://www.hwkia.com/inventory/24,H&W Kia,2025-07-24T02:46:43.423823
+MOCKH&WKI0000000025,STK00025,2024,Kia,Coupe,Limited,54890,50671,16547,Silver,Tan,Gasoline,Automatic,used,https://www.hwkia.com/inventory/25,H&W Kia,2025-07-24T02:46:43.423829
+MOCKH&WKI0000000026,STK00026,2020,Kia,Coupe,Limited,43807,65726,26590,Gray,Black,Gasoline,CVT,certified,https://www.hwkia.com/inventory/26,H&W Kia,2025-07-24T02:46:43.423838
+MOCKH&WKI0000000027,STK00027,2025,Kia,SUV,Sport,29955,59861,4355,Red,Tan,Hybrid,CVT,used,https://www.hwkia.com/inventory/27,H&W Kia,2025-07-24T02:46:43.423845
+MOCKH&WKI0000000028,STK00028,2022,Kia,Coupe,Base,75622,34575,13987,Red,Tan,Hybrid,Manual,certified,https://www.hwkia.com/inventory/28,H&W Kia,2025-07-24T02:46:43.423851
+MOCKH&WKI0000000029,STK00029,2020,Kia,SUV,Limited,59884,53159,4743,Black,Tan,Electric,Manual,certified,https://www.hwkia.com/inventory/29,H&W Kia,2025-07-24T02:46:43.423858
+MOCKH&WKI0000000030,STK00030,2023,Kia,Coupe,Sport,74785,54129,31788,Blue,Tan,Electric,Manual,certified,https://www.hwkia.com/inventory/30,H&W Kia,2025-07-24T02:46:43.423864
+MOCKH&WKI0000000031,STK00031,2025,Kia,Truck,Base,25162,73939,45104,Red,Tan,Hybrid,Automatic,used,https://www.hwkia.com/inventory/31,H&W Kia,2025-07-24T02:46:43.423871
+MOCKH&WKI0000000032,STK00032,2022,Kia,Sedan,Premium,60690,65093,5369,Gray,Black,Hybrid,Manual,new,https://www.hwkia.com/inventory/32,H&W Kia,2025-07-24T02:46:43.423878
+MOCKH&WKI0000000033,STK00033,2022,Kia,Sedan,Sport,74567,59362,36073,Silver,Gray,Hybrid,Manual,certified,https://www.hwkia.com/inventory/33,H&W Kia,2025-07-24T02:46:43.423885
+MOCKHONDA0000000000,STK00000,2021,Honda,Sedan,Premium,77768,69785,39136,Red,Gray,Hybrid,CVT,new,https://www.hondafrontenac.com/inventory/0,Honda of Frontenac,2025-07-24T02:46:44.459594
+MOCKHONDA0000000001,STK00001,2022,Honda,Sedan,Premium,56468,49746,23949,Red,Black,Hybrid,Automatic,new,https://www.hondafrontenac.com/inventory/1,Honda of Frontenac,2025-07-24T02:46:44.459639
+MOCKHONDA0000000002,STK00002,2024,Honda,SUV,Base,76945,44903,30930,Gray,Black,Hybrid,CVT,used,https://www.hondafrontenac.com/inventory/2,Honda of Frontenac,2025-07-24T02:46:44.459718
+MOCKHONDA0000000003,STK00003,2020,Honda,Truck,Limited,74379,45779,15727,Blue,Black,Gasoline,Automatic,new,https://www.hondafrontenac.com/inventory/3,Honda of Frontenac,2025-07-24T02:46:44.459746
+MOCKHONDA0000000004,STK00004,2025,Honda,Convertible,Base,44454,48449,37073,Blue,Black,Electric,Manual,new,https://www.hondafrontenac.com/inventory/4,Honda of Frontenac,2025-07-24T02:46:44.459767
+MOCKHONDA0000000005,STK00005,2022,Honda,Truck,Sport,51956,32410,24045,Black,Tan,Electric,CVT,certified,https://www.hondafrontenac.com/inventory/5,Honda of Frontenac,2025-07-24T02:46:44.459788
+MOCKHONDA0000000006,STK00006,2021,Honda,Sedan,Sport,51853,32206,41716,Silver,Tan,Hybrid,Manual,used,https://www.hondafrontenac.com/inventory/6,Honda of Frontenac,2025-07-24T02:46:44.459808
+MOCKHONDA0000000007,STK00007,2023,Honda,Convertible,Premium,74893,34540,34145,Gray,Gray,Gasoline,CVT,certified,https://www.hondafrontenac.com/inventory/7,Honda of Frontenac,2025-07-24T02:46:44.459828
+MOCKHONDA0000000008,STK00008,2021,Honda,Convertible,Sport,79874,71684,31639,Silver,Black,Electric,Manual,certified,https://www.hondafrontenac.com/inventory/8,Honda of Frontenac,2025-07-24T02:46:44.459848
+MOCKHONDA0000000009,STK00009,2024,Honda,Coupe,Base,46621,51539,37071,Gray,Tan,Electric,Automatic,certified,https://www.hondafrontenac.com/inventory/9,Honda of Frontenac,2025-07-24T02:46:44.459867
+MOCKHONDA0000000010,STK00010,2021,Honda,Sedan,Sport,45918,38471,37723,White,Tan,Electric,Manual,certified,https://www.hondafrontenac.com/inventory/10,Honda of Frontenac,2025-07-24T02:46:44.459887
+MOCKHONDA0000000011,STK00011,2024,Honda,SUV,Base,39074,42315,28489,Silver,Tan,Electric,Manual,used,https://www.hondafrontenac.com/inventory/11,Honda of Frontenac,2025-07-24T02:46:44.459907
+MOCKHONDA0000000012,STK00012,2023,Honda,Convertible,Base,53861,68191,17026,Black,Gray,Gasoline,CVT,new,https://www.hondafrontenac.com/inventory/12,Honda of Frontenac,2025-07-24T02:46:44.459926
+MOCKHONDA0000000013,STK00013,2020,Honda,SUV,Premium,54222,61651,25458,Black,Gray,Electric,Manual,new,https://www.hondafrontenac.com/inventory/13,Honda of Frontenac,2025-07-24T02:46:44.459945
+MOCKHONDA0000000014,STK00014,2024,Honda,Truck,Base,59006,83484,29104,Silver,Tan,Gasoline,CVT,used,https://www.hondafrontenac.com/inventory/14,Honda of Frontenac,2025-07-24T02:46:44.459965
+MOCKHONDA0000000015,STK00015,2023,Honda,Coupe,Premium,28253,53499,33963,White,Gray,Electric,Automatic,certified,https://www.hondafrontenac.com/inventory/15,Honda of Frontenac,2025-07-24T02:46:44.459992
+MOCKHONDA0000000016,STK00016,2022,Honda,Convertible,Limited,74668,43464,20425,Black,Tan,Electric,CVT,new,https://www.hondafrontenac.com/inventory/16,Honda of Frontenac,2025-07-24T02:46:44.460014
+MOCKHONDA0000000017,STK00017,2021,Honda,Sedan,Sport,59377,66366,13810,Gray,Black,Hybrid,CVT,new,https://www.hondafrontenac.com/inventory/17,Honda of Frontenac,2025-07-24T02:46:44.460034
+MOCKHONDA0000000018,STK00018,2025,Honda,Coupe,Sport,48558,50751,48546,White,Tan,Gasoline,CVT,new,https://www.hondafrontenac.com/inventory/18,Honda of Frontenac,2025-07-24T02:46:44.460055
+MOCKHONDA0000000019,STK00019,2021,Honda,Truck,Premium,42642,58063,49476,White,Black,Hybrid,Manual,new,https://www.hondafrontenac.com/inventory/19,Honda of Frontenac,2025-07-24T02:46:44.460075
+MOCKHONDA0000000020,STK00020,2024,Honda,Truck,Limited,69139,60455,47306,Blue,Gray,Gasoline,Automatic,certified,https://www.hondafrontenac.com/inventory/20,Honda of Frontenac,2025-07-24T02:46:44.460095
+MOCKHONDA0000000021,STK00021,2025,Honda,Truck,Base,74052,82506,7498,Gray,Black,Hybrid,Manual,used,https://www.hondafrontenac.com/inventory/21,Honda of Frontenac,2025-07-24T02:46:44.460115
+MOCKHONDA0000000022,STK00022,2020,Honda,Coupe,Premium,62087,76243,34175,Blue,Black,Hybrid,Automatic,certified,https://www.hondafrontenac.com/inventory/22,Honda of Frontenac,2025-07-24T02:46:44.460136
+MOCKHONDA0000000023,STK00023,2023,Honda,Coupe,Base,43738,53964,18051,Silver,Tan,Hybrid,CVT,certified,https://www.hondafrontenac.com/inventory/23,Honda of Frontenac,2025-07-24T02:46:44.460156
+MOCKHONDA0000000024,STK00024,2023,Honda,Truck,Limited,50189,62209,14241,Red,Black,Gasoline,CVT,used,https://www.hondafrontenac.com/inventory/24,Honda of Frontenac,2025-07-24T02:46:44.460176
+MOCKHONDA0000000025,STK00025,2020,Honda,Convertible,Sport,78907,51317,3719,Gray,Black,Hybrid,Manual,used,https://www.hondafrontenac.com/inventory/25,Honda of Frontenac,2025-07-24T02:46:44.460197
+MOCKINDIG0000000000,STK00000,2020,Unknown,SUV,Limited,52923,73725,6077,Blue,Gray,Hybrid,Manual,certified,https://www.indigoautogroup.com/inventory/0,Indigo Auto Group,2025-07-24T02:46:45.479730
+MOCKINDIG0000000001,STK00001,2023,Unknown,Truck,Base,32547,40305,16726,Red,Tan,Electric,CVT,certified,https://www.indigoautogroup.com/inventory/1,Indigo Auto Group,2025-07-24T02:46:45.479742
+MOCKINDIG0000000002,STK00002,2023,Unknown,Truck,Premium,62343,48873,24556,Gray,Tan,Hybrid,Automatic,new,https://www.indigoautogroup.com/inventory/2,Indigo Auto Group,2025-07-24T02:46:45.479750
+MOCKINDIG0000000003,STK00003,2025,Unknown,Sedan,Limited,67489,68491,19876,Gray,Tan,Electric,CVT,new,https://www.indigoautogroup.com/inventory/3,Indigo Auto Group,2025-07-24T02:46:45.479758
+MOCKINDIG0000000004,STK00004,2020,Unknown,Coupe,Base,58984,37770,18493,Blue,Tan,Electric,CVT,certified,https://www.indigoautogroup.com/inventory/4,Indigo Auto Group,2025-07-24T02:46:45.479765
+MOCKINDIG0000000005,STK00005,2024,Unknown,SUV,Sport,48660,34370,23468,Silver,Black,Gasoline,CVT,new,https://www.indigoautogroup.com/inventory/5,Indigo Auto Group,2025-07-24T02:46:45.479773
+MOCKINDIG0000000006,STK00006,2024,Unknown,SUV,Limited,52396,69897,2303,Blue,Gray,Gasoline,CVT,certified,https://www.indigoautogroup.com/inventory/6,Indigo Auto Group,2025-07-24T02:46:45.479780
+MOCKINDIG0000000007,STK00007,2025,Unknown,Coupe,Premium,45431,36845,19752,Blue,Tan,Gasoline,CVT,certified,https://www.indigoautogroup.com/inventory/7,Indigo Auto Group,2025-07-24T02:46:45.479786
+MOCKINDIG0000000008,STK00008,2024,Unknown,Sedan,Premium,60037,48806,1545,White,Gray,Electric,CVT,used,https://www.indigoautogroup.com/inventory/8,Indigo Auto Group,2025-07-24T02:46:45.479793
+MOCKINDIG0000000009,STK00009,2023,Unknown,Sedan,Sport,29632,45111,33229,Black,Gray,Electric,Manual,certified,https://www.indigoautogroup.com/inventory/9,Indigo Auto Group,2025-07-24T02:46:45.479800
+MOCKINDIG0000000010,STK00010,2025,Unknown,Sedan,Premium,62428,73049,15580,Gray,Tan,Hybrid,CVT,new,https://www.indigoautogroup.com/inventory/10,Indigo Auto Group,2025-07-24T02:46:45.479808
+MOCKINDIG0000000011,STK00011,2022,Unknown,Sedan,Sport,77418,42270,24507,Blue,Black,Gasoline,CVT,used,https://www.indigoautogroup.com/inventory/11,Indigo Auto Group,2025-07-24T02:46:45.479815
+MOCKINDIG0000000012,STK00012,2025,Unknown,Sedan,Base,72236,37691,10555,Black,Gray,Gasoline,Manual,used,https://www.indigoautogroup.com/inventory/12,Indigo Auto Group,2025-07-24T02:46:45.479822
+MOCKINDIG0000000013,STK00013,2025,Unknown,SUV,Premium,47660,53889,32363,White,Tan,Hybrid,CVT,new,https://www.indigoautogroup.com/inventory/13,Indigo Auto Group,2025-07-24T02:46:45.479828
+MOCKINDIG0000000014,STK00014,2021,Unknown,Sedan,Limited,35654,40766,49744,Black,Black,Gasoline,CVT,new,https://www.indigoautogroup.com/inventory/14,Indigo Auto Group,2025-07-24T02:46:45.479835
+MOCKINDIG0000000015,STK00015,2020,Unknown,Sedan,Limited,61401,74729,48506,Gray,Black,Hybrid,CVT,certified,https://www.indigoautogroup.com/inventory/15,Indigo Auto Group,2025-07-24T02:46:45.479842
+MOCKINDIG0000000016,STK00016,2021,Unknown,Sedan,Limited,39957,53069,48296,White,Black,Gasoline,CVT,certified,https://www.indigoautogroup.com/inventory/16,Indigo Auto Group,2025-07-24T02:46:45.479848
+MOCKINDIG0000000017,STK00017,2023,Unknown,Convertible,Base,27683,83011,24588,Silver,Black,Gasoline,Manual,certified,https://www.indigoautogroup.com/inventory/17,Indigo Auto Group,2025-07-24T02:46:45.479855
+MOCKINDIG0000000018,STK00018,2022,Unknown,SUV,Sport,67126,55530,47292,Gray,Tan,Hybrid,Automatic,certified,https://www.indigoautogroup.com/inventory/18,Indigo Auto Group,2025-07-24T02:46:45.479862
+MOCKINDIG0000000019,STK00019,2021,Unknown,Convertible,Base,54845,53682,34478,Gray,Gray,Electric,Automatic,used,https://www.indigoautogroup.com/inventory/19,Indigo Auto Group,2025-07-24T02:46:45.479869
+MOCKINDIG0000000020,STK00020,2022,Unknown,Truck,Premium,57532,57657,48242,Red,Black,Gasoline,CVT,new,https://www.indigoautogroup.com/inventory/20,Indigo Auto Group,2025-07-24T02:46:45.479876
+MOCKINDIG0000000021,STK00021,2023,Unknown,Sedan,Sport,54340,62030,37026,Gray,Tan,Electric,Manual,certified,https://www.indigoautogroup.com/inventory/21,Indigo Auto Group,2025-07-24T02:46:45.479883
+MOCKINDIG0000000022,STK00022,2025,Unknown,Sedan,Sport,42945,49452,7965,Silver,Black,Electric,Automatic,used,https://www.indigoautogroup.com/inventory/22,Indigo Auto Group,2025-07-24T02:46:45.479899
+MOCKJAGUA0000000000,STK00000,2023,Unknown,Sedan,Premium,35645,82504,29208,Blue,Black,Electric,Automatic,certified,https://www.jaguarranchomirage.com/inventory/0,Jaguar Ranch Mirage,2025-07-24T02:46:46.540886
+MOCKJAGUA0000000001,STK00001,2021,Unknown,SUV,Limited,38375,53291,20368,Gray,Tan,Gasoline,Manual,certified,https://www.jaguarranchomirage.com/inventory/1,Jaguar Ranch Mirage,2025-07-24T02:46:46.540897
+MOCKJAGUA0000000002,STK00002,2024,Unknown,Sedan,Base,50610,56701,580,Gray,Tan,Gasoline,CVT,used,https://www.jaguarranchomirage.com/inventory/2,Jaguar Ranch Mirage,2025-07-24T02:46:46.540904
+MOCKJAGUA0000000003,STK00003,2022,Unknown,Sedan,Sport,75825,35111,24381,Silver,Gray,Electric,Manual,used,https://www.jaguarranchomirage.com/inventory/3,Jaguar Ranch Mirage,2025-07-24T02:46:46.540911
+MOCKJAGUA0000000004,STK00004,2022,Unknown,SUV,Limited,78905,45991,49258,Gray,Tan,Gasoline,CVT,certified,https://www.jaguarranchomirage.com/inventory/4,Jaguar Ranch Mirage,2025-07-24T02:46:46.540918
+MOCKJAGUA0000000005,STK00005,2020,Unknown,SUV,Sport,48121,68623,49993,Red,Tan,Gasoline,Manual,new,https://www.jaguarranchomirage.com/inventory/5,Jaguar Ranch Mirage,2025-07-24T02:46:46.540925
+MOCKJAGUA0000000006,STK00006,2023,Unknown,Coupe,Sport,28015,56214,34385,Red,Gray,Gasoline,CVT,new,https://www.jaguarranchomirage.com/inventory/6,Jaguar Ranch Mirage,2025-07-24T02:46:46.540931
+MOCKJAGUA0000000007,STK00007,2025,Unknown,Coupe,Base,33764,53604,6636,Blue,Black,Electric,Manual,certified,https://www.jaguarranchomirage.com/inventory/7,Jaguar Ranch Mirage,2025-07-24T02:46:46.540938
+MOCKJAGUA0000000008,STK00008,2024,Unknown,Convertible,Limited,57028,50865,21438,Blue,Black,Hybrid,CVT,certified,https://www.jaguarranchomirage.com/inventory/8,Jaguar Ranch Mirage,2025-07-24T02:46:46.540945
+MOCKJAGUA0000000009,STK00009,2023,Unknown,Sedan,Premium,65553,84243,29851,Gray,Black,Gasoline,Automatic,certified,https://www.jaguarranchomirage.com/inventory/9,Jaguar Ranch Mirage,2025-07-24T02:46:46.540951
+MOCKJAGUA0000000010,STK00010,2020,Unknown,SUV,Base,32528,84411,41835,Silver,Gray,Gasoline,Automatic,certified,https://www.jaguarranchomirage.com/inventory/10,Jaguar Ranch Mirage,2025-07-24T02:46:46.540958
+MOCKJAGUA0000000011,STK00011,2025,Unknown,Truck,Limited,38785,55874,5074,Silver,Tan,Hybrid,Automatic,certified,https://www.jaguarranchomirage.com/inventory/11,Jaguar Ranch Mirage,2025-07-24T02:46:46.540965
+MOCKJAGUA0000000012,STK00012,2023,Unknown,SUV,Sport,64863,58622,4834,Black,Gray,Electric,Manual,certified,https://www.jaguarranchomirage.com/inventory/12,Jaguar Ranch Mirage,2025-07-24T02:46:46.540972
+MOCKJAGUA0000000013,STK00013,2020,Unknown,SUV,Base,42461,43098,42853,Red,Black,Electric,Automatic,certified,https://www.jaguarranchomirage.com/inventory/13,Jaguar Ranch Mirage,2025-07-24T02:46:46.540978
+MOCKJAGUA0000000014,STK00014,2021,Unknown,Coupe,Limited,37601,69457,32101,Black,Gray,Hybrid,Manual,used,https://www.jaguarranchomirage.com/inventory/14,Jaguar Ranch Mirage,2025-07-24T02:46:46.540985
+MOCKJAGUA0000000015,STK00015,2023,Unknown,Truck,Sport,49459,57767,42313,White,Gray,Hybrid,CVT,certified,https://www.jaguarranchomirage.com/inventory/15,Jaguar Ranch Mirage,2025-07-24T02:46:46.540991
+MOCKJAGUA0000000016,STK00016,2020,Unknown,SUV,Base,40565,38756,40388,Gray,Tan,Gasoline,Automatic,certified,https://www.jaguarranchomirage.com/inventory/16,Jaguar Ranch Mirage,2025-07-24T02:46:46.540998
+MOCKJAGUA0000000017,STK00017,2024,Unknown,Sedan,Premium,41066,71386,32213,Gray,Tan,Gasoline,Manual,new,https://www.jaguarranchomirage.com/inventory/17,Jaguar Ranch Mirage,2025-07-24T02:46:46.541007
+MOCKJAGUA0000000018,STK00018,2024,Unknown,Truck,Sport,52489,48817,37353,Silver,Gray,Electric,Automatic,used,https://www.jaguarranchomirage.com/inventory/18,Jaguar Ranch Mirage,2025-07-24T02:46:46.541014
+MOCKJAGUA0000000019,STK00019,2020,Unknown,SUV,Sport,77030,50754,38635,White,Black,Electric,Automatic,new,https://www.jaguarranchomirage.com/inventory/19,Jaguar Ranch Mirage,2025-07-24T02:46:46.541021
+MOCKJAGUA0000000020,STK00020,2022,Unknown,Convertible,Limited,66301,40354,14857,Black,Gray,Gasoline,CVT,new,https://www.jaguarranchomirage.com/inventory/20,Jaguar Ranch Mirage,2025-07-24T02:46:46.541027
+MOCKJAGUA0000000021,STK00021,2020,Unknown,Coupe,Premium,25856,35912,29057,Red,Black,Electric,CVT,used,https://www.jaguarranchomirage.com/inventory/21,Jaguar Ranch Mirage,2025-07-24T02:46:46.541034
+MOCKJAGUA0000000022,STK00022,2020,Unknown,Truck,Premium,50374,78956,32218,Blue,Black,Electric,CVT,used,https://www.jaguarranchomirage.com/inventory/22,Jaguar Ranch Mirage,2025-07-24T02:46:46.541041
+MOCKJAGUA0000000023,STK00023,2021,Unknown,SUV,Premium,67317,60416,41873,Black,Black,Hybrid,Manual,new,https://www.jaguarranchomirage.com/inventory/23,Jaguar Ranch Mirage,2025-07-24T02:46:46.541047
+MOCKJAGUA0000000024,STK00024,2021,Unknown,Coupe,Premium,35800,66971,15151,White,Black,Electric,Manual,used,https://www.jaguarranchomirage.com/inventory/24,Jaguar Ranch Mirage,2025-07-24T02:46:46.541054
+MOCKJAGUA0000000025,STK00025,2022,Unknown,Convertible,Base,69887,75970,9971,Silver,Gray,Gasoline,Automatic,used,https://www.jaguarranchomirage.com/inventory/25,Jaguar Ranch Mirage,2025-07-24T02:46:46.541060
+MOCKJAGUA0000000026,STK00026,2021,Unknown,Coupe,Base,72082,57618,46683,White,Tan,Gasoline,Manual,new,https://www.jaguarranchomirage.com/inventory/26,Jaguar Ranch Mirage,2025-07-24T02:46:46.541066
+MOCKJAGUA0000000027,STK00027,2024,Unknown,Convertible,Base,50430,44285,24384,Gray,Tan,Electric,Manual,used,https://www.jaguarranchomirage.com/inventory/27,Jaguar Ranch Mirage,2025-07-24T02:46:46.541073
+MOCKJAGUA0000000028,STK00028,2020,Unknown,Coupe,Sport,32185,52595,1047,Black,Tan,Electric,CVT,used,https://www.jaguarranchomirage.com/inventory/28,Jaguar Ranch Mirage,2025-07-24T02:46:46.541080
+MOCKJAGUA0000000029,STK00029,2020,Unknown,SUV,Sport,56034,82513,46874,Blue,Black,Hybrid,CVT,new,https://www.jaguarranchomirage.com/inventory/29,Jaguar Ranch Mirage,2025-07-24T02:46:46.541086
+MOCKJAGUA0000000030,STK00030,2023,Unknown,Truck,Base,71952,61083,10596,Silver,Gray,Hybrid,Manual,certified,https://www.jaguarranchomirage.com/inventory/30,Jaguar Ranch Mirage,2025-07-24T02:46:46.541093
+MOCKJAGUA0000000031,STK00031,2022,Unknown,Sedan,Sport,70167,48684,34630,Silver,Tan,Electric,Automatic,new,https://www.jaguarranchomirage.com/inventory/31,Jaguar Ranch Mirage,2025-07-24T02:46:46.541100
+MOCKJAGUA0000000032,STK00032,2024,Unknown,Sedan,Limited,47374,64855,33916,Blue,Gray,Hybrid,Automatic,new,https://www.jaguarranchomirage.com/inventory/32,Jaguar Ranch Mirage,2025-07-24T02:46:46.541107
+MOCKJAGUA0000000033,STK00033,2021,Unknown,SUV,Sport,68157,73935,46956,Red,Black,Gasoline,Automatic,new,https://www.jaguarranchomirage.com/inventory/33,Jaguar Ranch Mirage,2025-07-24T02:46:46.541113
+MOCKJAGUA0000000034,STK00034,2024,Unknown,Coupe,Limited,28011,36114,35637,Red,Gray,Hybrid,CVT,used,https://www.jaguarranchomirage.com/inventory/34,Jaguar Ranch Mirage,2025-07-24T02:46:46.541120
+MOCKJAGUA0000000035,STK00035,2024,Unknown,Truck,Base,33900,71539,25473,Black,Tan,Electric,Automatic,used,https://www.jaguarranchomirage.com/inventory/35,Jaguar Ranch Mirage,2025-07-24T02:46:46.541126
+MOCKJAGUA0000000036,STK00036,2023,Unknown,SUV,Base,25038,61788,180,Black,Black,Gasoline,Manual,used,https://www.jaguarranchomirage.com/inventory/36,Jaguar Ranch Mirage,2025-07-24T02:46:46.541133
+MOCKJAGUA0000000037,STK00037,2022,Unknown,Coupe,Sport,34277,58772,44119,Gray,Tan,Gasoline,CVT,certified,https://www.jaguarranchomirage.com/inventory/37,Jaguar Ranch Mirage,2025-07-24T02:46:46.541140
+MOCKJAGUA0000000038,STK00038,2023,Unknown,Truck,Sport,73698,61265,39145,Red,Black,Gasoline,CVT,certified,https://www.jaguarranchomirage.com/inventory/38,Jaguar Ranch Mirage,2025-07-24T02:46:46.541147
+MOCKJAGUA0000000039,STK00039,2023,Unknown,Convertible,Sport,59831,81227,29050,White,Black,Electric,CVT,certified,https://www.jaguarranchomirage.com/inventory/39,Jaguar Ranch Mirage,2025-07-24T02:46:46.541153
+MOCKJOEMA0000000000,STK00000,2022,Nissan,SUV,Premium,53687,65259,17637,Silver,Black,Hybrid,CVT,certified,https://www.joemachensnissan.com/inventory/0,Joe Machens Nissan,2025-07-24T02:46:49.610374
+MOCKJOEMA0000000001,STK00001,2023,Nissan,Coupe,Limited,69275,36396,18031,Black,Gray,Gasoline,Manual,new,https://www.joemachensnissan.com/inventory/1,Joe Machens Nissan,2025-07-24T02:46:49.610386
+MOCKJOEMA0000000002,STK00002,2025,Nissan,Coupe,Sport,74362,74067,3823,Blue,Black,Gasoline,Automatic,new,https://www.joemachensnissan.com/inventory/2,Joe Machens Nissan,2025-07-24T02:46:49.610394
+MOCKJOEMA0000000003,STK00003,2023,Nissan,Convertible,Base,74240,62844,20432,Silver,Tan,Hybrid,CVT,new,https://www.joemachensnissan.com/inventory/3,Joe Machens Nissan,2025-07-24T02:46:49.610401
+MOCKJOEMA0000000004,STK00004,2020,Nissan,Convertible,Limited,39992,35885,36649,Silver,Black,Electric,Manual,certified,https://www.joemachensnissan.com/inventory/4,Joe Machens Nissan,2025-07-24T02:46:49.610408
+MOCKJOEMA0000000005,STK00005,2023,Nissan,SUV,Sport,50764,76328,7596,Red,Gray,Gasoline,Manual,used,https://www.joemachensnissan.com/inventory/5,Joe Machens Nissan,2025-07-24T02:46:49.610416
+MOCKJOEMA0000000006,STK00006,2022,Nissan,Convertible,Sport,76680,74354,6300,Red,Tan,Electric,Manual,certified,https://www.joemachensnissan.com/inventory/6,Joe Machens Nissan,2025-07-24T02:46:49.610423
+MOCKJOEMA0000000007,STK00007,2025,Nissan,Convertible,Base,49021,59444,42428,Black,Tan,Electric,Automatic,certified,https://www.joemachensnissan.com/inventory/7,Joe Machens Nissan,2025-07-24T02:46:49.610430
+MOCKJOEMA0000000008,STK00008,2025,Nissan,Coupe,Premium,64281,60292,21824,Black,Tan,Hybrid,Manual,certified,https://www.joemachensnissan.com/inventory/8,Joe Machens Nissan,2025-07-24T02:46:49.610437
+MOCKJOEMA0000000009,STK00009,2025,Nissan,SUV,Base,27269,40921,48142,White,Gray,Electric,Automatic,used,https://www.joemachensnissan.com/inventory/9,Joe Machens Nissan,2025-07-24T02:46:49.610444
+MOCKJOEMA0000000010,STK00010,2024,Nissan,Convertible,Base,51522,71248,10275,Black,Black,Gasoline,Manual,new,https://www.joemachensnissan.com/inventory/10,Joe Machens Nissan,2025-07-24T02:46:49.610451
+MOCKJOEMA0000000011,STK00011,2024,Nissan,SUV,Premium,43902,84612,22677,Gray,Tan,Hybrid,CVT,used,https://www.joemachensnissan.com/inventory/11,Joe Machens Nissan,2025-07-24T02:46:49.610458
+MOCKJOEMA0000000012,STK00012,2025,Nissan,Truck,Sport,62323,51781,4481,Blue,Gray,Electric,Manual,certified,https://www.joemachensnissan.com/inventory/12,Joe Machens Nissan,2025-07-24T02:46:49.610465
+MOCKJOEMA0000000013,STK00013,2021,Nissan,Truck,Premium,46342,61221,42268,Red,Black,Hybrid,CVT,used,https://www.joemachensnissan.com/inventory/13,Joe Machens Nissan,2025-07-24T02:46:49.610472
+MOCKJOEMA0000000014,STK00014,2024,Nissan,Convertible,Base,38803,64402,24559,Black,Tan,Gasoline,CVT,new,https://www.joemachensnissan.com/inventory/14,Joe Machens Nissan,2025-07-24T02:46:49.610479
+MOCKJOEMA0000000015,STK00015,2021,Nissan,Truck,Base,60604,81841,44800,White,Tan,Electric,CVT,certified,https://www.joemachensnissan.com/inventory/15,Joe Machens Nissan,2025-07-24T02:46:49.610486
+MOCKJOEMA0000000016,STK00016,2025,Nissan,Truck,Limited,41404,59164,39478,Gray,Black,Hybrid,Automatic,certified,https://www.joemachensnissan.com/inventory/16,Joe Machens Nissan,2025-07-24T02:46:49.610493
+MOCKJOEMA0000000017,STK00017,2025,Nissan,Convertible,Base,59414,30834,1614,Black,Black,Gasoline,CVT,certified,https://www.joemachensnissan.com/inventory/17,Joe Machens Nissan,2025-07-24T02:46:49.610500
+MOCKJOEMA0000000018,STK00018,2023,Nissan,Convertible,Premium,45400,54345,19581,Black,Tan,Hybrid,Manual,new,https://www.joemachensnissan.com/inventory/18,Joe Machens Nissan,2025-07-24T02:46:49.610508
+MOCKJOEMA0000000019,STK00019,2023,Nissan,SUV,Limited,27429,42254,46398,Black,Tan,Electric,Manual,used,https://www.joemachensnissan.com/inventory/19,Joe Machens Nissan,2025-07-24T02:46:49.610514
+MOCKJOEMA0000000020,STK00020,2021,Nissan,Convertible,Limited,44222,54160,32515,Silver,Black,Hybrid,CVT,new,https://www.joemachensnissan.com/inventory/20,Joe Machens Nissan,2025-07-24T02:46:49.610522
+MOCKJOEMA0000000021,STK00021,2022,Nissan,Coupe,Limited,32152,53172,41202,White,Black,Hybrid,Automatic,certified,https://www.joemachensnissan.com/inventory/21,Joe Machens Nissan,2025-07-24T02:46:49.610529
+MOCKJOEMA0000000022,STK00022,2020,Nissan,Truck,Sport,53930,44919,27935,Blue,Gray,Hybrid,Automatic,new,https://www.joemachensnissan.com/inventory/22,Joe Machens Nissan,2025-07-24T02:46:49.610536
+MOCKJOEMA0000000023,STK00023,2023,Nissan,Coupe,Sport,71722,71055,30393,White,Black,Electric,CVT,new,https://www.joemachensnissan.com/inventory/23,Joe Machens Nissan,2025-07-24T02:46:49.610542
+MOCKJOEMA0000000024,STK00024,2024,Nissan,Convertible,Base,25688,84807,38684,Blue,Black,Gasoline,Automatic,new,https://www.joemachensnissan.com/inventory/24,Joe Machens Nissan,2025-07-24T02:46:49.610549
+MOCKJOEMA0000000025,STK00025,2021,Nissan,Coupe,Base,74793,43641,47724,Blue,Tan,Electric,CVT,used,https://www.joemachensnissan.com/inventory/25,Joe Machens Nissan,2025-07-24T02:46:49.610556
+MOCKJOEMA0000000026,STK00026,2025,Nissan,Coupe,Limited,42756,82537,42726,Gray,Black,Hybrid,Manual,certified,https://www.joemachensnissan.com/inventory/26,Joe Machens Nissan,2025-07-24T02:46:49.610565
+MOCKJOEMA0000000027,STK00027,2022,Nissan,Sedan,Base,69569,69238,29303,Red,Gray,Gasoline,CVT,used,https://www.joemachensnissan.com/inventory/27,Joe Machens Nissan,2025-07-24T02:46:49.610572
+MOCKJOEMA0000000028,STK00028,2024,Nissan,SUV,Limited,59239,32029,30916,Blue,Gray,Gasoline,Automatic,new,https://www.joemachensnissan.com/inventory/28,Joe Machens Nissan,2025-07-24T02:46:49.610579
+MOCKJOEMA0000000029,STK00029,2021,Nissan,SUV,Premium,53898,50681,34209,Red,Gray,Hybrid,CVT,certified,https://www.joemachensnissan.com/inventory/29,Joe Machens Nissan,2025-07-24T02:46:49.610586
+MOCKJOEMA0000000030,STK00030,2023,Nissan,Sedan,Base,62710,68581,49097,White,Tan,Electric,Automatic,new,https://www.joemachensnissan.com/inventory/30,Joe Machens Nissan,2025-07-24T02:46:49.610593
+MOCKJOEMA0000000031,STK00031,2020,Nissan,Sedan,Limited,60311,52731,44807,Red,Tan,Electric,Manual,new,https://www.joemachensnissan.com/inventory/31,Joe Machens Nissan,2025-07-24T02:46:49.610600
+MOCKJOEMA0000000032,STK00032,2023,Nissan,SUV,Sport,45030,61919,17780,Gray,Tan,Electric,Manual,certified,https://www.joemachensnissan.com/inventory/32,Joe Machens Nissan,2025-07-24T02:46:49.610606
+MOCKJOEMA0000000033,STK00033,2022,Nissan,Truck,Sport,49799,61946,30432,Gray,Tan,Electric,CVT,certified,https://www.joemachensnissan.com/inventory/33,Joe Machens Nissan,2025-07-24T02:46:49.610629
+MOCKJOEMA0000000034,STK00034,2021,Nissan,Sedan,Sport,25378,71029,47506,Gray,Black,Gasoline,Automatic,used,https://www.joemachensnissan.com/inventory/34,Joe Machens Nissan,2025-07-24T02:46:49.610639
+MOCKJOEMA0000000035,STK00035,2025,Nissan,Sedan,Base,27253,42093,14966,Blue,Gray,Hybrid,Automatic,new,https://www.joemachensnissan.com/inventory/35,Joe Machens Nissan,2025-07-24T02:46:49.610646
+MOCKJOEMA0000000036,STK00036,2020,Nissan,Coupe,Premium,79790,48228,9421,Red,Black,Hybrid,Manual,certified,https://www.joemachensnissan.com/inventory/36,Joe Machens Nissan,2025-07-24T02:46:49.610653
+MOCKJOEMA0000000037,STK00037,2023,Nissan,Truck,Base,56821,79238,31379,Silver,Black,Gasoline,CVT,used,https://www.joemachensnissan.com/inventory/37,Joe Machens Nissan,2025-07-24T02:46:49.610661
+MOCKJOEMA0000000038,STK00038,2022,Nissan,Convertible,Base,76273,67218,25257,Gray,Black,Hybrid,Manual,certified,https://www.joemachensnissan.com/inventory/38,Joe Machens Nissan,2025-07-24T02:46:49.610668
+MOCKJOEMA0000000039,STK00039,2022,Nissan,Sedan,Limited,61128,48556,12397,White,Tan,Gasoline,Manual,new,https://www.joemachensnissan.com/inventory/39,Joe Machens Nissan,2025-07-24T02:46:49.610675
+MOCKJOEMA0000000000,STK00000,2022,Toyota,Sedan,Sport,37731,46595,32007,White,Black,Hybrid,Automatic,certified,https://www.joemachenstoyota.com/inventory/0,Joe Machens Toyota,2025-07-24T02:46:50.622903
+MOCKJOEMA0000000001,STK00001,2025,Toyota,Truck,Sport,73182,77758,38654,Blue,Black,Hybrid,Automatic,new,https://www.joemachenstoyota.com/inventory/1,Joe Machens Toyota,2025-07-24T02:46:50.622928
+MOCKJOEMA0000000002,STK00002,2025,Toyota,Truck,Premium,34275,37638,9787,Gray,Gray,Hybrid,Automatic,certified,https://www.joemachenstoyota.com/inventory/2,Joe Machens Toyota,2025-07-24T02:46:50.622947
+MOCKJOEMA0000000003,STK00003,2021,Toyota,Truck,Premium,49298,72788,13874,Gray,Black,Gasoline,Automatic,new,https://www.joemachenstoyota.com/inventory/3,Joe Machens Toyota,2025-07-24T02:46:50.622966
+MOCKJOEMA0000000004,STK00004,2023,Toyota,Coupe,Sport,51804,79101,18003,Gray,Black,Hybrid,Automatic,new,https://www.joemachenstoyota.com/inventory/4,Joe Machens Toyota,2025-07-24T02:46:50.622984
+MOCKJOEMA0000000005,STK00005,2022,Toyota,SUV,Sport,34998,76328,28197,Silver,Gray,Gasoline,Manual,new,https://www.joemachenstoyota.com/inventory/5,Joe Machens Toyota,2025-07-24T02:46:50.623001
+MOCKJOEMA0000000006,STK00006,2022,Toyota,Coupe,Limited,70835,64579,7088,Black,Gray,Electric,Manual,used,https://www.joemachenstoyota.com/inventory/6,Joe Machens Toyota,2025-07-24T02:46:50.623018
+MOCKJOEMA0000000007,STK00007,2023,Toyota,Convertible,Premium,59406,74856,28240,White,Tan,Electric,Automatic,new,https://www.joemachenstoyota.com/inventory/7,Joe Machens Toyota,2025-07-24T02:46:50.623036
+MOCKJOEMA0000000008,STK00008,2025,Toyota,Coupe,Base,33034,56274,9175,Gray,Gray,Electric,CVT,certified,https://www.joemachenstoyota.com/inventory/8,Joe Machens Toyota,2025-07-24T02:46:50.623053
+MOCKJOEMA0000000009,STK00009,2021,Toyota,Sedan,Premium,45357,50067,39957,Silver,Black,Hybrid,Automatic,used,https://www.joemachenstoyota.com/inventory/9,Joe Machens Toyota,2025-07-24T02:46:50.623071
+MOCKJOEMA0000000010,STK00010,2022,Toyota,Truck,Limited,52906,54935,21623,Gray,Gray,Gasoline,Manual,certified,https://www.joemachenstoyota.com/inventory/10,Joe Machens Toyota,2025-07-24T02:46:50.623090
+MOCKJOEMA0000000011,STK00011,2025,Toyota,Truck,Limited,37118,75990,40219,Silver,Gray,Gasoline,CVT,used,https://www.joemachenstoyota.com/inventory/11,Joe Machens Toyota,2025-07-24T02:46:50.623108
+MOCKJOEMA0000000012,STK00012,2020,Toyota,Convertible,Base,26493,64227,27165,White,Tan,Hybrid,CVT,used,https://www.joemachenstoyota.com/inventory/12,Joe Machens Toyota,2025-07-24T02:46:50.623125
+MOCKJOEMA0000000013,STK00013,2022,Toyota,Sedan,Limited,29524,43933,20487,Silver,Black,Electric,Manual,certified,https://www.joemachenstoyota.com/inventory/13,Joe Machens Toyota,2025-07-24T02:46:50.623141
+MOCKJOEMA0000000014,STK00014,2023,Toyota,Coupe,Limited,72344,74518,20816,Red,Tan,Gasoline,CVT,certified,https://www.joemachenstoyota.com/inventory/14,Joe Machens Toyota,2025-07-24T02:46:50.623159
+MOCKJOEMA0000000015,STK00015,2020,Toyota,Convertible,Base,60452,49551,44924,White,Black,Hybrid,Automatic,used,https://www.joemachenstoyota.com/inventory/15,Joe Machens Toyota,2025-07-24T02:46:50.623175
+MOCKJOEMA0000000016,STK00016,2023,Toyota,Sedan,Sport,51135,84554,24024,Gray,Gray,Gasoline,CVT,certified,https://www.joemachenstoyota.com/inventory/16,Joe Machens Toyota,2025-07-24T02:46:50.623193
+MOCKJOEMA0000000017,STK00017,2022,Toyota,Truck,Limited,73444,47603,29964,Silver,Black,Gasoline,CVT,new,https://www.joemachenstoyota.com/inventory/17,Joe Machens Toyota,2025-07-24T02:46:50.623210
+MOCKJOEMA0000000018,STK00018,2025,Toyota,Truck,Limited,35424,30332,35083,Silver,Black,Electric,Automatic,certified,https://www.joemachenstoyota.com/inventory/18,Joe Machens Toyota,2025-07-24T02:46:50.623227
+MOCKJOEMA0000000019,STK00019,2022,Toyota,Convertible,Sport,49813,53731,46495,Red,Black,Hybrid,CVT,used,https://www.joemachenstoyota.com/inventory/19,Joe Machens Toyota,2025-07-24T02:46:50.623244
+MOCKJOEMA0000000020,STK00020,2021,Toyota,Convertible,Premium,35570,72900,14026,White,Tan,Gasoline,Manual,certified,https://www.joemachenstoyota.com/inventory/20,Joe Machens Toyota,2025-07-24T02:46:50.623261
+MOCKJOEMA0000000021,STK00021,2024,Toyota,Coupe,Limited,62475,60782,49164,Blue,Tan,Electric,CVT,used,https://www.joemachenstoyota.com/inventory/21,Joe Machens Toyota,2025-07-24T02:46:50.623278
+MOCKJOEMA0000000022,STK00022,2024,Toyota,Convertible,Limited,29751,63071,12056,Black,Tan,Hybrid,Automatic,used,https://www.joemachenstoyota.com/inventory/22,Joe Machens Toyota,2025-07-24T02:46:50.623296
+MOCKJOEMA0000000023,STK00023,2025,Toyota,Convertible,Base,35240,66449,27094,Gray,Gray,Hybrid,CVT,used,https://www.joemachenstoyota.com/inventory/23,Joe Machens Toyota,2025-07-24T02:46:50.623313
+MOCKJOEMA0000000024,STK00024,2020,Toyota,Sedan,Base,37036,47549,5669,Silver,Black,Gasoline,Manual,new,https://www.joemachenstoyota.com/inventory/24,Joe Machens Toyota,2025-07-24T02:46:50.623337
+MOCKJOEMA0000000025,STK00025,2021,Toyota,Convertible,Limited,56678,84435,48596,Silver,Gray,Hybrid,Automatic,new,https://www.joemachenstoyota.com/inventory/25,Joe Machens Toyota,2025-07-24T02:46:50.623356
+MOCKJOEMA0000000026,STK00026,2024,Toyota,SUV,Sport,70431,69666,23624,Red,Tan,Hybrid,CVT,new,https://www.joemachenstoyota.com/inventory/26,Joe Machens Toyota,2025-07-24T02:46:50.623373
+MOCKJOEMA0000000027,STK00027,2023,Toyota,Sedan,Sport,32844,54445,19279,Blue,Gray,Hybrid,Manual,used,https://www.joemachenstoyota.com/inventory/27,Joe Machens Toyota,2025-07-24T02:46:50.623391
+MOCKJOEMA0000000028,STK00028,2023,Toyota,Convertible,Limited,75601,30098,12305,Silver,Black,Electric,Automatic,used,https://www.joemachenstoyota.com/inventory/28,Joe Machens Toyota,2025-07-24T02:46:50.623408
+MOCKJOEMA0000000029,STK00029,2022,Toyota,Convertible,Sport,44843,43535,26596,Red,Tan,Electric,CVT,new,https://www.joemachenstoyota.com/inventory/29,Joe Machens Toyota,2025-07-24T02:46:50.623427
+MOCKJOEMA0000000030,STK00030,2021,Toyota,Sedan,Sport,47492,80209,4596,Red,Gray,Electric,CVT,used,https://www.joemachenstoyota.com/inventory/30,Joe Machens Toyota,2025-07-24T02:46:50.623444
+MOCKJOEMA0000000031,STK00031,2022,Toyota,Truck,Base,60450,70698,40261,Black,Black,Hybrid,Automatic,certified,https://www.joemachenstoyota.com/inventory/31,Joe Machens Toyota,2025-07-24T02:46:50.623461
+MOCKJOEMA0000000032,STK00032,2025,Toyota,Convertible,Sport,34116,78151,45377,Gray,Tan,Electric,CVT,new,https://www.joemachenstoyota.com/inventory/32,Joe Machens Toyota,2025-07-24T02:46:50.623596
+MOCKJOEMA0000000033,STK00033,2024,Toyota,Sedan,Sport,46822,68656,45814,Blue,Gray,Hybrid,Manual,new,https://www.joemachenstoyota.com/inventory/33,Joe Machens Toyota,2025-07-24T02:46:50.623624
+MOCKJOEMA0000000034,STK00034,2022,Toyota,Truck,Sport,46038,61678,33856,Red,Gray,Electric,CVT,certified,https://www.joemachenstoyota.com/inventory/34,Joe Machens Toyota,2025-07-24T02:46:50.623642
+MOCKJOEMA0000000035,STK00035,2024,Toyota,Coupe,Premium,71159,69845,26544,Silver,Gray,Electric,CVT,new,https://www.joemachenstoyota.com/inventory/35,Joe Machens Toyota,2025-07-24T02:46:50.623658
+MOCKJOEMA0000000036,STK00036,2021,Toyota,Convertible,Sport,59110,38100,1957,Silver,Tan,Gasoline,Automatic,used,https://www.joemachenstoyota.com/inventory/36,Joe Machens Toyota,2025-07-24T02:46:50.623674
+MOCKJOEMA0000000037,STK00037,2024,Toyota,Truck,Sport,28899,31809,25461,White,Gray,Gasoline,CVT,new,https://www.joemachenstoyota.com/inventory/37,Joe Machens Toyota,2025-07-24T02:46:50.623689
+MOCKJOEMA0000000038,STK00038,2023,Toyota,Truck,Premium,51107,56781,42433,Blue,Black,Electric,CVT,used,https://www.joemachenstoyota.com/inventory/38,Joe Machens Toyota,2025-07-24T02:46:50.623705
+MOCKJOEMA0000000039,STK00039,2024,Toyota,SUV,Limited,25011,64068,40744,Black,Tan,Hybrid,Automatic,certified,https://www.joemachenstoyota.com/inventory/39,Joe Machens Toyota,2025-07-24T02:46:50.623720
+MOCKJOEMA0000000040,STK00040,2024,Toyota,SUV,Premium,74890,50376,12270,Red,Gray,Electric,Manual,certified,https://www.joemachenstoyota.com/inventory/40,Joe Machens Toyota,2025-07-24T02:46:50.623735
+MOCKJOEMA0000000041,STK00041,2022,Toyota,Convertible,Limited,41725,65501,17376,Red,Gray,Gasoline,CVT,used,https://www.joemachenstoyota.com/inventory/41,Joe Machens Toyota,2025-07-24T02:46:50.623752
+MOCKJOEMA0000000042,STK00042,2020,Toyota,Convertible,Sport,36893,44212,22958,Red,Gray,Hybrid,Automatic,certified,https://www.joemachenstoyota.com/inventory/42,Joe Machens Toyota,2025-07-24T02:46:50.623767
+MOCKJOEMA0000000043,STK00043,2023,Toyota,Truck,Premium,33763,44888,15573,Red,Black,Hybrid,CVT,used,https://www.joemachenstoyota.com/inventory/43,Joe Machens Toyota,2025-07-24T02:46:50.623806
+MOCKJOEMA0000000044,STK00044,2022,Toyota,Truck,Base,73103,49423,20368,Silver,Tan,Electric,CVT,new,https://www.joemachenstoyota.com/inventory/44,Joe Machens Toyota,2025-07-24T02:46:50.623858
+MOCKKIAOF0000000000,STK00000,2025,Kia,SUV,Limited,71964,52569,41044,Blue,Tan,Hybrid,CVT,used,https://www.kiaofcolumbia.com/inventory/0,Kia of Columbia,2025-07-24T02:46:51.638021
+MOCKKIAOF0000000001,STK00001,2022,Kia,Convertible,Base,49915,32438,1742,Gray,Black,Electric,CVT,used,https://www.kiaofcolumbia.com/inventory/1,Kia of Columbia,2025-07-24T02:46:51.638032
+MOCKKIAOF0000000002,STK00002,2024,Kia,Coupe,Limited,42959,70204,43094,Gray,Tan,Electric,Manual,used,https://www.kiaofcolumbia.com/inventory/2,Kia of Columbia,2025-07-24T02:46:51.638040
+MOCKKIAOF0000000003,STK00003,2022,Kia,SUV,Base,42093,35549,8284,Black,Tan,Gasoline,Manual,used,https://www.kiaofcolumbia.com/inventory/3,Kia of Columbia,2025-07-24T02:46:51.638047
+MOCKKIAOF0000000004,STK00004,2021,Kia,SUV,Base,39232,80424,1150,Gray,Tan,Electric,Manual,new,https://www.kiaofcolumbia.com/inventory/4,Kia of Columbia,2025-07-24T02:46:51.638054
+MOCKKIAOF0000000005,STK00005,2025,Kia,Sedan,Base,79994,79269,29478,Red,Black,Gasoline,CVT,certified,https://www.kiaofcolumbia.com/inventory/5,Kia of Columbia,2025-07-24T02:46:51.638061
+MOCKKIAOF0000000006,STK00006,2024,Kia,Convertible,Premium,46222,80741,378,Gray,Black,Hybrid,Automatic,certified,https://www.kiaofcolumbia.com/inventory/6,Kia of Columbia,2025-07-24T02:46:51.638068
+MOCKKIAOF0000000007,STK00007,2021,Kia,SUV,Sport,69384,50951,43707,White,Black,Hybrid,CVT,new,https://www.kiaofcolumbia.com/inventory/7,Kia of Columbia,2025-07-24T02:46:51.638074
+MOCKKIAOF0000000008,STK00008,2021,Kia,SUV,Premium,39848,81291,44138,Blue,Tan,Hybrid,Automatic,new,https://www.kiaofcolumbia.com/inventory/8,Kia of Columbia,2025-07-24T02:46:51.638081
+MOCKKIAOF0000000009,STK00009,2025,Kia,Coupe,Base,25170,55985,29899,Red,Gray,Electric,Manual,certified,https://www.kiaofcolumbia.com/inventory/9,Kia of Columbia,2025-07-24T02:46:51.638088
+MOCKKIAOF0000000010,STK00010,2021,Kia,Truck,Base,65273,33130,11112,Blue,Black,Gasoline,Manual,used,https://www.kiaofcolumbia.com/inventory/10,Kia of Columbia,2025-07-24T02:46:51.638095
+MOCKKIAOF0000000011,STK00011,2025,Kia,Sedan,Base,51925,30516,4383,White,Black,Gasoline,Manual,new,https://www.kiaofcolumbia.com/inventory/11,Kia of Columbia,2025-07-24T02:46:51.638101
+MOCKKIAOF0000000012,STK00012,2020,Kia,Coupe,Premium,37718,64608,2867,White,Gray,Gasoline,CVT,used,https://www.kiaofcolumbia.com/inventory/12,Kia of Columbia,2025-07-24T02:46:51.638108
+MOCKKIAOF0000000013,STK00013,2022,Kia,SUV,Sport,64472,33606,15276,Red,Black,Gasoline,Manual,certified,https://www.kiaofcolumbia.com/inventory/13,Kia of Columbia,2025-07-24T02:46:51.638115
+MOCKKIAOF0000000014,STK00014,2022,Kia,Convertible,Base,56818,41942,41681,Red,Black,Gasoline,Manual,new,https://www.kiaofcolumbia.com/inventory/14,Kia of Columbia,2025-07-24T02:46:51.638121
+MOCKKIAOF0000000015,STK00015,2021,Kia,Convertible,Sport,66034,72611,44729,Silver,Tan,Electric,Automatic,new,https://www.kiaofcolumbia.com/inventory/15,Kia of Columbia,2025-07-24T02:46:51.638128
+MOCKKIAOF0000000016,STK00016,2021,Kia,Truck,Sport,36896,50051,1117,Gray,Tan,Gasoline,Automatic,new,https://www.kiaofcolumbia.com/inventory/16,Kia of Columbia,2025-07-24T02:46:51.638135
+MOCKKIAOF0000000017,STK00017,2025,Kia,Truck,Premium,52925,44173,38780,Black,Black,Gasoline,Automatic,certified,https://www.kiaofcolumbia.com/inventory/17,Kia of Columbia,2025-07-24T02:46:51.638142
+MOCKKIAOF0000000018,STK00018,2020,Kia,Convertible,Premium,29785,77603,22976,Blue,Black,Hybrid,Automatic,certified,https://www.kiaofcolumbia.com/inventory/18,Kia of Columbia,2025-07-24T02:46:51.638149
+MOCKKIAOF0000000019,STK00019,2021,Kia,SUV,Limited,25494,34843,22574,Blue,Gray,Hybrid,Automatic,used,https://www.kiaofcolumbia.com/inventory/19,Kia of Columbia,2025-07-24T02:46:51.638155
+MOCKKIAOF0000000020,STK00020,2024,Kia,Convertible,Premium,79488,81451,26076,Gray,Gray,Gasoline,Automatic,new,https://www.kiaofcolumbia.com/inventory/20,Kia of Columbia,2025-07-24T02:46:51.638162
+MOCKKIAOF0000000021,STK00021,2021,Kia,Sedan,Premium,28733,79038,9155,Red,Tan,Hybrid,Manual,certified,https://www.kiaofcolumbia.com/inventory/21,Kia of Columbia,2025-07-24T02:46:51.638168
+MOCKKIAOF0000000022,STK00022,2023,Kia,SUV,Sport,77266,53071,14904,Red,Tan,Electric,CVT,new,https://www.kiaofcolumbia.com/inventory/22,Kia of Columbia,2025-07-24T02:46:51.638175
+MOCKKIAOF0000000023,STK00023,2022,Kia,Convertible,Premium,77704,50064,31610,Red,Black,Gasoline,Manual,used,https://www.kiaofcolumbia.com/inventory/23,Kia of Columbia,2025-07-24T02:46:51.638181
+MOCKKIAOF0000000024,STK00024,2021,Kia,Coupe,Sport,41104,61572,29613,Gray,Gray,Electric,Automatic,certified,https://www.kiaofcolumbia.com/inventory/24,Kia of Columbia,2025-07-24T02:46:51.638189
+MOCKKIAOF0000000025,STK00025,2020,Kia,Convertible,Sport,71630,74767,34440,Blue,Tan,Hybrid,Automatic,new,https://www.kiaofcolumbia.com/inventory/25,Kia of Columbia,2025-07-24T02:46:51.638195
+MOCKKIAOF0000000026,STK00026,2024,Kia,Coupe,Limited,64376,69371,28155,Blue,Black,Hybrid,CVT,new,https://www.kiaofcolumbia.com/inventory/26,Kia of Columbia,2025-07-24T02:46:51.638202
+MOCKKIAOF0000000027,STK00027,2021,Kia,Truck,Sport,25539,51412,300,Gray,Tan,Electric,CVT,used,https://www.kiaofcolumbia.com/inventory/27,Kia of Columbia,2025-07-24T02:46:51.638209
+MOCKKIAOF0000000028,STK00028,2023,Kia,Sedan,Premium,27254,71262,8302,Red,Black,Electric,Automatic,used,https://www.kiaofcolumbia.com/inventory/28,Kia of Columbia,2025-07-24T02:46:51.638215
+MOCKKIAOF0000000029,STK00029,2021,Kia,Coupe,Limited,67451,44458,23584,Black,Gray,Gasoline,CVT,new,https://www.kiaofcolumbia.com/inventory/29,Kia of Columbia,2025-07-24T02:46:51.638222
+MOCKKIAOF0000000030,STK00030,2020,Kia,SUV,Premium,38376,47006,35586,White,Black,Hybrid,Automatic,new,https://www.kiaofcolumbia.com/inventory/30,Kia of Columbia,2025-07-24T02:46:51.638228
+MOCKKIAOF0000000031,STK00031,2020,Kia,Sedan,Limited,50824,48361,16969,Gray,Black,Gasoline,Manual,used,https://www.kiaofcolumbia.com/inventory/31,Kia of Columbia,2025-07-24T02:46:51.638235
+MOCKKIAOF0000000032,STK00032,2021,Kia,Coupe,Sport,30528,48449,22309,White,Black,Electric,Manual,used,https://www.kiaofcolumbia.com/inventory/32,Kia of Columbia,2025-07-24T02:46:51.638241
+MOCKKIAOF0000000033,STK00033,2023,Kia,Coupe,Base,70194,30006,23884,Gray,Black,Gasoline,CVT,used,https://www.kiaofcolumbia.com/inventory/33,Kia of Columbia,2025-07-24T02:46:51.638248
+MOCKKIAOF0000000034,STK00034,2024,Kia,Sedan,Premium,46786,36555,2361,Gray,Gray,Electric,CVT,used,https://www.kiaofcolumbia.com/inventory/34,Kia of Columbia,2025-07-24T02:46:51.638255
+MOCKLANDR0000000000,STK00000,2020,Unknown,Truck,Base,41900,69386,12130,Blue,Gray,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/0,Land Rover Ranch Mirage,2025-07-24T02:46:52.648954
+MOCKLANDR0000000001,STK00001,2024,Unknown,Sedan,Limited,25044,48815,18981,Blue,Black,Gasoline,CVT,used,https://www.landroverranchomirage.com/inventory/1,Land Rover Ranch Mirage,2025-07-24T02:46:52.648964
+MOCKLANDR0000000002,STK00002,2021,Unknown,Truck,Premium,27646,40920,21162,Silver,Gray,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/2,Land Rover Ranch Mirage,2025-07-24T02:46:52.648972
+MOCKLANDR0000000003,STK00003,2023,Unknown,Sedan,Premium,75541,56105,15151,Silver,Tan,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/3,Land Rover Ranch Mirage,2025-07-24T02:46:52.648978
+MOCKLANDR0000000004,STK00004,2020,Unknown,Coupe,Sport,67025,57222,45556,Gray,Tan,Gasoline,Manual,new,https://www.landroverranchomirage.com/inventory/4,Land Rover Ranch Mirage,2025-07-24T02:46:52.648985
+MOCKLANDR0000000005,STK00005,2022,Unknown,Sedan,Base,49880,77832,17482,White,Tan,Gasoline,Automatic,new,https://www.landroverranchomirage.com/inventory/5,Land Rover Ranch Mirage,2025-07-24T02:46:52.648992
+MOCKLANDR0000000006,STK00006,2021,Unknown,Coupe,Base,40994,43142,48609,Silver,Black,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/6,Land Rover Ranch Mirage,2025-07-24T02:46:52.648999
+MOCKLANDR0000000007,STK00007,2022,Unknown,Coupe,Premium,31349,63259,47459,Red,Gray,Electric,CVT,certified,https://www.landroverranchomirage.com/inventory/7,Land Rover Ranch Mirage,2025-07-24T02:46:52.649005
+MOCKLANDR0000000008,STK00008,2022,Unknown,Sedan,Limited,73986,42156,11438,Black,Tan,Gasoline,CVT,new,https://www.landroverranchomirage.com/inventory/8,Land Rover Ranch Mirage,2025-07-24T02:46:52.649012
+MOCKLANDR0000000009,STK00009,2020,Unknown,Coupe,Premium,61999,41442,20292,Silver,Gray,Hybrid,CVT,new,https://www.landroverranchomirage.com/inventory/9,Land Rover Ranch Mirage,2025-07-24T02:46:52.649019
+MOCKLANDR0000000010,STK00010,2021,Unknown,SUV,Sport,45621,69318,42653,Black,Gray,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/10,Land Rover Ranch Mirage,2025-07-24T02:46:52.649025
+MOCKLANDR0000000011,STK00011,2021,Unknown,Sedan,Premium,46831,72395,30224,Red,Black,Electric,Manual,new,https://www.landroverranchomirage.com/inventory/11,Land Rover Ranch Mirage,2025-07-24T02:46:52.649032
+MOCKLANDR0000000012,STK00012,2025,Unknown,Convertible,Premium,38567,38090,42399,Blue,Gray,Hybrid,Automatic,new,https://www.landroverranchomirage.com/inventory/12,Land Rover Ranch Mirage,2025-07-24T02:46:52.649038
+MOCKLANDR0000000013,STK00013,2021,Unknown,SUV,Premium,56213,71123,11466,Gray,Gray,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/13,Land Rover Ranch Mirage,2025-07-24T02:46:52.649045
+MOCKLANDR0000000014,STK00014,2022,Unknown,Truck,Sport,44997,37650,33591,Black,Black,Hybrid,Automatic,used,https://www.landroverranchomirage.com/inventory/14,Land Rover Ranch Mirage,2025-07-24T02:46:52.649052
+MOCKLANDR0000000015,STK00015,2021,Unknown,Coupe,Premium,25907,69806,41900,Black,Tan,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/15,Land Rover Ranch Mirage,2025-07-24T02:46:52.649058
+MOCKLANDR0000000016,STK00016,2020,Unknown,Truck,Base,56460,30260,5276,Blue,Tan,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/16,Land Rover Ranch Mirage,2025-07-24T02:46:52.649065
+MOCKLANDR0000000017,STK00017,2020,Unknown,Coupe,Base,57427,84529,32909,Red,Tan,Hybrid,Automatic,new,https://www.landroverranchomirage.com/inventory/17,Land Rover Ranch Mirage,2025-07-24T02:46:52.649072
+MOCKLANDR0000000018,STK00018,2021,Unknown,Sedan,Base,65008,31472,26020,Red,Black,Gasoline,Automatic,new,https://www.landroverranchomirage.com/inventory/18,Land Rover Ranch Mirage,2025-07-24T02:46:52.649078
+MOCKLANDR0000000019,STK00019,2024,Unknown,SUV,Base,44942,80886,43419,Red,Tan,Electric,Automatic,used,https://www.landroverranchomirage.com/inventory/19,Land Rover Ranch Mirage,2025-07-24T02:46:52.649085
+MOCKLANDR0000000020,STK00020,2023,Unknown,Coupe,Limited,70871,49538,23466,Gray,Gray,Electric,Automatic,used,https://www.landroverranchomirage.com/inventory/20,Land Rover Ranch Mirage,2025-07-24T02:46:52.649092
+MOCKLANDR0000000021,STK00021,2021,Unknown,SUV,Sport,53901,53005,26474,White,Gray,Gasoline,Manual,certified,https://www.landroverranchomirage.com/inventory/21,Land Rover Ranch Mirage,2025-07-24T02:46:52.649099
+MOCKLANDR0000000022,STK00022,2020,Unknown,Coupe,Base,76913,67278,42640,Red,Black,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/22,Land Rover Ranch Mirage,2025-07-24T02:46:52.649106
+MOCKLANDR0000000023,STK00023,2020,Unknown,Convertible,Sport,75876,75473,18444,Red,Gray,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/23,Land Rover Ranch Mirage,2025-07-24T02:46:52.649112
+MOCKLANDR0000000024,STK00024,2022,Unknown,Truck,Premium,42796,35641,44391,Silver,Black,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/24,Land Rover Ranch Mirage,2025-07-24T02:46:52.649119
+MOCKLANDR0000000025,STK00025,2025,Unknown,Coupe,Limited,65280,53675,19275,White,Black,Electric,CVT,certified,https://www.landroverranchomirage.com/inventory/25,Land Rover Ranch Mirage,2025-07-24T02:46:52.649126
+MOCKLANDR0000000026,STK00026,2024,Unknown,Coupe,Sport,36065,35642,31545,Black,Black,Gasoline,CVT,used,https://www.landroverranchomirage.com/inventory/26,Land Rover Ranch Mirage,2025-07-24T02:46:52.649133
+MOCKLANDR0000000027,STK00027,2020,Unknown,Sedan,Sport,49986,40214,45127,White,Gray,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/27,Land Rover Ranch Mirage,2025-07-24T02:46:52.649139
+MOCKLANDR0000000028,STK00028,2021,Unknown,Convertible,Limited,36320,78175,49733,Gray,Black,Electric,Automatic,new,https://www.landroverranchomirage.com/inventory/28,Land Rover Ranch Mirage,2025-07-24T02:46:52.649146
+MOCKLANDR0000000029,STK00029,2024,Unknown,Truck,Premium,58231,34602,18549,White,Gray,Electric,Manual,certified,https://www.landroverranchomirage.com/inventory/29,Land Rover Ranch Mirage,2025-07-24T02:46:52.649152
+MOCKLANDR0000000030,STK00030,2025,Unknown,Coupe,Sport,38127,38243,2462,Blue,Tan,Gasoline,Manual,certified,https://www.landroverranchomirage.com/inventory/30,Land Rover Ranch Mirage,2025-07-24T02:46:52.649159
+MOCKLANDR0000000031,STK00031,2025,Unknown,Coupe,Sport,67959,43553,20583,Gray,Gray,Electric,Automatic,certified,https://www.landroverranchomirage.com/inventory/31,Land Rover Ranch Mirage,2025-07-24T02:46:52.649166
+MOCKLANDR0000000032,STK00032,2024,Unknown,Convertible,Base,56286,32457,39941,Blue,Gray,Electric,CVT,used,https://www.landroverranchomirage.com/inventory/32,Land Rover Ranch Mirage,2025-07-24T02:46:52.649172
+MOCKLANDR0000000033,STK00033,2022,Unknown,Coupe,Premium,56658,65387,29278,Blue,Black,Gasoline,CVT,new,https://www.landroverranchomirage.com/inventory/33,Land Rover Ranch Mirage,2025-07-24T02:46:52.649179
+MOCKLANDR0000000034,STK00034,2020,Unknown,Sedan,Base,46662,73896,7817,White,Tan,Gasoline,Manual,used,https://www.landroverranchomirage.com/inventory/34,Land Rover Ranch Mirage,2025-07-24T02:46:52.649188
+MOCKLANDR0000000035,STK00035,2020,Unknown,Sedan,Limited,79711,30021,37931,Silver,Gray,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/35,Land Rover Ranch Mirage,2025-07-24T02:46:52.649194
+MOCKLANDR0000000036,STK00036,2022,Unknown,Sedan,Limited,33227,63253,5479,White,Gray,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/36,Land Rover Ranch Mirage,2025-07-24T02:46:52.649201
+MOCKLANDR0000000037,STK00037,2022,Unknown,Convertible,Sport,68711,69826,39550,Blue,Tan,Hybrid,CVT,used,https://www.landroverranchomirage.com/inventory/37,Land Rover Ranch Mirage,2025-07-24T02:46:52.649207
+MOCKLANDR0000000038,STK00038,2022,Unknown,SUV,Sport,73599,46331,43713,Silver,Tan,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/38,Land Rover Ranch Mirage,2025-07-24T02:46:52.649214
+MOCKLANDR0000000039,STK00039,2020,Unknown,Truck,Sport,36738,77573,10547,Blue,Gray,Electric,Manual,used,https://www.landroverranchomirage.com/inventory/39,Land Rover Ranch Mirage,2025-07-24T02:46:52.649220
+MOCKLANDR0000000040,STK00040,2024,Unknown,Coupe,Sport,62709,41381,42728,Red,Gray,Gasoline,Manual,new,https://www.landroverranchomirage.com/inventory/40,Land Rover Ranch Mirage,2025-07-24T02:46:52.649226
+MOCKLANDR0000000041,STK00041,2021,Unknown,SUV,Base,70956,38708,30168,White,Gray,Electric,CVT,certified,https://www.landroverranchomirage.com/inventory/41,Land Rover Ranch Mirage,2025-07-24T02:46:52.649233
+MOCKLANDR0000000042,STK00042,2022,Unknown,Sedan,Premium,40375,51074,9211,Silver,Tan,Hybrid,Manual,used,https://www.landroverranchomirage.com/inventory/42,Land Rover Ranch Mirage,2025-07-24T02:46:52.649239
+MOCKLANDR0000000043,STK00043,2025,Unknown,Truck,Premium,71256,49850,24499,Silver,Gray,Electric,Manual,new,https://www.landroverranchomirage.com/inventory/43,Land Rover Ranch Mirage,2025-07-24T02:46:52.649246
+MOCKLANDR0000000044,STK00044,2022,Unknown,Convertible,Premium,36842,44675,41920,White,Black,Hybrid,Automatic,used,https://www.landroverranchomirage.com/inventory/44,Land Rover Ranch Mirage,2025-07-24T02:46:52.649253
+MOCKLANDR0000000045,STK00045,2025,Unknown,SUV,Sport,31188,30854,43828,Red,Tan,Gasoline,CVT,used,https://www.landroverranchomirage.com/inventory/45,Land Rover Ranch Mirage,2025-07-24T02:46:52.649260
+MOCKLANDR0000000046,STK00046,2022,Unknown,SUV,Limited,57495,47315,18694,Silver,Gray,Gasoline,Automatic,certified,https://www.landroverranchomirage.com/inventory/46,Land Rover Ranch Mirage,2025-07-24T02:46:52.649266
+MOCKLANDR0000000047,STK00047,2023,Unknown,SUV,Base,68844,62249,19903,Silver,Gray,Gasoline,CVT,new,https://www.landroverranchomirage.com/inventory/47,Land Rover Ranch Mirage,2025-07-24T02:46:52.649273
+MOCKLANDR0000000048,STK00048,2024,Unknown,Sedan,Limited,29141,46104,1025,Silver,Tan,Hybrid,Manual,used,https://www.landroverranchomirage.com/inventory/48,Land Rover Ranch Mirage,2025-07-24T02:46:52.649279
+MOCKMINIO0000000000,STK00000,2021,MINI,Truck,Sport,25731,39003,22866,Gray,Gray,Electric,CVT,new,https://www.miniofstlouis.com/inventory/0,MINI of St. Louis,2025-07-24T02:46:53.661170
+MOCKMINIO0000000001,STK00001,2022,MINI,Convertible,Base,78551,81386,6164,White,Gray,Electric,Automatic,certified,https://www.miniofstlouis.com/inventory/1,MINI of St. Louis,2025-07-24T02:46:53.661181
+MOCKMINIO0000000002,STK00002,2022,MINI,Sedan,Premium,60043,77220,25512,Red,Tan,Gasoline,Manual,certified,https://www.miniofstlouis.com/inventory/2,MINI of St. Louis,2025-07-24T02:46:53.661188
+MOCKMINIO0000000003,STK00003,2024,MINI,Convertible,Limited,51735,58583,6382,Black,Tan,Electric,Manual,used,https://www.miniofstlouis.com/inventory/3,MINI of St. Louis,2025-07-24T02:46:53.661196
+MOCKMINIO0000000004,STK00004,2023,MINI,Sedan,Base,44203,43088,14709,Silver,Tan,Hybrid,CVT,new,https://www.miniofstlouis.com/inventory/4,MINI of St. Louis,2025-07-24T02:46:53.661203
+MOCKMINIO0000000005,STK00005,2023,MINI,Coupe,Sport,49797,52119,14043,Blue,Gray,Electric,CVT,new,https://www.miniofstlouis.com/inventory/5,MINI of St. Louis,2025-07-24T02:46:53.661210
+MOCKMINIO0000000006,STK00006,2023,MINI,Coupe,Limited,47302,30917,22907,White,Black,Electric,Automatic,used,https://www.miniofstlouis.com/inventory/6,MINI of St. Louis,2025-07-24T02:46:53.661217
+MOCKMINIO0000000007,STK00007,2020,MINI,Convertible,Base,31264,31278,9479,White,Tan,Electric,Manual,new,https://www.miniofstlouis.com/inventory/7,MINI of St. Louis,2025-07-24T02:46:53.661224
+MOCKMINIO0000000008,STK00008,2025,MINI,Coupe,Base,79276,31741,48221,Red,Tan,Hybrid,Automatic,used,https://www.miniofstlouis.com/inventory/8,MINI of St. Louis,2025-07-24T02:46:53.661231
+MOCKMINIO0000000009,STK00009,2023,MINI,Sedan,Base,60476,65088,3696,Gray,Tan,Electric,Automatic,new,https://www.miniofstlouis.com/inventory/9,MINI of St. Louis,2025-07-24T02:46:53.661238
+MOCKMINIO0000000010,STK00010,2023,MINI,Truck,Limited,72006,59283,25009,Black,Gray,Gasoline,Automatic,new,https://www.miniofstlouis.com/inventory/10,MINI of St. Louis,2025-07-24T02:46:53.661245
+MOCKMINIO0000000011,STK00011,2023,MINI,Coupe,Base,48087,37141,18495,Silver,Black,Electric,Manual,used,https://www.miniofstlouis.com/inventory/11,MINI of St. Louis,2025-07-24T02:46:53.661252
+MOCKMINIO0000000012,STK00012,2024,MINI,Coupe,Base,56943,81836,29508,White,Black,Electric,Automatic,new,https://www.miniofstlouis.com/inventory/12,MINI of St. Louis,2025-07-24T02:46:53.661259
+MOCKMINIO0000000013,STK00013,2021,MINI,SUV,Sport,27070,38807,11536,White,Gray,Electric,CVT,certified,https://www.miniofstlouis.com/inventory/13,MINI of St. Louis,2025-07-24T02:46:53.661265
+MOCKMINIO0000000014,STK00014,2020,MINI,Sedan,Premium,25606,55079,15666,Red,Tan,Electric,Manual,certified,https://www.miniofstlouis.com/inventory/14,MINI of St. Louis,2025-07-24T02:46:53.661272
+MOCKMINIO0000000015,STK00015,2024,MINI,Sedan,Limited,55568,43645,3660,Red,Black,Electric,Manual,used,https://www.miniofstlouis.com/inventory/15,MINI of St. Louis,2025-07-24T02:46:53.661279
+MOCKMINIO0000000016,STK00016,2022,MINI,SUV,Limited,73057,32106,33926,Gray,Black,Gasoline,Automatic,certified,https://www.miniofstlouis.com/inventory/16,MINI of St. Louis,2025-07-24T02:46:53.661286
+MOCKMINIO0000000017,STK00017,2022,MINI,Sedan,Base,55853,56839,37438,White,Gray,Gasoline,CVT,used,https://www.miniofstlouis.com/inventory/17,MINI of St. Louis,2025-07-24T02:46:53.661293
+MOCKMINIO0000000018,STK00018,2022,MINI,Sedan,Sport,54318,44300,2979,Black,Gray,Gasoline,CVT,used,https://www.miniofstlouis.com/inventory/18,MINI of St. Louis,2025-07-24T02:46:53.661300
+MOCKMINIO0000000019,STK00019,2025,MINI,Coupe,Sport,75151,73682,39781,White,Tan,Gasoline,CVT,new,https://www.miniofstlouis.com/inventory/19,MINI of St. Louis,2025-07-24T02:46:53.661306
+MOCKMINIO0000000020,STK00020,2020,MINI,Coupe,Sport,61765,40944,12885,Gray,Gray,Hybrid,CVT,new,https://www.miniofstlouis.com/inventory/20,MINI of St. Louis,2025-07-24T02:46:53.661313
+MOCKMINIO0000000021,STK00021,2022,MINI,SUV,Sport,40319,44959,39284,Blue,Tan,Electric,Manual,certified,https://www.miniofstlouis.com/inventory/21,MINI of St. Louis,2025-07-24T02:46:53.661320
+MOCKMINIO0000000022,STK00022,2021,MINI,Truck,Premium,45748,34247,4352,Red,Tan,Hybrid,Manual,new,https://www.miniofstlouis.com/inventory/22,MINI of St. Louis,2025-07-24T02:46:53.661327
+MOCKMINIO0000000023,STK00023,2025,MINI,SUV,Premium,55290,34644,37622,Silver,Black,Gasoline,Manual,used,https://www.miniofstlouis.com/inventory/23,MINI of St. Louis,2025-07-24T02:46:53.661334
+MOCKMINIO0000000024,STK00024,2021,MINI,Convertible,Limited,71714,75448,19697,Silver,Black,Hybrid,CVT,used,https://www.miniofstlouis.com/inventory/24,MINI of St. Louis,2025-07-24T02:46:53.661340
+MOCKMINIO0000000025,STK00025,2020,MINI,Coupe,Premium,59570,76757,32326,Silver,Tan,Electric,CVT,new,https://www.miniofstlouis.com/inventory/25,MINI of St. Louis,2025-07-24T02:46:53.661347
+MOCKMINIO0000000026,STK00026,2024,MINI,Truck,Sport,40460,67444,14036,Red,Gray,Electric,Manual,new,https://www.miniofstlouis.com/inventory/26,MINI of St. Louis,2025-07-24T02:46:53.661354
+MOCKMINIO0000000027,STK00027,2025,MINI,Sedan,Base,36601,75555,24380,Blue,Tan,Hybrid,Automatic,new,https://www.miniofstlouis.com/inventory/27,MINI of St. Louis,2025-07-24T02:46:53.661360
+MOCKMINIO0000000028,STK00028,2024,MINI,Sedan,Sport,30988,57022,9610,Red,Gray,Hybrid,CVT,certified,https://www.miniofstlouis.com/inventory/28,MINI of St. Louis,2025-07-24T02:46:53.661367
+MOCKMINIO0000000029,STK00029,2020,MINI,Truck,Limited,34137,59619,22254,Blue,Tan,Hybrid,Automatic,used,https://www.miniofstlouis.com/inventory/29,MINI of St. Louis,2025-07-24T02:46:53.661374
+MOCKMINIO0000000030,STK00030,2021,MINI,Sedan,Base,30989,57174,33425,Blue,Tan,Gasoline,Automatic,new,https://www.miniofstlouis.com/inventory/30,MINI of St. Louis,2025-07-24T02:46:53.661381
+MOCKMINIO0000000031,STK00031,2025,MINI,Coupe,Premium,57302,40988,39197,Silver,Tan,Gasoline,CVT,used,https://www.miniofstlouis.com/inventory/31,MINI of St. Louis,2025-07-24T02:46:53.661387
+MOCKMINIO0000000032,STK00032,2025,MINI,Coupe,Limited,74649,50608,41925,White,Black,Electric,Manual,certified,https://www.miniofstlouis.com/inventory/32,MINI of St. Louis,2025-07-24T02:46:53.661394
+MOCKMINIO0000000033,STK00033,2022,MINI,Sedan,Base,66961,73489,41317,Black,Tan,Electric,Manual,certified,https://www.miniofstlouis.com/inventory/33,MINI of St. Louis,2025-07-24T02:46:53.661401
+MOCKMINIO0000000034,STK00034,2021,MINI,Coupe,Sport,68970,75956,30359,Blue,Tan,Gasoline,CVT,certified,https://www.miniofstlouis.com/inventory/34,MINI of St. Louis,2025-07-24T02:46:53.661408
+MOCKMINIO0000000035,STK00035,2020,MINI,Convertible,Limited,48332,79180,46625,Black,Gray,Electric,CVT,certified,https://www.miniofstlouis.com/inventory/35,MINI of St. Louis,2025-07-24T02:46:53.661414
+MOCKMINIO0000000036,STK00036,2021,MINI,SUV,Premium,62722,70788,21101,Gray,Gray,Gasoline,Automatic,used,https://www.miniofstlouis.com/inventory/36,MINI of St. Louis,2025-07-24T02:46:53.661421
+MOCKMINIO0000000037,STK00037,2021,MINI,SUV,Premium,43405,47225,24802,White,Tan,Electric,Manual,new,https://www.miniofstlouis.com/inventory/37,MINI of St. Louis,2025-07-24T02:46:53.661428
+MOCKPAPPA0000000000,STK00000,2023,Toyota,Truck,Premium,38899,68764,21316,Blue,Black,Hybrid,Automatic,certified,https://www.pappastoyota.com/inventory/0,Pappas Toyota,2025-07-24T02:46:54.678441
+MOCKPAPPA0000000001,STK00001,2020,Toyota,Truck,Base,52999,56027,33697,Black,Tan,Hybrid,Manual,new,https://www.pappastoyota.com/inventory/1,Pappas Toyota,2025-07-24T02:46:54.678469
+MOCKPAPPA0000000002,STK00002,2025,Toyota,Convertible,Limited,50281,47767,33968,White,Tan,Hybrid,Manual,new,https://www.pappastoyota.com/inventory/2,Pappas Toyota,2025-07-24T02:46:54.678489
+MOCKPAPPA0000000003,STK00003,2025,Toyota,Sedan,Sport,28888,78590,47096,Gray,Gray,Hybrid,CVT,new,https://www.pappastoyota.com/inventory/3,Pappas Toyota,2025-07-24T02:46:54.678509
+MOCKPAPPA0000000004,STK00004,2021,Toyota,Truck,Premium,67565,51881,31323,Red,Tan,Gasoline,Automatic,certified,https://www.pappastoyota.com/inventory/4,Pappas Toyota,2025-07-24T02:46:54.678530
+MOCKPAPPA0000000005,STK00005,2023,Toyota,Coupe,Limited,51150,36368,41248,Blue,Tan,Gasoline,CVT,used,https://www.pappastoyota.com/inventory/5,Pappas Toyota,2025-07-24T02:46:54.678550
+MOCKPAPPA0000000006,STK00006,2025,Toyota,SUV,Limited,51126,67304,12226,Silver,Gray,Gasoline,Automatic,used,https://www.pappastoyota.com/inventory/6,Pappas Toyota,2025-07-24T02:46:54.678571
+MOCKPAPPA0000000007,STK00007,2021,Toyota,Truck,Premium,50429,33630,563,Silver,Tan,Electric,Manual,new,https://www.pappastoyota.com/inventory/7,Pappas Toyota,2025-07-24T02:46:54.678590
+MOCKPAPPA0000000008,STK00008,2023,Toyota,Truck,Limited,29948,73191,34244,Gray,Black,Electric,CVT,used,https://www.pappastoyota.com/inventory/8,Pappas Toyota,2025-07-24T02:46:54.678610
+MOCKPAPPA0000000009,STK00009,2023,Toyota,Truck,Base,37436,55399,28464,Red,Tan,Gasoline,Automatic,new,https://www.pappastoyota.com/inventory/9,Pappas Toyota,2025-07-24T02:46:54.678629
+MOCKPAPPA0000000010,STK00010,2024,Toyota,Coupe,Premium,78575,84487,21254,Silver,Black,Hybrid,CVT,certified,https://www.pappastoyota.com/inventory/10,Pappas Toyota,2025-07-24T02:46:54.678649
+MOCKPAPPA0000000011,STK00011,2023,Toyota,Convertible,Premium,39912,50136,12380,Black,Gray,Gasoline,Automatic,certified,https://www.pappastoyota.com/inventory/11,Pappas Toyota,2025-07-24T02:46:54.678668
+MOCKPAPPA0000000012,STK00012,2025,Toyota,Sedan,Base,62261,59135,28154,Red,Gray,Hybrid,CVT,new,https://www.pappastoyota.com/inventory/12,Pappas Toyota,2025-07-24T02:46:54.678688
+MOCKPAPPA0000000013,STK00013,2024,Toyota,SUV,Limited,74059,31459,21550,Black,Black,Gasoline,Manual,new,https://www.pappastoyota.com/inventory/13,Pappas Toyota,2025-07-24T02:46:54.678707
+MOCKPAPPA0000000014,STK00014,2021,Toyota,Convertible,Base,55630,83345,42717,Red,Tan,Electric,CVT,new,https://www.pappastoyota.com/inventory/14,Pappas Toyota,2025-07-24T02:46:54.678734
+MOCKPAPPA0000000015,STK00015,2020,Toyota,SUV,Base,32516,82981,16292,Gray,Black,Electric,Manual,new,https://www.pappastoyota.com/inventory/15,Pappas Toyota,2025-07-24T02:46:54.678754
+MOCKPAPPA0000000016,STK00016,2021,Toyota,Convertible,Limited,53080,61515,825,Silver,Gray,Gasoline,CVT,used,https://www.pappastoyota.com/inventory/16,Pappas Toyota,2025-07-24T02:46:54.678774
+MOCKPAPPA0000000017,STK00017,2023,Toyota,Truck,Limited,34668,73488,23259,Black,Gray,Hybrid,CVT,used,https://www.pappastoyota.com/inventory/17,Pappas Toyota,2025-07-24T02:46:54.678793
+MOCKPAPPA0000000018,STK00018,2023,Toyota,Sedan,Base,57047,40925,17169,Red,Gray,Hybrid,Manual,used,https://www.pappastoyota.com/inventory/18,Pappas Toyota,2025-07-24T02:46:54.678812
+MOCKPAPPA0000000019,STK00019,2025,Toyota,Truck,Limited,34636,54306,49828,Red,Tan,Gasoline,CVT,certified,https://www.pappastoyota.com/inventory/19,Pappas Toyota,2025-07-24T02:46:54.678832
+MOCKPAPPA0000000020,STK00020,2021,Toyota,Convertible,Limited,43406,40703,8818,Black,Gray,Electric,Automatic,new,https://www.pappastoyota.com/inventory/20,Pappas Toyota,2025-07-24T02:46:54.678853
+MOCKPAPPA0000000021,STK00021,2021,Toyota,SUV,Premium,49230,76156,38639,Red,Gray,Hybrid,Manual,new,https://www.pappastoyota.com/inventory/21,Pappas Toyota,2025-07-24T02:46:54.678872
+MOCKPAPPA0000000022,STK00022,2021,Toyota,Convertible,Base,41934,55344,17452,White,Gray,Hybrid,Manual,certified,https://www.pappastoyota.com/inventory/22,Pappas Toyota,2025-07-24T02:46:54.678892
+MOCKPAPPA0000000023,STK00023,2024,Toyota,Convertible,Premium,53105,78350,46802,Silver,Gray,Electric,Manual,used,https://www.pappastoyota.com/inventory/23,Pappas Toyota,2025-07-24T02:46:54.678911
+MOCKPAPPA0000000024,STK00024,2021,Toyota,Sedan,Base,41146,44879,37603,Blue,Gray,Hybrid,Automatic,new,https://www.pappastoyota.com/inventory/24,Pappas Toyota,2025-07-24T02:46:54.678931
+MOCKPAPPA0000000025,STK00025,2020,Toyota,Convertible,Premium,43912,65232,10735,White,Tan,Gasoline,CVT,new,https://www.pappastoyota.com/inventory/25,Pappas Toyota,2025-07-24T02:46:54.678950
+MOCKPAPPA0000000026,STK00026,2025,Toyota,Sedan,Base,74241,73943,20730,Red,Gray,Gasoline,Automatic,used,https://www.pappastoyota.com/inventory/26,Pappas Toyota,2025-07-24T02:46:54.678969
+MOCKPAPPA0000000027,STK00027,2025,Toyota,SUV,Premium,56528,35314,15083,White,Gray,Hybrid,Automatic,used,https://www.pappastoyota.com/inventory/27,Pappas Toyota,2025-07-24T02:46:54.678989
+MOCKPAPPA0000000028,STK00028,2020,Toyota,Convertible,Premium,75244,43403,4834,Blue,Black,Hybrid,CVT,used,https://www.pappastoyota.com/inventory/28,Pappas Toyota,2025-07-24T02:46:54.679008
+MOCKPAPPA0000000029,STK00029,2025,Toyota,Truck,Base,25185,55500,10594,Blue,Gray,Electric,CVT,used,https://www.pappastoyota.com/inventory/29,Pappas Toyota,2025-07-24T02:46:54.679027
+MOCKPORSC0000000000,STK00000,2022,Porsche,SUV,Limited,70417,30063,40254,Blue,Tan,Electric,Automatic,new,https://www.porschestlouis.com/inventory/0,Porsche St. Louis,2025-07-24T02:46:55.690776
+MOCKPORSC0000000001,STK00001,2020,Porsche,Coupe,Premium,60973,36542,12606,Red,Black,Hybrid,Automatic,new,https://www.porschestlouis.com/inventory/1,Porsche St. Louis,2025-07-24T02:46:55.690787
+MOCKPORSC0000000002,STK00002,2020,Porsche,Sedan,Sport,68300,82057,37312,Red,Gray,Hybrid,Manual,used,https://www.porschestlouis.com/inventory/2,Porsche St. Louis,2025-07-24T02:46:55.690794
+MOCKPORSC0000000003,STK00003,2025,Porsche,Sedan,Base,72769,40110,22572,Black,Black,Hybrid,Manual,used,https://www.porschestlouis.com/inventory/3,Porsche St. Louis,2025-07-24T02:46:55.690801
+MOCKPORSC0000000004,STK00004,2020,Porsche,SUV,Base,54621,62567,19347,Gray,Tan,Electric,Automatic,new,https://www.porschestlouis.com/inventory/4,Porsche St. Louis,2025-07-24T02:46:55.690808
+MOCKPORSC0000000005,STK00005,2024,Porsche,Convertible,Sport,36469,31359,3616,Blue,Tan,Electric,CVT,used,https://www.porschestlouis.com/inventory/5,Porsche St. Louis,2025-07-24T02:46:55.690815
+MOCKPORSC0000000006,STK00006,2023,Porsche,Convertible,Sport,25124,44913,16488,Black,Tan,Gasoline,Manual,new,https://www.porschestlouis.com/inventory/6,Porsche St. Louis,2025-07-24T02:46:55.690821
+MOCKPORSC0000000007,STK00007,2025,Porsche,SUV,Sport,75439,39064,6148,White,Tan,Hybrid,CVT,new,https://www.porschestlouis.com/inventory/7,Porsche St. Louis,2025-07-24T02:46:55.690828
+MOCKPORSC0000000008,STK00008,2025,Porsche,Sedan,Limited,41522,78995,25421,Silver,Black,Hybrid,Manual,new,https://www.porschestlouis.com/inventory/8,Porsche St. Louis,2025-07-24T02:46:55.690835
+MOCKPORSC0000000009,STK00009,2021,Porsche,Sedan,Premium,68209,58512,16434,Blue,Tan,Gasoline,CVT,used,https://www.porschestlouis.com/inventory/9,Porsche St. Louis,2025-07-24T02:46:55.690842
+MOCKPORSC0000000010,STK00010,2024,Porsche,Sedan,Premium,63037,84143,4618,Black,Gray,Electric,Manual,used,https://www.porschestlouis.com/inventory/10,Porsche St. Louis,2025-07-24T02:46:55.690848
+MOCKPORSC0000000011,STK00011,2025,Porsche,Coupe,Premium,54775,76114,36199,Gray,Gray,Gasoline,Manual,used,https://www.porschestlouis.com/inventory/11,Porsche St. Louis,2025-07-24T02:46:55.690856
+MOCKPORSC0000000012,STK00012,2022,Porsche,Truck,Sport,79831,30191,18830,Gray,Gray,Gasoline,CVT,used,https://www.porschestlouis.com/inventory/12,Porsche St. Louis,2025-07-24T02:46:55.690862
+MOCKPORSC0000000013,STK00013,2020,Porsche,Truck,Base,73702,45589,5053,White,Black,Gasoline,CVT,new,https://www.porschestlouis.com/inventory/13,Porsche St. Louis,2025-07-24T02:46:55.690870
+MOCKPORSC0000000014,STK00014,2020,Porsche,Coupe,Limited,29393,42424,20295,Blue,Black,Electric,CVT,certified,https://www.porschestlouis.com/inventory/14,Porsche St. Louis,2025-07-24T02:46:55.690876
+MOCKPORSC0000000015,STK00015,2021,Porsche,Sedan,Premium,27972,75561,34712,White,Gray,Gasoline,CVT,new,https://www.porschestlouis.com/inventory/15,Porsche St. Louis,2025-07-24T02:46:55.690883
+MOCKPORSC0000000016,STK00016,2020,Porsche,Coupe,Base,74084,62103,38367,White,Black,Gasoline,Automatic,new,https://www.porschestlouis.com/inventory/16,Porsche St. Louis,2025-07-24T02:46:55.690890
+MOCKPORSC0000000017,STK00017,2020,Porsche,Coupe,Sport,45861,47833,1519,Black,Gray,Electric,CVT,certified,https://www.porschestlouis.com/inventory/17,Porsche St. Louis,2025-07-24T02:46:55.690897
+MOCKPORSC0000000018,STK00018,2020,Porsche,SUV,Premium,70567,37666,32319,Silver,Gray,Hybrid,CVT,new,https://www.porschestlouis.com/inventory/18,Porsche St. Louis,2025-07-24T02:46:55.690903
+MOCKPORSC0000000019,STK00019,2022,Porsche,Truck,Limited,40680,40054,10963,Blue,Gray,Hybrid,Manual,new,https://www.porschestlouis.com/inventory/19,Porsche St. Louis,2025-07-24T02:46:55.690910
+MOCKPORSC0000000020,STK00020,2025,Porsche,Truck,Sport,38524,59539,20707,Red,Tan,Hybrid,Manual,used,https://www.porschestlouis.com/inventory/20,Porsche St. Louis,2025-07-24T02:46:55.690917
+MOCKPORSC0000000021,STK00021,2020,Porsche,Coupe,Limited,53392,69128,33415,Gray,Gray,Hybrid,CVT,used,https://www.porschestlouis.com/inventory/21,Porsche St. Louis,2025-07-24T02:46:55.690924
+MOCKPORSC0000000022,STK00022,2024,Porsche,Truck,Base,32237,74948,2782,Blue,Black,Electric,CVT,used,https://www.porschestlouis.com/inventory/22,Porsche St. Louis,2025-07-24T02:46:55.690931
+MOCKPORSC0000000023,STK00023,2021,Porsche,SUV,Base,35465,47502,28188,Blue,Tan,Hybrid,Manual,new,https://www.porschestlouis.com/inventory/23,Porsche St. Louis,2025-07-24T02:46:55.690938
+MOCKPORSC0000000024,STK00024,2021,Porsche,Truck,Sport,45125,35617,36730,Red,Gray,Hybrid,Manual,new,https://www.porschestlouis.com/inventory/24,Porsche St. Louis,2025-07-24T02:46:55.690945
+MOCKPORSC0000000025,STK00025,2020,Porsche,Truck,Sport,26877,80388,38592,Blue,Gray,Electric,CVT,certified,https://www.porschestlouis.com/inventory/25,Porsche St. Louis,2025-07-24T02:46:55.690952
+MOCKPORSC0000000026,STK00026,2023,Porsche,SUV,Sport,54055,65039,8870,Black,Tan,Electric,CVT,new,https://www.porschestlouis.com/inventory/26,Porsche St. Louis,2025-07-24T02:46:55.690958
+MOCKPORSC0000000027,STK00027,2023,Porsche,Truck,Base,42977,80622,2884,Gray,Black,Gasoline,CVT,new,https://www.porschestlouis.com/inventory/27,Porsche St. Louis,2025-07-24T02:46:55.690965
+MOCKPORSC0000000028,STK00028,2021,Porsche,Coupe,Sport,38455,31061,34343,Gray,Tan,Electric,Manual,certified,https://www.porschestlouis.com/inventory/28,Porsche St. Louis,2025-07-24T02:46:55.690971
+MOCKPORSC0000000029,STK00029,2024,Porsche,Sedan,Premium,54233,32948,26064,White,Tan,Hybrid,Manual,certified,https://www.porschestlouis.com/inventory/29,Porsche St. Louis,2025-07-24T02:46:55.690978
+MOCKPORSC0000000030,STK00030,2023,Porsche,Sedan,Sport,44892,78160,7463,Gray,Gray,Electric,CVT,used,https://www.porschestlouis.com/inventory/30,Porsche St. Louis,2025-07-24T02:46:55.690985
+MOCKPORSC0000000031,STK00031,2025,Porsche,Convertible,Premium,45191,84727,23692,Gray,Tan,Hybrid,Automatic,new,https://www.porschestlouis.com/inventory/31,Porsche St. Louis,2025-07-24T02:46:55.690991
+MOCKPORSC0000000032,STK00032,2021,Porsche,Coupe,Base,51272,82163,23580,Red,Tan,Electric,Automatic,certified,https://www.porschestlouis.com/inventory/32,Porsche St. Louis,2025-07-24T02:46:55.690998
+MOCKPORSC0000000033,STK00033,2020,Porsche,Convertible,Sport,26482,35890,43424,Black,Black,Gasoline,Automatic,new,https://www.porschestlouis.com/inventory/33,Porsche St. Louis,2025-07-24T02:46:55.691005
+MOCKPORSC0000000034,STK00034,2024,Porsche,Convertible,Sport,63789,32908,36972,Black,Tan,Gasoline,Automatic,certified,https://www.porschestlouis.com/inventory/34,Porsche St. Louis,2025-07-24T02:46:55.691012
+MOCKPORSC0000000035,STK00035,2020,Porsche,Coupe,Premium,79754,52674,36479,White,Black,Gasoline,Manual,new,https://www.porschestlouis.com/inventory/35,Porsche St. Louis,2025-07-24T02:46:55.691018
+MOCKPORSC0000000036,STK00036,2022,Porsche,Truck,Premium,62483,49623,24226,Silver,Tan,Electric,CVT,used,https://www.porschestlouis.com/inventory/36,Porsche St. Louis,2025-07-24T02:46:55.691024
+MOCKPORSC0000000037,STK00037,2024,Porsche,Coupe,Premium,70536,59496,38923,Silver,Black,Electric,Automatic,certified,https://www.porschestlouis.com/inventory/37,Porsche St. Louis,2025-07-24T02:46:55.691031
+MOCKPORSC0000000038,STK00038,2021,Porsche,Sedan,Base,64277,44495,44691,Gray,Gray,Gasoline,Manual,certified,https://www.porschestlouis.com/inventory/38,Porsche St. Louis,2025-07-24T02:46:55.691037
+MOCKPORSC0000000039,STK00039,2024,Porsche,Convertible,Base,43302,47522,17327,Red,Black,Gasoline,Automatic,certified,https://www.porschestlouis.com/inventory/39,Porsche St. Louis,2025-07-24T02:46:55.691044
+MOCKPUNDM0000000000,STK00000,2020,Ford,SUV,Limited,31637,67580,25910,Red,Gray,Hybrid,CVT,certified,https://www.pundmannford.com/inventory/0,Pundmann Ford,2025-07-24T02:46:56.707577
+MOCKPUNDM0000000001,STK00001,2024,Ford,Sedan,Base,38574,71496,25493,Gray,Tan,Hybrid,Automatic,used,https://www.pundmannford.com/inventory/1,Pundmann Ford,2025-07-24T02:46:56.707604
+MOCKPUNDM0000000002,STK00002,2020,Ford,Convertible,Premium,42774,53181,34032,White,Gray,Electric,Manual,new,https://www.pundmannford.com/inventory/2,Pundmann Ford,2025-07-24T02:46:56.707626
+MOCKPUNDM0000000003,STK00003,2020,Ford,Sedan,Base,66543,54366,16110,White,Gray,Electric,Automatic,certified,https://www.pundmannford.com/inventory/3,Pundmann Ford,2025-07-24T02:46:56.707648
+MOCKPUNDM0000000004,STK00004,2024,Ford,Sedan,Limited,66514,53438,46536,Black,Tan,Hybrid,CVT,new,https://www.pundmannford.com/inventory/4,Pundmann Ford,2025-07-24T02:46:56.707669
+MOCKPUNDM0000000005,STK00005,2024,Ford,Sedan,Premium,38709,35829,45117,White,Black,Hybrid,CVT,used,https://www.pundmannford.com/inventory/5,Pundmann Ford,2025-07-24T02:46:56.707689
+MOCKPUNDM0000000006,STK00006,2024,Ford,Sedan,Limited,60946,59167,23795,Red,Tan,Gasoline,CVT,used,https://www.pundmannford.com/inventory/6,Pundmann Ford,2025-07-24T02:46:56.707710
+MOCKPUNDM0000000007,STK00007,2024,Ford,Coupe,Limited,54878,63348,5739,Silver,Gray,Hybrid,Automatic,used,https://www.pundmannford.com/inventory/7,Pundmann Ford,2025-07-24T02:46:56.707731
+MOCKPUNDM0000000008,STK00008,2020,Ford,SUV,Premium,49433,46377,7345,Silver,Black,Gasoline,CVT,certified,https://www.pundmannford.com/inventory/8,Pundmann Ford,2025-07-24T02:46:56.707750
+MOCKPUNDM0000000009,STK00009,2025,Ford,Truck,Base,43339,32459,48577,Gray,Gray,Gasoline,CVT,new,https://www.pundmannford.com/inventory/9,Pundmann Ford,2025-07-24T02:46:56.707770
+MOCKPUNDM0000000010,STK00010,2025,Ford,Sedan,Limited,69965,83390,33856,Red,Tan,Hybrid,Automatic,new,https://www.pundmannford.com/inventory/10,Pundmann Ford,2025-07-24T02:46:56.707790
+MOCKPUNDM0000000011,STK00011,2023,Ford,SUV,Premium,29584,82689,31162,Red,Black,Hybrid,CVT,used,https://www.pundmannford.com/inventory/11,Pundmann Ford,2025-07-24T02:46:56.707810
+MOCKPUNDM0000000012,STK00012,2020,Ford,Truck,Premium,70181,48388,19075,Black,Gray,Electric,Automatic,certified,https://www.pundmannford.com/inventory/12,Pundmann Ford,2025-07-24T02:46:56.707829
+MOCKPUNDM0000000013,STK00013,2023,Ford,Coupe,Sport,42543,74303,30229,Blue,Gray,Electric,CVT,new,https://www.pundmannford.com/inventory/13,Pundmann Ford,2025-07-24T02:46:56.707848
+MOCKPUNDM0000000014,STK00014,2025,Ford,Convertible,Limited,58435,42977,13054,Red,Tan,Hybrid,Manual,new,https://www.pundmannford.com/inventory/14,Pundmann Ford,2025-07-24T02:46:56.707868
+MOCKPUNDM0000000015,STK00015,2021,Ford,Convertible,Base,45303,74556,17314,Blue,Black,Hybrid,Manual,certified,https://www.pundmannford.com/inventory/15,Pundmann Ford,2025-07-24T02:46:56.707887
+MOCKPUNDM0000000016,STK00016,2023,Ford,Truck,Sport,28808,72825,10973,Silver,Gray,Hybrid,CVT,new,https://www.pundmannford.com/inventory/16,Pundmann Ford,2025-07-24T02:46:56.707907
+MOCKPUNDM0000000017,STK00017,2025,Ford,Truck,Base,44214,70456,1115,White,Gray,Electric,CVT,certified,https://www.pundmannford.com/inventory/17,Pundmann Ford,2025-07-24T02:46:56.707927
+MOCKPUNDM0000000018,STK00018,2022,Ford,Convertible,Base,29043,68859,18560,Gray,Tan,Electric,Manual,certified,https://www.pundmannford.com/inventory/18,Pundmann Ford,2025-07-24T02:46:56.707947
+MOCKPUNDM0000000019,STK00019,2022,Ford,Truck,Sport,60930,62149,2830,White,Tan,Electric,Manual,used,https://www.pundmannford.com/inventory/19,Pundmann Ford,2025-07-24T02:46:56.707967
+MOCKPUNDM0000000020,STK00020,2021,Ford,SUV,Base,76014,36068,31614,White,Gray,Gasoline,Manual,new,https://www.pundmannford.com/inventory/20,Pundmann Ford,2025-07-24T02:46:56.707986
+MOCKPUNDM0000000021,STK00021,2025,Ford,Convertible,Sport,74430,83911,27090,Gray,Gray,Gasoline,Manual,new,https://www.pundmannford.com/inventory/21,Pundmann Ford,2025-07-24T02:46:56.708006
+MOCKPUNDM0000000022,STK00022,2022,Ford,Sedan,Premium,34127,82994,45180,Silver,Black,Electric,CVT,certified,https://www.pundmannford.com/inventory/22,Pundmann Ford,2025-07-24T02:46:56.708025
+MOCKPUNDM0000000023,STK00023,2020,Ford,Sedan,Sport,55928,56289,16515,Gray,Black,Gasoline,Automatic,new,https://www.pundmannford.com/inventory/23,Pundmann Ford,2025-07-24T02:46:56.708045
+MOCKPUNDM0000000024,STK00024,2025,Ford,Sedan,Limited,37704,75200,3835,Red,Tan,Hybrid,CVT,new,https://www.pundmannford.com/inventory/24,Pundmann Ford,2025-07-24T02:46:56.708064
+MOCKPUNDM0000000025,STK00025,2024,Ford,Truck,Base,45837,79472,19941,Gray,Tan,Hybrid,Automatic,new,https://www.pundmannford.com/inventory/25,Pundmann Ford,2025-07-24T02:46:56.708084
+MOCKPUNDM0000000026,STK00026,2022,Ford,Truck,Limited,79103,39652,38717,Gray,Gray,Gasoline,CVT,certified,https://www.pundmannford.com/inventory/26,Pundmann Ford,2025-07-24T02:46:56.708103
+MOCKPUNDM0000000027,STK00027,2022,Ford,Truck,Base,48927,36856,36762,Gray,Gray,Electric,Manual,certified,https://www.pundmannford.com/inventory/27,Pundmann Ford,2025-07-24T02:46:56.708123
+MOCKRUSTY0000000000,STK00000,2025,Cadillac,Convertible,Premium,27539,62379,4573,Blue,Tan,Electric,Manual,new,https://www.rustydrewingcadillac.com/inventory/0,Rusty Drewing Cadillac,2025-07-24T02:46:57.718355
+MOCKRUSTY0000000001,STK00001,2020,Cadillac,Convertible,Premium,66410,82268,25156,Black,Gray,Hybrid,Automatic,certified,https://www.rustydrewingcadillac.com/inventory/1,Rusty Drewing Cadillac,2025-07-24T02:46:57.718365
+MOCKRUSTY0000000002,STK00002,2021,Cadillac,Convertible,Sport,51538,50451,29993,White,Tan,Hybrid,CVT,used,https://www.rustydrewingcadillac.com/inventory/2,Rusty Drewing Cadillac,2025-07-24T02:46:57.718372
+MOCKRUSTY0000000003,STK00003,2024,Cadillac,Coupe,Limited,57306,32768,20664,Gray,Black,Hybrid,CVT,new,https://www.rustydrewingcadillac.com/inventory/3,Rusty Drewing Cadillac,2025-07-24T02:46:57.718380
+MOCKRUSTY0000000004,STK00004,2021,Cadillac,Truck,Premium,25906,59262,22565,White,Black,Gasoline,CVT,certified,https://www.rustydrewingcadillac.com/inventory/4,Rusty Drewing Cadillac,2025-07-24T02:46:57.718386
+MOCKRUSTY0000000005,STK00005,2025,Cadillac,Coupe,Limited,39905,76475,17464,Blue,Gray,Electric,Automatic,used,https://www.rustydrewingcadillac.com/inventory/5,Rusty Drewing Cadillac,2025-07-24T02:46:57.718393
+MOCKRUSTY0000000006,STK00006,2024,Cadillac,Sedan,Premium,46716,44323,17954,Blue,Tan,Hybrid,CVT,new,https://www.rustydrewingcadillac.com/inventory/6,Rusty Drewing Cadillac,2025-07-24T02:46:57.718400
+MOCKRUSTY0000000007,STK00007,2021,Cadillac,Convertible,Sport,42996,80200,48453,Blue,Gray,Gasoline,Manual,used,https://www.rustydrewingcadillac.com/inventory/7,Rusty Drewing Cadillac,2025-07-24T02:46:57.718407
+MOCKRUSTY0000000008,STK00008,2023,Cadillac,Truck,Sport,75942,73975,41869,Gray,Tan,Hybrid,Manual,used,https://www.rustydrewingcadillac.com/inventory/8,Rusty Drewing Cadillac,2025-07-24T02:46:57.718413
+MOCKRUSTY0000000009,STK00009,2023,Cadillac,Sedan,Limited,49764,32361,36041,Silver,Gray,Electric,CVT,used,https://www.rustydrewingcadillac.com/inventory/9,Rusty Drewing Cadillac,2025-07-24T02:46:57.718420
+MOCKRUSTY0000000010,STK00010,2020,Cadillac,Truck,Sport,31403,47648,14389,Red,Black,Gasoline,Manual,new,https://www.rustydrewingcadillac.com/inventory/10,Rusty Drewing Cadillac,2025-07-24T02:46:57.718427
+MOCKRUSTY0000000011,STK00011,2025,Cadillac,Convertible,Premium,46208,79095,24299,Gray,Gray,Gasoline,CVT,new,https://www.rustydrewingcadillac.com/inventory/11,Rusty Drewing Cadillac,2025-07-24T02:46:57.718433
+MOCKRUSTY0000000012,STK00012,2020,Cadillac,Sedan,Base,47968,77535,37808,Blue,Black,Electric,Manual,used,https://www.rustydrewingcadillac.com/inventory/12,Rusty Drewing Cadillac,2025-07-24T02:46:57.718441
+MOCKRUSTY0000000013,STK00013,2024,Cadillac,Coupe,Limited,67600,39199,25268,Silver,Gray,Gasoline,Manual,used,https://www.rustydrewingcadillac.com/inventory/13,Rusty Drewing Cadillac,2025-07-24T02:46:57.718448
+MOCKRUSTY0000000014,STK00014,2024,Cadillac,Truck,Limited,25565,33067,10562,White,Black,Electric,CVT,used,https://www.rustydrewingcadillac.com/inventory/14,Rusty Drewing Cadillac,2025-07-24T02:46:57.718455
+MOCKRUSTY0000000015,STK00015,2021,Cadillac,Coupe,Base,25290,67057,40366,Red,Black,Hybrid,Automatic,used,https://www.rustydrewingcadillac.com/inventory/15,Rusty Drewing Cadillac,2025-07-24T02:46:57.718461
+MOCKRUSTY0000000016,STK00016,2020,Cadillac,Convertible,Limited,52370,42884,19634,Red,Gray,Gasoline,Automatic,certified,https://www.rustydrewingcadillac.com/inventory/16,Rusty Drewing Cadillac,2025-07-24T02:46:57.718468
+MOCKRUSTY0000000017,STK00017,2022,Cadillac,Coupe,Base,78419,68085,42565,White,Black,Electric,CVT,certified,https://www.rustydrewingcadillac.com/inventory/17,Rusty Drewing Cadillac,2025-07-24T02:46:57.718475
+MOCKRUSTY0000000018,STK00018,2024,Cadillac,Coupe,Limited,54780,49194,48017,White,Black,Gasoline,Manual,new,https://www.rustydrewingcadillac.com/inventory/18,Rusty Drewing Cadillac,2025-07-24T02:46:57.718482
+MOCKRUSTY0000000019,STK00019,2020,Cadillac,Sedan,Sport,52018,48322,17917,Blue,Tan,Electric,Manual,certified,https://www.rustydrewingcadillac.com/inventory/19,Rusty Drewing Cadillac,2025-07-24T02:46:57.718488
+MOCKRUSTY0000000020,STK00020,2022,Cadillac,SUV,Limited,48118,69477,14122,Black,Gray,Electric,CVT,used,https://www.rustydrewingcadillac.com/inventory/20,Rusty Drewing Cadillac,2025-07-24T02:46:57.718495
+MOCKRUSTY0000000021,STK00021,2024,Cadillac,Sedan,Limited,28368,31155,44560,Silver,Tan,Electric,CVT,certified,https://www.rustydrewingcadillac.com/inventory/21,Rusty Drewing Cadillac,2025-07-24T02:46:57.718501
+MOCKRUSTY0000000000,STK00000,2025,Chevrolet,Truck,Base,46317,65095,40471,Blue,Black,Hybrid,Automatic,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/0,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732672
+MOCKRUSTY0000000001,STK00001,2023,Chevrolet,Convertible,Limited,60830,33776,47873,Black,Gray,Gasoline,Automatic,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/1,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732682
+MOCKRUSTY0000000002,STK00002,2021,Chevrolet,SUV,Sport,67877,67088,46187,White,Tan,Gasoline,Automatic,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/2,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732690
+MOCKRUSTY0000000003,STK00003,2021,Chevrolet,Coupe,Premium,32976,38925,31944,Gray,Black,Hybrid,CVT,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/3,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732697
+MOCKRUSTY0000000004,STK00004,2022,Chevrolet,SUV,Sport,25039,40224,17229,Gray,Tan,Hybrid,Manual,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/4,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732704
+MOCKRUSTY0000000005,STK00005,2020,Chevrolet,Convertible,Limited,37957,65366,37584,Gray,Tan,Hybrid,Manual,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/5,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732711
+MOCKRUSTY0000000006,STK00006,2024,Chevrolet,Convertible,Sport,74492,80572,37250,Red,Tan,Electric,Automatic,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/6,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732718
+MOCKRUSTY0000000007,STK00007,2022,Chevrolet,Truck,Sport,42603,50463,30918,Gray,Black,Hybrid,CVT,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/7,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732724
+MOCKRUSTY0000000008,STK00008,2023,Chevrolet,Sedan,Base,35502,61431,29567,Black,Black,Gasoline,Automatic,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/8,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732731
+MOCKRUSTY0000000009,STK00009,2025,Chevrolet,Truck,Sport,58381,65795,42511,Blue,Gray,Gasoline,CVT,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/9,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732739
+MOCKRUSTY0000000010,STK00010,2020,Chevrolet,Sedan,Premium,57500,59406,5910,Blue,Gray,Electric,CVT,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/10,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732745
+MOCKRUSTY0000000011,STK00011,2024,Chevrolet,Coupe,Premium,51893,52386,5188,Blue,Tan,Gasoline,Automatic,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/11,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732752
+MOCKRUSTY0000000012,STK00012,2022,Chevrolet,Coupe,Limited,63356,77886,13635,Red,Black,Gasoline,Automatic,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/12,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732759
+MOCKRUSTY0000000013,STK00013,2023,Chevrolet,SUV,Limited,49810,61504,14938,Gray,Black,Electric,Manual,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/13,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732765
+MOCKRUSTY0000000014,STK00014,2022,Chevrolet,Convertible,Premium,40889,38128,2252,Black,Tan,Electric,Automatic,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/14,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732772
+MOCKRUSTY0000000015,STK00015,2022,Chevrolet,SUV,Base,32811,62890,15367,Black,Tan,Electric,CVT,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/15,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732779
+MOCKRUSTY0000000016,STK00016,2020,Chevrolet,Sedan,Base,54946,67590,30405,White,Black,Hybrid,CVT,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/16,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732785
+MOCKRUSTY0000000017,STK00017,2020,Chevrolet,SUV,Sport,68699,65410,18625,White,Black,Hybrid,Automatic,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/17,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732792
+MOCKRUSTY0000000018,STK00018,2024,Chevrolet,Truck,Limited,36265,77173,29476,Silver,Black,Hybrid,Manual,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/18,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732799
+MOCKRUSTY0000000019,STK00019,2020,Chevrolet,Truck,Limited,45072,38449,11884,Black,Tan,Gasoline,CVT,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/19,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732806
+MOCKRUSTY0000000020,STK00020,2023,Chevrolet,Sedan,Premium,56749,50340,35692,Silver,Gray,Gasoline,CVT,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/20,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732813
+MOCKRUSTY0000000021,STK00021,2022,Chevrolet,Coupe,Premium,67624,52907,31196,Blue,Gray,Hybrid,CVT,used,https://www.rustydrewingchevroletbuickgmc.com/inventory/21,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732820
+MOCKRUSTY0000000022,STK00022,2023,Chevrolet,SUV,Sport,38223,43974,25868,Blue,Tan,Gasoline,CVT,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/22,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732826
+MOCKRUSTY0000000023,STK00023,2022,Chevrolet,Truck,Base,55358,64840,18701,Gray,Black,Gasoline,CVT,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/23,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732833
+MOCKRUSTY0000000024,STK00024,2024,Chevrolet,Coupe,Limited,56846,71117,15578,Blue,Tan,Hybrid,Manual,certified,https://www.rustydrewingchevroletbuickgmc.com/inventory/24,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732840
+MOCKRUSTY0000000025,STK00025,2023,Chevrolet,Convertible,Premium,40390,71306,8863,White,Gray,Gasoline,Manual,new,https://www.rustydrewingchevroletbuickgmc.com/inventory/25,Rusty Drewing Chevrolet Buick GMC,2025-07-24T02:46:58.732847
+MOCKSERRA0000000000,STK00000,2020,Honda,Sedan,Base,25148,52366,2138,Red,Black,Gasoline,Manual,used,https://www.serrahondaofallon.com/inventory/0,Serra Honda of O'Fallon,2025-07-24T02:46:59.739218
+MOCKSERRA0000000001,STK00001,2024,Honda,SUV,Sport,71515,62784,2017,Red,Black,Electric,Automatic,new,https://www.serrahondaofallon.com/inventory/1,Serra Honda of O'Fallon,2025-07-24T02:46:59.739228
+MOCKSERRA0000000002,STK00002,2022,Honda,Sedan,Sport,30804,55726,20470,White,Black,Electric,Automatic,certified,https://www.serrahondaofallon.com/inventory/2,Serra Honda of O'Fallon,2025-07-24T02:46:59.739235
+MOCKSERRA0000000003,STK00003,2023,Honda,Coupe,Limited,47903,83333,7507,Red,Gray,Gasoline,Automatic,certified,https://www.serrahondaofallon.com/inventory/3,Serra Honda of O'Fallon,2025-07-24T02:46:59.739242
+MOCKSERRA0000000004,STK00004,2021,Honda,Truck,Base,63766,84598,3488,Silver,Gray,Gasoline,Manual,used,https://www.serrahondaofallon.com/inventory/4,Serra Honda of O'Fallon,2025-07-24T02:46:59.739249
+MOCKSERRA0000000005,STK00005,2021,Honda,Truck,Premium,70129,57247,44005,White,Gray,Hybrid,Manual,used,https://www.serrahondaofallon.com/inventory/5,Serra Honda of O'Fallon,2025-07-24T02:46:59.739256
+MOCKSERRA0000000006,STK00006,2021,Honda,Coupe,Base,50047,30558,18689,Blue,Gray,Electric,Automatic,certified,https://www.serrahondaofallon.com/inventory/6,Serra Honda of O'Fallon,2025-07-24T02:46:59.739264
+MOCKSERRA0000000007,STK00007,2025,Honda,Coupe,Premium,67958,55918,10035,White,Gray,Hybrid,Automatic,certified,https://www.serrahondaofallon.com/inventory/7,Serra Honda of O'Fallon,2025-07-24T02:46:59.739270
+MOCKSERRA0000000008,STK00008,2025,Honda,Truck,Base,38012,34014,40802,Gray,Gray,Electric,CVT,certified,https://www.serrahondaofallon.com/inventory/8,Serra Honda of O'Fallon,2025-07-24T02:46:59.739278
+MOCKSERRA0000000009,STK00009,2025,Honda,Sedan,Sport,50563,45734,49909,Red,Black,Hybrid,CVT,new,https://www.serrahondaofallon.com/inventory/9,Serra Honda of O'Fallon,2025-07-24T02:46:59.739285
+MOCKSERRA0000000010,STK00010,2020,Honda,Coupe,Limited,68971,52768,2755,Red,Tan,Hybrid,CVT,used,https://www.serrahondaofallon.com/inventory/10,Serra Honda of O'Fallon,2025-07-24T02:46:59.739292
+MOCKSERRA0000000011,STK00011,2020,Honda,Convertible,Premium,57727,63574,24111,Silver,Gray,Hybrid,Manual,new,https://www.serrahondaofallon.com/inventory/11,Serra Honda of O'Fallon,2025-07-24T02:46:59.739299
+MOCKSERRA0000000012,STK00012,2025,Honda,Convertible,Premium,64606,39670,44157,Gray,Gray,Gasoline,CVT,used,https://www.serrahondaofallon.com/inventory/12,Serra Honda of O'Fallon,2025-07-24T02:46:59.739306
+MOCKSERRA0000000013,STK00013,2025,Honda,Sedan,Sport,48503,83618,27734,Silver,Gray,Hybrid,Automatic,certified,https://www.serrahondaofallon.com/inventory/13,Serra Honda of O'Fallon,2025-07-24T02:46:59.739313
+MOCKSERRA0000000014,STK00014,2023,Honda,Coupe,Base,58549,65730,23754,Red,Gray,Gasoline,CVT,used,https://www.serrahondaofallon.com/inventory/14,Serra Honda of O'Fallon,2025-07-24T02:46:59.739320
+MOCKSERRA0000000015,STK00015,2021,Honda,Convertible,Premium,47598,40068,45154,Silver,Tan,Hybrid,Automatic,used,https://www.serrahondaofallon.com/inventory/15,Serra Honda of O'Fallon,2025-07-24T02:46:59.739327
+MOCKSERRA0000000016,STK00016,2022,Honda,Truck,Limited,34830,76953,274,White,Gray,Electric,Automatic,used,https://www.serrahondaofallon.com/inventory/16,Serra Honda of O'Fallon,2025-07-24T02:46:59.739334
+MOCKSERRA0000000017,STK00017,2020,Honda,Coupe,Premium,53178,59280,27660,Silver,Black,Electric,Manual,certified,https://www.serrahondaofallon.com/inventory/17,Serra Honda of O'Fallon,2025-07-24T02:46:59.739340
+MOCKSERRA0000000018,STK00018,2021,Honda,Coupe,Premium,46866,51685,295,Black,Gray,Electric,Manual,used,https://www.serrahondaofallon.com/inventory/18,Serra Honda of O'Fallon,2025-07-24T02:46:59.739347
+MOCKSERRA0000000019,STK00019,2025,Honda,SUV,Limited,60999,61377,46425,Black,Gray,Hybrid,CVT,used,https://www.serrahondaofallon.com/inventory/19,Serra Honda of O'Fallon,2025-07-24T02:46:59.739354
+MOCKSERRA0000000020,STK00020,2025,Honda,Convertible,Sport,33717,36786,38582,Black,Black,Gasoline,CVT,certified,https://www.serrahondaofallon.com/inventory/20,Serra Honda of O'Fallon,2025-07-24T02:46:59.739361
+MOCKSERRA0000000021,STK00021,2025,Honda,SUV,Limited,56992,44829,39764,Black,Tan,Hybrid,CVT,new,https://www.serrahondaofallon.com/inventory/21,Serra Honda of O'Fallon,2025-07-24T02:46:59.739367
+MOCKSERRA0000000022,STK00022,2024,Honda,Truck,Limited,72620,36140,9392,White,Gray,Hybrid,CVT,certified,https://www.serrahondaofallon.com/inventory/22,Serra Honda of O'Fallon,2025-07-24T02:46:59.739374
+MOCKSERRA0000000023,STK00023,2024,Honda,Truck,Limited,39645,69926,43488,White,Gray,Gasoline,Manual,certified,https://www.serrahondaofallon.com/inventory/23,Serra Honda of O'Fallon,2025-07-24T02:46:59.739381
+MOCKSERRA0000000024,STK00024,2023,Honda,Sedan,Base,41366,41921,28147,Black,Black,Gasoline,Automatic,used,https://www.serrahondaofallon.com/inventory/24,Serra Honda of O'Fallon,2025-07-24T02:46:59.739388
+MOCKSERRA0000000025,STK00025,2021,Honda,Convertible,Base,55023,63049,42521,Silver,Black,Hybrid,Automatic,used,https://www.serrahondaofallon.com/inventory/25,Serra Honda of O'Fallon,2025-07-24T02:46:59.739395
+MOCKSERRA0000000026,STK00026,2022,Honda,Convertible,Limited,48384,35192,46244,Blue,Tan,Gasoline,Automatic,certified,https://www.serrahondaofallon.com/inventory/26,Serra Honda of O'Fallon,2025-07-24T02:46:59.739401
+MOCKSERRA0000000027,STK00027,2023,Honda,Convertible,Limited,71936,33033,4911,Gray,Gray,Electric,Manual,certified,https://www.serrahondaofallon.com/inventory/27,Serra Honda of O'Fallon,2025-07-24T02:46:59.739408
+MOCKSERRA0000000028,STK00028,2024,Honda,Coupe,Sport,34072,38694,28968,Blue,Tan,Electric,Automatic,new,https://www.serrahondaofallon.com/inventory/28,Serra Honda of O'Fallon,2025-07-24T02:46:59.739415
+MOCKSERRA0000000029,STK00029,2025,Honda,SUV,Limited,36858,75078,36439,Red,Gray,Electric,Manual,certified,https://www.serrahondaofallon.com/inventory/29,Serra Honda of O'Fallon,2025-07-24T02:46:59.739421
+MOCKSERRA0000000030,STK00030,2024,Honda,SUV,Base,47058,60924,21485,White,Tan,Gasoline,Manual,used,https://www.serrahondaofallon.com/inventory/30,Serra Honda of O'Fallon,2025-07-24T02:46:59.739427
+MOCKSERRA0000000031,STK00031,2023,Honda,Coupe,Base,31234,72922,35709,Silver,Black,Electric,CVT,used,https://www.serrahondaofallon.com/inventory/31,Serra Honda of O'Fallon,2025-07-24T02:46:59.739434
+MOCKSERRA0000000032,STK00032,2025,Honda,Coupe,Base,39750,31423,45093,Black,Gray,Gasoline,CVT,new,https://www.serrahondaofallon.com/inventory/32,Serra Honda of O'Fallon,2025-07-24T02:46:59.739441
+MOCKSERRA0000000033,STK00033,2021,Honda,SUV,Sport,66570,72578,39338,Black,Tan,Electric,CVT,used,https://www.serrahondaofallon.com/inventory/33,Serra Honda of O'Fallon,2025-07-24T02:46:59.739447
+MOCKSERRA0000000034,STK00034,2025,Honda,Truck,Base,47542,78867,33822,Blue,Black,Hybrid,Automatic,certified,https://www.serrahondaofallon.com/inventory/34,Serra Honda of O'Fallon,2025-07-24T02:46:59.739454
+MOCKSERRA0000000035,STK00035,2024,Honda,Coupe,Premium,64701,42653,21388,White,Black,Electric,CVT,certified,https://www.serrahondaofallon.com/inventory/35,Serra Honda of O'Fallon,2025-07-24T02:46:59.739464
+MOCKSERRA0000000036,STK00036,2022,Honda,Coupe,Limited,72629,61815,6707,Black,Black,Electric,CVT,certified,https://www.serrahondaofallon.com/inventory/36,Serra Honda of O'Fallon,2025-07-24T02:46:59.739471
+MOCKSERRA0000000037,STK00037,2021,Honda,SUV,Premium,62274,59624,9774,Blue,Black,Gasoline,Manual,used,https://www.serrahondaofallon.com/inventory/37,Serra Honda of O'Fallon,2025-07-24T02:46:59.739479
+MOCKSERRA0000000038,STK00038,2024,Honda,Sedan,Sport,77805,75960,26026,Black,Black,Electric,Manual,certified,https://www.serrahondaofallon.com/inventory/38,Serra Honda of O'Fallon,2025-07-24T02:46:59.739485
+MOCKSERRA0000000039,STK00039,2024,Honda,Truck,Limited,29962,40867,10234,Black,Gray,Electric,Manual,certified,https://www.serrahondaofallon.com/inventory/39,Serra Honda of O'Fallon,2025-07-24T02:46:59.739492
+MOCKSERRA0000000040,STK00040,2025,Honda,SUV,Sport,50880,76489,22,Blue,Black,Gasoline,CVT,new,https://www.serrahondaofallon.com/inventory/40,Serra Honda of O'Fallon,2025-07-24T02:46:59.739498
+MOCKSERRA0000000041,STK00041,2022,Honda,Convertible,Limited,75856,41744,46302,Black,Black,Hybrid,Automatic,used,https://www.serrahondaofallon.com/inventory/41,Serra Honda of O'Fallon,2025-07-24T02:46:59.739505
+MOCKSERRA0000000042,STK00042,2022,Honda,Convertible,Base,59994,79291,29075,White,Gray,Hybrid,CVT,new,https://www.serrahondaofallon.com/inventory/42,Serra Honda of O'Fallon,2025-07-24T02:46:59.739511
+MOCKSERRA0000000043,STK00043,2021,Honda,Convertible,Sport,29125,67279,7597,Black,Gray,Gasoline,Manual,used,https://www.serrahondaofallon.com/inventory/43,Serra Honda of O'Fallon,2025-07-24T02:46:59.739518
+MOCKSERRA0000000044,STK00044,2020,Honda,Sedan,Sport,52754,57392,28137,Silver,Black,Gasoline,Manual,new,https://www.serrahondaofallon.com/inventory/44,Serra Honda of O'Fallon,2025-07-24T02:46:59.739525
+MOCKSERRA0000000045,STK00045,2023,Honda,SUV,Base,38061,50369,35271,Silver,Tan,Hybrid,Manual,used,https://www.serrahondaofallon.com/inventory/45,Serra Honda of O'Fallon,2025-07-24T02:46:59.739531
+MOCKSERRA0000000046,STK00046,2020,Honda,Convertible,Base,38121,64667,48708,Blue,Tan,Hybrid,Manual,new,https://www.serrahondaofallon.com/inventory/46,Serra Honda of O'Fallon,2025-07-24T02:46:59.739538
+MOCKSERRA0000000047,STK00047,2025,Honda,Truck,Premium,59980,79758,33923,Gray,Gray,Electric,Automatic,certified,https://www.serrahondaofallon.com/inventory/47,Serra Honda of O'Fallon,2025-07-24T02:46:59.739544
+MOCKSERRA0000000048,STK00048,2021,Honda,Sedan,Premium,55924,77591,7866,Blue,Gray,Electric,CVT,used,https://www.serrahondaofallon.com/inventory/48,Serra Honda of O'Fallon,2025-07-24T02:46:59.739551
+MOCKSOUTH0000000000,STK00000,2020,Unknown,Truck,Premium,35985,75683,42830,Red,Tan,Gasoline,CVT,certified,https://www.southcountyautos.com/inventory/0,South County Autos,2025-07-24T02:47:00.771565
+MOCKSOUTH0000000001,STK00001,2021,Unknown,Coupe,Base,71420,32526,45473,Gray,Tan,Hybrid,Manual,new,https://www.southcountyautos.com/inventory/1,South County Autos,2025-07-24T02:47:00.771576
+MOCKSOUTH0000000002,STK00002,2021,Unknown,Coupe,Base,39637,57014,39142,Red,Tan,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/2,South County Autos,2025-07-24T02:47:00.771583
+MOCKSOUTH0000000003,STK00003,2025,Unknown,Coupe,Base,56030,52464,27147,White,Gray,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/3,South County Autos,2025-07-24T02:47:00.771590
+MOCKSOUTH0000000004,STK00004,2021,Unknown,Truck,Limited,51705,38659,48964,White,Gray,Gasoline,Automatic,new,https://www.southcountyautos.com/inventory/4,South County Autos,2025-07-24T02:47:00.771597
+MOCKSOUTH0000000005,STK00005,2024,Unknown,SUV,Premium,56394,57861,33437,Black,Gray,Gasoline,CVT,used,https://www.southcountyautos.com/inventory/5,South County Autos,2025-07-24T02:47:00.771604
+MOCKSOUTH0000000006,STK00006,2020,Unknown,Coupe,Limited,66471,43020,8516,Blue,Tan,Hybrid,CVT,used,https://www.southcountyautos.com/inventory/6,South County Autos,2025-07-24T02:47:00.771611
+MOCKSOUTH0000000007,STK00007,2020,Unknown,Truck,Limited,28628,66557,34147,Blue,Black,Electric,Manual,certified,https://www.southcountyautos.com/inventory/7,South County Autos,2025-07-24T02:47:00.771618
+MOCKSOUTH0000000008,STK00008,2025,Unknown,Convertible,Sport,55223,30126,31110,Silver,Tan,Electric,CVT,certified,https://www.southcountyautos.com/inventory/8,South County Autos,2025-07-24T02:47:00.771625
+MOCKSOUTH0000000009,STK00009,2024,Unknown,SUV,Base,68705,31028,25145,Red,Gray,Gasoline,CVT,used,https://www.southcountyautos.com/inventory/9,South County Autos,2025-07-24T02:47:00.771632
+MOCKSOUTH0000000010,STK00010,2023,Unknown,Truck,Base,29035,72342,16396,White,Tan,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/10,South County Autos,2025-07-24T02:47:00.771641
+MOCKSOUTH0000000011,STK00011,2023,Unknown,Convertible,Base,34850,41037,44938,Black,Tan,Gasoline,Automatic,certified,https://www.southcountyautos.com/inventory/11,South County Autos,2025-07-24T02:47:00.771649
+MOCKSOUTH0000000012,STK00012,2021,Unknown,SUV,Premium,41245,51553,5336,Silver,Black,Electric,Manual,used,https://www.southcountyautos.com/inventory/12,South County Autos,2025-07-24T02:47:00.771655
+MOCKSOUTH0000000013,STK00013,2025,Unknown,Coupe,Limited,48851,41024,31231,Silver,Black,Gasoline,Manual,new,https://www.southcountyautos.com/inventory/13,South County Autos,2025-07-24T02:47:00.771662
+MOCKSOUTH0000000014,STK00014,2024,Unknown,Truck,Limited,54600,48998,3472,Gray,Black,Hybrid,Manual,new,https://www.southcountyautos.com/inventory/14,South County Autos,2025-07-24T02:47:00.771669
+MOCKSOUTH0000000015,STK00015,2023,Unknown,Coupe,Sport,78520,50485,44727,Gray,Gray,Gasoline,Automatic,used,https://www.southcountyautos.com/inventory/15,South County Autos,2025-07-24T02:47:00.771675
+MOCKSOUTH0000000016,STK00016,2024,Unknown,Convertible,Sport,74273,51976,25742,Blue,Black,Hybrid,Manual,new,https://www.southcountyautos.com/inventory/16,South County Autos,2025-07-24T02:47:00.771682
+MOCKSOUTH0000000017,STK00017,2020,Unknown,Sedan,Premium,59924,36383,48499,Red,Tan,Gasoline,Manual,new,https://www.southcountyautos.com/inventory/17,South County Autos,2025-07-24T02:47:00.771688
+MOCKSOUTH0000000018,STK00018,2021,Unknown,Truck,Premium,59431,48114,21584,White,Black,Hybrid,CVT,used,https://www.southcountyautos.com/inventory/18,South County Autos,2025-07-24T02:47:00.771695
+MOCKSOUTH0000000019,STK00019,2023,Unknown,Coupe,Premium,58074,39155,18599,Blue,Tan,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/19,South County Autos,2025-07-24T02:47:00.771702
+MOCKSOUTH0000000020,STK00020,2024,Unknown,Coupe,Base,68450,48251,28365,Black,Gray,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/20,South County Autos,2025-07-24T02:47:00.771708
+MOCKSOUTH0000000021,STK00021,2025,Unknown,Truck,Sport,44307,62674,46803,Red,Tan,Hybrid,CVT,certified,https://www.southcountyautos.com/inventory/21,South County Autos,2025-07-24T02:47:00.771715
+MOCKSOUTH0000000022,STK00022,2024,Unknown,Coupe,Sport,27664,30064,48970,Black,Tan,Electric,CVT,used,https://www.southcountyautos.com/inventory/22,South County Autos,2025-07-24T02:47:00.771722
+MOCKSOUTH0000000023,STK00023,2022,Unknown,Coupe,Sport,59794,83688,35169,White,Black,Hybrid,CVT,new,https://www.southcountyautos.com/inventory/23,South County Autos,2025-07-24T02:47:00.771728
+MOCKSOUTH0000000024,STK00024,2022,Unknown,Coupe,Premium,78627,37124,2983,Gray,Black,Hybrid,Manual,new,https://www.southcountyautos.com/inventory/24,South County Autos,2025-07-24T02:47:00.771737
+MOCKSOUTH0000000025,STK00025,2021,Unknown,Sedan,Limited,44359,73555,19166,Silver,Gray,Hybrid,Automatic,used,https://www.southcountyautos.com/inventory/25,South County Autos,2025-07-24T02:47:00.771744
+MOCKSOUTH0000000026,STK00026,2024,Unknown,Convertible,Sport,60585,38407,24600,Red,Black,Hybrid,CVT,used,https://www.southcountyautos.com/inventory/26,South County Autos,2025-07-24T02:47:00.771751
+MOCKSOUTH0000000027,STK00027,2022,Unknown,Coupe,Limited,52199,44595,46685,Blue,Tan,Hybrid,Manual,used,https://www.southcountyautos.com/inventory/27,South County Autos,2025-07-24T02:47:00.771758
+MOCKSOUTH0000000028,STK00028,2022,Unknown,SUV,Sport,55119,82577,41915,White,Black,Gasoline,Manual,used,https://www.southcountyautos.com/inventory/28,South County Autos,2025-07-24T02:47:00.771764
+MOCKSOUTH0000000029,STK00029,2021,Unknown,Sedan,Limited,62014,30127,20294,Gray,Tan,Gasoline,Manual,certified,https://www.southcountyautos.com/inventory/29,South County Autos,2025-07-24T02:47:00.771771
+MOCKSTEHO0000000000,STK00000,2024,Unknown,Convertible,Limited,41498,81302,35938,Silver,Tan,Gasoline,Manual,new,https://www.stehouwerauto.com/inventory/0,Stehouwer Auto,2025-07-24T02:47:02.798433
+MOCKSTEHO0000000001,STK00001,2020,Unknown,SUV,Base,79973,54082,33163,Silver,Gray,Electric,CVT,used,https://www.stehouwerauto.com/inventory/1,Stehouwer Auto,2025-07-24T02:47:02.798443
+MOCKSTEHO0000000002,STK00002,2025,Unknown,Coupe,Limited,38101,68345,47806,White,Black,Electric,Manual,used,https://www.stehouwerauto.com/inventory/2,Stehouwer Auto,2025-07-24T02:47:02.798450
+MOCKSTEHO0000000003,STK00003,2023,Unknown,Coupe,Premium,44469,59957,22763,Gray,Tan,Electric,CVT,new,https://www.stehouwerauto.com/inventory/3,Stehouwer Auto,2025-07-24T02:47:02.798457
+MOCKSTEHO0000000004,STK00004,2024,Unknown,Coupe,Sport,64403,82598,44169,Silver,Tan,Electric,CVT,used,https://www.stehouwerauto.com/inventory/4,Stehouwer Auto,2025-07-24T02:47:02.798464
+MOCKSTEHO0000000005,STK00005,2025,Unknown,Truck,Limited,64348,53243,29090,Red,Gray,Gasoline,Automatic,new,https://www.stehouwerauto.com/inventory/5,Stehouwer Auto,2025-07-24T02:47:02.798471
+MOCKSTEHO0000000006,STK00006,2023,Unknown,Coupe,Base,58128,33999,16573,Silver,Gray,Hybrid,CVT,new,https://www.stehouwerauto.com/inventory/6,Stehouwer Auto,2025-07-24T02:47:02.798478
+MOCKSTEHO0000000007,STK00007,2021,Unknown,Coupe,Sport,35124,42922,36532,Black,Tan,Gasoline,CVT,certified,https://www.stehouwerauto.com/inventory/7,Stehouwer Auto,2025-07-24T02:47:02.798484
+MOCKSTEHO0000000008,STK00008,2024,Unknown,Coupe,Premium,52146,46380,296,Silver,Gray,Hybrid,Automatic,certified,https://www.stehouwerauto.com/inventory/8,Stehouwer Auto,2025-07-24T02:47:02.798491
+MOCKSTEHO0000000009,STK00009,2024,Unknown,Sedan,Base,35438,69661,19428,White,Gray,Gasoline,CVT,used,https://www.stehouwerauto.com/inventory/9,Stehouwer Auto,2025-07-24T02:47:02.798497
+MOCKSTEHO0000000010,STK00010,2023,Unknown,SUV,Base,42284,35607,22511,Blue,Black,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/10,Stehouwer Auto,2025-07-24T02:47:02.798504
+MOCKSTEHO0000000011,STK00011,2021,Unknown,Sedan,Sport,33665,72106,34508,Gray,Tan,Hybrid,Automatic,certified,https://www.stehouwerauto.com/inventory/11,Stehouwer Auto,2025-07-24T02:47:02.798511
+MOCKSTEHO0000000012,STK00012,2020,Unknown,SUV,Premium,70170,44167,48890,Gray,Gray,Electric,Manual,new,https://www.stehouwerauto.com/inventory/12,Stehouwer Auto,2025-07-24T02:47:02.798517
+MOCKSTEHO0000000013,STK00013,2024,Unknown,Sedan,Limited,70321,39770,34626,Red,Black,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/13,Stehouwer Auto,2025-07-24T02:47:02.798524
+MOCKSTEHO0000000014,STK00014,2025,Unknown,Convertible,Sport,70267,84903,7884,Blue,Black,Gasoline,CVT,used,https://www.stehouwerauto.com/inventory/14,Stehouwer Auto,2025-07-24T02:47:02.798531
+MOCKSTEHO0000000015,STK00015,2023,Unknown,Convertible,Sport,40090,64924,42447,Gray,Tan,Electric,Manual,certified,https://www.stehouwerauto.com/inventory/15,Stehouwer Auto,2025-07-24T02:47:02.798537
+MOCKSTEHO0000000016,STK00016,2022,Unknown,SUV,Sport,36588,57552,36566,Red,Tan,Electric,Automatic,used,https://www.stehouwerauto.com/inventory/16,Stehouwer Auto,2025-07-24T02:47:02.798549
+MOCKSTEHO0000000017,STK00017,2021,Unknown,Truck,Limited,28015,41446,19387,Blue,Black,Gasoline,CVT,certified,https://www.stehouwerauto.com/inventory/17,Stehouwer Auto,2025-07-24T02:47:02.798555
+MOCKSTEHO0000000018,STK00018,2022,Unknown,Truck,Sport,37953,59425,15016,Gray,Gray,Gasoline,Automatic,new,https://www.stehouwerauto.com/inventory/18,Stehouwer Auto,2025-07-24T02:47:02.798562
+MOCKSTEHO0000000019,STK00019,2020,Unknown,SUV,Limited,25336,42342,25067,Gray,Black,Hybrid,CVT,used,https://www.stehouwerauto.com/inventory/19,Stehouwer Auto,2025-07-24T02:47:02.798569
+MOCKSTEHO0000000020,STK00020,2021,Unknown,Convertible,Limited,47402,77470,13327,Gray,Gray,Electric,Automatic,used,https://www.stehouwerauto.com/inventory/20,Stehouwer Auto,2025-07-24T02:47:02.798575
+MOCKSTEHO0000000021,STK00021,2021,Unknown,Convertible,Premium,65083,83366,23326,Gray,Gray,Gasoline,Automatic,new,https://www.stehouwerauto.com/inventory/21,Stehouwer Auto,2025-07-24T02:47:02.798582
+MOCKSTEHO0000000022,STK00022,2020,Unknown,Convertible,Sport,53552,34906,46711,Red,Gray,Gasoline,Manual,used,https://www.stehouwerauto.com/inventory/22,Stehouwer Auto,2025-07-24T02:47:02.798588
+MOCKSTEHO0000000023,STK00023,2024,Unknown,Sedan,Sport,58833,48808,37247,White,Tan,Gasoline,Automatic,used,https://www.stehouwerauto.com/inventory/23,Stehouwer Auto,2025-07-24T02:47:02.798594
+MOCKSTEHO0000000024,STK00024,2024,Unknown,Truck,Limited,53041,42830,44065,White,Gray,Gasoline,Automatic,new,https://www.stehouwerauto.com/inventory/24,Stehouwer Auto,2025-07-24T02:47:02.798601
+MOCKSTEHO0000000025,STK00025,2025,Unknown,SUV,Sport,36999,30544,36930,Black,Tan,Hybrid,CVT,certified,https://www.stehouwerauto.com/inventory/25,Stehouwer Auto,2025-07-24T02:47:02.798608
+MOCKSTEHO0000000026,STK00026,2024,Unknown,SUV,Premium,67221,33204,20932,Gray,Tan,Gasoline,Automatic,certified,https://www.stehouwerauto.com/inventory/26,Stehouwer Auto,2025-07-24T02:47:02.798614
+MOCKSTEHO0000000027,STK00027,2021,Unknown,Sedan,Sport,33750,58507,1632,Gray,Black,Gasoline,CVT,certified,https://www.stehouwerauto.com/inventory/27,Stehouwer Auto,2025-07-24T02:47:02.798621
+MOCKSTEHO0000000028,STK00028,2021,Unknown,Sedan,Premium,62502,71851,18421,Gray,Gray,Gasoline,Manual,used,https://www.stehouwerauto.com/inventory/28,Stehouwer Auto,2025-07-24T02:47:02.798627
+MOCKSTEHO0000000029,STK00029,2020,Unknown,Sedan,Limited,72292,58188,31928,Blue,Gray,Hybrid,Manual,used,https://www.stehouwerauto.com/inventory/29,Stehouwer Auto,2025-07-24T02:47:02.798633
+MOCKSTEHO0000000030,STK00030,2021,Unknown,Truck,Premium,30901,48599,3282,Blue,Black,Electric,Manual,used,https://www.stehouwerauto.com/inventory/30,Stehouwer Auto,2025-07-24T02:47:02.798640
+MOCKSTEHO0000000031,STK00031,2025,Unknown,Truck,Limited,75687,43509,31664,Gray,Tan,Hybrid,Automatic,used,https://www.stehouwerauto.com/inventory/31,Stehouwer Auto,2025-07-24T02:47:02.798647
+MOCKSTEHO0000000032,STK00032,2021,Unknown,Sedan,Premium,52236,66968,26944,Red,Black,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/32,Stehouwer Auto,2025-07-24T02:47:02.798653
+MOCKSTEHO0000000033,STK00033,2025,Unknown,Truck,Base,77715,52655,27652,White,Gray,Electric,CVT,used,https://www.stehouwerauto.com/inventory/33,Stehouwer Auto,2025-07-24T02:47:02.798660
+MOCKSTEHO0000000034,STK00034,2021,Unknown,Truck,Base,56005,81955,14789,Silver,Tan,Electric,Manual,new,https://www.stehouwerauto.com/inventory/34,Stehouwer Auto,2025-07-24T02:47:02.798666
+MOCKSTEHO0000000035,STK00035,2021,Unknown,Convertible,Premium,35873,54768,28274,Silver,Gray,Electric,CVT,used,https://www.stehouwerauto.com/inventory/35,Stehouwer Auto,2025-07-24T02:47:02.798673
+MOCKSTEHO0000000036,STK00036,2021,Unknown,Coupe,Sport,46232,69649,49744,Red,Black,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/36,Stehouwer Auto,2025-07-24T02:47:02.798680
+MOCKSTEHO0000000037,STK00037,2024,Unknown,Coupe,Sport,49526,65409,17309,Gray,Gray,Gasoline,CVT,certified,https://www.stehouwerauto.com/inventory/37,Stehouwer Auto,2025-07-24T02:47:02.798686
+MOCKSTEHO0000000038,STK00038,2022,Unknown,SUV,Sport,76096,77771,5075,Gray,Tan,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/38,Stehouwer Auto,2025-07-24T02:47:02.798693
+MOCKSTEHO0000000039,STK00039,2020,Unknown,SUV,Sport,41621,48638,47035,White,Tan,Electric,Manual,used,https://www.stehouwerauto.com/inventory/39,Stehouwer Auto,2025-07-24T02:47:02.798699
+MOCKSTEHO0000000040,STK00040,2024,Unknown,Convertible,Limited,34738,70928,8127,Silver,Black,Hybrid,Automatic,new,https://www.stehouwerauto.com/inventory/40,Stehouwer Auto,2025-07-24T02:47:02.798705
+MOCKSTEHO0000000041,STK00041,2023,Unknown,Convertible,Base,63273,61856,6027,Blue,Black,Electric,CVT,certified,https://www.stehouwerauto.com/inventory/41,Stehouwer Auto,2025-07-24T02:47:02.798712
+MOCKSTEHO0000000042,STK00042,2020,Unknown,Sedan,Premium,31633,49790,13240,Red,Tan,Hybrid,CVT,new,https://www.stehouwerauto.com/inventory/42,Stehouwer Auto,2025-07-24T02:47:02.798719
+MOCKSTEHO0000000043,STK00043,2020,Unknown,Truck,Premium,40348,50563,21946,Red,Black,Electric,Automatic,certified,https://www.stehouwerauto.com/inventory/43,Stehouwer Auto,2025-07-24T02:47:02.798725
+MOCKSTEHO0000000044,STK00044,2024,Unknown,SUV,Limited,44789,41174,33012,Gray,Tan,Electric,Automatic,used,https://www.stehouwerauto.com/inventory/44,Stehouwer Auto,2025-07-24T02:47:02.798732
+MOCKSTEHO0000000045,STK00045,2024,Unknown,Convertible,Base,65951,52278,17713,Silver,Black,Gasoline,Automatic,new,https://www.stehouwerauto.com/inventory/45,Stehouwer Auto,2025-07-24T02:47:02.798738
+MOCKSTEHO0000000046,STK00046,2022,Unknown,Sedan,Sport,40315,72547,12138,Blue,Gray,Electric,CVT,new,https://www.stehouwerauto.com/inventory/46,Stehouwer Auto,2025-07-24T02:47:02.798745
+MOCKSTEHO0000000047,STK00047,2022,Unknown,SUV,Limited,63077,33411,7266,White,Tan,Gasoline,Automatic,certified,https://www.stehouwerauto.com/inventory/47,Stehouwer Auto,2025-07-24T02:47:02.798751
+MOCKSUNTR0000000000,STK00000,2022,Hyundai,Sedan,Base,52014,35769,44942,Black,Gray,Electric,Automatic,certified,https://www.suntruphyundaisouth.com/inventory/0,Suntrup Hyundai South,2025-07-24T02:47:07.418481
+MOCKSUNTR0000000001,STK00001,2022,Hyundai,Coupe,Base,46517,54491,29016,Red,Black,Hybrid,Automatic,new,https://www.suntruphyundaisouth.com/inventory/1,Suntrup Hyundai South,2025-07-24T02:47:07.418508
+MOCKSUNTR0000000002,STK00002,2020,Hyundai,Sedan,Limited,40535,38023,14199,Gray,Tan,Hybrid,Automatic,used,https://www.suntruphyundaisouth.com/inventory/2,Suntrup Hyundai South,2025-07-24T02:47:07.418529
+MOCKSUNTR0000000003,STK00003,2021,Hyundai,Sedan,Sport,69733,51344,19822,Black,Black,Gasoline,Manual,used,https://www.suntruphyundaisouth.com/inventory/3,Suntrup Hyundai South,2025-07-24T02:47:07.418549
+MOCKSUNTR0000000004,STK00004,2020,Hyundai,Truck,Sport,79483,69576,2047,Gray,Gray,Gasoline,Manual,used,https://www.suntruphyundaisouth.com/inventory/4,Suntrup Hyundai South,2025-07-24T02:47:07.418569
+MOCKSUNTR0000000005,STK00005,2025,Hyundai,Convertible,Sport,74051,84503,25706,Black,Black,Electric,Manual,new,https://www.suntruphyundaisouth.com/inventory/5,Suntrup Hyundai South,2025-07-24T02:47:07.418589
+MOCKSUNTR0000000006,STK00006,2022,Hyundai,Coupe,Premium,45233,76474,22610,Red,Tan,Hybrid,CVT,new,https://www.suntruphyundaisouth.com/inventory/6,Suntrup Hyundai South,2025-07-24T02:47:07.418609
+MOCKSUNTR0000000007,STK00007,2021,Hyundai,Truck,Limited,60980,73285,40166,Blue,Black,Electric,Automatic,used,https://www.suntruphyundaisouth.com/inventory/7,Suntrup Hyundai South,2025-07-24T02:47:07.418629
+MOCKSUNTR0000000008,STK00008,2023,Hyundai,SUV,Premium,36115,39361,49570,Gray,Gray,Hybrid,Automatic,certified,https://www.suntruphyundaisouth.com/inventory/8,Suntrup Hyundai South,2025-07-24T02:47:07.418648
+MOCKSUNTR0000000009,STK00009,2023,Hyundai,Sedan,Sport,72067,40838,3222,Black,Black,Electric,CVT,used,https://www.suntruphyundaisouth.com/inventory/9,Suntrup Hyundai South,2025-07-24T02:47:07.418668
+MOCKSUNTR0000000010,STK00010,2025,Hyundai,Coupe,Base,68964,33252,39055,White,Gray,Electric,CVT,used,https://www.suntruphyundaisouth.com/inventory/10,Suntrup Hyundai South,2025-07-24T02:47:07.418689
+MOCKSUNTR0000000011,STK00011,2022,Hyundai,Convertible,Sport,76106,49217,29784,Silver,Gray,Hybrid,CVT,new,https://www.suntruphyundaisouth.com/inventory/11,Suntrup Hyundai South,2025-07-24T02:47:07.418708
+MOCKSUNTR0000000012,STK00012,2023,Hyundai,Sedan,Base,29490,80174,10463,Gray,Tan,Hybrid,CVT,certified,https://www.suntruphyundaisouth.com/inventory/12,Suntrup Hyundai South,2025-07-24T02:47:07.418727
+MOCKSUNTR0000000013,STK00013,2021,Hyundai,Coupe,Limited,75739,79938,412,Black,Tan,Electric,Manual,certified,https://www.suntruphyundaisouth.com/inventory/13,Suntrup Hyundai South,2025-07-24T02:47:07.418746
+MOCKSUNTR0000000014,STK00014,2023,Hyundai,SUV,Premium,31903,50081,48690,White,Black,Hybrid,Automatic,certified,https://www.suntruphyundaisouth.com/inventory/14,Suntrup Hyundai South,2025-07-24T02:47:07.418766
+MOCKSUNTR0000000015,STK00015,2020,Hyundai,Truck,Base,59662,33199,25664,Black,Black,Gasoline,Manual,new,https://www.suntruphyundaisouth.com/inventory/15,Suntrup Hyundai South,2025-07-24T02:47:07.418786
+MOCKSUNTR0000000016,STK00016,2021,Hyundai,Truck,Limited,71233,73938,8002,White,Tan,Gasoline,Manual,used,https://www.suntruphyundaisouth.com/inventory/16,Suntrup Hyundai South,2025-07-24T02:47:07.418805
+MOCKSUNTR0000000017,STK00017,2023,Hyundai,Sedan,Sport,38186,70027,27990,Gray,Tan,Hybrid,Automatic,used,https://www.suntruphyundaisouth.com/inventory/17,Suntrup Hyundai South,2025-07-24T02:47:07.418826
+MOCKSUNTR0000000018,STK00018,2023,Hyundai,SUV,Sport,46473,77273,17162,Black,Tan,Electric,Automatic,used,https://www.suntruphyundaisouth.com/inventory/18,Suntrup Hyundai South,2025-07-24T02:47:07.418848
+MOCKSUNTR0000000019,STK00019,2023,Hyundai,Convertible,Premium,68834,44995,19468,Blue,Tan,Electric,CVT,used,https://www.suntruphyundaisouth.com/inventory/19,Suntrup Hyundai South,2025-07-24T02:47:07.418868
+MOCKSUNTR0000000020,STK00020,2024,Hyundai,SUV,Limited,41405,61117,32927,Black,Gray,Electric,CVT,certified,https://www.suntruphyundaisouth.com/inventory/20,Suntrup Hyundai South,2025-07-24T02:47:07.418887
+MOCKSUNTR0000000021,STK00021,2020,Hyundai,SUV,Limited,48665,47231,18963,Silver,Black,Gasoline,CVT,new,https://www.suntruphyundaisouth.com/inventory/21,Suntrup Hyundai South,2025-07-24T02:47:07.418907
+MOCKSUNTR0000000022,STK00022,2023,Hyundai,SUV,Premium,50786,55325,24924,Red,Black,Gasoline,Manual,new,https://www.suntruphyundaisouth.com/inventory/22,Suntrup Hyundai South,2025-07-24T02:47:07.418926
+MOCKSUNTR0000000023,STK00023,2022,Hyundai,SUV,Sport,62041,58547,25185,Blue,Black,Hybrid,Manual,certified,https://www.suntruphyundaisouth.com/inventory/23,Suntrup Hyundai South,2025-07-24T02:47:07.418946
+MOCKSUNTR0000000024,STK00024,2020,Hyundai,Truck,Limited,28086,49934,16750,White,Gray,Electric,Automatic,used,https://www.suntruphyundaisouth.com/inventory/24,Suntrup Hyundai South,2025-07-24T02:47:07.418966
+MOCKSUNTR0000000025,STK00025,2024,Hyundai,Truck,Sport,57066,72387,10079,Red,Black,Gasoline,CVT,new,https://www.suntruphyundaisouth.com/inventory/25,Suntrup Hyundai South,2025-07-24T02:47:07.418984
+MOCKSUNTR0000000026,STK00026,2021,Hyundai,Truck,Sport,62788,69484,41165,White,Black,Gasoline,Manual,new,https://www.suntruphyundaisouth.com/inventory/26,Suntrup Hyundai South,2025-07-24T02:47:07.419005
+MOCKSUNTR0000000027,STK00027,2023,Hyundai,Sedan,Sport,27532,38122,36161,Black,Gray,Gasoline,Manual,new,https://www.suntruphyundaisouth.com/inventory/27,Suntrup Hyundai South,2025-07-24T02:47:07.419025
+MOCKSUNTR0000000028,STK00028,2022,Hyundai,Convertible,Premium,56324,63689,11120,White,Gray,Hybrid,Manual,certified,https://www.suntruphyundaisouth.com/inventory/28,Suntrup Hyundai South,2025-07-24T02:47:07.419045
+MOCKSUNTR0000000029,STK00029,2020,Hyundai,Coupe,Base,37315,80796,2086,Blue,Tan,Gasoline,Automatic,new,https://www.suntruphyundaisouth.com/inventory/29,Suntrup Hyundai South,2025-07-24T02:47:07.419066
+MOCKSUNTR0000000030,STK00030,2021,Hyundai,Coupe,Base,62266,66543,43992,White,Tan,Hybrid,Manual,new,https://www.suntruphyundaisouth.com/inventory/30,Suntrup Hyundai South,2025-07-24T02:47:07.419085
+MOCKSUNTR0000000031,STK00031,2022,Hyundai,SUV,Sport,63109,59519,15708,White,Tan,Hybrid,Manual,used,https://www.suntruphyundaisouth.com/inventory/31,Suntrup Hyundai South,2025-07-24T02:47:07.419104
+MOCKSUNTR0000000032,STK00032,2022,Hyundai,SUV,Sport,67976,65532,22015,Blue,Tan,Gasoline,Manual,used,https://www.suntruphyundaisouth.com/inventory/32,Suntrup Hyundai South,2025-07-24T02:47:07.419124
+MOCKSUNTR0000000033,STK00033,2020,Hyundai,Coupe,Sport,31000,80474,34895,Silver,Gray,Electric,CVT,new,https://www.suntruphyundaisouth.com/inventory/33,Suntrup Hyundai South,2025-07-24T02:47:07.419145
+MOCKSUNTR0000000034,STK00034,2022,Hyundai,Truck,Sport,48706,71264,21464,Red,Gray,Electric,CVT,new,https://www.suntruphyundaisouth.com/inventory/34,Suntrup Hyundai South,2025-07-24T02:47:07.419164
+MOCKSUNTR0000000035,STK00035,2020,Hyundai,Truck,Premium,46138,37800,21689,Gray,Black,Electric,CVT,certified,https://www.suntruphyundaisouth.com/inventory/35,Suntrup Hyundai South,2025-07-24T02:47:07.419183
+MOCKSUNTR0000000036,STK00036,2025,Hyundai,SUV,Base,63572,34510,41863,Blue,Gray,Electric,CVT,new,https://www.suntruphyundaisouth.com/inventory/36,Suntrup Hyundai South,2025-07-24T02:47:07.419202
+MOCKSUNTR0000000037,STK00037,2020,Hyundai,Truck,Base,28296,77124,48098,Black,Black,Electric,Automatic,certified,https://www.suntruphyundaisouth.com/inventory/37,Suntrup Hyundai South,2025-07-24T02:47:07.419229
+MOCKSUNTR0000000038,STK00038,2023,Hyundai,Sedan,Base,58397,36812,34909,Red,Tan,Gasoline,Automatic,certified,https://www.suntruphyundaisouth.com/inventory/38,Suntrup Hyundai South,2025-07-24T02:47:07.419250
+MOCKSUNTR0000000039,STK00039,2020,Hyundai,Sedan,Base,40135,51616,43604,Gray,Black,Electric,CVT,new,https://www.suntruphyundaisouth.com/inventory/39,Suntrup Hyundai South,2025-07-24T02:47:07.419270
+MOCKSUNTR0000000040,STK00040,2024,Hyundai,Coupe,Limited,65154,62209,3177,Blue,Tan,Gasoline,CVT,new,https://www.suntruphyundaisouth.com/inventory/40,Suntrup Hyundai South,2025-07-24T02:47:07.419289
+MOCKSUNTR0000000041,STK00041,2022,Hyundai,Truck,Base,64518,55669,15508,Blue,Gray,Hybrid,CVT,new,https://www.suntruphyundaisouth.com/inventory/41,Suntrup Hyundai South,2025-07-24T02:47:07.419309
+MOCKSUNTR0000000042,STK00042,2021,Hyundai,Sedan,Limited,34892,30632,27906,White,Black,Hybrid,CVT,certified,https://www.suntruphyundaisouth.com/inventory/42,Suntrup Hyundai South,2025-07-24T02:47:07.419329
+MOCKSUNTR0000000043,STK00043,2023,Hyundai,Sedan,Premium,38147,58934,31252,White,Tan,Electric,CVT,used,https://www.suntruphyundaisouth.com/inventory/43,Suntrup Hyundai South,2025-07-24T02:47:07.419349
+MOCKSUNTR0000000044,STK00044,2024,Hyundai,Coupe,Limited,45100,67751,24266,Silver,Tan,Electric,CVT,used,https://www.suntruphyundaisouth.com/inventory/44,Suntrup Hyundai South,2025-07-24T02:47:07.419378
+MOCKSUNTR0000000045,STK00045,2024,Hyundai,Convertible,Premium,61897,38851,42758,Silver,Tan,Electric,Manual,used,https://www.suntruphyundaisouth.com/inventory/45,Suntrup Hyundai South,2025-07-24T02:47:07.419399
+MOCKSUNTR0000000046,STK00046,2025,Hyundai,Truck,Base,79603,51171,29515,Silver,Black,Gasoline,CVT,new,https://www.suntruphyundaisouth.com/inventory/46,Suntrup Hyundai South,2025-07-24T02:47:07.419419
+MOCKSUNTR0000000047,STK00047,2020,Hyundai,Truck,Sport,44326,69156,22729,Red,Black,Electric,Automatic,used,https://www.suntruphyundaisouth.com/inventory/47,Suntrup Hyundai South,2025-07-24T02:47:07.419439
+MOCKSUNTR0000000048,STK00048,2025,Hyundai,Truck,Base,57912,71880,27829,White,Tan,Hybrid,Manual,certified,https://www.suntruphyundaisouth.com/inventory/48,Suntrup Hyundai South,2025-07-24T02:47:07.419458
+MOCKSUNTR0000000049,STK00049,2020,Hyundai,Sedan,Sport,71774,46941,4253,Blue,Black,Electric,CVT,new,https://www.suntruphyundaisouth.com/inventory/49,Suntrup Hyundai South,2025-07-24T02:47:07.419478
+MOCKSUNTR0000000000,STK00000,2022,Kia,Coupe,Base,64450,51763,25701,Black,Tan,Electric,CVT,new,https://www.suntrupkiasouth.com/inventory/0,Suntrup Kia South,2025-07-24T02:47:08.432584
+MOCKSUNTR0000000001,STK00001,2024,Kia,Sedan,Base,47981,44572,47208,White,Gray,Electric,Automatic,new,https://www.suntrupkiasouth.com/inventory/1,Suntrup Kia South,2025-07-24T02:47:08.432595
+MOCKSUNTR0000000002,STK00002,2024,Kia,Sedan,Base,27369,71994,15926,White,Black,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/2,Suntrup Kia South,2025-07-24T02:47:08.432602
+MOCKSUNTR0000000003,STK00003,2020,Kia,Sedan,Limited,52560,70770,40054,Gray,Gray,Electric,Manual,new,https://www.suntrupkiasouth.com/inventory/3,Suntrup Kia South,2025-07-24T02:47:08.432610
+MOCKSUNTR0000000004,STK00004,2022,Kia,SUV,Base,64266,43750,17579,Blue,Black,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/4,Suntrup Kia South,2025-07-24T02:47:08.432617
+MOCKSUNTR0000000005,STK00005,2024,Kia,Sedan,Sport,48695,75071,9714,Silver,Gray,Hybrid,CVT,certified,https://www.suntrupkiasouth.com/inventory/5,Suntrup Kia South,2025-07-24T02:47:08.432623
+MOCKSUNTR0000000006,STK00006,2024,Kia,Coupe,Sport,39105,77516,31725,Gray,Black,Hybrid,CVT,used,https://www.suntrupkiasouth.com/inventory/6,Suntrup Kia South,2025-07-24T02:47:08.432630
+MOCKSUNTR0000000007,STK00007,2023,Kia,SUV,Premium,43322,81659,35236,Red,Black,Hybrid,CVT,used,https://www.suntrupkiasouth.com/inventory/7,Suntrup Kia South,2025-07-24T02:47:08.432637
+MOCKSUNTR0000000008,STK00008,2024,Kia,Convertible,Base,74569,50433,25674,Blue,Gray,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/8,Suntrup Kia South,2025-07-24T02:47:08.432643
+MOCKSUNTR0000000009,STK00009,2024,Kia,Coupe,Sport,71604,44886,16378,Red,Tan,Hybrid,Automatic,new,https://www.suntrupkiasouth.com/inventory/9,Suntrup Kia South,2025-07-24T02:47:08.432650
+MOCKSUNTR0000000010,STK00010,2024,Kia,SUV,Limited,57110,57659,46929,Blue,Tan,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/10,Suntrup Kia South,2025-07-24T02:47:08.432656
+MOCKSUNTR0000000011,STK00011,2024,Kia,Coupe,Base,65903,59301,44374,Black,Black,Hybrid,Automatic,used,https://www.suntrupkiasouth.com/inventory/11,Suntrup Kia South,2025-07-24T02:47:08.432663
+MOCKSUNTR0000000012,STK00012,2023,Kia,Convertible,Base,38409,38750,5287,Red,Tan,Gasoline,Manual,certified,https://www.suntrupkiasouth.com/inventory/12,Suntrup Kia South,2025-07-24T02:47:08.432670
+MOCKSUNTR0000000013,STK00013,2025,Kia,Convertible,Base,39000,76543,39199,Gray,Black,Electric,CVT,new,https://www.suntrupkiasouth.com/inventory/13,Suntrup Kia South,2025-07-24T02:47:08.432676
+MOCKSUNTR0000000014,STK00014,2020,Kia,SUV,Sport,61240,50039,2941,White,Black,Hybrid,Manual,used,https://www.suntrupkiasouth.com/inventory/14,Suntrup Kia South,2025-07-24T02:47:08.432683
+MOCKSUNTR0000000015,STK00015,2020,Kia,Coupe,Premium,66215,66899,25119,Red,Gray,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/15,Suntrup Kia South,2025-07-24T02:47:08.432690
+MOCKSUNTR0000000016,STK00016,2020,Kia,Convertible,Sport,63650,33696,20650,Gray,Gray,Gasoline,Automatic,certified,https://www.suntrupkiasouth.com/inventory/16,Suntrup Kia South,2025-07-24T02:47:08.432697
+MOCKSUNTR0000000017,STK00017,2021,Kia,Convertible,Base,69098,51009,13613,Silver,Gray,Electric,Manual,certified,https://www.suntrupkiasouth.com/inventory/17,Suntrup Kia South,2025-07-24T02:47:08.432703
+MOCKSUNTR0000000018,STK00018,2025,Kia,Convertible,Premium,35022,32617,46623,Black,Tan,Electric,Manual,new,https://www.suntrupkiasouth.com/inventory/18,Suntrup Kia South,2025-07-24T02:47:08.432710
+MOCKSUNTR0000000019,STK00019,2021,Kia,Convertible,Premium,44046,77324,38908,Blue,Tan,Gasoline,CVT,certified,https://www.suntrupkiasouth.com/inventory/19,Suntrup Kia South,2025-07-24T02:47:08.432716
+MOCKSUNTR0000000020,STK00020,2023,Kia,Convertible,Limited,48067,46956,25504,Gray,Black,Electric,Automatic,used,https://www.suntrupkiasouth.com/inventory/20,Suntrup Kia South,2025-07-24T02:47:08.432723
+MOCKSUNTR0000000021,STK00021,2022,Kia,Sedan,Premium,39283,74308,38160,Gray,Black,Gasoline,Manual,new,https://www.suntrupkiasouth.com/inventory/21,Suntrup Kia South,2025-07-24T02:47:08.432729
+MOCKSUNTR0000000022,STK00022,2021,Kia,Coupe,Limited,78292,84819,2252,Red,Tan,Gasoline,Manual,certified,https://www.suntrupkiasouth.com/inventory/22,Suntrup Kia South,2025-07-24T02:47:08.432736
+MOCKSUNTR0000000023,STK00023,2023,Kia,Coupe,Premium,57708,65437,37014,Silver,Gray,Hybrid,Manual,used,https://www.suntrupkiasouth.com/inventory/23,Suntrup Kia South,2025-07-24T02:47:08.432742
+MOCKSUNTR0000000024,STK00024,2024,Kia,Truck,Premium,56912,73858,15215,Black,Gray,Hybrid,CVT,used,https://www.suntrupkiasouth.com/inventory/24,Suntrup Kia South,2025-07-24T02:47:08.432749
+MOCKSUNTR0000000025,STK00025,2021,Kia,Convertible,Premium,51991,77850,15401,Gray,Gray,Electric,CVT,certified,https://www.suntrupkiasouth.com/inventory/25,Suntrup Kia South,2025-07-24T02:47:08.432755
+MOCKSUNTR0000000026,STK00026,2020,Kia,Coupe,Base,54302,32370,47417,Silver,Tan,Electric,Automatic,new,https://www.suntrupkiasouth.com/inventory/26,Suntrup Kia South,2025-07-24T02:47:08.432762
+MOCKSUNTR0000000027,STK00027,2024,Kia,Truck,Limited,31153,57297,5863,Gray,Black,Electric,Automatic,used,https://www.suntrupkiasouth.com/inventory/27,Suntrup Kia South,2025-07-24T02:47:08.432768
+MOCKSUNTR0000000028,STK00028,2021,Kia,Truck,Premium,32562,73453,6362,Silver,Black,Hybrid,Manual,certified,https://www.suntrupkiasouth.com/inventory/28,Suntrup Kia South,2025-07-24T02:47:08.432775
+MOCKSUNTR0000000029,STK00029,2020,Kia,Sedan,Sport,62615,64117,15028,Black,Tan,Electric,Automatic,new,https://www.suntrupkiasouth.com/inventory/29,Suntrup Kia South,2025-07-24T02:47:08.432781
+MOCKSUNTR0000000030,STK00030,2020,Kia,Convertible,Limited,56865,51144,21237,White,Gray,Electric,CVT,new,https://www.suntrupkiasouth.com/inventory/30,Suntrup Kia South,2025-07-24T02:47:08.432788
+MOCKSUNTR0000000031,STK00031,2021,Kia,Truck,Limited,72451,66904,4530,White,Gray,Electric,Automatic,new,https://www.suntrupkiasouth.com/inventory/31,Suntrup Kia South,2025-07-24T02:47:08.432795
+MOCKSUNTR0000000032,STK00032,2024,Kia,Coupe,Sport,43961,42249,36468,Black,Tan,Electric,Automatic,used,https://www.suntrupkiasouth.com/inventory/32,Suntrup Kia South,2025-07-24T02:47:08.432801
+MOCKSUNTR0000000033,STK00033,2022,Kia,Coupe,Sport,58418,37767,20460,Blue,Tan,Hybrid,Automatic,new,https://www.suntrupkiasouth.com/inventory/33,Suntrup Kia South,2025-07-24T02:47:08.432808
+MOCKSUNTR0000000034,STK00034,2020,Kia,Coupe,Sport,57980,58829,7928,White,Tan,Hybrid,CVT,used,https://www.suntrupkiasouth.com/inventory/34,Suntrup Kia South,2025-07-24T02:47:08.432815
+MOCKSUNTR0000000035,STK00035,2024,Kia,Coupe,Limited,39688,58217,21004,White,Black,Electric,Automatic,certified,https://www.suntrupkiasouth.com/inventory/35,Suntrup Kia South,2025-07-24T02:47:08.432821
+MOCKSUNTR0000000036,STK00036,2022,Kia,SUV,Base,40828,44263,35508,Blue,Black,Electric,CVT,new,https://www.suntrupkiasouth.com/inventory/36,Suntrup Kia South,2025-07-24T02:47:08.432827
+MOCKSUNTR0000000037,STK00037,2024,Kia,Truck,Limited,64731,34282,38810,Blue,Tan,Hybrid,Automatic,new,https://www.suntrupkiasouth.com/inventory/37,Suntrup Kia South,2025-07-24T02:47:08.432834
+MOCKSUNTR0000000038,STK00038,2022,Kia,SUV,Limited,44741,80502,35101,Black,Black,Hybrid,CVT,certified,https://www.suntrupkiasouth.com/inventory/38,Suntrup Kia South,2025-07-24T02:47:08.432840
+MOCKSUNTR0000000039,STK00039,2022,Kia,SUV,Limited,76963,72591,20484,Black,Gray,Hybrid,Automatic,certified,https://www.suntrupkiasouth.com/inventory/39,Suntrup Kia South,2025-07-24T02:47:08.432847
+MOCKSUNTR0000000040,STK00040,2023,Kia,Convertible,Limited,56898,66007,21534,Gray,Tan,Electric,CVT,new,https://www.suntrupkiasouth.com/inventory/40,Suntrup Kia South,2025-07-24T02:47:08.432854
+MOCKTHORO0000000000,STK00000,2025,Ford,Coupe,Sport,66375,46744,9250,Silver,Black,Gasoline,Automatic,certified,https://www.thoroughbredford.com/inventory/0,Thoroughbred Ford,2025-07-24T02:47:09.454028
+MOCKTHORO0000000001,STK00001,2020,Ford,Convertible,Limited,45777,70979,3716,Red,Tan,Electric,Manual,used,https://www.thoroughbredford.com/inventory/1,Thoroughbred Ford,2025-07-24T02:47:09.454053
+MOCKTHORO0000000002,STK00002,2024,Ford,Coupe,Premium,62805,80207,10396,Gray,Black,Electric,CVT,used,https://www.thoroughbredford.com/inventory/2,Thoroughbred Ford,2025-07-24T02:47:09.454071
+MOCKTHORO0000000003,STK00003,2021,Ford,Convertible,Sport,44594,56236,42079,Black,Black,Electric,Manual,certified,https://www.thoroughbredford.com/inventory/3,Thoroughbred Ford,2025-07-24T02:47:09.454088
+MOCKTHORO0000000004,STK00004,2023,Ford,Convertible,Limited,47637,79475,47131,Silver,Black,Electric,CVT,used,https://www.thoroughbredford.com/inventory/4,Thoroughbred Ford,2025-07-24T02:47:09.454106
+MOCKTHORO0000000005,STK00005,2025,Ford,Convertible,Limited,78694,65357,14740,Blue,Black,Gasoline,Automatic,used,https://www.thoroughbredford.com/inventory/5,Thoroughbred Ford,2025-07-24T02:47:09.454123
+MOCKTHORO0000000006,STK00006,2024,Ford,SUV,Limited,41595,59408,38174,Black,Tan,Hybrid,Automatic,used,https://www.thoroughbredford.com/inventory/6,Thoroughbred Ford,2025-07-24T02:47:09.454140
+MOCKTHORO0000000007,STK00007,2024,Ford,Convertible,Premium,54976,45590,15700,Black,Gray,Gasoline,Automatic,used,https://www.thoroughbredford.com/inventory/7,Thoroughbred Ford,2025-07-24T02:47:09.454158
+MOCKTHORO0000000008,STK00008,2024,Ford,Coupe,Sport,36203,30732,41312,Blue,Tan,Electric,Automatic,used,https://www.thoroughbredford.com/inventory/8,Thoroughbred Ford,2025-07-24T02:47:09.454176
+MOCKTHORO0000000009,STK00009,2022,Ford,SUV,Base,38592,80184,27391,Black,Gray,Hybrid,Manual,new,https://www.thoroughbredford.com/inventory/9,Thoroughbred Ford,2025-07-24T02:47:09.454193
+MOCKTHORO0000000010,STK00010,2022,Ford,Truck,Premium,78567,53873,47401,Red,Gray,Electric,Manual,new,https://www.thoroughbredford.com/inventory/10,Thoroughbred Ford,2025-07-24T02:47:09.454210
+MOCKTHORO0000000011,STK00011,2020,Ford,Sedan,Premium,59038,47324,920,Silver,Tan,Hybrid,Manual,used,https://www.thoroughbredford.com/inventory/11,Thoroughbred Ford,2025-07-24T02:47:09.454228
+MOCKTHORO0000000012,STK00012,2022,Ford,Convertible,Premium,54104,56647,43183,Gray,Gray,Electric,Automatic,new,https://www.thoroughbredford.com/inventory/12,Thoroughbred Ford,2025-07-24T02:47:09.454245
+MOCKTHORO0000000013,STK00013,2025,Ford,Sedan,Sport,69106,84182,18927,White,Tan,Electric,Manual,new,https://www.thoroughbredford.com/inventory/13,Thoroughbred Ford,2025-07-24T02:47:09.454262
+MOCKTHORO0000000014,STK00014,2023,Ford,SUV,Limited,61695,51323,12881,White,Black,Gasoline,Manual,new,https://www.thoroughbredford.com/inventory/14,Thoroughbred Ford,2025-07-24T02:47:09.454280
+MOCKTHORO0000000015,STK00015,2023,Ford,Convertible,Sport,52209,51406,41578,Red,Gray,Gasoline,Automatic,new,https://www.thoroughbredford.com/inventory/15,Thoroughbred Ford,2025-07-24T02:47:09.454298
+MOCKTHORO0000000016,STK00016,2023,Ford,Convertible,Premium,58570,79174,32758,Silver,Tan,Gasoline,Automatic,new,https://www.thoroughbredford.com/inventory/16,Thoroughbred Ford,2025-07-24T02:47:09.454315
+MOCKTHORO0000000017,STK00017,2023,Ford,Convertible,Base,31101,31896,23537,Blue,Tan,Gasoline,CVT,certified,https://www.thoroughbredford.com/inventory/17,Thoroughbred Ford,2025-07-24T02:47:09.454333
+MOCKTHORO0000000018,STK00018,2024,Ford,Sedan,Limited,43337,39498,21936,White,Black,Gasoline,CVT,new,https://www.thoroughbredford.com/inventory/18,Thoroughbred Ford,2025-07-24T02:47:09.454350
+MOCKTHORO0000000019,STK00019,2024,Ford,SUV,Premium,39371,77928,37179,Blue,Black,Gasoline,Automatic,new,https://www.thoroughbredford.com/inventory/19,Thoroughbred Ford,2025-07-24T02:47:09.454367
+MOCKTHORO0000000020,STK00020,2021,Ford,Coupe,Sport,74556,74765,16376,Red,Gray,Hybrid,CVT,new,https://www.thoroughbredford.com/inventory/20,Thoroughbred Ford,2025-07-24T02:47:09.454383
+MOCKTHORO0000000021,STK00021,2024,Ford,Sedan,Sport,40406,49836,7094,Blue,Gray,Hybrid,CVT,certified,https://www.thoroughbredford.com/inventory/21,Thoroughbred Ford,2025-07-24T02:47:09.454400
+MOCKTHORO0000000022,STK00022,2021,Ford,Truck,Sport,29117,64177,49678,Blue,Gray,Hybrid,CVT,certified,https://www.thoroughbredford.com/inventory/22,Thoroughbred Ford,2025-07-24T02:47:09.454418
+MOCKTHORO0000000023,STK00023,2024,Ford,Truck,Limited,43378,79497,15521,Silver,Gray,Electric,CVT,certified,https://www.thoroughbredford.com/inventory/23,Thoroughbred Ford,2025-07-24T02:47:09.454435
+MOCKTHORO0000000024,STK00024,2025,Ford,Sedan,Limited,35949,68735,19407,Red,Gray,Gasoline,Automatic,new,https://www.thoroughbredford.com/inventory/24,Thoroughbred Ford,2025-07-24T02:47:09.454453
+MOCKTHORO0000000025,STK00025,2021,Ford,SUV,Sport,61213,57084,45567,Silver,Tan,Electric,Manual,used,https://www.thoroughbredford.com/inventory/25,Thoroughbred Ford,2025-07-24T02:47:09.454472
+MOCKTHORO0000000026,STK00026,2022,Ford,Truck,Sport,34698,47444,4450,Gray,Gray,Gasoline,CVT,used,https://www.thoroughbredford.com/inventory/26,Thoroughbred Ford,2025-07-24T02:47:09.454496
+MOCKTHORO0000000027,STK00027,2020,Ford,Convertible,Base,66681,33384,25327,Gray,Tan,Electric,Automatic,new,https://www.thoroughbredford.com/inventory/27,Thoroughbred Ford,2025-07-24T02:47:09.454515
+MOCKTWINC0000000000,STK00000,2024,Toyota,Sedan,Sport,79149,38255,26306,Gray,Tan,Electric,CVT,certified,https://www.twincitytoyota.com/inventory/0,Twin City Toyota,2025-07-24T02:47:10.465889
+MOCKTWINC0000000001,STK00001,2021,Toyota,Convertible,Premium,37938,53331,3772,Silver,Tan,Hybrid,Automatic,certified,https://www.twincitytoyota.com/inventory/1,Twin City Toyota,2025-07-24T02:47:10.465899
+MOCKTWINC0000000002,STK00002,2023,Toyota,Coupe,Sport,52821,46266,26830,Silver,Gray,Electric,CVT,used,https://www.twincitytoyota.com/inventory/2,Twin City Toyota,2025-07-24T02:47:10.465907
+MOCKTWINC0000000003,STK00003,2022,Toyota,Truck,Limited,65444,57792,45453,Blue,Tan,Hybrid,Automatic,used,https://www.twincitytoyota.com/inventory/3,Twin City Toyota,2025-07-24T02:47:10.465913
+MOCKTWINC0000000004,STK00004,2022,Toyota,SUV,Premium,31650,61540,27020,Silver,Black,Gasoline,Automatic,certified,https://www.twincitytoyota.com/inventory/4,Twin City Toyota,2025-07-24T02:47:10.465920
+MOCKTWINC0000000005,STK00005,2024,Toyota,Truck,Premium,43258,55335,49065,Blue,Tan,Electric,CVT,new,https://www.twincitytoyota.com/inventory/5,Twin City Toyota,2025-07-24T02:47:10.465927
+MOCKTWINC0000000006,STK00006,2023,Toyota,Sedan,Limited,46385,48777,42614,Red,Tan,Gasoline,Manual,certified,https://www.twincitytoyota.com/inventory/6,Twin City Toyota,2025-07-24T02:47:10.465934
+MOCKTWINC0000000007,STK00007,2025,Toyota,Coupe,Base,37456,59880,13387,Silver,Black,Gasoline,Manual,used,https://www.twincitytoyota.com/inventory/7,Twin City Toyota,2025-07-24T02:47:10.465947
+MOCKTWINC0000000008,STK00008,2021,Toyota,Truck,Base,25497,45176,24117,Silver,Black,Gasoline,Automatic,used,https://www.twincitytoyota.com/inventory/8,Twin City Toyota,2025-07-24T02:47:10.465954
+MOCKTWINC0000000009,STK00009,2024,Toyota,SUV,Limited,27945,37624,48586,White,Tan,Hybrid,Manual,certified,https://www.twincitytoyota.com/inventory/9,Twin City Toyota,2025-07-24T02:47:10.465960
+MOCKTWINC0000000010,STK00010,2021,Toyota,Coupe,Premium,65623,44526,48266,Red,Tan,Electric,CVT,used,https://www.twincitytoyota.com/inventory/10,Twin City Toyota,2025-07-24T02:47:10.465967
+MOCKTWINC0000000011,STK00011,2025,Toyota,Sedan,Sport,40788,31561,48976,Silver,Gray,Gasoline,Manual,new,https://www.twincitytoyota.com/inventory/11,Twin City Toyota,2025-07-24T02:47:10.465974
+MOCKTWINC0000000012,STK00012,2025,Toyota,Sedan,Sport,32932,80646,41126,White,Black,Electric,CVT,certified,https://www.twincitytoyota.com/inventory/12,Twin City Toyota,2025-07-24T02:47:10.465980
+MOCKTWINC0000000013,STK00013,2023,Toyota,Coupe,Base,76553,32251,24410,Blue,Gray,Gasoline,Manual,new,https://www.twincitytoyota.com/inventory/13,Twin City Toyota,2025-07-24T02:47:10.465987
+MOCKTWINC0000000014,STK00014,2022,Toyota,Truck,Sport,25825,35142,35321,Silver,Tan,Electric,CVT,certified,https://www.twincitytoyota.com/inventory/14,Twin City Toyota,2025-07-24T02:47:10.465994
+MOCKTWINC0000000015,STK00015,2022,Toyota,Convertible,Sport,41701,83162,28326,White,Tan,Electric,CVT,new,https://www.twincitytoyota.com/inventory/15,Twin City Toyota,2025-07-24T02:47:10.466000
+MOCKTWINC0000000016,STK00016,2021,Toyota,SUV,Base,28961,40880,24076,White,Black,Gasoline,Automatic,certified,https://www.twincitytoyota.com/inventory/16,Twin City Toyota,2025-07-24T02:47:10.466007
+MOCKTWINC0000000017,STK00017,2023,Toyota,SUV,Premium,40109,81013,18982,Black,Gray,Gasoline,Automatic,used,https://www.twincitytoyota.com/inventory/17,Twin City Toyota,2025-07-24T02:47:10.466014
+MOCKTWINC0000000018,STK00018,2022,Toyota,Truck,Limited,40318,52355,27117,Black,Tan,Gasoline,CVT,new,https://www.twincitytoyota.com/inventory/18,Twin City Toyota,2025-07-24T02:47:10.466021
+MOCKTWINC0000000019,STK00019,2020,Toyota,SUV,Limited,77254,45250,42338,Blue,Tan,Gasoline,CVT,new,https://www.twincitytoyota.com/inventory/19,Twin City Toyota,2025-07-24T02:47:10.466027
+MOCKTWINC0000000020,STK00020,2020,Toyota,Coupe,Sport,37795,77261,4298,Black,Gray,Hybrid,Automatic,new,https://www.twincitytoyota.com/inventory/20,Twin City Toyota,2025-07-24T02:47:10.466034
+MOCKTWINC0000000021,STK00021,2024,Toyota,Coupe,Base,43385,39972,5697,Red,Gray,Hybrid,Automatic,certified,https://www.twincitytoyota.com/inventory/21,Twin City Toyota,2025-07-24T02:47:10.466040
+MOCKTWINC0000000022,STK00022,2023,Toyota,SUV,Base,45932,60264,39370,Gray,Tan,Electric,Manual,certified,https://www.twincitytoyota.com/inventory/22,Twin City Toyota,2025-07-24T02:47:10.466047
+MOCKTWINC0000000023,STK00023,2023,Toyota,Coupe,Limited,75408,39204,36528,White,Tan,Electric,CVT,new,https://www.twincitytoyota.com/inventory/23,Twin City Toyota,2025-07-24T02:47:10.466054
+MOCKTWINC0000000024,STK00024,2020,Toyota,Convertible,Premium,64530,67606,35699,Black,Tan,Gasoline,CVT,certified,https://www.twincitytoyota.com/inventory/24,Twin City Toyota,2025-07-24T02:47:10.466060
+MOCKTWINC0000000025,STK00025,2025,Toyota,Coupe,Base,55659,54144,27865,Silver,Gray,Hybrid,CVT,certified,https://www.twincitytoyota.com/inventory/25,Twin City Toyota,2025-07-24T02:47:10.466067
+MOCKTWINC0000000026,STK00026,2021,Toyota,Coupe,Premium,39214,62386,13703,Gray,Gray,Electric,Manual,new,https://www.twincitytoyota.com/inventory/26,Twin City Toyota,2025-07-24T02:47:10.466074
+MOCKTWINC0000000027,STK00027,2020,Toyota,Convertible,Base,25787,44195,17513,White,Gray,Electric,CVT,certified,https://www.twincitytoyota.com/inventory/27,Twin City Toyota,2025-07-24T02:47:10.466080
+MOCKTWINC0000000028,STK00028,2023,Toyota,Truck,Limited,46859,71845,14231,Red,Tan,Hybrid,Manual,certified,https://www.twincitytoyota.com/inventory/28,Twin City Toyota,2025-07-24T02:47:10.466087
+MOCKTWINC0000000029,STK00029,2020,Toyota,Truck,Sport,35975,56610,43373,Gray,Black,Gasoline,Manual,new,https://www.twincitytoyota.com/inventory/29,Twin City Toyota,2025-07-24T02:47:10.466093
+MOCKTWINC0000000030,STK00030,2024,Toyota,Coupe,Limited,61809,31734,18875,Black,Gray,Electric,Automatic,new,https://www.twincitytoyota.com/inventory/30,Twin City Toyota,2025-07-24T02:47:10.466100
+MOCKTWINC0000000031,STK00031,2024,Toyota,Truck,Sport,40515,61164,41295,White,Black,Electric,Automatic,certified,https://www.twincitytoyota.com/inventory/31,Twin City Toyota,2025-07-24T02:47:10.466106
+MOCKTWINC0000000032,STK00032,2023,Toyota,Convertible,Sport,55413,47027,35397,Silver,Tan,Gasoline,CVT,used,https://www.twincitytoyota.com/inventory/32,Twin City Toyota,2025-07-24T02:47:10.466113
+MOCKTWINC0000000033,STK00033,2022,Toyota,Sedan,Sport,32547,71919,47456,Blue,Gray,Gasoline,Manual,new,https://www.twincitytoyota.com/inventory/33,Twin City Toyota,2025-07-24T02:47:10.466120
+MOCKTWINC0000000034,STK00034,2021,Toyota,Convertible,Limited,49387,49029,10858,Red,Tan,Electric,Automatic,used,https://www.twincitytoyota.com/inventory/34,Twin City Toyota,2025-07-24T02:47:10.466126
+MOCKTWINC0000000035,STK00035,2022,Toyota,Convertible,Limited,69987,52619,19008,White,Black,Gasoline,CVT,new,https://www.twincitytoyota.com/inventory/35,Twin City Toyota,2025-07-24T02:47:10.466133
+MOCKTWINC0000000036,STK00036,2025,Toyota,SUV,Base,75002,43517,36264,White,Black,Electric,Manual,used,https://www.twincitytoyota.com/inventory/36,Twin City Toyota,2025-07-24T02:47:10.466140
+MOCKTWINC0000000037,STK00037,2024,Toyota,Coupe,Base,33715,68625,6030,Blue,Tan,Hybrid,Automatic,used,https://www.twincitytoyota.com/inventory/37,Twin City Toyota,2025-07-24T02:47:10.466146
+MOCKTWINC0000000038,STK00038,2021,Toyota,Coupe,Base,47301,67467,25261,Gray,Gray,Electric,Automatic,new,https://www.twincitytoyota.com/inventory/38,Twin City Toyota,2025-07-24T02:47:10.466153
+MOCKTWINC0000000039,STK00039,2021,Toyota,Coupe,Premium,60744,78338,39754,White,Black,Gasoline,CVT,used,https://www.twincitytoyota.com/inventory/39,Twin City Toyota,2025-07-24T02:47:10.466160
+MOCKTWINC0000000040,STK00040,2021,Toyota,Coupe,Sport,34801,84954,34580,White,Gray,Hybrid,Automatic,new,https://www.twincitytoyota.com/inventory/40,Twin City Toyota,2025-07-24T02:47:10.466166
+MOCKTWINC0000000041,STK00041,2021,Toyota,Convertible,Premium,78957,84292,48236,Red,Tan,Gasoline,CVT,used,https://www.twincitytoyota.com/inventory/41,Twin City Toyota,2025-07-24T02:47:10.466173
+MOCKTWINC0000000042,STK00042,2022,Toyota,SUV,Premium,50877,70625,42006,Gray,Black,Electric,CVT,used,https://www.twincitytoyota.com/inventory/42,Twin City Toyota,2025-07-24T02:47:10.466180
+MOCKWESTC0000000000,STK00000,2021,Volvo,Coupe,Sport,78907,55276,5294,Blue,Gray,Electric,CVT,used,https://www.wcvolvocars.com/inventory/0,West County Volvo Cars,2025-07-24T02:47:12.499623
+MOCKWESTC0000000001,STK00001,2021,Volvo,Convertible,Limited,61999,50046,7024,Gray,Black,Hybrid,Automatic,certified,https://www.wcvolvocars.com/inventory/1,West County Volvo Cars,2025-07-24T02:47:12.499633
+MOCKWESTC0000000002,STK00002,2024,Volvo,SUV,Limited,31364,42858,4871,Silver,Tan,Electric,Manual,new,https://www.wcvolvocars.com/inventory/2,West County Volvo Cars,2025-07-24T02:47:12.499641
+MOCKWESTC0000000003,STK00003,2025,Volvo,Coupe,Base,35706,76004,20927,Red,Gray,Gasoline,Automatic,certified,https://www.wcvolvocars.com/inventory/3,West County Volvo Cars,2025-07-24T02:47:12.499648
+MOCKWESTC0000000004,STK00004,2021,Volvo,Truck,Sport,59521,82549,43436,White,Gray,Gasoline,CVT,used,https://www.wcvolvocars.com/inventory/4,West County Volvo Cars,2025-07-24T02:47:12.499655
+MOCKWESTC0000000005,STK00005,2024,Volvo,Coupe,Premium,26906,49471,38226,White,Black,Hybrid,Automatic,new,https://www.wcvolvocars.com/inventory/5,West County Volvo Cars,2025-07-24T02:47:12.499661
+MOCKWESTC0000000006,STK00006,2022,Volvo,Convertible,Premium,35186,64993,10037,Red,Tan,Hybrid,Manual,used,https://www.wcvolvocars.com/inventory/6,West County Volvo Cars,2025-07-24T02:47:12.499668
+MOCKWESTC0000000007,STK00007,2021,Volvo,Sedan,Limited,34598,73389,7038,White,Black,Electric,Manual,used,https://www.wcvolvocars.com/inventory/7,West County Volvo Cars,2025-07-24T02:47:12.499674
+MOCKWESTC0000000008,STK00008,2020,Volvo,Truck,Limited,56791,31932,16100,Gray,Black,Electric,Manual,used,https://www.wcvolvocars.com/inventory/8,West County Volvo Cars,2025-07-24T02:47:12.499681
+MOCKWESTC0000000009,STK00009,2021,Volvo,Truck,Base,58953,81653,45239,Silver,Gray,Hybrid,CVT,new,https://www.wcvolvocars.com/inventory/9,West County Volvo Cars,2025-07-24T02:47:12.499688
+MOCKWESTC0000000010,STK00010,2021,Volvo,Sedan,Premium,47205,73023,34366,Red,Gray,Electric,Automatic,new,https://www.wcvolvocars.com/inventory/10,West County Volvo Cars,2025-07-24T02:47:12.499695
+MOCKWESTC0000000011,STK00011,2025,Volvo,Sedan,Premium,41355,55012,4857,Blue,Tan,Electric,Manual,new,https://www.wcvolvocars.com/inventory/11,West County Volvo Cars,2025-07-24T02:47:12.499701
+MOCKWESTC0000000012,STK00012,2024,Volvo,SUV,Limited,60757,53211,47504,Gray,Tan,Gasoline,CVT,new,https://www.wcvolvocars.com/inventory/12,West County Volvo Cars,2025-07-24T02:47:12.499708
+MOCKWESTC0000000013,STK00013,2020,Volvo,Convertible,Sport,36749,60724,45195,Blue,Gray,Gasoline,CVT,used,https://www.wcvolvocars.com/inventory/13,West County Volvo Cars,2025-07-24T02:47:12.499714
+MOCKWESTC0000000014,STK00014,2023,Volvo,Convertible,Base,43836,51086,9817,Blue,Black,Hybrid,Automatic,certified,https://www.wcvolvocars.com/inventory/14,West County Volvo Cars,2025-07-24T02:47:12.499721
+MOCKWESTC0000000015,STK00015,2021,Volvo,Truck,Premium,34667,48458,46268,Black,Black,Hybrid,Manual,new,https://www.wcvolvocars.com/inventory/15,West County Volvo Cars,2025-07-24T02:47:12.499728
+MOCKWESTC0000000016,STK00016,2022,Volvo,SUV,Premium,64869,55038,43862,Blue,Tan,Electric,Manual,used,https://www.wcvolvocars.com/inventory/16,West County Volvo Cars,2025-07-24T02:47:12.499734
+MOCKWESTC0000000017,STK00017,2020,Volvo,Truck,Base,79851,37127,42834,Gray,Black,Gasoline,Manual,certified,https://www.wcvolvocars.com/inventory/17,West County Volvo Cars,2025-07-24T02:47:12.499741
+MOCKWESTC0000000018,STK00018,2021,Volvo,Coupe,Base,59278,40556,5450,Red,Tan,Hybrid,Automatic,new,https://www.wcvolvocars.com/inventory/18,West County Volvo Cars,2025-07-24T02:47:12.499748
+MOCKWESTC0000000019,STK00019,2024,Volvo,SUV,Sport,48816,70733,23347,Red,Gray,Gasoline,Automatic,new,https://www.wcvolvocars.com/inventory/19,West County Volvo Cars,2025-07-24T02:47:12.499755

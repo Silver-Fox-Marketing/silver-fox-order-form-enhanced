@@ -1,0 +1,23 @@
+{
+  "scraper_name": "rollsroyce_ranch_mirage",
+  "dealership": "Rolls-Royce Ranch Mirage",
+  "website_url": "https://www.rollsroycemotorcarspalmdesert.com",
+  "test_start_time": "2025-07-23 21:14:56.705407",
+  "test_end_time": "2025-07-23 21:14:56.705989",
+  "duration_seconds": 0.000582,
+  "success": false,
+  "total_vehicles_found": 0,
+  "pages_accessed": 0,
+  "first_page_only_detected": false,
+  "data_quality_issues": [
+    "Critical error: Could not import scraper class: RollsRoyceRanchMirageScraper"
+  ],
+  "performance_metrics": {},
+  "validation_details": {
+    "error": "Critical error: Could not import scraper class: RollsRoyceRanchMirageScraper",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/barretttaylor/Desktop/Claude Code/projects/silverfox_scraper_system/tests/production_scraper_validator.py\", line 161, in validate_individual_scraper\n    raise Exception(f\"Could not import scraper class: {scraper_config['class_name']}\")\nException: Could not import scraper class: RollsRoyceRanchMirageScraper\n"
+  },
+  "recommendations": [
+    "Fix critical error: Could not import scraper class: RollsRoyceRanchMirageScraper"
+  ]
+}

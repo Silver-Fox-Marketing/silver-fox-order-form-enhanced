@@ -1,0 +1,418 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silverfox-scraper-coordinator
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: coordinator
+    tier: application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silverfox-scraper-coordinator
+      component: coordinator
+  template:
+    metadata:
+      labels:
+        app: silverfox-scraper-coordinator
+        component: coordinator
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: silverfox-scraper-sa
+      imagePullSecrets:
+      - name: silverfox-registry-secret
+      initContainers:
+      - name: wait-for-redis
+        image: busybox:1.35
+        command: ['sh', '-c', 'until nc -z redis-service 6379; do echo waiting for redis; sleep 2; done;']
+      containers:
+      - name: scraper-coordinator
+        image: silverfox/scraper-coordinator:latest  # Replace with your actual image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 9090
+          name: metrics
+          protocol: TCP
+        env:
+        - name: ENVIRONMENT
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: ENVIRONMENT
+        - name: LOG_LEVEL
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: LOG_LEVEL
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: redis_password
+        - name: PIPEDRIVE_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: pipedrive_api_token
+        - name: PIPEDRIVE_COMPANY_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: pipedrive_company_domain
+        - name: SMTP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: smtp_username
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: smtp_password
+        - name: ALERT_EMAIL_RECIPIENTS
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: alert_email_recipients
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+          readOnly: true
+        - name: logs-volume
+          mountPath: /app/logs
+        - name: data-volume
+          mountPath: /app/data
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: config-volume
+        configMap:
+          name: silverfox-scraper-config
+      - name: logs-volume
+        persistentVolumeClaim:
+          claimName: silverfox-logs-pvc
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: silverfox-data-pvc
+      restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/os: linux
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silverfox-scraper-workers
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: worker
+    tier: application
+spec:
+  replicas: 3  # Start with 3 workers, can be scaled up/down
+  selector:
+    matchLabels:
+      app: silverfox-scraper-workers
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: silverfox-scraper-workers
+        component: worker
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9091"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: silverfox-scraper-sa
+      imagePullSecrets:
+      - name: silverfox-registry-secret
+      initContainers:
+      - name: wait-for-coordinator
+        image: busybox:1.35
+        command: ['sh', '-c', 'until nc -z silverfox-coordinator-service 8080; do echo waiting for coordinator; sleep 2; done;']
+      containers:
+      - name: scraper-worker
+        image: silverfox/scraper-worker:latest  # Replace with your actual image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9091
+          name: metrics
+          protocol: TCP
+        env:
+        - name: WORKER_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ENVIRONMENT
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: ENVIRONMENT
+        - name: LOG_LEVEL
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: LOG_LEVEL
+        - name: CHROME_BIN
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: CHROME_BIN
+        - name: CHROMEDRIVER_PATH
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: CHROMEDRIVER_PATH
+        - name: DISPLAY
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: DISPLAY
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: redis_password
+        - name: COORDINATOR_URL
+          value: "http://silverfox-coordinator-service:8080"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+          readOnly: true
+        - name: chrome-config-volume
+          mountPath: /app/chrome-config
+          readOnly: true
+        - name: logs-volume
+          mountPath: /app/logs
+        - name: data-volume
+          mountPath: /app/data
+        - name: chrome-cache-volume
+          mountPath: /app/chrome-cache
+        - name: dev-shm
+          mountPath: /dev/shm
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+        livenessProbe:
+          exec:
+            command:
+            - pgrep
+            - -f
+            - "scraper-worker"
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          periodSeconds: 30
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - pgrep
+            - -f
+            - "scraper-worker"
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: false  # Chrome requires specific permissions
+          runAsUser: 0
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            add:
+            - SYS_ADMIN  # Required for Chrome sandboxing
+            drop:
+            - ALL
+      volumes:
+      - name: config-volume
+        configMap:
+          name: silverfox-scraper-config
+      - name: chrome-config-volume
+        configMap:
+          name: silverfox-chrome-config
+      - name: logs-volume
+        persistentVolumeClaim:
+          claimName: silverfox-logs-pvc
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: silverfox-data-pvc
+      - name: chrome-cache-volume
+        persistentVolumeClaim:
+          claimName: silverfox-chrome-cache-pvc
+      - name: dev-shm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 2Gi
+      restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/os: linux
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silverfox-analytics-processor
+  namespace: silverfox-scrapers
+  labels:
+    app: silverfox-scraper-system
+    component: analytics
+    tier: processing
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: silverfox-analytics-processor
+      component: analytics
+  template:
+    metadata:
+      labels:
+        app: silverfox-analytics-processor
+        component: analytics
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9092"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: silverfox-scraper-sa
+      imagePullSecrets:
+      - name: silverfox-registry-secret
+      containers:
+      - name: analytics-processor
+        image: silverfox/analytics-processor:latest  # Replace with your actual image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9092
+          name: metrics
+          protocol: TCP
+        env:
+        - name: ENVIRONMENT
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: ENVIRONMENT
+        - name: LOG_LEVEL
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-scraper-env
+              key: LOG_LEVEL
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: redis_password
+        - name: PIPEDRIVE_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: pipedrive_api_token
+        - name: PIPEDRIVE_COMPANY_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: silverfox-api-secrets
+              key: pipedrive_company_domain
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+          readOnly: true
+        - name: logs-volume
+          mountPath: /app/logs
+        - name: data-volume
+          mountPath: /app/data
+        resources:
+          requests:
+            cpu: 300m
+            memory: 768Mi
+          limits:
+            cpu: 1000m
+            memory: 3Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9092
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 9092
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+          periodSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: config-volume
+        configMap:
+          name: silverfox-scraper-config
+      - name: logs-volume
+        persistentVolumeClaim:
+          claimName: silverfox-logs-pvc
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: silverfox-data-pvc
+      restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/os: linux

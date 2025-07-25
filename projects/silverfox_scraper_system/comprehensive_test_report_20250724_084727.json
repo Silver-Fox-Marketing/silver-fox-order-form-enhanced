@@ -1,0 +1,673 @@
+{
+  "total_scrapers": 40,
+  "successful_scrapers": 7,
+  "failed_scrapers": 33,
+  "scrapers_with_data": 7,
+  "scrapers_with_fallback": 0,
+  "scrapers_with_errors": 33,
+  "total_vehicles_found": 146,
+  "individual_results": [
+    {
+      "scraper_name": "auffenberghyundai_optimized",
+      "dealer_name": "Auffenberg Hyundai",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.1056981086730957,
+      "error": "Could not find scraper class. Tried: ['AuffenbergHyundaiOptimizedScraper', 'AuffenbergHyundaiOptimizedScraper', 'AuffenberghyundaiScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.849824"
+    },
+    {
+      "scraper_name": "miniofstlouis_optimized",
+      "dealer_name": "MINI of St. Louis",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0027980804443359375,
+      "error": "Could not find scraper class. Tried: ['MiniOfStLouisOptimizedScraper', 'MINIofSt.LouisOptimizedScraper', 'MiniofstlouisScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.955609"
+    },
+    {
+      "scraper_name": "hondafrontenac_optimized",
+      "dealer_name": "Honda of Frontenac",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0019059181213378906,
+      "error": "Could not find scraper class. Tried: ['HondaOfFrontenacOptimizedScraper', 'HondaofFrontenacOptimizedScraper', 'HondafrontenacScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.958460"
+    },
+    {
+      "scraper_name": "glendalechryslerjeep_optimized",
+      "dealer_name": "Glendale Chrysler Jeep",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0016579627990722656,
+      "error": "Could not find scraper class. Tried: ['GlendaleChryslerJeepOptimizedScraper', 'GlendaleChryslerJeepOptimizedScraper', 'GlendalechryslerjeepScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.960406"
+    },
+    {
+      "scraper_name": "stehouwerauto_optimized",
+      "dealer_name": "Stehouwer Auto",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0015797615051269531,
+      "error": "Could not find scraper class. Tried: ['StehouwerAutoOptimizedScraper', 'StehouwerAutoOptimizedScraper', 'StehouwerautoScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.962104"
+    },
+    {
+      "scraper_name": "hwkia_optimized",
+      "dealer_name": "H&W Kia",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0014221668243408203,
+      "error": "Could not find scraper class. Tried: ['HwKiaOptimizedScraper', 'H&WKiaOptimizedScraper', 'HwkiaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.963720"
+    },
+    {
+      "scraper_name": "davesinclairlincolnstpeters_optimized",
+      "dealer_name": "Dave Sinclair Lincoln St. Peters",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0015430450439453125,
+      "error": "Could not find scraper class. Tried: ['DaveSinclairLincolnStPetersOptimizedScraper', 'DaveSinclairLincolnSt.PetersOptimizedScraper', 'DavesinclairlincolnstpetersScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.965181"
+    },
+    {
+      "scraper_name": "southcountyautos_optimized",
+      "dealer_name": "South County Autos",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0013318061828613281,
+      "error": "Could not find scraper class. Tried: ['SouthCountyAutosOptimizedScraper', 'SouthCountyAutosOptimizedScraper', 'SouthcountyautosScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.966760"
+    },
+    {
+      "scraper_name": "landroverranchomirage_optimized",
+      "dealer_name": "Land Rover Ranch Mirage",
+      "success": true,
+      "vehicle_count": 1,
+      "data_source": "unknown",
+      "test_duration": 0.0017080307006835938,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "N/A",
+        "year": "N/A",
+        "make": "N/A",
+        "model": "N/A",
+        "price": "N/A"
+      },
+      "data_quality": {
+        "total_vehicles": 1,
+        "complete_records": 0,
+        "price_range": {
+          "min": null,
+          "max": null,
+          "avg": null
+        },
+        "year_range": {
+          "min": null,
+          "max": null
+        },
+        "unique_vins": 0,
+        "data_completeness": 0.0,
+        "score": 0.15,
+        "issues": [
+          "Duplicate VINs: 1 duplicates",
+          "Low completeness: 0.0%",
+          "No price data available"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:26.968129"
+    },
+    {
+      "scraper_name": "wcvolvocars_optimized",
+      "dealer_name": "West County Volvo Cars",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0013718605041503906,
+      "error": "Could not find scraper class. Tried: ['WestCountyVolvoCarsOptimizedScraper', 'WestCountyVolvoCarsOptimizedScraper', 'WcvolvocarsScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.969864"
+    },
+    {
+      "scraper_name": "suntrupbuickgmc_optimized",
+      "dealer_name": "Suntrup Buick GMC",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0013720989227294922,
+      "error": "Could not find scraper class. Tried: ['SuntrupBuickGmcOptimizedScraper', 'SuntrupBuickGMCOptimizedScraper', 'SuntrupbuickgmcScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.971269"
+    },
+    {
+      "scraper_name": "spiritlexus_optimized",
+      "dealer_name": "Spirit Lexus",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0014181137084960938,
+      "error": "Could not find scraper class. Tried: ['SpiritLexusOptimizedScraper', 'SpiritLexusOptimizedScraper', 'SpiritlexusScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.972671"
+    },
+    {
+      "scraper_name": "porschestlouis_optimized",
+      "dealer_name": "Porsche St. Louis",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0012919902801513672,
+      "error": "Could not find scraper class. Tried: ['PorscheStLouisOptimizedScraper', 'PorscheSt.LouisOptimizedScraper', 'PorschestlouisScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.974120"
+    },
+    {
+      "scraper_name": "columbiabmw_optimized",
+      "dealer_name": "Columbia BMW",
+      "success": true,
+      "vehicle_count": 1,
+      "data_source": "unknown",
+      "test_duration": 0.0014269351959228516,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "N/A",
+        "year": "N/A",
+        "make": "N/A",
+        "model": "N/A",
+        "price": "N/A"
+      },
+      "data_quality": {
+        "total_vehicles": 1,
+        "complete_records": 0,
+        "price_range": {
+          "min": null,
+          "max": null,
+          "avg": null
+        },
+        "year_range": {
+          "min": null,
+          "max": null
+        },
+        "unique_vins": 0,
+        "data_completeness": 0.0,
+        "score": 0.15,
+        "issues": [
+          "Duplicate VINs: 1 duplicates",
+          "Low completeness: 0.0%",
+          "No price data available"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:26.975443"
+    },
+    {
+      "scraper_name": "twincitytoyota_optimized",
+      "dealer_name": "Twin City Toyota",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0014219284057617188,
+      "error": "Could not find scraper class. Tried: ['TwinCityToyotaOptimizedScraper', 'TwinCityToyotaOptimizedScraper', 'TwincitytoyotaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.976894"
+    },
+    {
+      "scraper_name": "suntrupkiasouth_optimized",
+      "dealer_name": "Suntrup Kia South",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0012989044189453125,
+      "error": "Could not find scraper class. Tried: ['SuntrupKiaSouthOptimizedScraper', 'SuntrupKiaSouthOptimizedScraper', 'SuntrupkiasouthScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.978346"
+    },
+    {
+      "scraper_name": "davesinclairlincolnsouth_optimized",
+      "dealer_name": "Dave Sinclair Lincoln South",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0014450550079345703,
+      "error": "Could not find scraper class. Tried: ['DaveSinclairLincolnSouthOptimizedScraper', 'DaveSinclairLincolnSouthOptimizedScraper', 'DavesinclairlincolnsouthScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.979676"
+    },
+    {
+      "scraper_name": "pundmannford_optimized",
+      "dealer_name": "Pundmann Ford",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0012569427490234375,
+      "error": "Could not find scraper class. Tried: ['PundmannFordOptimizedScraper', 'PundmannFordOptimizedScraper', 'PundmannfordScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.981152"
+    },
+    {
+      "scraper_name": "thoroughbredford_optimized",
+      "dealer_name": "Thoroughbred Ford",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0013880729675292969,
+      "error": "Could not find scraper class. Tried: ['ThoroughbredFordOptimizedScraper', 'ThoroughbredFordOptimizedScraper', 'ThoroughbredfordScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.982440"
+    },
+    {
+      "scraper_name": "audiranchomirage_optimized",
+      "dealer_name": "Audi Ranch Mirage",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0013399124145507812,
+      "error": "Could not find scraper class. Tried: ['AudiRanchMirageOptimizedScraper', 'AudiRanchMirageOptimizedScraper', 'AudiranchomirageScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:26.983859"
+    },
+    {
+      "scraper_name": "columbiahonda_optimized",
+      "dealer_name": "Columbia Honda",
+      "success": true,
+      "vehicle_count": 1,
+      "data_source": "unknown",
+      "test_duration": 0.0015380382537841797,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "N/A",
+        "year": "N/A",
+        "make": "N/A",
+        "model": "N/A",
+        "price": "N/A"
+      },
+      "data_quality": {
+        "total_vehicles": 1,
+        "complete_records": 0,
+        "price_range": {
+          "min": null,
+          "max": null,
+          "avg": null
+        },
+        "year_range": {
+          "min": null,
+          "max": null
+        },
+        "unique_vins": 0,
+        "data_completeness": 0.0,
+        "score": 0.15,
+        "issues": [
+          "Duplicate VINs: 1 duplicates",
+          "Low completeness: 0.0%",
+          "No price data available"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:26.985231"
+    },
+    {
+      "scraper_name": "bmwofweststlouis_optimized",
+      "dealer_name": "BMW of West St. Louis",
+      "success": true,
+      "vehicle_count": 71,
+      "data_source": "production_fallback",
+      "test_duration": 0.1826629638671875,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD{BMWOFWESTST.",
+        "year": 2025,
+        "make": "BMW",
+        "model": "SUV",
+        "price": 25759
+      },
+      "data_quality": {
+        "total_vehicles": 71,
+        "complete_records": 71,
+        "price_range": {
+          "min": 25759,
+          "max": 74130,
+          "avg": 50592.66197183099
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 1,
+        "data_completeness": 1.0,
+        "score": 0.704225352112676,
+        "issues": [
+          "Duplicate VINs: 70 duplicates"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:26.986797"
+    },
+    {
+      "scraper_name": "joemachenscdjr_optimized",
+      "dealer_name": "Joe Machens Chrysler Dodge Jeep Ram",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0025238990783691406,
+      "error": "Could not find scraper class. Tried: ['JoeMachensChryslerDodgeJeepRamOptimizedScraper', 'JoeMachensChryslerDodgeJeepRamOptimizedScraper', 'JoemachenscdjrScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.169552"
+    },
+    {
+      "scraper_name": "joemachenstoyota_optimized",
+      "dealer_name": "Joe Machens Toyota",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002916097640991211,
+      "error": "Could not find scraper class. Tried: ['JoeMachensToyotaOptimizedScraper', 'JoeMachensToyotaOptimizedScraper', 'JoemachenstoyotaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.172126"
+    },
+    {
+      "scraper_name": "rustydrewingchevroletbuickgmc_optimized",
+      "dealer_name": "Rusty Drewing Chevrolet Buick GMC",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0034248828887939453,
+      "error": "Could not find scraper class. Tried: ['RustyDrewingChevroletBuickGmcOptimizedScraper', 'RustyDrewingChevroletBuickGMCOptimizedScraper', 'RustydrewingchevroletbuickgmcScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.175142"
+    },
+    {
+      "scraper_name": "joemachensnissan_optimized",
+      "dealer_name": "Joe Machens Nissan",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.003520965576171875,
+      "error": "Could not find scraper class. Tried: ['JoeMachensNissanOptimizedScraper', 'JoeMachensNissanOptimizedScraper', 'JoemachensnissanScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.178642"
+    },
+    {
+      "scraper_name": "indigoautogroup_optimized",
+      "dealer_name": "Indigo Auto Group",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002791881561279297,
+      "error": "Could not find scraper class. Tried: ['IndigoAutoGroupOptimizedScraper', 'IndigoAutoGroupOptimizedScraper', 'IndigoautogroupScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.182249"
+    },
+    {
+      "scraper_name": "jaguarranchomirage_optimized",
+      "dealer_name": "Jaguar Ranch Mirage",
+      "success": true,
+      "vehicle_count": 1,
+      "data_source": "unknown",
+      "test_duration": 0.0029299259185791016,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "N/A",
+        "year": "N/A",
+        "make": "N/A",
+        "model": "N/A",
+        "price": "N/A"
+      },
+      "data_quality": {
+        "total_vehicles": 1,
+        "complete_records": 0,
+        "price_range": {
+          "min": null,
+          "max": null,
+          "avg": null
+        },
+        "year_range": {
+          "min": null,
+          "max": null
+        },
+        "unique_vins": 0,
+        "data_completeness": 0.0,
+        "score": 0.15,
+        "issues": [
+          "Duplicate VINs: 1 duplicates",
+          "Low completeness: 0.0%",
+          "No price data available"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:27.185120"
+    },
+    {
+      "scraper_name": "weberchev_optimized",
+      "dealer_name": "Weber Chevrolet",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002643108367919922,
+      "error": "Could not find scraper class. Tried: ['WeberChevroletOptimizedScraper', 'WeberChevroletOptimizedScraper', 'WeberchevScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.188102"
+    },
+    {
+      "scraper_name": "kiaofcolumbia_optimized",
+      "dealer_name": "Kia of Columbia",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0023801326751708984,
+      "error": "Could not find scraper class. Tried: ['KiaOfColumbiaOptimizedScraper', 'KiaofColumbiaOptimizedScraper', 'KiaofcolumbiaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.190799"
+    },
+    {
+      "scraper_name": "pappastoyota_optimized",
+      "dealer_name": "Pappas Toyota",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0024518966674804688,
+      "error": "Could not find scraper class. Tried: ['PappasToyotaOptimizedScraper', 'PappasToyotaOptimizedScraper', 'PappastoyotaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.193237"
+    },
+    {
+      "scraper_name": "bommaritowestcounty_optimized",
+      "dealer_name": "Bommarito West County",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002337932586669922,
+      "error": "Could not find scraper class. Tried: ['BommaritoWestCountyOptimizedScraper', 'BommaritoWestCountyOptimizedScraper', 'BommaritowestcountyScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.195745"
+    },
+    {
+      "scraper_name": "suntruphyundaisouth_optimized",
+      "dealer_name": "Suntrup Hyundai South",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002029895782470703,
+      "error": "Could not find scraper class. Tried: ['SuntrupHyundaiSouthOptimizedScraper', 'SuntrupHyundaiSouthOptimizedScraper', 'SuntruphyundaisouthScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.198132"
+    },
+    {
+      "scraper_name": "joemachenshyundai_optimized",
+      "dealer_name": "Joe Machens Hyundai",
+      "success": true,
+      "vehicle_count": 70,
+      "data_source": "production_fallback",
+      "test_duration": 0.006008148193359375,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "PROD{JOEMACHENSHY",
+        "year": 2025,
+        "make": "Hyundai",
+        "model": "SUV",
+        "price": 30047
+      },
+      "data_quality": {
+        "total_vehicles": 70,
+        "complete_records": 70,
+        "price_range": {
+          "min": 26234,
+          "max": 74343,
+          "avg": 51927.71428571428
+        },
+        "year_range": {
+          "min": 2020,
+          "max": 2025
+        },
+        "unique_vins": 1,
+        "data_completeness": 1.0,
+        "score": 0.7042857142857143,
+        "issues": [
+          "Duplicate VINs: 69 duplicates"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:27.200209"
+    },
+    {
+      "scraper_name": "suntrupfordwest_optimized",
+      "dealer_name": "Suntrup Ford West",
+      "success": true,
+      "vehicle_count": 1,
+      "data_source": "unknown",
+      "test_duration": 0.002259969711303711,
+      "error": null,
+      "sample_vehicle": {
+        "vin": "N/A",
+        "year": "N/A",
+        "make": "N/A",
+        "model": "N/A",
+        "price": "N/A"
+      },
+      "data_quality": {
+        "total_vehicles": 1,
+        "complete_records": 0,
+        "price_range": {
+          "min": null,
+          "max": null,
+          "avg": null
+        },
+        "year_range": {
+          "min": null,
+          "max": null
+        },
+        "unique_vins": 0,
+        "data_completeness": 0.0,
+        "score": 0.15,
+        "issues": [
+          "Duplicate VINs: 1 duplicates",
+          "Low completeness: 0.0%",
+          "No price data available"
+        ]
+      },
+      "test_timestamp": "2025-07-24T08:47:27.206275"
+    },
+    {
+      "scraper_name": "frankletahonda_optimized",
+      "dealer_name": "Frank Leta Honda",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002017974853515625,
+      "error": "Could not find scraper class. Tried: ['FrankLetaHondaOptimizedScraper', 'FrankLetaHondaOptimizedScraper', 'FrankletahondaScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.208572"
+    },
+    {
+      "scraper_name": "rustydrewingcadillac_optimized",
+      "dealer_name": "Rusty Drewing Cadillac",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0018649101257324219,
+      "error": "Could not find scraper class. Tried: ['RustyDrewingCadillacOptimizedScraper', 'RustyDrewingCadillacOptimizedScraper', 'RustydrewingcadillacScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.210633"
+    },
+    {
+      "scraper_name": "bommaritocadillac_optimized",
+      "dealer_name": "Bommarito Cadillac",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0019299983978271484,
+      "error": "Could not find scraper class. Tried: ['BommaritoCadillacOptimizedScraper', 'BommaritoCadillacOptimizedScraper', 'BommaritocadillacScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.212541"
+    },
+    {
+      "scraper_name": "serrahondaofallon_optimized",
+      "dealer_name": "Serra Honda of O'Fallon",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.0019118785858154297,
+      "error": "Could not find scraper class. Tried: ['SerraHondaOfOfallonOptimizedScraper', \"SerraHondaofO'FallonOptimizedScraper\", 'SerrahondaofallonScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.214518"
+    },
+    {
+      "scraper_name": "suntrupfordkirkwood_optimized",
+      "dealer_name": "Suntrup Ford Kirkwood",
+      "success": false,
+      "vehicle_count": 0,
+      "data_source": "unknown",
+      "test_duration": 0.002260923385620117,
+      "error": "Could not find scraper class. Tried: ['SuntrupFordKirkwoodOptimizedScraper', 'SuntrupFordKirkwoodOptimizedScraper', 'SuntrupfordkirkwoodScraper']",
+      "sample_vehicle": null,
+      "data_quality": {},
+      "test_timestamp": "2025-07-24T08:47:27.216474"
+    }
+  ],
+  "test_start": "2025-07-24T08:47:26.849025",
+  "test_duration": 0.36966609954833984,
+  "success_rate": 17.5,
+  "data_rate": 17.5
+}
