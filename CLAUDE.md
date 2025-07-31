@@ -296,40 +296,46 @@ npm test
 
 ---
 
-## 🏗️ **SILVER FOX SCRAPER SYSTEM - CORNERSTONE METRICS**
+## 🏗️ **SILVER FOX ORDER PROCESSING SYSTEM v2.0 - OPERATIONAL STATUS**
 
-### **📊 TOTAL SCRAPER INVENTORY: 40 DEALERSHIP SCRAPERS**
-*This is the cornerstone metric that defines our system scope and must NEVER be forgotten*
+### **📊 ENHANCED ORDER PROCESSING WITH VIN INTELLIGENCE**
+*Complete order processing system with advanced VIN history tracking and cross-dealership logic*
 
-#### **Current Operational Status:**
-- **✅ 8 Confirmed Working Scrapers** (as of July 2025) - 20% coverage
-- **❌ 6 Ranch Mirage Scrapers** (failing due to constructor issues - easily fixable)
-- **🔍 26 Additional Scrapers** (configurations exist, scrapers need building/activation)
-- **📍 All 40 configurations located in:** `silverfox_system/config/*.json`
+#### **Current System Status (July 30, 2025):**
+- **✅ Order Processing Wizard v2.0** - Fully operational with enhanced VIN logic
+- **✅ VIN History Database** - 28,289+ VINs across 36 dealerships imported
+- **✅ Enhanced VIN Logic** - Cross-dealership and vehicle status change detection
+- **✅ Real-time Integration** - Live scraper data with intelligent filtering
+- **✅ Manual Data Editor** - Advanced CSV editing with QR code regeneration
+- **✅ Backup CLI System** - Command line fallback for system resilience
 
-#### **Confirmed Working Dealerships (8/39-44):**
-1. BMW of West St. Louis (50 vehicles)
-2. Suntrup Ford West (40 vehicles) 
-3. Suntrup Ford Kirkwood (35 vehicles)
-4. Joe Machens Hyundai (30 vehicles)
-5. Joe Machens Toyota (45 vehicles)
-6. Columbia Honda (40 vehicles)
-7. Dave Sinclair Lincoln South (25 vehicles)
-8. Thoroughbred Ford (35 vehicles)
+#### **Active Dealership Integrations (4 Primary + 36 VIN History):**
+**🔗 Live Scraper Integration:**
+1. **BMW of West St. Louis** - Real-time inventory + VIN filtering
+2. **Columbia Honda** - Real-time inventory + VIN filtering  
+3. **Dave Sinclair Lincoln South** - Real-time inventory + VIN filtering
+4. **Test Integration Dealer** - Development and testing
 
-#### **Known Ranch Mirage Group (6/39-44):**
-- Jaguar Ranch Mirage
-- Land Rover Ranch Mirage
-- Aston Martin Ranch Mirage
-- Bentley Ranch Mirage
-- McLaren Ranch Mirage
-- Rolls-Royce Ranch Mirage
+**📊 VIN History Coverage (36 Dealerships):**
+- Comprehensive historical VIN database covering all major dealer relationships
+- Smart duplicate prevention and cross-dealership opportunity detection
+- Vehicle status change tracking (NEW → USED → CERTIFIED)
 
-#### **🎯 CRITICAL SYSTEM GOALS:**
-- **Target: 40 working scrapers** covering all dealership relationships
-- **Current: 8 working (20% coverage)**
-- **Immediate: Fix 6 Ranch Mirage = 14 working (35% coverage)**
-- **Ultimate: Build/activate remaining 26 scrapers = 40 working (100% coverage)**
+#### **🎯 SYSTEM CAPABILITIES:**
+- **Enhanced VIN Logic**: Intelligent processing based on dealership context and vehicle history
+- **Cross-Dealership Detection**: Captures revenue when vehicles move between dealers
+- **Status Change Processing**: Handles NEW → USED → CERTIFIED transitions  
+- **Smart Duplicate Prevention**: Avoids reprocessing same context within time windows
+- **Manual Override Capabilities**: LIST orders for specific VIN processing
+- **QR Code Generation**: 388x388 PNG codes with custom URLs
+- **Adobe CSV Export**: Variable data library format for graphics production
+- **Real-time Monitoring**: Live processing status and results tracking
+
+#### **🚀 SCRAPER SYSTEM INTEGRATION:**
+- **Target: 40 working scrapers** covering all dealership relationships  
+- **Current: 4 active integrations** with Order Processing v2.0
+- **VIN Coverage: 36 dealerships** with historical context
+- **Ultimate Goal: Complete automation** of graphics order processing
 
 ---
 

@@ -1,132 +1,161 @@
-# Claude Code Workspace
+# Silver Fox Marketing Order Processing System
 
-## 🎯 Workspace Overview
+## 🚨 CRITICAL STATUS UPDATE (July 30, 2025)
 
-This is Barrett Taylor's Claude Code workspace containing organized projects for business automation and data processing systems.
+### Current State: Order Processing Wizard v2.0 Interface Issues
 
-## 📁 Workspace Structure
+**Primary Issue**: While the Order Processing Wizard v2.0 exists with all implemented features (manual data editor, QR verification system), the workflow execution is not functioning properly. The wizard shows "0 vehicles processed" and does not display the manual editing or QR verification steps during the workflow.
+
+### 🎯 System Overview
+
+The Silver Fox Marketing Order Processing System is a comprehensive web-based solution for managing dealership vehicle graphics orders. It integrates with a PostgreSQL database containing scraped vehicle inventory data and generates Adobe InDesign variable data libraries with corresponding QR codes.
+
+### 📊 Key Metrics
+- **Total Dealership Scrapers**: 40 configured
+- **Currently Working**: 8 scrapers (20% coverage)
+- **Database**: PostgreSQL with dealership_vehicles table
+- **Order Types**: CAO (Check Against Orders) and LIST (Direct List Processing)
+
+### 🔧 Recent Development Progress
+
+#### ✅ Completed Features
+1. **Real-time Scraper Console Output**
+   - Created `scripts/scraper_manager.py` with WebSocket support
+   - Implemented live streaming of scraper stdout/stderr
+   - Added console display in web interface
+
+2. **Order Processing Wizard v2.0**
+   - Built comprehensive multi-step wizard interface
+   - Implemented manual data editor (line 953 in order_wizard.js)
+   - Created QR URL editor functionality (line 1066)
+   - Added inline cell editing for CSV data
+   - Integrated QR code generation (388x388 PNG)
+
+3. **Flask Application Updates**
+   - Fixed duplicate route definitions
+   - Added graceful error handling for missing dependencies
+   - Implemented WebSocket endpoints for real-time updates
+   - Added QR folder download endpoint
+
+4. **Frontend Improvements**
+   - Fixed browser caching issues with cache-busting
+   - Added version identification (v2.0) to wizard header
+   - Updated downloadAllFiles() with proper implementation
+   - Fixed window.wizard initialization issues
+
+### ❌ Critical Issues
+
+1. **Order Processing Workflow Not Executing**
+   - Wizard loads but shows "0 vehicles processed"
+   - Manual data editor step not appearing after review
+   - QR verification interface not accessible during workflow
+   - processCaoOrder() and processListOrder() not returning vehicle data
+
+2. **Missing Integration Points**
+   - Workflow doesn't properly query database for new vehicles
+   - VIN comparison logic not executing
+   - CSV generation not creating output files
+   - QR code generation not triggered
+
+### 📁 Project Structure
 
 ```
-Claude Code/
-├── projects/                     # Main projects directory
-│   ├── silverfox_scraper_system/ # Complete dealership scraper/order processing system
-│   ├── database_system/          # Database management system
-│   └── shared_resources/         # Shared workspace resources
-└── README.md                     # This file
+C:\Users\Workstation_1\documents\tools\claudecode\
+├── web_gui/
+│   ├── app.py                    # Flask application with WebSocket support
+│   ├── static/
+│   │   ├── js/
+│   │   │   └── order_wizard.js   # Order Processing Wizard v2.0 (1400+ lines)
+│   │   └── css/
+│   │       └── style.css         # Updated with wizard notifications
+│   └── templates/
+│       ├── index.html            # Main dashboard with scraper console
+│       └── order_wizard.html     # Wizard template with v2.0 header
+├── scripts/
+│   ├── scraper_manager.py        # Real-time scraper output management
+│   └── process_queue.py          # Order processing backend logic
+├── database/
+│   └── schema.sql                # PostgreSQL database schema
+└── projects/
+    └── shared_resources/
+        └── Project reference for scraper/  # Reference implementation
 ```
 
-## 🚀 **Primary Project: Silver Fox Assistant**
+### 🛠️ Technical Stack
 
-### **Location**: `projects/silverfox_scraper_system/`
+- **Backend**: Python Flask with SocketIO
+- **Frontend**: Vanilla JavaScript, HTML5, CSS3
+- **Database**: PostgreSQL
+- **Real-time**: WebSocket for live updates
+- **QR Generation**: Python qrcode library
+- **Data Processing**: pandas for CSV manipulation
 
-**Complete dealership inventory scraping and order processing system** for Silver Fox Marketing. Includes:
+### 🚀 Next Steps (Priority Order)
 
-- **Scraper Framework**: 8 production-ready dealership scrapers
-- **Data Processing**: Complete normalization and order processing pipeline
-- **QR System**: QR code generation and verification
-- **GUI Interfaces**: Multiple user interfaces for system management
-- **Configuration**: 39 dealership configurations
+1. **Debug Order Processing Workflow**
+   ```python
+   # Check process_queue.py integration
+   # Verify database queries are executing
+   # Ensure vehicle data is being returned
+   ```
 
-### **Quick Start**
-```bash
-cd projects/silverfox_scraper_system/
-python tools/launchers/ultimate_production_gui.py
-```
+2. **Fix Manual Data Editor Display**
+   ```javascript
+   // Ensure showManualDataEditor() is called after review
+   // Check stepIndex progression in wizard
+   // Verify data binding for inline editing
+   ```
 
-## 📊 **System Status**
+3. **Enable QR Verification Flow**
+   ```javascript
+   // Make QR URL editor accessible
+   // Implement verification logic
+   // Add regeneration capability
+   ```
 
-### **Production Ready**
-- ✅ **Core Framework**: Complete scraping and processing system
-- ✅ **Working Scrapers**: 8 dealerships with full pagination
-- ✅ **Data Pipeline**: Normalization, order processing, QR generation
-- ✅ **User Interfaces**: Multiple GUI options for different use cases
-- ✅ **Documentation**: Comprehensive system documentation
+4. **Test End-to-End Workflow**
+   - Create test order with known vehicles
+   - Verify CSV export functionality
+   - Confirm QR code generation
+   - Test file download process
 
-### **Key Achievements**
-1. **Suntrup Ford West** - Pricing accuracy fixed
-2. **Columbia Honda** - Complete pagination working (50+ vehicles)
-3. **Thoroughbred Ford** - VIN accuracy verified (100% Ford VINs)
-4. **Dave Sinclair Lincoln South** - Proven success (144+ vehicles)
-5. **System Organization** - 100+ scattered files organized into professional structure
+### 📝 Known Working Components
 
-### **Current Development**
-- ✅ **BMW API Configuration** - Fixed and working with Chrome fallback
-- 📋 **Remaining Dealerships** - 28 more dealers to implement (Stellantis DDC next)
-- ⚡ **Performance Optimization** - System-wide improvements
+1. **Database Connection**: ✅ Verified working
+2. **Scraper System**: ✅ 8 scrapers operational
+3. **Web Interface**: ✅ Loads and displays properly
+4. **Manual Data Editor**: ✅ Code exists but not displaying
+5. **QR URL Editor**: ✅ Code exists but not accessible
 
-## 🏗️ **Workspace Organization**
+### 🔍 Debugging Information
 
-### **Clean Structure Benefits**
-- **Professional Organization**: Clear separation of production vs development code
-- **Easy Navigation**: Logical file and folder structure
-- **Maintainable Code**: Clean import paths and component isolation
-- **Preserved History**: Development artifacts archived but accessible
-- **Comprehensive Documentation**: All systems fully documented
+**Key Files to Check**:
+- `web_gui/static/js/order_wizard.js` - Lines 450-650 (processOrder functions)
+- `scripts/process_queue.py` - Database query logic
+- `web_gui/app.py` - Routes: `/api/order/process-cao`, `/api/order/process-list`
 
-### **Archive Management**
-- **72 Development Files** properly archived
-- **Legacy Components** preserved for reference
-- **Historical Tests** maintained
-- **One-time Scripts** organized by purpose
+**Console Errors to Monitor**:
+- Network tab for API call failures
+- Console for JavaScript errors during workflow
+- Flask logs for backend processing issues
 
-## 📚 **Documentation**
+### 💡 Context for Next Session
 
-### **Project Documentation**
-- **Main Project**: `projects/silverfox_scraper_system/README.md`
-- **Technical Docs**: `projects/silverfox_scraper_system/docs/`
-- **API Reference**: Code examples and implementation guides
-- **System Architecture**: Design documents and analysis reports
+When resuming development, focus on:
+1. The `processOrder()` method in order_wizard.js (line ~450)
+2. Why `processCaoOrder()` returns 0 vehicles
+3. The step progression logic that should show manual editor
+4. Database query execution in the Flask routes
 
-### **Key Technical Resources**
-- **Pagination Analysis**: Complete analysis of scraper pagination patterns
-- **Code Examples**: Working implementations for different platforms
-- **System Design**: Architecture documentation and component guides
+The system architecture is sound and all components exist - the issue is in the workflow execution and data flow between frontend and backend.
 
-## 🎯 **Development Workflow**
+### 📞 Support Information
 
-### **Current Priorities**
-1. **Complete BMW scraper** - Fix API configuration issues
-2. **Implement Stellantis DDC** - Ranch Mirage dealership group
-3. **Scale to remaining dealers** - 28 more dealership implementations
-4. **System optimization** - Performance and reliability improvements
+- **Project Location**: C:\Users\Workstation_1\documents\tools\claudecode
+- **Reference Docs**: projects\shared_resources\Project reference for scraper
+- **Last Updated**: July 30, 2025
+- **Context Status**: 2% remaining before auto-compact
 
-### **Getting Started with Development**
-```bash
-# Navigate to main project
-cd projects/silverfox_scraper_system/
+---
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Run primary interface
-python tools/launchers/ultimate_production_gui.py
-
-# Or run specific components
-python tools/launchers/run_scraper_control_center.py
-python tools/launchers/run_order_processor.py
-```
-
-## 💼 **Business Context**
-
-**Client**: Silver Fox Marketing  
-**Purpose**: Automated dealership inventory management and order processing  
-**Scope**: St. Louis area dealerships (39 total)  
-**Technology**: Python, Selenium, Chrome WebDriver, Google Sheets integration
-
-### **Business Impact**
-- **Automated Data Collection**: Replace manual inventory tracking
-- **Order Processing**: Streamlined order management workflow
-- **QR Code Integration**: Verification and tracking system
-- **Real-time Updates**: Automated Google Sheets integration
-
-## ✅ **Workspace Status**
-
-**Status**: ✅ **FULLY ORGANIZED AND PRODUCTION READY**
-
-- **Code Organization**: Complete
-- **Documentation**: Comprehensive  
-- **Testing**: Framework in place
-- **Archive Management**: Clean and organized
-- **Development Environment**: Ready for continued development
-
-**Ready for continued development, production deployment, and business integration.**
+*Note: This documentation captures the current state at context limit. The Order Processing Wizard v2.0 exists with all features implemented but requires debugging to properly execute the workflow and display the manual data editor and QR verification interfaces.*
