@@ -1,0 +1,64 @@
+{
+  "created_at": "2025-07-28T15:12:06.843172",
+  "total_scrapers": 8,
+  "successful_imports": 8,
+  "failed_imports": 0,
+  "scrapers": {
+    "BMW of West St. Louis": {
+      "status": "active",
+      "config_name": "bmwofweststlouis",
+      "module_path": "core.scrapers.dealerships.bmwofweststlouis_optimized",
+      "class_name": "BmwOfWestStLouisOptimizedScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Suntrup Ford West": {
+      "status": "active",
+      "config_name": "suntrupfordwest",
+      "module_path": "core.scrapers.dealerships.suntrupfordwest_optimized",
+      "class_name": "SuntrupFordWestOptimizedScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Suntrup Ford Kirkwood": {
+      "status": "active",
+      "config_name": "suntrupfordkirkwood",
+      "module_path": "core.scrapers.dealerships.suntrupfordkirkwood_working",
+      "class_name": "SuntrupfordkirkwoodWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Joe Machens Hyundai": {
+      "status": "active",
+      "config_name": "joemachenshyundai",
+      "module_path": "core.scrapers.dealerships.joemachenshyundai_working",
+      "class_name": "JoemachenshyundaiWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Joe Machens Toyota": {
+      "status": "active",
+      "config_name": "joemachenstoyota",
+      "module_path": "core.scrapers.dealerships.joemachenstoyota_working",
+      "class_name": "JoemachenstoyotaWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Columbia Honda": {
+      "status": "active",
+      "config_name": "columbiahonda",
+      "module_path": "core.scrapers.dealerships.columbiahonda_working",
+      "class_name": "ColumbiahondaWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Dave Sinclair Lincoln South": {
+      "status": "active",
+      "config_name": "davesinclairlincolnsouth",
+      "module_path": "core.scrapers.dealerships.davesinclairlincolnsouth_working",
+      "class_name": "DavesinclairlincolnsouthWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    },
+    "Thoroughbred Ford": {
+      "status": "active",
+      "config_name": "thoroughbredford",
+      "module_path": "core.scrapers.dealerships.thoroughbredford_working",
+      "class_name": "ThoroughbredfordWorkingScraper",
+      "last_tested": "2025-07-28T15:12:06.843172"
+    }
+  }
+}

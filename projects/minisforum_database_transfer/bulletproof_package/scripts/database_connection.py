@@ -79,6 +79,11 @@ class DatabaseManager:
         with self.get_cursor() as cursor:
             cursor.execute(query, params)
             
+            # Check if this is a query that returns results
+            if cursor.description is None:
+                # This was an INSERT/UPDATE/DELETE or similar, return empty list
+                return []
+            
             if fetch == 'all':
                 return cursor.fetchall()
             elif fetch == 'one':
@@ -86,7 +91,13 @@ class DatabaseManager:
             elif fetch == 'many':
                 return cursor.fetchmany()
             else:
-                return None
+                return []
+    
+    def execute_non_query(self, query: str, params: tuple = None) -> int:
+        """Execute a non-returning query (INSERT/UPDATE/DELETE) and return row count"""
+        with self.get_cursor() as cursor:
+            cursor.execute(query, params)
+            return cursor.rowcount
     
     def execute_batch_insert(self, table: str, columns: List[str], data: List[tuple], 
                            page_size: int = 1000, max_retries: int = 3) -> int:

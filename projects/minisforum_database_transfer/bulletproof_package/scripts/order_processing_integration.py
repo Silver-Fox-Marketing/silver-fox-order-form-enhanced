@@ -91,8 +91,9 @@ class OrderProcessingIntegrator:
                 raise ValueError(f"No active configuration found for {dealership_name}")
             
             config = config[0]
-            filtering_rules = json.loads(config['filtering_rules']) if config['filtering_rules'] else {}
-            output_rules = json.loads(config['output_rules']) if config['output_rules'] else {}
+            # Handle both string and dict JSON data from PostgreSQL
+            filtering_rules = config['filtering_rules'] if isinstance(config['filtering_rules'], dict) else (json.loads(config['filtering_rules']) if config['filtering_rules'] else {})
+            output_rules = config['output_rules'] if isinstance(config['output_rules'], dict) else (json.loads(config['output_rules']) if config['output_rules'] else {})
             
             # Apply additional filters if provided
             if filters:
@@ -179,10 +180,12 @@ class OrderProcessingIntegrator:
                 logger.info(f"Created order processing job {job_id} for {dealership_name}: {len(vehicles)} vehicles, {qr_results['success']} QR codes generated")
                 
                 return {
+                    'success': True,
                     'job_id': job_id,
                     'dealership': dealership_name,
                     'job_type': job_type,
                     'vehicle_count': len(vehicles),
+                    'vehicles': vehicles,
                     'export_file': str(export_path),
                     'qr_output_path': config['qr_output_path'],
                     'qr_generation': qr_results,
@@ -191,6 +194,7 @@ class OrderProcessingIntegrator:
             else:
                 logger.warning(f"No vehicles found for {dealership_name} with current filters")
                 return {
+                    'success': False,
                     'job_id': job_id,
                     'dealership': dealership_name,
                     'vehicle_count': 0,
@@ -200,7 +204,11 @@ class OrderProcessingIntegrator:
                 
         except Exception as e:
             logger.error(f"Failed to create order processing job for {dealership_name}: {e}")
-            raise
+            return {
+                'success': False,
+                'error': str(e),
+                'dealership': dealership_name
+            }
     
     def generate_qr_path(self, vin: str, base_qr_path: str) -> str:
         """Generate QR code file path for a VIN"""
@@ -212,14 +220,16 @@ class OrderProcessingIntegrator:
             # First ensure the order_processing_jobs table exists
             self.ensure_order_processing_tables()
             
-            result = self.db.execute_query("""
-                INSERT INTO order_processing_jobs 
-                (dealership_name, job_type, vehicle_count, status, created_at)
-                VALUES (%s, %s, %s, 'created', CURRENT_TIMESTAMP)
-                RETURNING id
-            """, (dealership_name, job_type, vehicle_count))
+            with self.db.get_cursor() as cursor:
+                cursor.execute("""
+                    INSERT INTO order_processing_jobs 
+                    (dealership_name, job_type, vehicle_count, status, created_at)
+                    VALUES (%s, %s, %s, 'created', CURRENT_TIMESTAMP)
+                    RETURNING id
+                """, (dealership_name, job_type, vehicle_count))
+                result = cursor.fetchone()
             
-            return result[0]['id']
+            return result['id']
             
         except Exception as e:
             logger.error(f"Failed to create job record: {e}")
@@ -233,7 +243,7 @@ class OrderProcessingIntegrator:
             if qr_results:
                 notes = f"QR Codes - Success: {qr_results['success']}, Failed: {qr_results['failed']}, Skipped: {qr_results['skipped']}"
             
-            self.db.execute_query("""
+            self.db.execute_non_query("""
                 UPDATE order_processing_jobs 
                 SET export_file = %s, 
                     final_vehicle_count = %s,

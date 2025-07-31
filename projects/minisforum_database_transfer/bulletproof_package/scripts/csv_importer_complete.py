@@ -41,9 +41,22 @@ class CompleteCSVImporter:
             )
             
             for config in configs:
+                # Handle both string and dict JSON data from PostgreSQL
+                filtering_rules = config['filtering_rules']
+                if isinstance(filtering_rules, str):
+                    filtering_rules = json.loads(filtering_rules) if filtering_rules else {}
+                elif not isinstance(filtering_rules, dict):
+                    filtering_rules = {}
+                
+                output_rules = config['output_rules']
+                if isinstance(output_rules, str):
+                    output_rules = json.loads(output_rules) if output_rules else {}
+                elif not isinstance(output_rules, dict):
+                    output_rules = {}
+                
                 self.dealership_configs[config['name']] = {
-                    'filtering_rules': json.loads(config['filtering_rules']) if config['filtering_rules'] else {},
-                    'output_rules': json.loads(config['output_rules']) if config['output_rules'] else {},
+                    'filtering_rules': filtering_rules,
+                    'output_rules': output_rules,
                     'qr_output_path': config['qr_output_path'],
                     'is_active': config['is_active']
                 }

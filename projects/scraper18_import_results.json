@@ -1,0 +1,176 @@
+{
+  "total_scrapers": 42,
+  "successful_imports": 0,
+  "failed_imports": 42,
+  "database_updates": 0,
+  "scrapers": {
+    "audiranchomirage": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "auffenberghyundai": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "bmwofweststlouis": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "bommaritocadillac": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "bommaritowestcounty": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "columbiabmw": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "columbiahonda": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "davesinclairlincolnsouth": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "davesinclairlincolnstpeters": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "frankletahonda": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "glendalechryslerjeep": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "hondafrontenac": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "hwkia": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "indigoautogroup": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "jaguarranchomirage": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "joemachenscdjr": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "joemachenshyundai": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "joemachenshyundai_old": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "joemachensnissan": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "joemachenstoyota": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "kiaofcolumbia": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "landroverranchomirage": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "miniofstlouis": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "pappastoyota": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "pappastoyota_old": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "porschestlouis": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "pundmannford": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "rustydrewingcadillac": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "rustydrewingchevroletbuickgmc": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "serrahondaofallon": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "southcountyautos": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "spiritlexus": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "stehouwerauto": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "suntrupbuickgmc": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "suntrupfordkirkwood": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "suntrupfordwest": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "suntruphyundaisouth": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "suntrupkiasouth": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "thoroughbredford": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "twincitytoyota": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "wcvolvocars": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    },
+    "weberchev": {
+      "status": "failed",
+      "error": "Instantiation test failed"
+    }
+  }
+}

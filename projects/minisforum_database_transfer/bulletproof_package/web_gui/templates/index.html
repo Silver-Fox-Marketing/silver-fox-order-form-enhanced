@@ -14,8 +14,11 @@
         <header class="app-header">
             <div class="header-content">
                 <div class="logo-section">
-                    <h1 class="app-title">MinisForum Database Control</h1>
-                    <span class="company-name">Silver Fox Marketing</span>
+                    <img src="{{ url_for('static', filename='images/LS_MAIN-PRIMARY.svg') }}" alt="Silver Fox Marketing" class="header-logo">
+                    <div class="title-section">
+                        <h1 class="app-title">MinisForum Database Control</h1>
+                        <span class="company-name">Silver Fox Marketing</span>
+                    </div>
                 </div>
                 <div class="status-section">
                     <div class="status-indicator" id="systemStatus">
@@ -31,24 +34,7 @@
 
         <!-- Main Content Area -->
         <div class="main-content">
-            <!-- Left Sidebar - Terminal Output -->
-            <div class="terminal-sidebar">
-                <div class="terminal-header">
-                    <i class="fas fa-terminal"></i>
-                    <span>System Output</span>
-                    <button class="terminal-clear" id="clearTerminal">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <div class="terminal-content" id="terminalOutput">
-                    <div class="terminal-line">
-                        <span class="timestamp">[{{ moment().format('HH:mm:ss') }}]</span>
-                        <span class="message">System initialized and ready</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Content Area - Tabs -->
+            <!-- Content Area - Full Width -->
             <div class="content-area">
                 <!-- Tab Navigation -->
                 <nav class="tab-navigation">
@@ -56,25 +42,21 @@
                         <i class="fas fa-spider"></i>
                         Scraper Control
                     </button>
-                    <button class="tab-button" data-tab="raw-data">
-                        <i class="fas fa-database"></i>
-                        Raw Data
+                    <button class="tab-button" data-tab="queue-management">
+                        <i class="fas fa-tasks"></i>
+                        Order Queue
                     </button>
-                    <button class="tab-button" data-tab="normalized-data">
-                        <i class="fas fa-filter"></i>
-                        Normalized Data
+                    <button class="tab-button" data-tab="data-search">
+                        <i class="fas fa-search"></i>
+                        Data
                     </button>
-                    <button class="tab-button" data-tab="order-processing">
-                        <i class="fas fa-cogs"></i>
-                        Order Processing
+                    <button class="tab-button" data-tab="system-status">
+                        <i class="fas fa-chart-line"></i>
+                        System Status
                     </button>
-                    <button class="tab-button" data-tab="qr-generation">
-                        <i class="fas fa-qrcode"></i>
-                        QR Generation
-                    </button>
-                    <button class="tab-button" data-tab="adobe-export">
-                        <i class="fas fa-file-export"></i>
-                        Adobe Export
+                    <button class="tab-button" onclick="window.open('/stress-test', '_blank')">
+                        <i class="fas fa-vial"></i>
+                        System Tests
                     </button>
                 </nav>
 
@@ -85,21 +67,43 @@
                         <div class="panel-header">
                             <h2>Scraper Control Center</h2>
                             <div class="control-buttons">
+                                <button class="btn btn-secondary" id="selectDealershipsBtn">
+                                    <i class="fas fa-list-check"></i>
+                                    Select Dealerships
+                                </button>
                                 <button class="btn btn-secondary" id="scheduleBtn">
                                     <i class="fas fa-clock"></i>
                                     Schedule
                                 </button>
                                 <button class="btn btn-primary" id="startScrapeBtn">
                                     <i class="fas fa-play"></i>
-                                    Start Scrape
+                                    Start Scrape (All)
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Dealership Grid -->
-                        <div class="dealership-grid" id="dealershipGrid">
-                            <!-- Dealerships will be loaded dynamically -->
+                        
+                        <!-- Dealership Selection Panel -->
+                        <div class="dealership-selection-panel" id="dealershipSelectionPanel" style="display: none;">
+                            <div class="selection-header">
+                                <h3>Select Dealerships to Scrape</h3>
+                                <div class="selection-actions">
+                                    <button class="btn btn-secondary btn-sm" id="selectAllBtn">Select All</button>
+                                    <button class="btn btn-secondary btn-sm" id="selectNoneBtn">Select None</button>
+                                    <button class="btn btn-primary btn-sm" id="scrapeSelectedBtn">
+                                        <i class="fas fa-play"></i>
+                                        Scrape Selected
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="dealership-checkbox-grid" id="dealershipCheckboxGrid">
+                                <!-- Will be populated dynamically -->
+                            </div>
                         </div>
+
+                        <!-- Dealership Grid - Removed in favor of dropdown selection -->
+                        <!-- <div class="dealership-grid" id="dealershipGrid">
+                            Dealerships will be loaded dynamically
+                        </div> -->
 
                         <!-- Scraper Status -->
                         <div class="scraper-status" id="scraperStatus" style="display: none;">
@@ -112,87 +116,391 @@
                             <div class="status-details" id="statusDetails">
                                 <!-- Progress details will be shown here -->
                             </div>
+                            
+                            <!-- Real-time Scraper Console -->
+                            <div class="scraper-console">
+                                <div class="console-header">
+                                    <h4>
+                                        <i class="fas fa-terminal"></i>
+                                        Real-time Scraper Output
+                                    </h4>
+                                    <button class="btn btn-secondary btn-sm" id="clearScraperConsole">
+                                        <i class="fas fa-trash"></i>
+                                        Clear
+                                    </button>
+                                </div>
+                                <div class="console-content" id="scraperConsoleOutput">
+                                    <div class="terminal-line">
+                                        <span class="timestamp">[Ready]</span>
+                                        <span class="message">Scraper console initialized</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Raw Data Tab -->
-                    <div class="tab-panel" id="raw-data-panel">
+                    <!-- Data Search Tab -->
+                    <div class="tab-panel" id="data-search-panel">
                         <div class="panel-header">
-                            <h2>Raw Data Overview</h2>
-                            <button class="btn btn-secondary" id="refreshRawData">
-                                <i class="fas fa-sync"></i>
-                                Refresh
-                            </button>
-                        </div>
-                        <div class="data-overview" id="rawDataOverview">
-                            <!-- Raw data stats will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Normalized Data Tab -->
-                    <div class="tab-panel" id="normalized-data-panel">
-                        <div class="panel-header">
-                            <h2>Normalized Data</h2>
-                            <button class="btn btn-secondary" id="refreshNormalizedData">
-                                <i class="fas fa-sync"></i>
-                                Refresh
-                            </button>
-                        </div>
-                        <div class="data-overview" id="normalizedDataOverview">
-                            <!-- Normalized data stats will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Order Processing Tab -->
-                    <div class="tab-panel" id="order-processing-panel">
-                        <div class="panel-header">
-                            <h2>Order Processing Status</h2>
-                            <button class="btn btn-secondary" id="refreshOrderData">
-                                <i class="fas fa-sync"></i>
-                                Refresh
-                            </button>
-                        </div>
-                        <div class="order-status" id="orderStatusOverview">
-                            <!-- Order processing status will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- QR Generation Tab -->
-                    <div class="tab-panel" id="qr-generation-panel">
-                        <div class="panel-header">
-                            <h2>QR Code Generation</h2>
-                            <button class="btn btn-secondary" id="refreshQRData">
-                                <i class="fas fa-sync"></i>
-                                Refresh
-                            </button>
-                        </div>
-                        <div class="qr-overview" id="qrOverview">
-                            <!-- QR generation status will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Adobe Export Tab -->
-                    <div class="tab-panel" id="adobe-export-panel">
-                        <div class="panel-header">
-                            <h2>Adobe Export Files</h2>
+                            <h2>Vehicle Data Search</h2>
                             <div class="control-buttons">
-                                <button class="btn btn-secondary" id="generateSummaryBtn">
-                                    <i class="fas fa-chart-bar"></i>
-                                    Summary Report
+                                <button class="btn btn-secondary" id="exportSearchResults">
+                                    <i class="fas fa-download"></i>
+                                    Export Results
                                 </button>
-                                <button class="btn btn-primary" id="generateAdobeBtn">
-                                    <i class="fas fa-file-export"></i>
-                                    Generate Adobe Files
+                                <button class="btn btn-primary" id="refreshDataSearch">
+                                    <i class="fas fa-sync"></i>
+                                    Refresh
                                 </button>
                             </div>
                         </div>
-                        <div class="export-files" id="exportFiles">
-                            <!-- Export files will be listed here -->
+                        
+                        <!-- Search Interface -->
+                        <div class="search-interface">
+                            <div class="search-controls">
+                                <div class="search-bar-container">
+                                    <input type="text" 
+                                           class="search-input" 
+                                           id="vehicleSearchInput" 
+                                           placeholder="Search vehicles by VIN, make, model, stock number, or dealer...">
+                                    <button class="search-btn" id="searchVehiclesBtn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="filter-controls">
+                                    <!-- Filter by dropdown -->
+                                    <div class="filter-group">
+                                        <label for="filterBy">Show by:</label>
+                                        <select id="filterBy" class="filter-select">
+                                            <option value="all">All Records</option>
+                                            <option value="date">By Date Range</option>
+                                            <option value="dealer">By Dealer</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Date range inputs (hidden by default) -->
+                                    <div class="filter-group date-filter" id="dateFilter" style="display: none;">
+                                        <label for="startDate">From:</label>
+                                        <input type="date" id="startDate" class="date-input">
+                                        <label for="endDate">To:</label>
+                                        <input type="date" id="endDate" class="date-input">
+                                    </div>
+                                    
+                                    <!-- Dealer selection (hidden by default) -->
+                                    <div class="filter-group dealer-filter" id="dealerFilter" style="display: none;">
+                                        <label for="dealerSelect">Dealer:</label>
+                                        <select id="dealerSelect" class="filter-select">
+                                            <option value="">Select Dealer...</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Data type radio buttons -->
+                                    <div class="filter-group data-type-filter">
+                                        <label>Data Type:</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="dataType" value="raw" id="rawDataRadio">
+                                                <span class="radio-button"></span>
+                                                Raw
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="dataType" value="normalized" id="normalizedDataRadio">
+                                                <span class="radio-button"></span>
+                                                Normalized
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="dataType" value="both" id="bothDataRadio" checked>
+                                                <span class="radio-button"></span>
+                                                Both
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Search Results -->
+                            <div class="search-results" id="searchResults">
+                                <div class="results-header" id="resultsHeader" style="display: none;">
+                                    <div class="results-count">
+                                        <span id="resultsCount">0</span> vehicles found
+                                    </div>
+                                    <div class="sort-controls">
+                                        <label for="sortBy">Sort by:</label>
+                                        <select id="sortBy" class="sort-select">
+                                            <option value="import_timestamp">Date Added</option>
+                                            <option value="price">Price</option>
+                                            <option value="year">Year</option>
+                                            <option value="make">Make</option>
+                                            <option value="model">Model</option>
+                                            <option value="mileage">Mileage</option>
+                                        </select>
+                                        <select id="sortOrder" class="sort-select">
+                                            <option value="desc">Descending</option>
+                                            <option value="asc">Ascending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="results-table-container" id="resultsTableContainer">
+                                    <div class="initial-message">
+                                        <i class="fas fa-search"></i>
+                                        <h3>Vehicle Data Search</h3>
+                                        <p>Search through all vehicle inventory data from your dealership scrapers</p>
+                                        <ul class="search-features">
+                                            <li>Full-text search across all fields</li>
+                                            <li>Filter by date range or specific dealers</li>
+                                            <li>View raw scraped data or normalized records</li>
+                                            <li>Export results to CSV</li>
+                                        </ul>
+                                        <p class="help-text">Start typing in the search box above to find vehicles</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pagination -->
+                                <div class="pagination" id="paginationControls" style="display: none;">
+                                    <button class="btn btn-secondary" id="prevPageBtn" disabled>
+                                        <i class="fas fa-chevron-left"></i>
+                                        Previous
+                                    </button>
+                                    <span class="page-info" id="pageInfo">Page 1 of 1</span>
+                                    <button class="btn btn-secondary" id="nextPageBtn" disabled>
+                                        Next
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- System Status Tab -->
+                    <div class="tab-panel" id="system-status-panel">
+                        <div class="panel-header">
+                            <h2>Silver Fox System Status</h2>
+                            <div class="control-buttons">
+                                <button class="btn btn-secondary" onclick="window.open('/test', '_blank')">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Detailed Status
+                                </button>
+                                <button class="btn btn-primary" id="refreshSystemStatus">
+                                    <i class="fas fa-sync"></i>
+                                    Refresh
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="system-metrics" id="systemMetrics">
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-spider"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3>Active Scrapers</h3>
+                                        <div class="metric-value" id="activeScrapers">Loading...</div>
+                                        <div class="metric-label">Real-time scrapers ready</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3>Database Health</h3>
+                                        <div class="metric-value" id="databaseHealth">Loading...</div>
+                                        <div class="metric-label">Connection performance</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3>Order Processing</h3>
+                                        <div class="metric-value" id="orderProcessingStatus">Loading...</div>
+                                        <div class="metric-label">CAO & List orders ready</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3>Vehicle Inventory</h3>
+                                        <div class="metric-value" id="vehicleCount">Loading...</div>
+                                        <div class="metric-label">Total vehicles in database</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="system-actions">
+                                <h3>Quick Actions</h3>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary" onclick="app.switchTab('queue-management')">
+                                        <i class="fas fa-tasks"></i>
+                                        Open Queue Manager
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="window.open('/stress-test', '_blank')">
+                                        <i class="fas fa-vial"></i>
+                                        Run System Tests
+                                    </button>
+                                    <button class="btn btn-secondary" id="exportSystemReport">
+                                        <i class="fas fa-download"></i>
+                                        Export Report
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- System Console - Landscape Layout -->
+                            <div class="system-console">
+                                <div class="console-header">
+                                    <h3>
+                                        <i class="fas fa-terminal"></i>
+                                        System Output Console
+                                    </h3>
+                                    <button class="btn btn-secondary btn-sm" id="clearTerminalStatus">
+                                        <i class="fas fa-trash"></i>
+                                        Clear
+                                    </button>
+                                </div>
+                                <div class="console-content" id="terminalOutputStatus">
+                                    <div class="terminal-line">
+                                        <span class="timestamp">[Starting]</span>
+                                        <span class="message">System initialized and ready</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Real-time Scraper Console -->
+                        <div class="system-console">
+                            <div class="console-header">
+                                <h3>
+                                    <i class="fas fa-terminal"></i>
+                                    Live Scraper Console
+                                </h3>
+                                <div class="console-controls">
+                                    <button class="terminal-clear" onclick="app.clearScraperConsole()">
+                                        <i class="fas fa-broom"></i>
+                                        Clear
+                                    </button>
+                                    <button class="terminal-clear" onclick="app.pauseScraperConsole()">
+                                        <i class="fas fa-pause" id="pauseIcon"></i>
+                                        <span id="pauseText">Pause</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="console-content" id="scraperConsoleOutput">
+                                <div class="terminal-line">
+                                    <span class="timestamp">[00:00:00]</span>
+                                    <span class="message">Scraper console ready - waiting for scraper activity...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Active Scrapers Status -->
+                        <div class="active-scrapers-panel">
+                            <h3>Active Scrapers</h3>
+                            <div class="active-scrapers-list" id="activeScrapersList">
+                                <div class="empty-state">
+                                    <i class="fas fa-robot"></i>
+                                    <p>No active scrapers</p>
+                                    <p class="help-text">Start a scraper from the dealership grid above to see real-time progress</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Queue Management Tab -->
+                    <div class="tab-panel" id="queue-management-panel">
+                        <div class="panel-header">
+                            <h2>Order Queue Management</h2>
+                            <div class="control-buttons">
+                                <button class="btn btn-secondary" id="clearQueueBtn">
+                                    <i class="fas fa-trash"></i>
+                                    Clear Queue
+                                </button>
+                                <button class="btn btn-primary" id="refreshQueueBtn">
+                                    <i class="fas fa-sync"></i>
+                                    Refresh
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="queue-layout">
+                            <!-- Left Panel - Selection Interface -->
+                            <div class="selection-panel">
+                                <!-- Day Buttons -->
+                                <div class="day-selection">
+                                    <h3>Scheduled Days</h3>
+                                    <div class="day-buttons">
+                                        <button class="day-btn" data-day="monday">
+                                            <i class="fas fa-calendar-day"></i>
+                                            Monday
+                                        </button>
+                                        <button class="day-btn" data-day="tuesday">
+                                            <i class="fas fa-calendar-day"></i>
+                                            Tuesday
+                                        </button>
+                                        <button class="day-btn" data-day="wednesday">
+                                            <i class="fas fa-calendar-day"></i>
+                                            Wednesday
+                                        </button>
+                                        <button class="day-btn" data-day="thursday">
+                                            <i class="fas fa-calendar-day"></i>
+                                            Thursday
+                                        </button>
+                                        <button class="day-btn" data-day="friday">
+                                            <i class="fas fa-calendar-day"></i>
+                                            Friday
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Individual Dealerships -->
+                                <div class="dealership-selection">
+                                    <h3>Individual Dealerships</h3>
+                                    <div class="dealership-list" id="dealershipList">
+                                        <!-- Will be populated dynamically -->
+                                        <div class="loading">Loading dealerships...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Panel - Processing Queue -->
+                            <div class="queue-panel">
+                                <h3>Processing Queue</h3>
+                                <div class="queue-items" id="queueItems">
+                                    <div class="empty-queue">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <p>No dealerships in queue</p>
+                                        <p class="help-text">Select dealerships or day buttons to add to queue</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="queue-actions">
+                                    <button class="btn btn-primary btn-large" id="processQueueBtn" disabled>
+                                        <i class="fas fa-play"></i>
+                                        Process Queue
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <img src="{{ url_for('static', filename='images/Asset_67.svg') }}" alt="Silver Fox Asset" class="footer-logo">
+            </div>
+        </footer>
     </div>
 
     <!-- Modals -->
@@ -279,6 +587,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

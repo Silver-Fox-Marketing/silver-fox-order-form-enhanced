@@ -6,7 +6,7 @@ import os
 import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Any
 from urllib.parse import quote
 from database_connection import db_manager
 from database_config import config
@@ -46,7 +46,7 @@ class QRCodeGenerator:
         return None
     
     def generate_qr_code(self, vin: str, stock: str, dealership_name: str, 
-                        output_path: Optional[str] = None) -> Tuple[bool, str]:
+                        output_path: Optional[str] = None) -> Dict[str, Any]:
         """
         Generate QR code for a vehicle
         Matches Google Apps Script format: VIN with stock number filename
@@ -54,14 +54,24 @@ class QRCodeGenerator:
         # Check if requests library is available
         if not HAS_REQUESTS:
             logger.error("Cannot generate QR code - requests library not installed")
-            return False, "requests library required for QR generation"
+            return {
+                'success': False,
+                'error': "requests library required for QR generation",
+                'vin': vin,
+                'dealership': dealership_name
+            }
             
         try:
             # Get dealership-specific path if not provided
             if not output_path:
                 output_path = self.get_dealership_qr_path(dealership_name)
                 if not output_path:
-                    return False, f"No QR output path configured for {dealership_name}"
+                    return {
+                        'success': False,
+                        'error': f"No QR output path configured for {dealership_name}",
+                        'vin': vin,
+                        'dealership': dealership_name
+                    }
             
             # Create directory if it doesn't exist
             os.makedirs(output_path, exist_ok=True)
@@ -74,7 +84,14 @@ class QRCodeGenerator:
             if os.path.exists(full_path):
                 logger.info(f"QR code already exists: {full_path}")
                 self._update_qr_tracking(vin, dealership_name, full_path, True)
-                return True, full_path
+                return {
+                    'success': True,
+                    'qr_file_path': full_path,
+                    'vin': vin,
+                    'stock': stock,
+                    'dealership': dealership_name,
+                    'existed': True
+                }
             
             # Generate QR code via API (matching Apps Script endpoint)
             qr_data = vin  # QR contains VIN
@@ -95,14 +112,31 @@ class QRCodeGenerator:
                 self._update_qr_tracking(vin, dealership_name, full_path, True)
                 
                 logger.info(f"QR code saved: {full_path}")
-                return True, full_path
+                return {
+                    'success': True,
+                    'qr_file_path': full_path,
+                    'vin': vin,
+                    'stock': stock,
+                    'dealership': dealership_name,
+                    'existed': False
+                }
             else:
                 logger.error(f"Failed to generate QR code: HTTP {response.status_code}")
-                return False, f"API error: HTTP {response.status_code}"
+                return {
+                    'success': False,
+                    'error': f"API error: HTTP {response.status_code}",
+                    'vin': vin,
+                    'dealership': dealership_name
+                }
                 
         except Exception as e:
             logger.error(f"Error generating QR code for {vin}: {str(e)}")
-            return False, str(e)
+            return {
+                'success': False,
+                'error': str(e),
+                'vin': vin,
+                'dealership': dealership_name
+            }
     
     def _update_qr_tracking(self, vin: str, dealership_name: str, 
                            file_path: str, exists: bool) -> None:
@@ -110,7 +144,7 @@ class QRCodeGenerator:
         try:
             file_size = os.path.getsize(file_path) if exists else None
             
-            self.db.execute_query(
+            self.db.execute_non_query(
                 """
                 INSERT INTO qr_file_tracking 
                     (vin, dealership_name, qr_file_path, file_exists, file_size)
