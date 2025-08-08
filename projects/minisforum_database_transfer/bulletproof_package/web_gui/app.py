@@ -2091,14 +2091,17 @@ def process_csv_import():
         
         try:
             # Process using existing order processing logic
+            # Skip VIN logging if this is test data (keep_data = True)
+            skip_vin_logging = keep_data
+            
             if order_type == 'cao':
                 # CAO processing - compare against VIN history
-                logger.info(f"Processing CAO order for {dealership_name}")
-                result = order_processor.process_cao_order(dealership_name, 'shortcut_pack')
+                logger.info(f"Processing CAO order for {dealership_name} (skip_vin_logging: {skip_vin_logging})")
+                result = order_processor.process_cao_order(dealership_name, 'shortcut_pack', skip_vin_logging=skip_vin_logging)
             else:
                 # LIST processing - process specific VIN list
-                logger.info(f"Processing LIST order for {dealership_name} with {len(imported_vins)} VINs")
-                result = order_processor.process_list_order(dealership_name, imported_vins, 'shortcut_pack')
+                logger.info(f"Processing LIST order for {dealership_name} with {len(imported_vins)} VINs (skip_vin_logging: {skip_vin_logging})")
+                result = order_processor.process_list_order(dealership_name, imported_vins, 'shortcut_pack', skip_vin_logging=skip_vin_logging)
             
             # Add CSV-specific information to result
             result.update({

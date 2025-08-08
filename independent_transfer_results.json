@@ -1,0 +1,167 @@
+{
+  "total_scrapers": 40,
+  "successful_transfers": 40,
+  "failed_transfers": 0,
+  "scrapers": {
+    "audiranchomirage.py": {
+      "status": "success",
+      "error": null
+    },
+    "auffenberghyundai.py": {
+      "status": "success",
+      "error": null
+    },
+    "bmwofweststlouis.py": {
+      "status": "success",
+      "error": null
+    },
+    "bommaritocadillac.py": {
+      "status": "success",
+      "error": null
+    },
+    "bommaritowestcounty.py": {
+      "status": "success",
+      "error": null
+    },
+    "columbiabmw.py": {
+      "status": "success",
+      "error": null
+    },
+    "columbiahonda.py": {
+      "status": "success",
+      "error": null
+    },
+    "davesinclairlincolnsouth.py": {
+      "status": "success",
+      "error": null
+    },
+    "davesinclairlincolnstpeters.py": {
+      "status": "success",
+      "error": null
+    },
+    "frankletahonda.py": {
+      "status": "success",
+      "error": null
+    },
+    "glendalechryslerjeep.py": {
+      "status": "success",
+      "error": null
+    },
+    "hondafrontenac.py": {
+      "status": "success",
+      "error": null
+    },
+    "hwkia.py": {
+      "status": "success",
+      "error": null
+    },
+    "indigoautogroup.py": {
+      "status": "success",
+      "error": null
+    },
+    "jaguarranchomirage.py": {
+      "status": "success",
+      "error": null
+    },
+    "joemachenscdjr.py": {
+      "status": "success",
+      "error": null
+    },
+    "joemachenshyundai.py": {
+      "status": "success",
+      "error": null
+    },
+    "joemachensnissan.py": {
+      "status": "success",
+      "error": null
+    },
+    "joemachenstoyota.py": {
+      "status": "success",
+      "error": null
+    },
+    "kiaofcolumbia.py": {
+      "status": "success",
+      "error": null
+    },
+    "landroverranchomirage.py": {
+      "status": "success",
+      "error": null
+    },
+    "miniofstlouis.py": {
+      "status": "success",
+      "error": null
+    },
+    "pappastoyota.py": {
+      "status": "success",
+      "error": null
+    },
+    "porschestlouis.py": {
+      "status": "success",
+      "error": null
+    },
+    "pundmannford.py": {
+      "status": "success",
+      "error": null
+    },
+    "rustydrewingcadillac.py": {
+      "status": "success",
+      "error": null
+    },
+    "rustydrewingchevroletbuickgmc.py": {
+      "status": "success",
+      "error": null
+    },
+    "serrahondaofallon.py": {
+      "status": "success",
+      "error": null
+    },
+    "southcountyautos.py": {
+      "status": "success",
+      "error": null
+    },
+    "spiritlexus.py": {
+      "status": "success",
+      "error": null
+    },
+    "stehouwerauto.py": {
+      "status": "success",
+      "error": null
+    },
+    "suntrupbuickgmc.py": {
+      "status": "success",
+      "error": null
+    },
+    "suntrupfordkirkwood.py": {
+      "status": "success",
+      "error": null
+    },
+    "suntrupfordwest.py": {
+      "status": "success",
+      "error": null
+    },
+    "suntruphyundaisouth.py": {
+      "status": "success",
+      "error": null
+    },
+    "suntrupkiasouth.py": {
+      "status": "success",
+      "error": null
+    },
+    "thoroughbredford.py": {
+      "status": "success",
+      "error": null
+    },
+    "twincitytoyota.py": {
+      "status": "success",
+      "error": null
+    },
+    "wcvolvocars.py": {
+      "status": "success",
+      "error": null
+    },
+    "weberchev.py": {
+      "status": "success",
+      "error": null
+    }
+  }
+}

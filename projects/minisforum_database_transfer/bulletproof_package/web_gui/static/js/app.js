@@ -52,6 +52,16 @@ class MinisFornumApp {
             filterOptions: {}
         };
         
+        // Modal scraper properties
+        this.modalProgress = {
+            dealershipsProcessed: 0,
+            vehiclesProcessed: 0,
+            errors: 0,
+            totalDealerships: 0,
+            progressPercent: 0
+        };
+        this.modalConsolePaused = false;
+        
         // Initialize Socket.IO
         this.initSocketIO();
         
@@ -69,6 +79,11 @@ class MinisFornumApp {
         this.socket.on('connect', () => {
             console.log('Socket.IO connected');
             this.addTerminalMessage('Real-time connection established', 'success');
+            
+            // Check if we're on the scraper tab and restore visibility if needed
+            if (this.currentTab === 'scraper') {
+                this.restoreScraperStatusVisibility();
+            }
         });
         
         this.socket.on('disconnect', () => {
@@ -96,6 +111,10 @@ class MinisFornumApp {
         this.socket.on('scraper_session_complete', (data) => {
             this.onScrapingSessionComplete(data);
         });
+        
+        this.socket.on('scraper_output', (data) => {
+            this.handleScraperOutput(data);
+        });
     }
     
     async init() {
@@ -113,6 +132,17 @@ class MinisFornumApp {
             console.error('❌ Failed to load dealerships:', error);
             this.addTerminalMessage(`Failed to load dealerships: ${error.message}`, 'error');
         }
+        
+        // Select all dealerships by default to ensure Start Scrape button works
+        if (this.dealerships && this.dealerships.length > 0) {
+            this.dealerships.forEach(dealership => {
+                this.selectedDealerships.add(dealership.name);
+            });
+            console.log(`✅ Selected all ${this.selectedDealerships.size} dealerships by default`);
+        }
+        
+        // Update button states
+        this.updateScraperButtonStates();
         
         this.checkScraperStatus();
         
@@ -139,20 +169,33 @@ class MinisFornumApp {
             this.showScheduleModal();
         });
         
-        // New scraper selection functionality
-        document.getElementById('selectDealershipsBtn').addEventListener('click', () => {
-            this.toggleDealershipSelection();
+        document.getElementById('testWebSocketBtn').addEventListener('click', () => {
+            this.testWebSocketConnection();
         });
         
-        document.getElementById('selectAllBtn').addEventListener('click', () => {
+        // New scraper selection functionality
+        document.getElementById('selectDealershipsBtn').addEventListener('click', () => {
+            this.showDealershipSelectionModal();
+        });
+        
+        // Modal controls
+        document.getElementById('closeDealershipSelectionModal').addEventListener('click', () => {
+            this.closeModal('dealershipSelectionModal');
+        });
+        
+        document.getElementById('cancelDealershipSelection').addEventListener('click', () => {
+            this.closeModal('dealershipSelectionModal');
+        });
+        
+        document.getElementById('selectAllBtnModal').addEventListener('click', () => {
             this.selectAllDealerships();
         });
         
-        document.getElementById('selectNoneBtn').addEventListener('click', () => {
+        document.getElementById('selectNoneBtnModal').addEventListener('click', () => {
             this.selectNoneDealerships();
         });
         
-        document.getElementById('scrapeSelectedBtn').addEventListener('click', () => {
+        document.getElementById('saveDealershipSelection').addEventListener('click', () => {
             this.startSelectedScraper();
         });
         
@@ -614,42 +657,73 @@ class MinisFornumApp {
     }
     
     async startScraper() {
-        if (this.scraperRunning || this.selectedDealerships.size === 0) return;
+        if (this.scraperRunning) return;
+        
+        if (this.selectedDealerships.size === 0) {
+            this.addTerminalMessage('Please select at least one dealership before starting the scraper.', 'warning');
+            this.addScraperConsoleMessage('⚠️ Please select at least one dealership before starting the scraper.', 'warning');
+            return;
+        }
         
         try {
             this.scraperRunning = true;
-            this.updateDealershipSelection();
+            this.updateScraperButtonStates();
             
             this.addTerminalMessage('Starting scraper pipeline...', 'info');
-            this.showScraperStatus();
+            this.addScraperConsoleMessage('🚀 Starting scraper pipeline...', 'info');
             
-            const response = await fetch('/api/scraper/start', {
+            const response = await fetch('/api/scrapers/start', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    dealerships: Array.from(this.selectedDealerships)
+                    dealership_names: Array.from(this.selectedDealerships) // Send all selected dealerships
                 })
             });
             
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const result = await response.json();
             
-            if (result.success) {
+            if (result && result.success) {
                 this.addTerminalMessage('Scraper started successfully', 'success');
+                this.addScraperConsoleMessage('✅ Scraper started successfully - Waiting for data...', 'success');
             } else {
-                this.addTerminalMessage(`Failed to start scraper: ${result.message}`, 'error');
+                const errorMessage = result?.message || result?.error || 'Unknown error occurred';
+                this.addTerminalMessage(`Failed to start scraper: ${errorMessage}`, 'error');
+                this.addScraperConsoleMessage(`❌ Failed to start scraper: ${errorMessage}`, 'error');
                 this.scraperRunning = false;
-                this.updateDealershipSelection();
-                this.hideScraperStatus();
+                this.updateScraperButtonStates();
             }
             
         } catch (error) {
             console.error('Error starting scraper:', error);
             this.addTerminalMessage(`Error starting scraper: ${error.message}`, 'error');
+            this.addScraperConsoleMessage(`❌ Error starting scraper: ${error.message}`, 'error');
             this.scraperRunning = false;
-            this.updateDealershipSelection();
-            this.hideScraperStatus();
+            this.updateScraperButtonStates();
+        }
+    }
+    
+    updateScraperButtonStates() {
+        const startBtn = document.getElementById('startScrapeBtn');
+        const selectBtn = document.getElementById('selectDealershipsBtn');
+        
+        if (startBtn) {
+            if (this.scraperRunning) {
+                startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scraping...';
+                startBtn.disabled = true;
+            } else {
+                startBtn.innerHTML = '<i class="fas fa-play"></i> Start Scrape (All)';
+                startBtn.disabled = this.selectedDealerships.size === 0;
+            }
+        }
+        
+        if (selectBtn) {
+            selectBtn.disabled = this.scraperRunning;
         }
     }
     
@@ -759,6 +833,16 @@ class MinisFornumApp {
         }
     }
     
+    restoreScraperStatusVisibility() {
+        // Check if scraper is currently running by looking at our progress data
+        const scraperStatus = document.getElementById('scraperStatus');
+        if (scraperStatus && this.scraperRunning) {
+            // Ensure scraper status is visible when switching back to scraper tab
+            scraperStatus.style.display = 'block';
+            console.log('Restored scraper status visibility');
+        }
+    }
+    
     switchTab(tabName) {
         // Update tab buttons
         document.querySelectorAll('.tab-button').forEach(button => {
@@ -773,6 +857,11 @@ class MinisFornumApp {
         document.getElementById(`${tabName}-panel`).classList.add('active');
         
         this.currentTab = tabName;
+        
+        // If switching to scraper tab, ensure scraper status visibility is preserved
+        if (tabName === 'scraper') {
+            this.restoreScraperStatusVisibility();
+        }
         
         // Load tab-specific data
         this.loadTabData(tabName);
@@ -1073,6 +1162,11 @@ class MinisFornumApp {
         this.showModal('scheduleModal');
     }
     
+    showDealershipSelectionModal() {
+        this.renderDealershipCheckboxes('dealershipCheckboxGridModal');
+        this.showModal('dealershipSelectionModal');
+    }
+    
     saveScheduleSettings() {
         // This would save schedule settings
         this.addTerminalMessage('Schedule settings saved', 'success');
@@ -1192,6 +1286,15 @@ class MinisFornumApp {
         this.progressData.completedScrapers = 0;
         this.progressData.progressPercent = 0;
         
+        // Initialize modal progress
+        this.modalProgress = {
+            dealershipsProcessed: 0,
+            vehiclesProcessed: 0,
+            errors: 0,
+            totalDealerships: data.total_scrapers,
+            progressPercent: 0
+        };
+        
         // Show progress bar
         const scraperStatus = document.getElementById('scraperStatus');
         if (scraperStatus) {
@@ -1206,6 +1309,10 @@ class MinisFornumApp {
         // Add to scraper console
         this.addScraperConsoleMessage(`🚀 SCRAPER SESSION STARTED`, 'success');
         this.addScraperConsoleMessage(`📊 Total scrapers: ${data.total_scrapers}`, 'info');
+        
+        // Add to modal console
+        this.addModalConsoleMessage(`🚀 SCRAPER SESSION STARTED`, 'success');
+        this.addModalConsoleMessage(`📊 Total scrapers: ${data.total_scrapers}`, 'info');
         this.addScraperConsoleMessage(`📋 Dealerships: ${data.scraper_names.join(', ')}`, 'info');
         this.addScraperConsoleMessage('', 'info'); // Empty line
         
@@ -1244,19 +1351,117 @@ class MinisFornumApp {
     onScraperProgress(data) {
         console.log('Scraper progress:', data);
         
+        // Add terminal message (scraper 18 style)
         this.addTerminalMessage(`   [${data.timestamp}] ${data.status}`, 'info');
         if (data.details) {
             this.addTerminalMessage(`   └── ${data.details}`, 'info');
         }
         
-        // Add to scraper console - this is where we get the detailed progress
+        // Add to scraper console with enhanced detail
         this.addScraperConsoleMessage(`${data.status}`, 'info');
         if (data.details) {
             this.addScraperConsoleMessage(`└── ${data.details}`, 'info');
         }
         
-        // Update status details
-        this.updateStatusDetails(`${data.scraper_name}: ${data.status}`);
+        // Update Live Scraper Console progress indicators
+        this.updateScraperConsoleIndicators(data);
+        
+        // Update real-time progress indicators
+        if (data.overall_progress !== undefined) {
+            this.updateProgressBar(data.overall_progress);
+            this.progressData.progressPercent = data.overall_progress;
+        }
+        
+        // Update dealership progress indicators
+        if (data.completed_scrapers !== undefined) {
+            this.progressData.completedScrapers = data.completed_scrapers;
+        }
+        
+        // Update vehicles processed indicator
+        if (data.vehicles_processed !== undefined) {
+            this.updateVehiclesProcessed(data.vehicles_processed);
+        }
+        
+        
+        // Update errors indicator
+        if (data.errors !== undefined) {
+            this.updateErrorsCount(data.errors);
+        }
+        
+        // Update page progress for current scraper
+        if (data.current_page && data.total_pages) {
+            this.updateCurrentScraperProgress(data.scraper_name, data.current_page, data.total_pages);
+        }
+        
+        // Update status details with enhanced info
+        let statusMessage = `${data.scraper_name}: ${data.status}`;
+        if (data.vehicles_processed > 0) {
+            statusMessage += ` (${data.vehicles_processed} vehicles)`;
+        }
+        if (data.current_page && data.total_pages) {
+            statusMessage += ` [Page ${data.current_page}/${data.total_pages}]`;
+        }
+        this.updateStatusDetails(statusMessage);
+    }
+    
+    updateScraperConsoleIndicators(data) {
+        // Update the progress indicators in the Live Scraper Console header
+        const dealershipsProcessed = data.completed_scrapers || this.progressData.completedScrapers || 0;
+        const vehiclesProcessed = this.progressData.totalVehiclesProcessed || 0;
+        const errors = this.progressData.totalErrors || 0;
+        
+        // Update indicator values
+        const dealershipsElement = document.getElementById('dealershipsProcessed');
+        const vehiclesElement = document.getElementById('vehiclesProcessed');
+        const errorsElement = document.getElementById('errorsCount');
+        
+        if (dealershipsElement) dealershipsElement.textContent = dealershipsProcessed;
+        if (vehiclesElement) vehiclesElement.textContent = vehiclesProcessed;
+        if (errorsElement) errorsElement.textContent = errors;
+    }
+    
+    handleScraperOutput(data) {
+        // Handle raw scraper output messages
+        console.log('Scraper output received:', data);
+        
+        if (data.message) {
+            this.addScraperConsoleMessage(data.message, data.type || 'info');
+        }
+        
+        if (data.status) {
+            this.addScraperConsoleMessage(`Status: ${data.status}`, 'info');
+        }
+        
+        // Update progress if available
+        if (data.progress !== undefined) {
+            this.updateProgressBar(data.progress);
+        }
+        
+        // Update indicators if available
+        this.updateScraperConsoleIndicators(data);
+    }
+    
+    async testWebSocketConnection() {
+        this.addScraperConsoleMessage('🧪 Testing WebSocket connection...', 'info');
+        
+        try {
+            const response = await fetch('/api/test-websocket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                this.addScraperConsoleMessage('📡 WebSocket test message sent from server', 'success');
+            } else {
+                this.addScraperConsoleMessage('❌ Failed to send WebSocket test message', 'error');
+            }
+        } catch (error) {
+            console.error('Error testing WebSocket:', error);
+            this.addScraperConsoleMessage(`❌ WebSocket test error: ${error.message}`, 'error');
+        }
     }
     
     onScraperComplete(data) {
@@ -1351,13 +1556,8 @@ class MinisFornumApp {
         this.addTerminalMessage('=' * 80, 'info');
         
         // Reset UI state
-        const startBtn = document.getElementById('startScrapeBtn');
-        if (startBtn) {
-            startBtn.innerHTML = '<i class="fas fa-play"></i> Start Scrape';
-            startBtn.disabled = false;
-        }
-        
         this.scraperRunning = false;
+        this.updateScraperButtonStates();
         
         // Update status details
         this.updateStatusDetails(`Session complete: ${data.success_rate.toFixed(1)}% success rate`);
@@ -1378,6 +1578,49 @@ class MinisFornumApp {
         const statusHeader = document.querySelector('.scraper-status .status-header h3');
         if (statusHeader) {
             statusHeader.textContent = `Scraper Progress (${percent.toFixed(1)}%)`;
+        }
+    }
+    
+    updateVehiclesProcessed(count) {
+        // Update vehicles processed indicator in the GUI
+        const vehiclesEl = document.getElementById('vehiclesProcessed');
+        if (vehiclesEl) {
+            vehiclesEl.textContent = count.toLocaleString();
+        }
+        
+        // Update any other vehicle counter elements
+        const vehicleCounters = document.querySelectorAll('.vehicle-count');
+        vehicleCounters.forEach(el => {
+            el.textContent = count.toLocaleString();
+        });
+    }
+    
+    updateErrorsCount(count) {
+        // Update errors indicator in the GUI
+        const errorsEl = document.getElementById('errorsCount');
+        if (errorsEl) {
+            errorsEl.textContent = count;
+            // Change color based on error count
+            if (count > 0) {
+                errorsEl.className = 'metric-value status-error';
+            } else {
+                errorsEl.className = 'metric-value status-online';
+            }
+        }
+    }
+    
+    updateCurrentScraperProgress(scraperName, currentPage, totalPages) {
+        // Update current scraper progress indicator
+        const currentScraperEl = document.getElementById('currentScraper');
+        if (currentScraperEl) {
+            currentScraperEl.textContent = `${scraperName} (Page ${currentPage}/${totalPages})`;
+        }
+        
+        // Update scraper-specific progress bar if it exists
+        const scraperProgressEl = document.getElementById('scraperSpecificProgress');
+        if (scraperProgressEl && totalPages > 0) {
+            const scraperPercent = (currentPage / totalPages) * 100;
+            scraperProgressEl.style.width = `${scraperPercent}%`;
         }
     }
     
@@ -1915,17 +2158,17 @@ class MinisFornumApp {
         }
     }
     
-    renderDealershipCheckboxes() {
-        console.log('🔧 DEBUG: renderDealershipCheckboxes called');
+    renderDealershipCheckboxes(containerId = 'dealershipCheckboxGrid') {
+        console.log('🔧 DEBUG: renderDealershipCheckboxes called with containerId:', containerId);
         
-        const grid = document.getElementById('dealershipCheckboxGrid');
+        const grid = document.getElementById(containerId);
         console.log('🔧 DEBUG: grid element:', grid);
         console.log('🔧 DEBUG: this.dealerships:', this.dealerships);
         console.log('🔧 DEBUG: dealerships length:', this.dealerships ? this.dealerships.length : 'null/undefined');
         
         if (!grid) {
-            console.error('❌ dealershipCheckboxGrid element not found!');
-            this.addScraperConsoleMessage('ERROR: dealershipCheckboxGrid element not found', 'error');
+            console.error(`❌ ${containerId} element not found!`);
+            this.addScraperConsoleMessage(`ERROR: ${containerId} element not found`, 'error');
             return;
         }
         
@@ -2007,11 +2250,11 @@ class MinisFornumApp {
             return;
         }
         
+        // Close the modal
+        this.closeModal('dealershipSelectionModal');
+        
         this.addTerminalMessage(`Starting scraper for ${this.selectedDealerships.size} selected dealerships`, 'info');
         this.startScraper(); // Use existing scraper method
-        
-        // Hide selection panel after starting
-        this.toggleDealershipSelection();
     }
     
     setupQueueEventListeners() {
@@ -2329,6 +2572,12 @@ class MinisFornumApp {
     async initDataSearch() {
         console.log('Initializing data search interface...');
         
+        // Initialize sub-tab functionality
+        this.initSubTabs();
+        
+        // Setup vehicle history modal
+        this.setupVehicleHistoryModal();
+        
         // Re-bind event listeners since elements are now available
         this.bindDataSearchEventListeners();
         
@@ -2343,7 +2592,730 @@ class MinisFornumApp {
         // Load initial search results (recent vehicles)
         await this.executeVehicleSearch('');
         
+        // Initialize VIN history viewer
+        this.initVinHistory();
+        
         console.log('Data search interface initialized');
+    }
+    
+    initSubTabs() {
+        // Handle sub-tab switching
+        document.querySelectorAll('.sub-tab-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const subtab = e.currentTarget.dataset.subtab;
+                this.switchSubTab(subtab);
+            });
+        });
+    }
+    
+    switchSubTab(subtabName) {
+        // Update sub-tab buttons
+        document.querySelectorAll('.sub-tab-button').forEach(button => {
+            button.classList.remove('active');
+        });
+        document.querySelector(`[data-subtab="${subtabName}"]`).classList.add('active');
+        
+        // Update sub-tab panels
+        document.querySelectorAll('.sub-tab-panel').forEach(panel => {
+            panel.classList.remove('active');
+            panel.style.display = 'none';
+        });
+        const activePanel = document.getElementById(`${subtabName}-panel`);
+        if (activePanel) {
+            activePanel.classList.add('active');
+            activePanel.style.display = 'block';
+        }
+        
+        // Update control buttons visibility
+        const exportSearchBtn = document.getElementById('exportSearchResults');
+        if (subtabName === 'vehicle-search') {
+            exportSearchBtn.style.display = 'inline-flex';
+        } else {
+            exportSearchBtn.style.display = 'none';
+        }
+    }
+    
+    // =============================================================================
+    // VEHICLE HISTORY MODAL FUNCTIONALITY
+    // =============================================================================
+    
+    showVehicleHistory(vin, rowElement) {
+        if (!vin) return;
+        
+        try {
+            // Get vehicle info from row data
+            const vehicleInfo = JSON.parse(rowElement.getAttribute('data-vehicle-info'));
+            
+            // Populate modal with vehicle summary
+            this.populateVehicleSummary(vehicleInfo);
+            
+            // Show the modal
+            const modal = document.getElementById('vehicleHistoryModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Load vehicle history
+            this.loadVehicleHistory(vin);
+            
+        } catch (error) {
+            console.error('Error showing vehicle history:', error);
+            this.addTerminalMessage(`Error loading vehicle history: ${error.message}`, 'error');
+        }
+    }
+    
+    populateVehicleSummary(vehicleInfo) {
+        // Update modal title and vehicle summary
+        const title = document.getElementById('vehicleHistoryTitle');
+        const modalVin = document.getElementById('modalVin');
+        const modalVehicle = document.getElementById('modalVehicle');
+        const modalTotalScrapes = document.getElementById('modalTotalScrapes');
+        const modalCurrentLocation = document.getElementById('modalCurrentLocation');
+        
+        if (title) {
+            title.textContent = `Vehicle History - ${vehicleInfo.vin}`;
+        }
+        
+        if (modalVin) {
+            modalVin.textContent = vehicleInfo.vin || 'N/A';
+        }
+        
+        if (modalVehicle) {
+            const vehicleDisplay = `${vehicleInfo.year || ''} ${vehicleInfo.make || ''} ${vehicleInfo.model || ''}${vehicleInfo.trim ? ' ' + vehicleInfo.trim : ''}`.trim();
+            modalVehicle.textContent = vehicleDisplay || 'N/A';
+        }
+        
+        if (modalTotalScrapes) {
+            modalTotalScrapes.textContent = vehicleInfo.scrape_count || '1';
+        }
+        
+        if (modalCurrentLocation) {
+            modalCurrentLocation.textContent = vehicleInfo.location || 'N/A';
+        }
+    }
+    
+    async loadVehicleHistory(vin) {
+        const scraperContainer = document.getElementById('historyTimeline');
+        if (!scraperContainer) return;
+        
+        // Show loading state
+        scraperContainer.innerHTML = `
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                Loading scrape history...
+            </div>
+        `;
+        
+        try {
+            const response = await fetch(`/api/data/vehicle-history/${encodeURIComponent(vin)}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderScrapesList(data.scrapes, data.first_scraped, data.total_scrapes);
+            } else {
+                throw new Error(data.error || 'Failed to load vehicle history');
+            }
+            
+        } catch (error) {
+            console.error('Error loading vehicle history:', error);
+            scraperContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Error loading scrape history</p>
+                    <p class="error-details">${error.message}</p>
+                </div>
+            `;
+        }
+    }
+    
+    renderScrapesList(scrapes, firstScraped, totalScrapes) {
+        const scraperContainer = document.getElementById('historyTimeline');
+        if (!scraperContainer) return;
+        
+        if (!scrapes || scrapes.length === 0) {
+            scraperContainer.innerHTML = `
+                <div class="no-history">
+                    <i class="fas fa-spider"></i>
+                    <p>No scrape history available for this vehicle</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Create header with first scraped info
+        const firstScrapedDate = firstScraped ? new Date(firstScraped).toLocaleDateString('en-US', {
+            year: 'numeric', month: 'short', day: 'numeric'
+        }) : 'Unknown';
+        
+        // Group scrapes by dealership for color coding
+        const dealershipColors = {};
+        const dealerships = [...new Set(scrapes.map(s => s.dealership))];
+        const colors = ['#e3f2fd', '#f3e5f5', '#e8f5e8', '#fff3e0', '#fce4ec'];
+        dealerships.forEach((dealer, index) => {
+            dealershipColors[dealer] = colors[index % colors.length];
+        });
+        
+        const scrapesHTML = scrapes.map((scrape, index) => {
+            const scrapeDate = scrape.date ? new Date(scrape.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            }) : 'Unknown';
+            
+            const scrapeTime = scrape.date ? new Date(scrape.date).toLocaleTimeString('en-US', {
+                hour: '2-digit', minute: '2-digit'
+            }) : '';
+            
+            const backgroundColor = dealershipColors[scrape.dealership] || '#f5f5f5';
+            
+            return `
+                <div class="scrape-item" style="background-color: ${backgroundColor}">
+                    <div class="scrape-header">
+                        <span class="scrape-number">#${index + 1}</span>
+                        <span class="scrape-date">${scrapeDate} ${scrapeTime}</span>
+                        <span class="scrape-dealership">${scrape.dealership || 'Unknown'}</span>
+                        <span class="scrape-price">${scrape.price_formatted || 'N/A'}</span>
+                    </div>
+                    <div class="scrape-details">
+                        <span class="detail-item">Stock: ${scrape.stock || 'N/A'}</span>
+                        <span class="detail-item">Type: ${scrape.vehicle_type || 'N/A'}</span>
+                        <span class="detail-item">Mileage: ${scrape.mileage_formatted || 'N/A'}</span>
+                        <span class="detail-item">Color: ${scrape.exterior_color || 'N/A'}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        scraperContainer.innerHTML = `
+            <div class="scrapes-summary">
+                <div class="summary-stats">
+                    <span class="stat-item"><strong>Total Scrapes:</strong> ${totalScrapes}</span>
+                    <span class="stat-item"><strong>First Scraped:</strong> ${firstScrapedDate}</span>
+                    <span class="stat-item"><strong>Dealerships:</strong> ${dealerships.length}</span>
+                </div>
+            </div>
+            <div class="scrapes-list">
+                ${scrapesHTML}
+            </div>
+        `;
+    }
+    
+    getTimelineIcon(eventType) {
+        const iconMap = {
+            'scrape': 'fa-spider',
+            'order': 'fa-shopping-cart',
+            'vin_log': 'fa-clipboard-list',
+            'price_change': 'fa-dollar-sign',
+            'dealer_change': 'fa-exchange-alt',
+            'default': 'fa-circle'
+        };
+        return iconMap[eventType] || iconMap.default;
+    }
+    
+    setupVehicleHistoryModal() {
+        // Close modal handlers
+        const closeBtn = document.getElementById('closeVehicleHistoryModal');
+        const modal = document.getElementById('vehicleHistoryModal');
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.closeVehicleHistoryModal());
+        }
+        
+        if (modal) {
+            // Close on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeVehicleHistoryModal();
+                }
+            });
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+                this.closeVehicleHistoryModal();
+            }
+        });
+    }
+    
+    closeVehicleHistoryModal() {
+        const modal = document.getElementById('vehicleHistoryModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // =============================================================================
+    // INDIVIDUAL VEHICLE DATA TYPE TOGGLE FUNCTIONALITY
+    // =============================================================================
+    
+    async toggleVehicleDataType(vin, toggleElement) {
+        if (!vin) return;
+        
+        const isNormalized = toggleElement.checked;
+        const rowElement = toggleElement.closest('tr');
+        
+        if (!rowElement) return;
+        
+        try {
+            // Show loading state
+            toggleElement.disabled = true;
+            const originalRow = rowElement.innerHTML;
+            
+            // Fetch the appropriate data type for this VIN
+            const dataType = isNormalized ? 'normalized' : 'raw';
+            const response = await fetch(`/api/data/vehicle-single/${encodeURIComponent(vin)}?data_type=${dataType}`);
+            const data = await response.json();
+            
+            if (data.success && data.vehicle) {
+                // Update the row with new data while preserving the toggle state
+                this.updateVehicleRow(rowElement, data.vehicle, isNormalized);
+            } else {
+                // If no normalized data exists, show message and revert toggle
+                if (isNormalized && data.error && data.error.includes('No normalized data')) {
+                    this.showToast('No normalized data available for this vehicle', 'warning');
+                    toggleElement.checked = false;
+                } else {
+                    throw new Error(data.error || 'Failed to load vehicle data');
+                }
+            }
+            
+        } catch (error) {
+            console.error('Error toggling vehicle data type:', error);
+            this.showToast(`Error loading ${isNormalized ? 'normalized' : 'raw'} data: ${error.message}`, 'error');
+            // Revert toggle state on error
+            toggleElement.checked = !isNormalized;
+        } finally {
+            toggleElement.disabled = false;
+        }
+    }
+    
+    updateVehicleRow(rowElement, vehicleData, isNormalized) {
+        // Get the current toggle element before updating
+        const currentToggle = rowElement.querySelector('.toggle-input');
+        const currentVin = currentToggle ? currentToggle.getAttribute('data-vin') : '';
+        
+        // Format the new vehicle data
+        const dataSourceBadge = `<span class="data-type-badge data-type-${isNormalized ? 'normalized' : 'raw'}">${isNormalized ? 'NORMALIZED' : 'RAW'}</span>`;
+        
+        const scrapedTime = vehicleData.import_timestamp ? 
+            new Date(vehicleData.import_timestamp).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : 'N/A';
+        
+        // Update vehicle info data attribute
+        const vehicleInfo = JSON.stringify({
+            vin: vehicleData.vin,
+            year: vehicleData.year,
+            make: vehicleData.make,
+            model: vehicleData.model,
+            trim: vehicleData.trim,
+            location: vehicleData.location,
+            scrape_count: vehicleData.scrape_count
+        }).replace(/'/g, '&apos;');
+        
+        // Update row attributes
+        rowElement.setAttribute('data-vehicle-info', vehicleInfo);
+        
+        // Update row content
+        rowElement.innerHTML = `
+            <td class="vin-cell">${vehicleData.vin || 'N/A'}</td>
+            <td>${vehicleData.stock || 'N/A'}</td>
+            <td class="dealer-cell">${vehicleData.location || 'N/A'}</td>
+            <td>${vehicleData.year || 'N/A'}</td>
+            <td>${vehicleData.make || 'N/A'}</td>
+            <td>${vehicleData.model || 'N/A'}</td>
+            <td>${vehicleData.trim || 'N/A'}</td>
+            <td class="price-cell">${vehicleData.price_formatted || 'N/A'}</td>
+            <td>${vehicleData.mileage_formatted || 'N/A'}</td>
+            <td>${vehicleData.vehicle_type || 'N/A'}</td>
+            <td class="date-cell">${scrapedTime}</td>
+            <td class="scrape-count-cell">${vehicleData.scrape_count || 1}</td>
+            <td class="toggle-cell" onclick="event.stopPropagation();">
+                <label class="data-toggle-switch">
+                    <input type="checkbox" class="toggle-input" data-vin="${currentVin}" ${isNormalized ? 'checked' : ''} onchange="app.toggleVehicleDataType('${currentVin}', this)">
+                    <span class="toggle-slider">
+                        <span class="toggle-label-raw">R</span>
+                        <span class="toggle-label-norm">N</span>
+                    </span>
+                </label>
+            </td>
+            <td>${dataSourceBadge}</td>
+        `;
+    }
+    
+    showToast(message, type = 'info') {
+        // Simple toast notification
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        `;
+        
+        // Set background color based on type
+        const colors = {
+            info: '#2196F3',
+            success: '#4CAF50',
+            warning: '#FF9800',
+            error: '#F44336'
+        };
+        toast.style.backgroundColor = colors[type] || colors.info;
+        
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    // =============================================================================
+    // VIN HISTORY VIEWER FUNCTIONALITY
+    // =============================================================================
+    
+    async initVinHistory() {
+        console.log('Initializing VIN history viewer...');
+        
+        // VIN history properties
+        this.vinHistory = {
+            currentPage: 1,
+            perPage: 100,
+            totalCount: 0,
+            results: [],
+            dealerships: []
+        };
+        
+        // Bind VIN history event listeners
+        this.bindVinHistoryEventListeners();
+        
+        // Load initial statistics
+        await this.loadVinHistoryStats();
+        
+        console.log('VIN history viewer initialized');
+    }
+    
+    bindVinHistoryEventListeners() {
+        // Search functionality
+        const searchInput = document.getElementById('vinHistorySearchInput');
+        const searchBtn = document.getElementById('searchVinHistoryBtn');
+        
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.searchVinHistory();
+                }
+            });
+        }
+        
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                this.searchVinHistory();
+            });
+        }
+        
+        // Filter controls
+        const dealerFilter = document.getElementById('vinHistoryDealerFilter');
+        const dateFromFilter = document.getElementById('vinHistoryDateFrom');
+        const dateToFilter = document.getElementById('vinHistoryDateTo');
+        const clearFiltersBtn = document.getElementById('clearVinHistoryFilters');
+        
+        if (dealerFilter) {
+            dealerFilter.addEventListener('change', () => {
+                this.searchVinHistory();
+            });
+        }
+        
+        if (dateFromFilter) {
+            dateFromFilter.addEventListener('change', () => {
+                this.searchVinHistory();
+            });
+        }
+        
+        if (dateToFilter) {
+            dateToFilter.addEventListener('change', () => {
+                this.searchVinHistory();
+            });
+        }
+        
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                this.clearVinHistoryFilters();
+            });
+        }
+        
+        // Export functionality
+        const exportBtn = document.getElementById('exportVinHistory');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => {
+                this.exportVinHistory();
+            });
+        }
+        
+        // Pagination
+        const prevBtn = document.getElementById('vinHistoryPrevBtn');
+        const nextBtn = document.getElementById('vinHistoryNextBtn');
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (this.vinHistory.currentPage > 1) {
+                    this.vinHistory.currentPage--;
+                    this.searchVinHistory();
+                }
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(this.vinHistory.totalCount / this.vinHistory.perPage);
+                if (this.vinHistory.currentPage < totalPages) {
+                    this.vinHistory.currentPage++;
+                    this.searchVinHistory();
+                }
+            });
+        }
+    }
+    
+    async loadVinHistoryStats() {
+        // This loads initial stats when switching to VIN history tab
+        await this.searchVinHistory();
+    }
+    
+    async searchVinHistory() {
+        const container = document.getElementById('vinHistoryTableContainer');
+        if (!container) return;
+        
+        // Show loading state
+        container.innerHTML = `
+            <div class="loading-search">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Searching VIN history database...</p>
+            </div>
+        `;
+        
+        // Build query parameters
+        const params = new URLSearchParams();
+        params.append('page', this.vinHistory.currentPage);
+        params.append('per_page', this.vinHistory.perPage);
+        
+        // Add search query
+        const searchQuery = document.getElementById('vinHistorySearchInput')?.value.trim();
+        if (searchQuery) {
+            params.append('query', searchQuery);
+        }
+        
+        // Add filters
+        const dealership = document.getElementById('vinHistoryDealerFilter')?.value;
+        if (dealership) {
+            params.append('dealership', dealership);
+        }
+        
+        const dateFrom = document.getElementById('vinHistoryDateFrom')?.value;
+        if (dateFrom) {
+            params.append('date_from', dateFrom);
+        }
+        
+        const dateTo = document.getElementById('vinHistoryDateTo')?.value;
+        if (dateTo) {
+            params.append('date_to', dateTo);
+        }
+        
+        try {
+            const response = await fetch(`/api/data/vin-history?${params}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                this.vinHistory.results = data.data;
+                this.vinHistory.totalCount = data.pagination.total;
+                
+                // Update statistics
+                this.updateVinHistoryStats(data.statistics);
+                
+                // Update dealership filter if needed
+                if (data.dealerships && !dealership) {
+                    this.updateDealershipFilter(data.dealerships);
+                }
+                
+                // Display results
+                this.displayVinHistoryResults();
+                
+                // Update pagination
+                this.updateVinHistoryPagination(data.pagination);
+            } else {
+                throw new Error(data.error || 'Failed to load VIN history');
+            }
+            
+        } catch (error) {
+            console.error('Error searching VIN history:', error);
+            container.innerHTML = `
+                <div class="search-error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Error Loading VIN History</h3>
+                    <p>${error.message}</p>
+                </div>
+            `;
+        }
+    }
+    
+    updateVinHistoryStats(stats) {
+        if (!stats) return;
+        
+        document.getElementById('totalVins').textContent = stats.total_records?.toLocaleString() || '0';
+        document.getElementById('uniqueVins').textContent = stats.unique_vins?.toLocaleString() || '0';
+        document.getElementById('totalDealerships').textContent = stats.unique_dealerships?.toLocaleString() || '0';
+        
+        // Format date range
+        if (stats.earliest_date && stats.latest_date) {
+            const earliest = new Date(stats.earliest_date).toLocaleDateString();
+            const latest = new Date(stats.latest_date).toLocaleDateString();
+            document.getElementById('dateRange').textContent = `${earliest} - ${latest}`;
+        } else {
+            document.getElementById('dateRange').textContent = '--';
+        }
+    }
+    
+    updateDealershipFilter(dealerships) {
+        const select = document.getElementById('vinHistoryDealerFilter');
+        if (!select) return;
+        
+        // Preserve current selection
+        const currentValue = select.value;
+        
+        // Clear and rebuild options
+        select.innerHTML = '<option value="">All Dealerships</option>';
+        
+        dealerships.forEach(dealer => {
+            const option = document.createElement('option');
+            option.value = dealer.dealership_name;
+            option.textContent = `${dealer.dealership_name} (${dealer.count.toLocaleString()})`;
+            select.appendChild(option);
+        });
+        
+        // Restore selection
+        select.value = currentValue;
+    }
+    
+    displayVinHistoryResults() {
+        const container = document.getElementById('vinHistoryTableContainer');
+        if (!container) return;
+        
+        if (this.vinHistory.results.length === 0) {
+            container.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>No VIN History Found</h3>
+                    <p>Try adjusting your search criteria or filters</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Build table HTML
+        let tableHTML = `
+            <table class="vin-history-table">
+                <thead>
+                    <tr>
+                        <th>VIN</th>
+                        <th>Dealership</th>
+                        <th>Order Date</th>
+                        <th>Vehicle Info</th>
+                        <th>Stock #</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        
+        this.vinHistory.results.forEach(record => {
+            const vehicleInfo = record.year && record.make && record.model 
+                ? `${record.year} ${record.make} ${record.model} ${record.trim || ''}`.trim()
+                : 'N/A';
+            
+            const price = record.price 
+                ? `$${parseFloat(record.price).toLocaleString()}`
+                : 'N/A';
+            
+            tableHTML += `
+                <tr>
+                    <td class="vin-cell">${record.vin || 'N/A'}</td>
+                    <td class="dealership-cell">${record.dealership_name || 'N/A'}</td>
+                    <td class="date-cell">${new Date(record.order_date).toLocaleDateString()}</td>
+                    <td class="vehicle-info-cell" title="${vehicleInfo}">${vehicleInfo}</td>
+                    <td>${record.stock || 'N/A'}</td>
+                    <td>${record.status || record.vehicle_type || 'N/A'}</td>
+                    <td class="price-cell">${price}</td>
+                </tr>
+            `;
+        });
+        
+        tableHTML += `
+                </tbody>
+            </table>
+        `;
+        
+        container.innerHTML = tableHTML;
+        
+        // Update results count
+        document.getElementById('vinHistoryResultsCount').textContent = this.vinHistory.totalCount.toLocaleString();
+    }
+    
+    updateVinHistoryPagination(pagination) {
+        const pageInfo = document.getElementById('vinHistoryPageInfo');
+        const prevBtn = document.getElementById('vinHistoryPrevBtn');
+        const nextBtn = document.getElementById('vinHistoryNextBtn');
+        const paginationContainer = document.getElementById('vinHistoryPagination');
+        
+        if (pagination.pages > 1) {
+            paginationContainer.style.display = 'flex';
+            pageInfo.textContent = `Page ${pagination.page} of ${pagination.pages}`;
+            
+            prevBtn.disabled = pagination.page <= 1;
+            nextBtn.disabled = pagination.page >= pagination.pages;
+        } else {
+            paginationContainer.style.display = 'none';
+        }
+    }
+    
+    clearVinHistoryFilters() {
+        document.getElementById('vinHistorySearchInput').value = '';
+        document.getElementById('vinHistoryDealerFilter').value = '';
+        document.getElementById('vinHistoryDateFrom').value = '';
+        document.getElementById('vinHistoryDateTo').value = '';
+        
+        this.vinHistory.currentPage = 1;
+        this.searchVinHistory();
+    }
+    
+    async exportVinHistory() {
+        // TODO: Implement VIN history export functionality
+        alert('VIN history export functionality coming soon!');
     }
     
     async loadAvailableDealers() {
@@ -2507,10 +3479,8 @@ class MinisFornumApp {
             params.filter_by = filterBy.value;
         }
         
-        // Data type
-        if (dataTypeRadios.length > 0) {
-            params.data_type = dataTypeRadios[0].value;
-        }
+        // Always use raw data type (data type filter removed)
+        params.data_type = 'raw';
         
         // Sorting
         if (sortBy) {
@@ -2791,9 +3761,8 @@ class MinisFornumApp {
             params.filter_by = filterBy.value;
         }
         
-        if (dataTypeRadios.length > 0) {
-            params.data_type = dataTypeRadios[0].value;
-        }
+        // Always use raw data type (data type filter removed)
+        params.data_type = 'raw';
         
         if (sortBy) {
             params.sort_by = sortBy.value;
@@ -2889,7 +3858,7 @@ class MinisFornumApp {
                         </th>
                         <th class="filterable-header" data-field="time_scraped">
                             <div class="header-content">
-                                <span>Time Scraped</span>
+                                <span>Last Scraped</span>
                                 <div class="filter-dropdown" id="timeScrapedFilter">
                                     <select class="header-filter" data-field="time_scraped">
                                         <option value="">All Times</option>
@@ -2897,6 +3866,9 @@ class MinisFornumApp {
                                 </div>
                             </div>
                         </th>
+                        <th class="sortable" onclick="app.sortBy('first_scraped')">First Scraped</th>
+                        <th class="sortable" onclick="app.sortBy('scrape_count')">Scrapes</th>
+                        <th class="toggle-header">Raw/Norm</th>
                         <th>Data Source</th>
                     </tr>
                 </thead>
@@ -2922,8 +3894,26 @@ class MinisFornumApp {
                 minute: '2-digit'
             }) : 'N/A';
         
+        // Format the first scraped time
+        const firstScrapedTime = vehicle.first_scraped ? 
+            new Date(vehicle.first_scraped).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : 'N/A';
+        
         return `
-            <tr>
+            <tr class="vehicle-row" data-vin="${vehicle.vin}" data-vehicle-info='${JSON.stringify({
+                vin: vehicle.vin,
+                year: vehicle.year,
+                make: vehicle.make,
+                model: vehicle.model,
+                trim: vehicle.trim,
+                location: vehicle.location,
+                scrape_count: vehicle.scrape_count
+            }).replace(/'/g, '&apos;')}' onclick="app.showVehicleHistory('${vehicle.vin}', this)">
                 <td class="vin-cell">${vehicle.vin || 'N/A'}</td>
                 <td>${vehicle.stock || 'N/A'}</td>
                 <td class="dealer-cell">${vehicle.location || 'N/A'}</td>
@@ -2935,6 +3925,17 @@ class MinisFornumApp {
                 <td>${vehicle.mileage_formatted || 'N/A'}</td>
                 <td>${vehicle.vehicle_type || 'N/A'}</td>
                 <td class="date-cell">${scrapedTime}</td>
+                <td class="date-cell">${firstScrapedTime}</td>
+                <td class="scrape-count-cell">${vehicle.scrape_count || 1}</td>
+                <td class="toggle-cell" onclick="event.stopPropagation();">
+                    <label class="data-toggle-switch">
+                        <input type="checkbox" class="toggle-input" data-vin="${vehicle.vin}" onchange="app.toggleVehicleDataType('${vehicle.vin}', this)">
+                        <span class="toggle-slider">
+                            <span class="toggle-label-raw">R</span>
+                            <span class="toggle-label-norm">N</span>
+                        </span>
+                    </label>
+                </td>
                 <td>${dataSourceBadge}</td>
             </tr>
         `;

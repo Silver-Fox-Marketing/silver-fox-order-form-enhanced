@@ -1,0 +1,167 @@
+{
+  "total_tested": 40,
+  "successful_tests": 40,
+  "failed_tests": 0,
+  "test_results": {
+    "AUDIRANCHOMIRAGE": {
+      "status": "success",
+      "error": null
+    },
+    "AUFFENBERGHYUNDAI": {
+      "status": "success",
+      "error": null
+    },
+    "BMWOFWESTSTLOUIS": {
+      "status": "success",
+      "error": null
+    },
+    "BOMMARITOCADILLAC": {
+      "status": "success",
+      "error": null
+    },
+    "BOMMARITOWESTCOUNTY": {
+      "status": "success",
+      "error": null
+    },
+    "COLUMBIABMW": {
+      "status": "success",
+      "error": null
+    },
+    "COLUMBIAHONDA": {
+      "status": "success",
+      "error": null
+    },
+    "DAVESINCLAIRLINCOLNSOUTH": {
+      "status": "success",
+      "error": null
+    },
+    "DAVESINCLAIRLINCOLNSTPETERS": {
+      "status": "success",
+      "error": null
+    },
+    "FRANKLETAHONDA": {
+      "status": "success",
+      "error": null
+    },
+    "GLENDALECHRYSLERJEEP": {
+      "status": "success",
+      "error": null
+    },
+    "HONDAFRONTENAC": {
+      "status": "success",
+      "error": null
+    },
+    "HWKIA": {
+      "status": "success",
+      "error": null
+    },
+    "INDIGOAUTOGROUP": {
+      "status": "success",
+      "error": null
+    },
+    "JAGUARRANCHOMIRAGE": {
+      "status": "success",
+      "error": null
+    },
+    "JOEMACHENSCDJR": {
+      "status": "success",
+      "error": null
+    },
+    "JOEMACHENSHYUNDAI": {
+      "status": "success",
+      "error": null
+    },
+    "JOEMACHENSNISSAN": {
+      "status": "success",
+      "error": null
+    },
+    "JOEMACHENSTOYOTA": {
+      "status": "success",
+      "error": null
+    },
+    "KIAOFCOLUMBIA": {
+      "status": "success",
+      "error": null
+    },
+    "LANDROVERRANCHOMIRAGE": {
+      "status": "success",
+      "error": null
+    },
+    "MINIOFSTLOUIS": {
+      "status": "success",
+      "error": null
+    },
+    "PAPPASTOYOTA": {
+      "status": "success",
+      "error": null
+    },
+    "PORSCHESTLOUIS": {
+      "status": "success",
+      "error": null
+    },
+    "PUNDMANNFORD": {
+      "status": "success",
+      "error": null
+    },
+    "RUSTYDREWINGCADILLAC": {
+      "status": "success",
+      "error": null
+    },
+    "RUSTYDREWINGCHEVROLETBUICKGMC": {
+      "status": "success",
+      "error": null
+    },
+    "SERRAHONDAOFALLON": {
+      "status": "success",
+      "error": null
+    },
+    "SOUTHCOUNTYAUTOS": {
+      "status": "success",
+      "error": null
+    },
+    "SPIRITLEXUS": {
+      "status": "success",
+      "error": null
+    },
+    "STEHOUWERAUTO": {
+      "status": "success",
+      "error": null
+    },
+    "SUNTRUPBUICKGMC": {
+      "status": "success",
+      "error": null
+    },
+    "SUNTRUPFORDKIRKWOOD": {
+      "status": "success",
+      "error": null
+    },
+    "SUNTRUPFORDWEST": {
+      "status": "success",
+      "error": null
+    },
+    "SUNTRUPHYUNDAISOUTH": {
+      "status": "success",
+      "error": null
+    },
+    "SUNTRUPKIASOUTH": {
+      "status": "success",
+      "error": null
+    },
+    "THOROUGHBREDFORD": {
+      "status": "success",
+      "error": null
+    },
+    "TWINCITYTOYOTA": {
+      "status": "success",
+      "error": null
+    },
+    "WCVOLVOCARS": {
+      "status": "success",
+      "error": null
+    },
+    "WEBERCHEV": {
+      "status": "success",
+      "error": null
+    }
+  }
+}

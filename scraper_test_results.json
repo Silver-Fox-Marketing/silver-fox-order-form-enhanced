@@ -1,0 +1,27 @@
+{
+  "total_tested": 5,
+  "successful_tests": 5,
+  "failed_tests": 0,
+  "test_results": {
+    "BMWOFWESTSTLOUIS": {
+      "status": "success",
+      "error": null
+    },
+    "COLUMBIAHONDA": {
+      "status": "success",
+      "error": null
+    },
+    "JOEMACHENSNISSAN": {
+      "status": "success",
+      "error": null
+    },
+    "AUDIRANCHOMIRAGE": {
+      "status": "success",
+      "error": null
+    },
+    "PAPPASTOYOTA": {
+      "status": "success",
+      "error": null
+    }
+  }
+}
