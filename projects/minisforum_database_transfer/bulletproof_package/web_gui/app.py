@@ -44,13 +44,13 @@ try:
     from real_scraper_integration import RealScraperIntegration
     print("OK RealScraperIntegration imported successfully")
     
-    print("Attempting to import ScraperManager...")
+    print("Attempting to import Scraper18Controller...")
     try:
-        from scraper_manager import scraper_manager
-        print("OK ScraperManager imported successfully")
+        from scraper18_controller import Scraper18WebController
+        print("OK Scraper18Controller imported successfully")
     except Exception as e:
-        print(f"Warning: ScraperManager import failed: {e}")
-        scraper_manager = None
+        print(f"Warning: Scraper18Controller import failed: {e}")
+        Scraper18WebController = None
     print("OK All backend modules imported successfully")
     
     # Check if database is available
@@ -69,7 +69,18 @@ except ImportError as e:
 # Flask app setup
 app = Flask(__name__)
 app.secret_key = 'silver_fox_marketing_minisforum_2025'
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, 
+                   cors_allowed_origins="*", 
+                   async_mode='threading',
+                   logger=True, 
+                   engineio_logger=False,
+                   transports=['websocket', 'polling'])
+
+# Initialize scraper18_controller with socketio after socketio is created
+scraper18_controller = None
+if not DEMO_MODE and Scraper18WebController is not None:
+    scraper18_controller = Scraper18WebController(socketio=socketio)
+    print("OK Scraper18Controller configured with SocketIO")
 
 # Configure logging
 logging.basicConfig(
@@ -90,7 +101,7 @@ class ScraperController:
         self.order_processor = OrderProcessingIntegrator()
         self.qr_generator = QRCodeGenerator()
         self.data_exporter = DataExporter()
-        self.real_scraper_integration = RealScraperIntegration(socketio)
+        # Using scraper18_controller instead of RealScraperIntegration
         self.socketio = socketio
         self.scraper_running = False
         self.last_scrape_time = None
@@ -376,6 +387,11 @@ queue_manager = OrderQueueManager()
 def index():
     """Main dashboard page"""
     return render_template('index.html')
+
+@app.route('/websocket-test')
+def websocket_test():
+    """WebSocket connection test page"""
+    return render_template('websocket_test.html')
 
 @app.route('/api/dealerships')
 def get_dealerships():
@@ -987,45 +1003,71 @@ def search_vehicle_data():
         # Dealer filtering
         dealer_names = request.args.getlist('dealer_names')
         
-        # Build base query based on data type
+        # Build base query based on data type - with deduplication by VIN showing most recent scrape
         if data_type == 'raw':
             base_query = """
-                SELECT 
-                    r.vin, r.stock, r.location, r.year, r.make, r.model,
-                    r.trim, r.ext_color as exterior_color, r.price, r.type as vehicle_type,
-                    r.import_timestamp, 'raw' as data_source
-                FROM raw_vehicle_data r
-                WHERE 1=1
-            """
-        elif data_type == 'normalized':
-            base_query = """
-                SELECT 
-                    n.vin, n.stock, n.location, n.year, n.make, n.model,
-                    n.trim, '' as exterior_color, n.price, n.vehicle_condition as vehicle_type,
-                    r.import_timestamp, 'normalized' as data_source
-                FROM normalized_vehicle_data n
-                JOIN raw_vehicle_data r ON n.raw_data_id = r.id
-                WHERE 1=1
-            """
-        else:  # both
-            base_query = """
-                SELECT vin, stock, location, year, make, model, trim, 
-                       exterior_color, price, vehicle_type, import_timestamp, data_source
-                FROM (
+                WITH ranked_vehicles AS (
                     SELECT 
                         r.vin, r.stock, r.location, r.year, r.make, r.model,
                         r.trim, r.ext_color as exterior_color, r.price, r.type as vehicle_type,
-                        r.import_timestamp, 'raw' as data_source
+                        r.import_timestamp, 'raw' as data_source,
+                        COUNT(*) OVER (PARTITION BY r.vin) as scrape_count,
+                        MIN(r.import_timestamp) OVER (PARTITION BY r.vin) as first_scraped,
+                        ROW_NUMBER() OVER (PARTITION BY r.vin ORDER BY r.import_timestamp DESC, r.id DESC) as rn
+                    FROM raw_vehicle_data r
+                )
+                SELECT vin, stock, location, year, make, model, trim, 
+                       exterior_color, price, vehicle_type, import_timestamp, data_source, scrape_count, first_scraped
+                FROM ranked_vehicles
+                WHERE rn = 1
+            """
+        elif data_type == 'normalized':
+            base_query = """
+                WITH ranked_vehicles AS (
+                    SELECT 
+                        n.vin, n.stock, n.location, n.year, n.make, n.model,
+                        n.trim, '' as exterior_color, n.price, n.vehicle_condition as vehicle_type,
+                        r.import_timestamp, 'normalized' as data_source,
+                        COUNT(*) OVER (PARTITION BY n.vin) as scrape_count,
+                        MIN(r.import_timestamp) OVER (PARTITION BY n.vin) as first_scraped,
+                        ROW_NUMBER() OVER (PARTITION BY n.vin ORDER BY r.import_timestamp DESC, n.id DESC) as rn
+                    FROM normalized_vehicle_data n
+                    JOIN raw_vehicle_data r ON n.raw_data_id = r.id
+                )
+                SELECT vin, stock, location, year, make, model, trim, 
+                       exterior_color, price, vehicle_type, import_timestamp, data_source, scrape_count, first_scraped
+                FROM ranked_vehicles 
+                WHERE rn = 1
+            """
+        else:  # both - deduplicated showing most recent from either source
+            base_query = """
+                WITH all_vehicles AS (
+                    SELECT 
+                        r.vin, r.stock, r.location, r.year, r.make, r.model,
+                        r.trim, r.ext_color as exterior_color, r.price, r.type as vehicle_type,
+                        r.import_timestamp, 'raw' as data_source, r.id
                     FROM raw_vehicle_data r
                     UNION ALL
                     SELECT 
                         n.vin, n.stock, n.location, n.year, n.make, n.model,
                         n.trim, '' as exterior_color, n.price, n.vehicle_condition as vehicle_type,
-                        r.import_timestamp, 'normalized' as data_source
+                        r.import_timestamp, 'normalized' as data_source, n.id
                     FROM normalized_vehicle_data n
                     JOIN raw_vehicle_data r ON n.raw_data_id = r.id
-                ) combined_data
-                WHERE 1=1
+                ),
+                ranked_vehicles AS (
+                    SELECT 
+                        vin, stock, location, year, make, model, trim, 
+                        exterior_color, price, vehicle_type, import_timestamp, data_source,
+                        COUNT(*) OVER (PARTITION BY vin) as scrape_count,
+                        MIN(import_timestamp) OVER (PARTITION BY vin) as first_scraped,
+                        ROW_NUMBER() OVER (PARTITION BY vin ORDER BY import_timestamp DESC, id DESC) as rn
+                    FROM all_vehicles
+                )
+                SELECT vin, stock, location, year, make, model, trim, 
+                       exterior_color, price, vehicle_type, import_timestamp, data_source, scrape_count, first_scraped
+                FROM ranked_vehicles
+                WHERE rn = 1
             """
         
         # Build WHERE conditions
@@ -1296,6 +1338,249 @@ def get_filter_options():
         logger.error(f"Error getting filter options: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/data/vin-history')
+def get_vin_history():
+    """Get VIN history data for the viewer - READ ONLY"""
+    try:
+        # Get query parameters
+        page = int(request.args.get('page', 1))
+        per_page = int(request.args.get('per_page', 100))
+        search_query = request.args.get('query', '').strip()
+        dealership_filter = request.args.get('dealership', '')
+        date_from = request.args.get('date_from', '')
+        date_to = request.args.get('date_to', '')
+        
+        # Calculate offset
+        offset = (page - 1) * per_page
+        
+        # Build query conditions
+        conditions = []
+        params = []
+        
+        # Search filter
+        if search_query:
+            conditions.append("(LOWER(vh.vin) LIKE LOWER(%s) OR LOWER(vh.dealership_name) LIKE LOWER(%s))")
+            search_param = f'%{search_query}%'
+            params.extend([search_param, search_param])
+        
+        # Dealership filter
+        if dealership_filter:
+            conditions.append("vh.dealership_name = %s")
+            params.append(dealership_filter)
+        
+        # Date range filters
+        if date_from:
+            conditions.append("vh.order_date >= %s")
+            params.append(date_from)
+        
+        if date_to:
+            conditions.append("vh.order_date <= %s")
+            params.append(date_to)
+        
+        where_clause = " AND ".join(conditions) if conditions else "1=1"
+        
+        # Get total count
+        count_query = f"SELECT COUNT(*) as total FROM vin_history vh WHERE {where_clause}"
+        total_result = db_manager.execute_query(count_query, params)
+        total_count = total_result[0]['total'] if total_result else 0
+        
+        # Get VIN history data with vehicle details
+        query = f"""
+            SELECT 
+                vh.id,
+                vh.vin,
+                vh.dealership_name,
+                vh.order_date,
+                vh.created_at,
+                vh.vehicle_type,
+                r.stock,
+                r.year,
+                r.make,
+                r.model,
+                r.trim,
+                r.status,
+                r.price
+            FROM vin_history vh
+            LEFT JOIN raw_vehicle_data r ON vh.vin = r.vin AND vh.dealership_name = r.location
+            WHERE {where_clause}
+            ORDER BY vh.order_date DESC, vh.created_at DESC
+            LIMIT %s OFFSET %s
+        """
+        
+        # Add pagination params
+        params.extend([per_page, offset])
+        
+        results = db_manager.execute_query(query, params)
+        
+        # Get summary statistics
+        stats_query = """
+            SELECT 
+                COUNT(DISTINCT vin) as unique_vins,
+                COUNT(DISTINCT dealership_name) as unique_dealerships,
+                COUNT(*) as total_records,
+                MIN(order_date) as earliest_date,
+                MAX(order_date) as latest_date
+            FROM vin_history
+        """
+        stats = db_manager.execute_query(stats_query)[0]
+        
+        # Get dealership list for filter dropdown
+        dealership_query = """
+            SELECT DISTINCT dealership_name, COUNT(*) as count
+            FROM vin_history
+            GROUP BY dealership_name
+            ORDER BY dealership_name
+        """
+        dealerships = db_manager.execute_query(dealership_query)
+        
+        return jsonify({
+            'success': True,
+            'data': results,
+            'pagination': {
+                'page': page,
+                'per_page': per_page,
+                'total': total_count,
+                'pages': (total_count + per_page - 1) // per_page
+            },
+            'statistics': stats,
+            'dealerships': dealerships
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting VIN history: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/data/vehicle-history/<vin>')
+def get_vehicle_history(vin):
+    """Get simple scrape history for a specific VIN - all raw scrapes in chronological order"""
+    try:
+        if not vin:
+            return jsonify({'error': 'VIN is required'}), 400
+        
+        # Get all scrape history for this VIN - simple list, no complex processing
+        scrape_query = """
+            SELECT 
+                r.id,
+                r.import_timestamp,
+                r.location as dealership,
+                r.price,
+                r.year, r.make, r.model, r.trim,
+                r.type as vehicle_type,
+                r.ext_color as exterior_color,
+                r.stock,
+                r.mileage
+            FROM raw_vehicle_data r
+            WHERE r.vin = %s
+            ORDER BY r.import_timestamp DESC
+        """
+        
+        scrape_results = db_manager.execute_query(scrape_query, [vin])
+        
+        # Format scrapes as simple list
+        scrapes = []
+        for scrape in scrape_results:
+            scrape_data = {
+                'id': scrape['id'],
+                'date': scrape['import_timestamp'].isoformat() if scrape['import_timestamp'] else None,
+                'dealership': scrape['dealership'],
+                'price': float(scrape['price']) if scrape['price'] else None,
+                'price_formatted': f"${scrape['price']:,.2f}" if scrape['price'] else 'N/A',
+                'year': scrape['year'],
+                'make': scrape['make'],
+                'model': scrape['model'],
+                'trim': scrape['trim'],
+                'vehicle_type': scrape['vehicle_type'],
+                'exterior_color': scrape['exterior_color'],
+                'stock': scrape['stock'],
+                'mileage': scrape['mileage'],
+                'mileage_formatted': f"{scrape['mileage']:,} mi" if scrape['mileage'] else 'N/A'
+            }
+            scrapes.append(scrape_data)
+        
+        # Get first and last scrape timestamps
+        first_scraped = None
+        last_scraped = None
+        if scrapes:
+            # Since ordered DESC, first result is most recent, last is oldest
+            last_scraped = scrapes[0]['date']
+            first_scraped = scrapes[-1]['date']
+        
+        return jsonify({
+            'success': True,
+            'vin': vin,
+            'scrapes': scrapes,
+            'total_scrapes': len(scrapes),
+            'first_scraped': first_scraped,
+            'last_scraped': last_scraped
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting vehicle scrapes for VIN {vin}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/data/vehicle-single/<vin>')
+def get_single_vehicle_data(vin):
+    """Get single vehicle data (raw or normalized) for individual row toggle"""
+    try:
+        if not vin:
+            return jsonify({'error': 'VIN is required'}), 400
+        
+        data_type = request.args.get('data_type', 'raw')  # Default to raw
+        
+        if data_type == 'raw':
+            query = """
+                SELECT 
+                    r.vin, r.stock, r.location, r.year, r.make, r.model,
+                    r.trim, r.ext_color as exterior_color, r.price, r.type as vehicle_type,
+                    r.import_timestamp, 'raw' as data_source,
+                    COUNT(*) OVER (PARTITION BY r.vin) as scrape_count
+                FROM raw_vehicle_data r
+                WHERE r.vin = %s
+                ORDER BY r.import_timestamp DESC
+                LIMIT 1
+            """
+        else:  # normalized
+            query = """
+                SELECT 
+                    n.vin, n.stock, n.location, n.year, n.make, n.model,
+                    n.trim, '' as exterior_color, n.price, n.vehicle_condition as vehicle_type,
+                    r.import_timestamp, 'normalized' as data_source,
+                    1 as scrape_count
+                FROM normalized_vehicle_data n
+                JOIN raw_vehicle_data r ON n.raw_data_id = r.id
+                WHERE n.vin = %s
+                ORDER BY r.import_timestamp DESC
+                LIMIT 1
+            """
+        
+        result = db_manager.execute_query(query, [vin])
+        
+        if not result:
+            if data_type == 'normalized':
+                return jsonify({'error': 'No normalized data found for this VIN'}), 404
+            else:
+                return jsonify({'error': 'No data found for this VIN'}), 404
+        
+        vehicle = dict(result[0])
+        
+        # Format price
+        if vehicle.get('price'):
+            vehicle['price_formatted'] = f"${vehicle['price']:,.2f}"
+        
+        # Format mileage (if available)
+        if vehicle.get('mileage'):
+            vehicle['mileage_formatted'] = f"{vehicle['mileage']:,} mi"
+            
+        return jsonify({
+            'success': True,
+            'vehicle': vehicle,
+            'data_type': data_type
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting single vehicle data for VIN {vin}: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/data/export', methods=['POST'])
 def export_search_results():
     """Export search results to CSV"""
@@ -1421,6 +1706,451 @@ def download_export_file(filename):
             
     except Exception as e:
         logger.error(f"Error downloading file: {e}")
+        return jsonify({'error': str(e)}), 500
+
+# =============================================================================
+# DEALERSHIP SETTINGS API ENDPOINTS
+# =============================================================================
+
+@app.route('/api/dealership-settings')
+def get_dealership_settings():
+    """Get all dealership settings"""
+    try:
+        query = """
+            SELECT 
+                dc.id,
+                dc.name,
+                dc.filtering_rules,
+                dc.output_rules,
+                dc.is_active,
+                COUNT(DISTINCT rd.vin) as vehicle_count,
+                MAX(rd.import_date) as last_import
+            FROM dealership_configs dc
+            LEFT JOIN raw_vehicle_data rd ON dc.name = rd.location
+            GROUP BY dc.id, dc.name, dc.filtering_rules, dc.output_rules, dc.is_active
+            ORDER BY dc.name
+        """
+        
+        dealerships = db_manager.execute_query(query)
+        
+        # Process filtering rules for each dealership
+        settings = []
+        for dealership in dealerships:
+            filtering_rules = dealership.get('filtering_rules', {})
+            if isinstance(filtering_rules, str):
+                try:
+                    filtering_rules = json.loads(filtering_rules)
+                except:
+                    filtering_rules = {}
+            
+            # Extract vehicle types
+            vehicle_types = filtering_rules.get('vehicle_types', ['new', 'used', 'certified'])
+            
+            settings.append({
+                'id': dealership['id'],
+                'name': dealership['name'],
+                'active': dealership.get('is_active', True),
+                'vehicle_count': dealership.get('vehicle_count', 0),
+                'last_import': dealership.get('last_import'),
+                'vehicle_types': vehicle_types,
+                'filtering_rules': filtering_rules,
+                'output_rules': dealership.get('output_rules', {})
+            })
+        
+        return jsonify({
+            'success': True,
+            'dealerships': settings,
+            'total': len(settings)
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting dealership settings: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/dealership-settings/<int:dealership_id>', methods=['PUT'])
+def update_dealership_settings(dealership_id):
+    """Update settings for a specific dealership"""
+    try:
+        data = request.get_json()
+        
+        # Get current dealership config
+        current = db_manager.execute_query(
+            "SELECT * FROM dealership_configs WHERE id = %s",
+            (dealership_id,)
+        )
+        
+        if not current:
+            return jsonify({'error': 'Dealership not found'}), 404
+        
+        # Update filtering rules
+        filtering_rules = current[0].get('filtering_rules', {})
+        if isinstance(filtering_rules, str):
+            try:
+                filtering_rules = json.loads(filtering_rules)
+            except:
+                filtering_rules = {}
+        
+        # Update vehicle types if provided
+        if 'vehicle_types' in data:
+            filtering_rules['vehicle_types'] = data['vehicle_types']
+        
+        # Update other filtering rules if provided
+        if 'min_year' in data:
+            filtering_rules['min_year'] = data['min_year']
+        if 'min_price' in data:
+            filtering_rules['min_price'] = data['min_price']
+        if 'max_price' in data:
+            filtering_rules['max_price'] = data['max_price']
+        
+        # Update the database
+        update_query = """
+            UPDATE dealership_configs 
+            SET filtering_rules = %s,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE id = %s
+        """
+        
+        db_manager.execute_query(
+            update_query,
+            (json.dumps(filtering_rules), dealership_id)
+        )
+        
+        return jsonify({
+            'success': True,
+            'message': 'Settings updated successfully',
+            'dealership_id': dealership_id
+        })
+        
+    except Exception as e:
+        logger.error(f"Error updating dealership settings: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/dealership-settings/bulk', methods=['PUT'])
+def bulk_update_dealership_settings():
+    """Bulk update settings for multiple dealerships"""
+    try:
+        data = request.get_json()
+        vehicle_types = data.get('vehicle_types', [])
+        dealership_ids = data.get('dealership_ids', [])
+        
+        if not vehicle_types:
+            return jsonify({'error': 'Vehicle types required'}), 400
+        
+        # If no specific dealerships provided, update all
+        if not dealership_ids:
+            dealership_query = "SELECT id FROM dealership_configs"
+            result = db_manager.execute_query(dealership_query)
+            dealership_ids = [row['id'] for row in result]
+        
+        updated_count = 0
+        
+        for dealership_id in dealership_ids:
+            # Get current config
+            current = db_manager.execute_query(
+                "SELECT filtering_rules FROM dealership_configs WHERE id = %s",
+                (dealership_id,)
+            )
+            
+            if current:
+                filtering_rules = current[0].get('filtering_rules', {})
+                if isinstance(filtering_rules, str):
+                    try:
+                        filtering_rules = json.loads(filtering_rules)
+                    except:
+                        filtering_rules = {}
+                
+                # Update vehicle types
+                filtering_rules['vehicle_types'] = vehicle_types
+                
+                # Update the database
+                db_manager.execute_query(
+                    "UPDATE dealership_configs SET filtering_rules = %s WHERE id = %s",
+                    (json.dumps(filtering_rules), dealership_id)
+                )
+                
+                updated_count += 1
+        
+        return jsonify({
+            'success': True,
+            'message': f'Updated {updated_count} dealerships',
+            'updated_count': updated_count
+        })
+        
+    except Exception as e:
+        logger.error(f"Error bulk updating dealership settings: {e}")
+        return jsonify({'error': str(e)}), 500
+
+def _parse_price(price_value):
+    """Parse price value from CSV, handling various formats including HTML content"""
+    if pd.isna(price_value) or price_value is None:
+        return 0.0
+    
+    price_str = str(price_value).strip()
+    
+    # Handle empty values
+    if not price_str or price_str.lower() in ['', 'nan', 'none', 'null']:
+        return 0.0
+    
+    # Handle "call for price" variations
+    if 'call' in price_str.lower() or 'contact' in price_str.lower():
+        return 0.0
+    
+    # Remove HTML tags
+    import re
+    price_str = re.sub(r'<[^>]+>', '', price_str)
+    
+    # Remove common currency symbols and formatting
+    price_str = re.sub(r'[,$\s]', '', price_str)
+    
+    # Extract numeric value
+    numeric_match = re.search(r'[\d,]+\.?\d*', price_str)
+    if numeric_match:
+        try:
+            return float(numeric_match.group().replace(',', ''))
+        except ValueError:
+            return 0.0
+    
+    return 0.0
+
+@app.route('/api/csv-import/process', methods=['POST'])
+def process_csv_import():
+    """Process CSV import for order processing validation testing"""
+    try:
+        # Get form data
+        dealership_name = request.form.get('dealership')
+        order_type = request.form.get('order_type', 'cao')  # cao or list
+        keep_data = request.form.get('keep_data', 'false').lower() == 'true'
+        
+        if 'csv_file' not in request.files:
+            return jsonify({'error': 'No CSV file provided'}), 400
+        
+        csv_file = request.files['csv_file']
+        if csv_file.filename == '':
+            return jsonify({'error': 'No file selected'}), 400
+        
+        if not dealership_name:
+            return jsonify({'error': 'Dealership selection required'}), 400
+        
+        # Read and parse CSV with validation
+        try:
+            import pandas as pd
+            import io
+            
+            # Read CSV content
+            csv_content = csv_file.read().decode('utf-8')
+            df = pd.read_csv(io.StringIO(csv_content))
+            
+            logger.info(f"CSV loaded: {len(df)} rows, columns: {list(df.columns)}")
+            
+            # Debug: Check for URL-related columns
+            url_columns = [col for col in df.columns if 'url' in col.lower() or 'link' in col.lower()]
+            logger.info(f"Found URL-related columns: {url_columns}")
+            if url_columns:
+                # Show sample URL values from first few rows
+                for col in url_columns[:3]:  # Check up to 3 URL columns
+                    sample_urls = df[col].dropna().head(3).tolist()
+                    logger.info(f"Sample values from '{col}': {sample_urls}")
+            
+            # Debug and validate VIN columns with broader search
+            potential_vin_columns = ['VIN', 'Vin', 'vin', 'Vehicle_VIN', 'VehicleVIN', 'Vehicle Identification Number']
+            vin_column = None
+            
+            # First, check if any column contains VIN-like data (17 characters)
+            logger.info("Checking for VIN columns...")
+            for col in df.columns:
+                if any(keyword in col.lower() for keyword in ['vin']):
+                    sample_values = df[col].dropna().head(3).tolist()
+                    logger.info(f"Potential VIN column '{col}': {sample_values}")
+                    
+                    # Check if values look like actual VINs (17 characters)
+                    if sample_values:
+                        sample_str = str(sample_values[0]).strip()
+                        if len(sample_str) == 17 and sample_str.isalnum():
+                            vin_column = col
+                            logger.info(f"Selected VIN column: {vin_column}")
+                            break
+            
+            # Fallback to exact name match if no 17-char VINs found
+            if not vin_column:
+                for col in potential_vin_columns:
+                    if col in df.columns:
+                        vin_column = col
+                        logger.info(f"Fallback VIN column: {vin_column}")
+                        break
+            
+            if not vin_column:
+                return jsonify({'error': f'CSV must contain a VIN column. Found columns: {list(df.columns)}'}), 400
+            
+            # Get dealership settings for filtering
+            dealership_settings = db_manager.execute_query("""
+                SELECT filtering_rules FROM dealership_configs 
+                WHERE name = %s AND is_active = true
+            """, (dealership_name,))
+            
+            allowed_types = ['new', 'used', 'certified']  # Default if no settings found
+            if dealership_settings and dealership_settings[0]['filtering_rules']:
+                filtering_rules = dealership_settings[0]['filtering_rules']
+                # Handle both JSON string and dict formats
+                if isinstance(filtering_rules, str):
+                    import json
+                    filtering_rules = json.loads(filtering_rules)
+                
+                if isinstance(filtering_rules, dict) and 'vehicle_types' in filtering_rules:
+                    allowed_types = filtering_rules['vehicle_types']
+            
+            logger.info(f"Dealership {dealership_name} processes: {allowed_types}")
+            
+        except Exception as e:
+            return jsonify({'error': f'Failed to parse CSV: {str(e)}'}), 400
+        
+        # Convert DataFrame to list of dictionaries with validation and filtering
+        vehicles = []
+        skipped_vehicles = 0
+        
+        for _, row in df.iterrows():
+            # Map CSV columns to our standard format with detected VIN column
+            vehicle = {
+                'vin': str(row.get(vin_column, '')).strip(),
+                'stock': str(row.get('Stock', row.get('stock_number', row.get('Stock Number', '')))).strip(),
+                'year': int(row.get('Year', row.get('year', row.get('Model Year', 0)))) if pd.notna(row.get('Year', row.get('year', row.get('Model Year', 0)))) else 0,
+                'make': str(row.get('Make', row.get('make', row.get('Brand', '')))).strip(),
+                'model': str(row.get('Model', row.get('model', ''))).strip(),
+                'trim': str(row.get('Trim', row.get('trim', row.get('Series', '')))).strip(),
+                'type': str(row.get('Type', row.get('vehicle_type', row.get('Vehicle Type', row.get('Status', 'Unknown'))))).lower().strip(),
+                'price': self._parse_price(row.get('Price', row.get('price', row.get('MSRP', row.get('List Price', 0))))),
+                'ext_color': str(row.get('Ext Color', row.get('exterior_color', row.get('External Color', '')))).strip(),
+                'vehicle_url': str(row.get('Vehicle URL', row.get('vehicle_url', row.get('URL', row.get('Link', row.get('VehicleURL', row.get('Vehicle Link', row.get('Detail URL', row.get('Details URL', row.get('Vehicle Detail URL', '')))))))))).strip(),
+                'location': dealership_name,
+                'import_timestamp': datetime.now(),
+                'import_date': datetime.now().date()
+            }
+            
+            # Validate and filter vehicle
+            if not vehicle['vin'] or len(vehicle['vin']) < 10:
+                skipped_vehicles += 1
+                continue
+            
+            # Apply dealership filtering
+            vehicle_type = vehicle['type'].lower()
+            type_matches = False
+            
+            for allowed_type in allowed_types:
+                if allowed_type.lower() in vehicle_type or (allowed_type.lower() == 'certified' and ('cpo' in vehicle_type or 'certified' in vehicle_type)):
+                    type_matches = True
+                    break
+            
+            if not type_matches:
+                skipped_vehicles += 1
+                logger.debug(f"Skipping vehicle {vehicle['vin']} - type '{vehicle['type']}' not in allowed types {allowed_types}")
+                continue
+            
+            vehicles.append(vehicle)
+        
+        if not vehicles:
+            return jsonify({'error': f'No valid vehicles found in CSV after filtering. Skipped {skipped_vehicles} vehicles.'}), 400
+        
+        logger.info(f"Processed {len(vehicles)} vehicles from CSV, skipped {skipped_vehicles}")
+        
+        # Import CSV data to database for processing
+        import_timestamp = datetime.now()
+        imported_vins = []
+        
+        # Insert vehicles into database
+        for vehicle in vehicles:
+            try:
+                # Use the exact import timestamp for all vehicles for easy cleanup
+                vehicle['import_timestamp'] = import_timestamp
+                
+                db_manager.execute_query("""
+                    INSERT INTO raw_vehicle_data 
+                    (vin, stock, year, make, model, trim, type, price, ext_color, vehicle_url, location, import_timestamp, import_date)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (vin, location) DO UPDATE SET
+                        stock = EXCLUDED.stock,
+                        year = EXCLUDED.year,
+                        make = EXCLUDED.make,
+                        model = EXCLUDED.model,
+                        trim = EXCLUDED.trim,
+                        type = EXCLUDED.type,
+                        price = EXCLUDED.price,
+                        ext_color = EXCLUDED.ext_color,
+                        vehicle_url = EXCLUDED.vehicle_url,
+                        import_timestamp = EXCLUDED.import_timestamp,
+                        import_date = EXCLUDED.import_date
+                """, (
+                    vehicle['vin'], vehicle['stock'], vehicle['year'], vehicle['make'], 
+                    vehicle['model'], vehicle['trim'], vehicle['type'], vehicle['price'],
+                    vehicle['ext_color'], vehicle['vehicle_url'], vehicle['location'],
+                    vehicle['import_timestamp'], vehicle['import_date']
+                ))
+                imported_vins.append(vehicle['vin'])
+            except Exception as e:
+                logger.error(f"Failed to insert vehicle {vehicle['vin']}: {e}")
+        
+        logger.info(f"Successfully imported {len(imported_vins)} vehicles to database")
+        
+        try:
+            # Process using existing order processing logic
+            if order_type == 'cao':
+                # CAO processing - compare against VIN history
+                logger.info(f"Processing CAO order for {dealership_name}")
+                result = order_processor.process_cao_order(dealership_name, 'shortcut_pack')
+            else:
+                # LIST processing - process specific VIN list
+                logger.info(f"Processing LIST order for {dealership_name} with {len(imported_vins)} VINs")
+                result = order_processor.process_list_order(dealership_name, imported_vins, 'shortcut_pack')
+            
+            # Add CSV-specific information to result
+            result.update({
+                'csv_vehicles_imported': len(vehicles),
+                'csv_vehicles_skipped': skipped_vehicles,
+                'csv_filtering_applied': allowed_types,
+                'data_kept_for_wizard': keep_data,
+                'import_timestamp': import_timestamp.isoformat()
+            })
+            
+        except Exception as e:
+            logger.error(f"Error during order processing: {e}")
+            result = {
+                'success': False,
+                'error': f'Order processing failed: {str(e)}',
+                'csv_vehicles_imported': len(vehicles),
+                'csv_vehicles_skipped': skipped_vehicles
+            }
+        
+        finally:
+            # Clean up CSV import data unless user wants to keep it for wizard testing
+            if not keep_data:
+                logger.info(f"Cleaning up CSV import data for timestamp {import_timestamp}")
+                cleanup_count = db_manager.execute_query("""
+                    DELETE FROM raw_vehicle_data 
+                    WHERE import_timestamp = %s AND location = %s
+                """, (import_timestamp, dealership_name))
+                logger.info(f"Cleaned up {cleanup_count} imported records")
+            else:
+                logger.info(f"Keeping CSV import data for Order Processing Wizard testing - timestamp: {import_timestamp}")
+                # Mark the data with a special comment for later identification
+                db_manager.execute_query("""
+                    UPDATE raw_vehicle_data 
+                    SET import_source = 'CSV_TEST_IMPORT'
+                    WHERE import_timestamp = %s AND location = %s
+                """, (import_timestamp, dealership_name))
+        
+        # Add CSV import info to the result
+        result['csv_import_info'] = {
+            'filename': csv_file.filename,
+            'total_rows': len(vehicles),
+            'order_type': order_type,
+            'dealership': dealership_name,
+            'import_timestamp': datetime.now().isoformat()
+        }
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error processing CSV import: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 # =============================================================================
@@ -1593,47 +2323,101 @@ def regenerate_qr_codes_with_urls():
 def scraper_output_callback(output_msg):
     """Callback function to broadcast scraper output via WebSocket"""
     try:
-        socketio.emit('scraper_output', output_msg, broadcast=True)
+        socketio.emit('scraper_output', output_msg)
     except Exception as e:
         logger.error(f"Error broadcasting scraper output: {e}")
 
-# Add callback to scraper manager
-if not DEMO_MODE and scraper_manager is not None:
-    scraper_manager.add_output_callback(scraper_output_callback)
+# Scraper18 controller is initialized above and handles its own Socket.IO emissions
 
 @app.route('/api/scrapers/start', methods=['POST'])
 def start_scraper():
     """Start scraping for a specific dealership"""
     try:
         data = request.get_json()
+        # Support both singular and plural formats for compatibility
+        dealership_names = data.get('dealership_names', [])
         dealership_name = data.get('dealership_name')
+        
+        # If plural format is used, take the first dealership
+        if dealership_names and len(dealership_names) > 0:
+            dealership_name = dealership_names[0]
         
         if not dealership_name:
             return jsonify({'success': False, 'error': 'Dealership name required'}), 400
             
-        if DEMO_MODE or scraper_manager is None:
+        if DEMO_MODE or scraper18_controller is None:
+            # Simulate demo scraper output for testing
+            def simulate_demo_scraper():
+                import time
+                socketio.emit('scraper_output', {
+                    'message': f'🔄 DEMO: Starting scraper for {dealership_name}',
+                    'status': 'starting',
+                    'dealership': dealership_name
+                })
+                
+                time.sleep(2)
+                socketio.emit('scraper_output', {
+                    'message': f'📊 DEMO: Processing pages for {dealership_name}',
+                    'status': 'processing',
+                    'progress': 25,
+                    'vehicles_processed': 15,
+                    'dealership': dealership_name
+                })
+                
+                time.sleep(3)
+                socketio.emit('scraper_output', {
+                    'message': f'🏁 DEMO: Completed scraper for {dealership_name}',
+                    'status': 'completed',
+                    'progress': 100,
+                    'vehicles_processed': 45,
+                    'dealership': dealership_name
+                })
+            
+            # Run demo in background thread
+            demo_thread = threading.Thread(target=simulate_demo_scraper, daemon=True)
+            demo_thread.start()
+            
             return jsonify({
                 'success': True,
                 'message': f'DEMO: Started scraper for {dealership_name}',
                 'demo_mode': True
             })
-            
-        success = scraper_manager.start_scraper(dealership_name)
         
-        if success:
-            return jsonify({
-                'success': True,
-                'message': f'Started scraper for {dealership_name}',
-                'dealership': dealership_name
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'error': f'Failed to start scraper for {dealership_name}'
-            }), 400
+        # Start scraper in background thread
+        def run_scraper():
+            try:
+                result = scraper18_controller.run_single_scraper(dealership_name, force_run=True)
+                logger.info(f"Scraper result for {dealership_name}: {result}")
+            except Exception as e:
+                logger.error(f"Error running scraper for {dealership_name}: {e}")
+        
+        thread = threading.Thread(target=run_scraper, daemon=True)
+        thread.start()
+        
+        return jsonify({
+            'success': True,
+            'message': f'Started scraper for {dealership_name}',
+            'dealership': dealership_name
+        })
             
     except Exception as e:
         logger.error(f"Error starting scraper: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/test-websocket', methods=['POST'])
+def test_websocket():
+    """Test WebSocket connection by sending a test message"""
+    try:
+        test_message = {
+            'message': '🧪 WebSocket test message',
+            'status': 'testing',
+            'timestamp': datetime.now().isoformat()
+        }
+        socketio.emit('scraper_output', test_message)
+        logger.info("Test WebSocket message sent")
+        return jsonify({'success': True, 'message': 'Test message sent via WebSocket'})
+    except Exception as e:
+        logger.error(f"Error sending test WebSocket message: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/scrapers/stop', methods=['POST'])
@@ -1646,26 +2430,21 @@ def stop_scraper():
         if not dealership_name:
             return jsonify({'success': False, 'error': 'Dealership name required'}), 400
             
-        if DEMO_MODE or scraper_manager is None:
+        if DEMO_MODE or scraper18_controller is None:
             return jsonify({
                 'success': True,
                 'message': f'DEMO: Stopped scraper for {dealership_name}',
                 'demo_mode': True
             })
-            
-        success = scraper_manager.stop_scraper(dealership_name)
         
-        if success:
-            return jsonify({
-                'success': True,
-                'message': f'Stopped scraper for {dealership_name}',
-                'dealership': dealership_name
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'error': f'No active scraper found for {dealership_name}'
-            }), 400
+        # Note: Scraper18 system doesn't support stopping individual scrapers
+        # They run to completion or fail
+        return jsonify({
+            'success': True,
+            'message': f'Scraper18 system runs to completion - cannot stop {dealership_name}',
+            'dealership': dealership_name,
+            'info': 'Scraper18 scrapers run to completion and cannot be stopped mid-execution'
+        })
             
     except Exception as e:
         logger.error(f"Error stopping scraper: {e}")
@@ -1675,7 +2454,7 @@ def stop_scraper():
 def get_scrapers_status():
     """Get status of all active scrapers"""
     try:
-        if DEMO_MODE or scraper_manager is None:
+        if DEMO_MODE or scraper18_controller is None:
             return jsonify({
                 'success': True,
                 'scrapers': {
@@ -1690,16 +2469,14 @@ def get_scrapers_status():
                 },
                 'demo_mode': True
             })
-            
-        # Cleanup completed scrapers first
-        scraper_manager.cleanup_completed_scrapers()
         
-        status = scraper_manager.get_all_scrapers_status()
-        
+        # Scraper18 system runs scrapers to completion
+        # Status is managed through Socket.IO events during execution
         return jsonify({
             'success': True,
-            'scrapers': status,
-            'active_count': len(status)
+            'scrapers': {},  # Active scrapers are tracked via Socket.IO
+            'active_count': 0,
+            'info': 'Scraper18 system tracks progress via real-time Socket.IO events'
         })
         
     except Exception as e:
@@ -1710,7 +2487,7 @@ def get_scrapers_status():
 def get_scraper_status(dealership_name):
     """Get status of specific scraper"""
     try:
-        if DEMO_MODE or scraper_manager is None:
+        if DEMO_MODE or scraper18_controller is None:
             return jsonify({
                 'success': True,
                 'scraper': {
@@ -1724,19 +2501,17 @@ def get_scraper_status(dealership_name):
                 },
                 'demo_mode': True
             })
-            
-        status = scraper_manager.get_scraper_status(dealership_name)
         
-        if status:
-            return jsonify({
-                'success': True,
-                'scraper': status
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'error': f'No active scraper found for {dealership_name}'
-            }), 404
+        # Scraper18 system doesn't maintain persistent status
+        # Status is provided through Socket.IO events
+        return jsonify({
+            'success': True,
+            'scraper': {
+                'dealership_name': dealership_name,
+                'status': 'idle',
+                'info': 'Scraper18 system provides status via Socket.IO events during execution'
+            }
+        })
             
     except Exception as e:
         logger.error(f"Error getting scraper status: {e}")
@@ -1789,12 +2564,13 @@ def get_scraper_output(dealership_name):
                 'demo_mode': True
             })
             
-        output = scraper_manager.get_recent_output(dealership_name, max_lines)
-        
+        # Scraper18 system outputs directly to Socket.IO during execution
+        # No persistent output storage
         return jsonify({
             'success': True,
-            'output': output,
-            'line_count': len(output)
+            'output': [],
+            'line_count': 0,
+            'info': 'Scraper18 system streams output directly via Socket.IO during execution'
         })
         
     except Exception as e:

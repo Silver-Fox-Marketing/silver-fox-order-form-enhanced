@@ -7,6 +7,75 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Order Queue Tab Dealership List Fix -->
+    <style>
+        /* Fix for Order Queue Tab Dealership List */
+        .dealership-list {
+            max-height: 600px !important;
+            min-height: 400px !important;
+            overflow-y: auto !important;
+            padding: 15px !important;
+            border: 1px solid #ddd !important;
+            border-radius: 8px !important;
+            background: white !important;
+        }
+        
+        .dealership-selection h3 {
+            margin-bottom: 15px !important;
+        }
+        
+        .selection-panel {
+            min-width: 45% !important;
+            max-width: 55% !important;
+            flex: 1 !important;
+        }
+        
+        .queue-layout {
+            display: flex !important;
+            gap: 20px !important;
+            width: 100% !important;
+        }
+        
+        .queue-panel {
+            min-width: 40% !important;
+            max-width: 50% !important;
+            flex: 1 !important;
+        }
+        
+        /* Make dealership items more readable */
+        .dealership-item {
+            padding: 12px !important;
+            margin-bottom: 8px !important;
+            border: 1px solid #eee !important;
+            border-radius: 6px !important;
+            font-size: 14px !important;
+            line-height: 1.4 !important;
+        }
+        
+        /* CSV test options styling */
+        .csv-test-options {
+            margin-top: 15px !important;
+            padding: 10px !important;
+            background: #f8f9fa !important;
+            border-radius: 6px !important;
+            border: 1px solid #dee2e6 !important;
+        }
+        
+        .csv-test-options label {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            margin-bottom: 5px !important;
+            font-weight: 500 !important;
+        }
+        
+        .csv-test-options .help-text {
+            color: #6c757d !important;
+            font-size: 0.85rem !important;
+            font-style: italic !important;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -50,6 +119,10 @@
                         <i class="fas fa-search"></i>
                         Data
                     </button>
+                    <button class="tab-button" data-tab="dealership-settings">
+                        <i class="fas fa-cogs"></i>
+                        Dealership Settings
+                    </button>
                     <button class="tab-button" data-tab="system-status">
                         <i class="fas fa-chart-line"></i>
                         System Status
@@ -57,6 +130,10 @@
                     <button class="tab-button" onclick="window.open('/stress-test', '_blank')">
                         <i class="fas fa-vial"></i>
                         System Tests
+                    </button>
+                    <button class="tab-button" onclick="window.open('/websocket-test', '_blank')" title="Test WebSocket Connection">
+                        <i class="fas fa-wifi"></i>
+                        WebSocket Test
                     </button>
                 </nav>
 
@@ -79,24 +156,54 @@
                                     <i class="fas fa-play"></i>
                                     Start Scrape (All)
                                 </button>
+                                <button class="btn btn-secondary" id="testWebSocketBtn" title="Test WebSocket Connection">
+                                    <i class="fas fa-wifi"></i>
+                                    Test Connection
+                                </button>
                             </div>
                         </div>
                         
-                        <!-- Dealership Selection Panel -->
-                        <div class="dealership-selection-panel" id="dealershipSelectionPanel" style="display: none;">
-                            <div class="selection-header">
-                                <h3>Select Dealerships to Scrape</h3>
-                                <div class="selection-actions">
-                                    <button class="btn btn-secondary btn-sm" id="selectAllBtn">Select All</button>
-                                    <button class="btn btn-secondary btn-sm" id="selectNoneBtn">Select None</button>
-                                    <button class="btn btn-primary btn-sm" id="scrapeSelectedBtn">
-                                        <i class="fas fa-play"></i>
-                                        Scrape Selected
+
+                        <!-- Live Scraper Console (moved from System Status tab) -->
+                        <div class="system-console">
+                            <div class="console-header">
+                                <h3>
+                                    <i class="fas fa-terminal"></i>
+                                    Live Scraper Console
+                                </h3>
+                                
+                                <!-- Progress Indicators (new) -->
+                                <div class="progress-indicators">
+                                    <div class="indicator">
+                                        <i class="fas fa-building"></i>
+                                        <span class="indicator-value" id="dealershipsProcessed">0</span>
+                                    </div>
+                                    <div class="indicator">
+                                        <i class="fas fa-car"></i>
+                                        <span class="indicator-value" id="vehiclesProcessed">0</span>
+                                    </div>
+                                    <div class="indicator">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span class="indicator-value" id="errorsCount">0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="console-controls">
+                                    <button class="terminal-clear" onclick="app.clearScraperConsole()">
+                                        <i class="fas fa-broom"></i>
+                                        Clear
+                                    </button>
+                                    <button class="terminal-clear" onclick="app.pauseScraperConsole()">
+                                        <i class="fas fa-pause" id="pauseIcon"></i>
+                                        <span id="pauseText">Pause</span>
                                     </button>
                                 </div>
                             </div>
-                            <div class="dealership-checkbox-grid" id="dealershipCheckboxGrid">
-                                <!-- Will be populated dynamically -->
+                            <div class="console-content" id="scraperConsoleOutput">
+                                <div class="terminal-line">
+                                    <span class="timestamp">[00:00:00]</span>
+                                    <span class="message">Scraper console ready - waiting for scraper activity...</span>
+                                </div>
                             </div>
                         </div>
 
@@ -142,9 +249,9 @@
                     <!-- Data Search Tab -->
                     <div class="tab-panel" id="data-search-panel">
                         <div class="panel-header">
-                            <h2>Vehicle Data Search</h2>
+                            <h2>Data Management</h2>
                             <div class="control-buttons">
-                                <button class="btn btn-secondary" id="exportSearchResults">
+                                <button class="btn btn-secondary" id="exportSearchResults" style="display: none;">
                                     <i class="fas fa-download"></i>
                                     Export Results
                                 </button>
@@ -155,8 +262,24 @@
                             </div>
                         </div>
                         
-                        <!-- Search Interface -->
-                        <div class="search-interface">
+                        <!-- Sub-tab Navigation -->
+                        <div class="sub-tab-navigation">
+                            <button class="sub-tab-button active" data-subtab="vehicle-search">
+                                <i class="fas fa-car"></i>
+                                Vehicle Search
+                            </button>
+                            <button class="sub-tab-button" data-subtab="vin-history">
+                                <i class="fas fa-history"></i>
+                                VIN History Logs
+                            </button>
+                        </div>
+                        
+                        <!-- Sub-tab Panels -->
+                        <div class="sub-tab-panels">
+                            <!-- Vehicle Search Sub-panel -->
+                            <div class="sub-tab-panel active" id="vehicle-search-panel">
+                                <!-- Search Interface -->
+                                <div class="search-interface">
                             <div class="search-controls">
                                 <div class="search-bar-container">
                                     <input type="text" 
@@ -195,27 +318,6 @@
                                         </select>
                                     </div>
                                     
-                                    <!-- Data type radio buttons -->
-                                    <div class="filter-group data-type-filter">
-                                        <label>Data Type:</label>
-                                        <div class="radio-group">
-                                            <label class="radio-label">
-                                                <input type="radio" name="dataType" value="raw" id="rawDataRadio">
-                                                <span class="radio-button"></span>
-                                                Raw
-                                            </label>
-                                            <label class="radio-label">
-                                                <input type="radio" name="dataType" value="normalized" id="normalizedDataRadio">
-                                                <span class="radio-button"></span>
-                                                Normalized
-                                            </label>
-                                            <label class="radio-label">
-                                                <input type="radio" name="dataType" value="both" id="bothDataRadio" checked>
-                                                <span class="radio-button"></span>
-                                                Both
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             
@@ -271,8 +373,167 @@
                                 </div>
                             </div>
                         </div>
+                            </div>
+                            
+                            <!-- VIN History Sub-panel -->
+                            <div class="sub-tab-panel" id="vin-history-panel" style="display: none;">
+                                <div class="vin-history-interface">
+                                    <!-- VIN History Header with Stats -->
+                                    <div class="vin-history-stats">
+                                        <div class="stat-card">
+                                            <div class="stat-value" id="totalVins">0</div>
+                                            <div class="stat-label">Total VINs</div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-value" id="uniqueVins">0</div>
+                                            <div class="stat-label">Unique VINs</div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-value" id="totalDealerships">0</div>
+                                            <div class="stat-label">Dealerships</div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-value" id="dateRange">--</div>
+                                            <div class="stat-label">Date Range</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- VIN History Search Controls -->
+                                    <div class="vin-history-controls">
+                                        <div class="search-bar-container">
+                                            <input type="text" 
+                                                   class="search-input" 
+                                                   id="vinHistorySearchInput" 
+                                                   placeholder="Search by VIN or dealership name...">
+                                            <button class="search-btn" id="searchVinHistoryBtn">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="filter-controls">
+                                            <div class="filter-group">
+                                                <label for="vinHistoryDealerFilter">Dealership:</label>
+                                                <select id="vinHistoryDealerFilter" class="filter-select">
+                                                    <option value="">All Dealerships</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="filter-group">
+                                                <label for="vinHistoryDateFrom">From:</label>
+                                                <input type="date" id="vinHistoryDateFrom" class="date-input">
+                                            </div>
+                                            
+                                            <div class="filter-group">
+                                                <label for="vinHistoryDateTo">To:</label>
+                                                <input type="date" id="vinHistoryDateTo" class="date-input">
+                                            </div>
+                                            
+                                            <button class="btn btn-secondary" id="clearVinHistoryFilters">
+                                                <i class="fas fa-times"></i>
+                                                Clear Filters
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- VIN History Results -->
+                                    <div class="vin-history-results">
+                                        <div class="results-header" id="vinHistoryResultsHeader">
+                                            <div class="results-count">
+                                                <span id="vinHistoryResultsCount">0</span> records found
+                                            </div>
+                                            <button class="btn btn-secondary" id="exportVinHistory">
+                                                <i class="fas fa-download"></i>
+                                                Export VIN History
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="vin-history-table-container" id="vinHistoryTableContainer">
+                                            <div class="initial-message">
+                                                <i class="fas fa-history"></i>
+                                                <h3>VIN History Database</h3>
+                                                <p>View historical VIN data used for determining which vehicles need graphics</p>
+                                                <ul class="search-features">
+                                                    <li>28,289+ VINs across 36 dealerships</li>
+                                                    <li>Cross-dealership tracking capabilities</li>
+                                                    <li>Read-only access for data integrity</li>
+                                                    <li>Export historical data for analysis</li>
+                                                </ul>
+                                                <p class="help-text">This data is critical for order processing decisions</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Pagination -->
+                                        <div class="pagination" id="vinHistoryPagination" style="display: none;">
+                                            <button class="btn btn-secondary" id="vinHistoryPrevBtn" disabled>
+                                                <i class="fas fa-chevron-left"></i>
+                                                Previous
+                                            </button>
+                                            <span class="page-info" id="vinHistoryPageInfo">Page 1 of 1</span>
+                                            <button class="btn btn-secondary" id="vinHistoryNextBtn" disabled>
+                                                Next
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+
+                    <!-- Dealership Settings Tab -->
+                    <div class="tab-panel" id="dealership-settings-panel">
+                        <div class="panel-header">
+                            <h2>Dealership Settings</h2>
+                            <div class="control-buttons">
+                                <button class="btn btn-primary" id="saveAllSettingsBtn">
+                                    <i class="fas fa-save"></i>
+                                    Save All Changes
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter Section -->
+                        <div class="dealership-settings-controls">
+                            <div class="search-container">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="dealershipSearchInput" placeholder="Search dealerships..." class="form-control">
+                            </div>
+                            <div class="filter-buttons">
+                                <button class="filter-btn active" data-filter="all">All (36)</button>
+                                <button class="filter-btn" data-filter="new">New Only</button>
+                                <button class="filter-btn" data-filter="used">Used Only</button>
+                                <button class="filter-btn" data-filter="both">New & Used</button>
+                            </div>
+                        </div>
+
+                        <!-- Dealership Settings Grid -->
+                        <div class="dealership-settings-grid" id="dealershipSettingsGrid">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Loading dealership settings...
+                            </div>
+                        </div>
+
+                        <!-- Bulk Actions -->
+                        <div class="bulk-actions">
+                            <h3>Bulk Actions</h3>
+                            <div class="bulk-buttons">
+                                <button class="btn btn-secondary" onclick="app.bulkUpdateSettings('new')">
+                                    <i class="fas fa-check-square"></i>
+                                    Set All to New Only
+                                </button>
+                                <button class="btn btn-secondary" onclick="app.bulkUpdateSettings('used')">
+                                    <i class="fas fa-check-square"></i>
+                                    Set All to Used Only
+                                </button>
+                                <button class="btn btn-secondary" onclick="app.bulkUpdateSettings('both')">
+                                    <i class="fas fa-check-square"></i>
+                                    Set All to New & Used
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- System Status Tab -->
                     <div class="tab-panel" id="system-status-panel">
@@ -376,32 +637,6 @@
                             </div>
                         </div>
                         
-                        <!-- Real-time Scraper Console -->
-                        <div class="system-console">
-                            <div class="console-header">
-                                <h3>
-                                    <i class="fas fa-terminal"></i>
-                                    Live Scraper Console
-                                </h3>
-                                <div class="console-controls">
-                                    <button class="terminal-clear" onclick="app.clearScraperConsole()">
-                                        <i class="fas fa-broom"></i>
-                                        Clear
-                                    </button>
-                                    <button class="terminal-clear" onclick="app.pauseScraperConsole()">
-                                        <i class="fas fa-pause" id="pauseIcon"></i>
-                                        <span id="pauseText">Pause</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="console-content" id="scraperConsoleOutput">
-                                <div class="terminal-line">
-                                    <span class="timestamp">[00:00:00]</span>
-                                    <span class="message">Scraper console ready - waiting for scraper activity...</span>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <!-- Active Scrapers Status -->
                         <div class="active-scrapers-panel">
                             <h3>Active Scrapers</h3>
@@ -461,6 +696,63 @@
                                     </div>
                                 </div>
                                 
+                                <!-- CSV Import Section -->
+                                <div class="csv-import-section">
+                                    <h3>
+                                        <i class="fas fa-file-csv"></i>
+                                        CSV Import (Testing)
+                                    </h3>
+                                    <div class="import-description">
+                                        <p>Import Scraper 18 CSV data to test Order Processing accuracy</p>
+                                    </div>
+                                    <div class="csv-upload-area" id="csvUploadArea">
+                                        <div class="upload-dropzone" id="uploadDropzone">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <h4>Drop CSV file here or click to browse</h4>
+                                            <p>Supports Scraper 18 CSV format</p>
+                                            <input type="file" id="csvFileInput" accept=".csv" hidden>
+                                            <button class="btn btn-primary" onclick="document.getElementById('csvFileInput').click()">
+                                                <i class="fas fa-upload"></i>
+                                                Choose File
+                                            </button>
+                                        </div>
+                                        <div class="csv-info" id="csvInfo" style="display: none;">
+                                            <div class="file-details">
+                                                <h4 id="fileName"></h4>
+                                                <p id="fileDetails"></p>
+                                            </div>
+                                            <div class="csv-config">
+                                                <label for="csvDealershipSelect">Select Dealership:</label>
+                                                <select id="csvDealershipSelect" class="form-control">
+                                                    <option value="">Choose dealership...</option>
+                                                </select>
+                                                <label for="csvOrderType">Order Type:</label>
+                                                <select id="csvOrderType" class="form-control">
+                                                    <option value="cao">CAO (Compare against VIN history)</option>
+                                                    <option value="list">LIST (Process all vehicles)</option>
+                                                </select>
+                                                <div class="csv-test-options">
+                                                    <label>
+                                                        <input type="checkbox" id="keepDataForWizard"> 
+                                                        Keep data in database for Order Processing Wizard testing
+                                                    </label>
+                                                    <small class="help-text">Check this to test the imported data in the main Order Processing Wizard after import</small>
+                                                </div>
+                                            </div>
+                                            <div class="csv-actions">
+                                                <button class="btn btn-success" id="processCSVBtn" disabled>
+                                                    <i class="fas fa-cogs"></i>
+                                                    Process CSV Order
+                                                </button>
+                                                <button class="btn btn-secondary" id="clearCSVBtn">
+                                                    <i class="fas fa-times"></i>
+                                                    Clear
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Individual Dealerships -->
                                 <div class="dealership-selection">
                                     <h3>Individual Dealerships</h3>
@@ -556,6 +848,52 @@
         </div>
     </div>
 
+    <!-- Vehicle History Modal -->
+    <div class="modal" id="vehicleHistoryModal">
+        <div class="modal-content vehicle-history-modal">
+            <div class="modal-header">
+                <h3 id="vehicleHistoryTitle">Vehicle History</h3>
+                <button class="modal-close" id="closeVehicleHistoryModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Vehicle Summary Section -->
+                <div class="vehicle-summary" id="vehicleSummary">
+                    <div class="vehicle-info">
+                        <div class="info-group">
+                            <label>VIN:</label>
+                            <span id="modalVin" class="vin-display">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>Vehicle:</label>
+                            <span id="modalVehicle">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>Total Scrapes:</label>
+                            <span id="modalTotalScrapes" class="scrape-badge">-</span>
+                        </div>
+                        <div class="info-group">
+                            <label>Current Location:</label>
+                            <span id="modalCurrentLocation">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- History Timeline -->
+                <div class="history-section">
+                    <h4>Complete Vehicle History</h4>
+                    <div class="history-timeline" id="historyTimeline">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            Loading vehicle history...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Schedule Modal -->
     <div class="modal" id="scheduleModal">
         <div class="modal-content">
@@ -587,7 +925,34 @@
         </div>
     </div>
 
+    <!-- Dealership Selection Modal -->
+    <div class="modal" id="dealershipSelectionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Dealerships to Scrape</h3>
+                <button class="modal-close" id="closeDealershipSelectionModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="selection-actions">
+                    <button class="btn btn-secondary btn-sm" id="selectAllBtnModal">Select All</button>
+                    <button class="btn btn-secondary btn-sm" id="selectNoneBtnModal">Select None</button>
+                </div>
+                <div class="dealership-checkbox-grid" id="dealershipCheckboxGridModal">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDealershipSelection">Cancel</button>
+                <button class="btn btn-primary" id="saveDealershipSelection">Start Selected Scrapers</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dealership-settings.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/csv-import.js') }}"></script>
 </body>
 </html>
