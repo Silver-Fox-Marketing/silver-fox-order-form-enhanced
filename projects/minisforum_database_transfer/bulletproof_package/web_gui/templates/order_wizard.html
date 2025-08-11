@@ -856,6 +856,20 @@
                     <!-- Will show CAO processing progress -->
                 </div>
                 
+                <!-- Testing Mode Option for CAO -->
+                <div class="testing-mode-option" style="margin: 20px 0; padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="skipVinLoggingCAO" style="margin-right: 10px; width: 18px; height: 18px;">
+                        <span style="font-weight: 500; color: #856404;">
+                            <i class="fas fa-flask" style="margin-right: 5px;"></i>
+                            Testing Mode - Skip VIN History Logging
+                        </span>
+                    </label>
+                    <p style="margin: 8px 0 0 28px; color: #856404; font-size: 13px;">
+                        When enabled, processed VINs will NOT be added to the dealership's VIN history. Use this for testing with sample data to avoid affecting future CAO comparisons.
+                    </p>
+                </div>
+                
                 <div class="wizard-actions">
                     <button class="btn-wizard secondary" onclick="wizard.skipCAO()">
                         <i class="fas fa-forward"></i>
@@ -891,6 +905,20 @@
                             <li>VINs will be automatically validated</li>
                             <li>Invalid VINs will be highlighted for correction</li>
                         </ul>
+                    </div>
+                    
+                    <!-- Testing Mode Option -->
+                    <div class="testing-mode-option" style="margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="skipVinLogging" style="margin-right: 10px; width: 18px; height: 18px;">
+                            <span style="font-weight: 500; color: #856404;">
+                                <i class="fas fa-flask" style="margin-right: 5px;"></i>
+                                Testing Mode - Skip VIN History Logging
+                            </span>
+                        </label>
+                        <p style="margin: 8px 0 0 28px; color: #856404; font-size: 13px;">
+                            When enabled, processed VINs will NOT be added to the dealership's VIN history. Use this for testing with sample data to avoid affecting future CAO comparisons.
+                        </p>
                     </div>
                 </div>
                 

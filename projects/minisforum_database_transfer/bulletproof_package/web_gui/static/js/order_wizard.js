@@ -217,8 +217,9 @@ class OrderWizard {
     }
     
     async processCaoOrder(dealershipName) {
-        // Simulate CAO order processing
-        // In real implementation, this would call the backend API
+        // Get testing mode checkbox state
+        const skipVinLogging = document.getElementById('skipVinLoggingCAO')?.checked || false;
+        
         const response = await fetch('/api/orders/process-cao', {
             method: 'POST',
             headers: {
@@ -226,7 +227,8 @@ class OrderWizard {
             },
             body: JSON.stringify({
                 dealerships: [dealershipName],
-                vehicle_types: ['new', 'cpo', 'used']
+                vehicle_types: ['new', 'cpo', 'used'],
+                skip_vin_logging: skipVinLogging
             })
         });
         
@@ -333,6 +335,9 @@ class OrderWizard {
     }
     
     async processListOrder(dealershipName, vins) {
+        // Get testing mode checkbox state
+        const skipVinLogging = document.getElementById('skipVinLogging')?.checked || false;
+        
         const response = await fetch('/api/orders/process-list', {
             method: 'POST',
             headers: {
@@ -340,7 +345,8 @@ class OrderWizard {
             },
             body: JSON.stringify({
                 dealership: dealershipName,
-                vins: vins
+                vins: vins,
+                skip_vin_logging: skipVinLogging
             })
         });
         
