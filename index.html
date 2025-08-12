@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Fox Marketing STL - Enhanced Order Processing Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #220901;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 30px;
+            border-right: 2px solid #e0e0e0;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .summary-section {
+            flex: 1;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #fd410d;
+            box-shadow: 0 0 0 3px rgba(253, 65, 13, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #fd410d;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e03a0c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(253, 65, 13, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .summary-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .summary-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 300px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 500px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: #28a745;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Nested conditional fields styling */
+        .nested-conditional-fields {
+            padding: 15px;
+            margin-top: 15px;
+            background: #f9f9f9;
+            border-left: 3px solid #fd410d;
+            border-radius: 5px;
+        }
+
+        .required {
+            color: #fd410d;
+        }
+
+        small {
+            display: block;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        /* Multiple Items Button Styling */
+        .multiple-items-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .btn-multiple {
+            background: #220901;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-multiple:hover {
+            background: #3a1602;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 9, 1, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: #220901;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+
+        .spreadsheet-container {
+            overflow-x: auto;
+        }
+
+        .spreadsheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .spreadsheet-table th,
+        .spreadsheet-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .spreadsheet-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .spreadsheet-table input {
+            width: 100%;
+            border: none;
+            padding: 5px;
+            background: transparent;
+        }
+
+        .spreadsheet-table input:focus {
+            outline: 2px solid #fd410d;
+            background: white;
+        }
+
+        .add-row-btn {
+            margin-top: 10px;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Silver Fox Marketing STL</h1>
+            <p>Enhanced Order Processing Tool with Variable Data Support</p>
+        </div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <div class="order-type-selector">
+                    <div class="form-group">
+                        <label for="orderTypeSelect">Select Order Type</label>
+                        <select id="orderTypeSelect" onchange="selectOrderTypeFromDropdown()">
+                            <option value="">-- Choose Order Type --</option>
+                            <option value="vehicle">Vehicle Merchandising</option>
+                            <option value="dealership">Dealership Merchandising</option>
+                            <option value="custom">Custom Special Products</option>
+                            <option value="template">New Template Request</option>
+                            <option value="business-cards">Business Cards</option>
+                            <option value="banners">Custom Banners</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="order-details" class="hidden">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-header">
+                    <h2>Order Summary</h2>
+                    <p style="color: #666; font-size: 14px; margin-top: 5px;">Formatted for PipeDrive CRM - Dynamic Content Panel</p>
+                </div>
+                <div class="summary-content" id="summary-content">
+                    Order details will appear here as you fill out the form...
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="copyToClipboard()">Copy to Clipboard</button>
+                    <button class="btn btn-success" onclick="exportAllToCSV()" style="background: #fd410d;">Download as CSV</button>
+                    <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multiple Items Modal -->
+    <div id="multipleItemsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Multiple Items Entry</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="spreadsheet-container">
+                    <table class="spreadsheet-table" id="spreadsheetTable">
+                        <thead>
+                            <tr id="spreadsheetHeader">
+                                <!-- Headers will be dynamically generated -->
+                            </tr>
+                        </thead>
+                        <tbody id="spreadsheetBody">
+                            <!-- Rows will be dynamically generated -->
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary add-row-btn" onclick="addSpreadsheetRow()">+ Add Row</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-primary" onclick="applyMultipleItems()">Apply to Order</button>
+                    <button class="btn btn-success" onclick="exportToCSV()" style="font-weight: 600;">Export to CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentOrderType = '';
+        let currentProductType = '';
+        let orderData = {};
+        let multipleItemsData = [];
+
+        function selectOrderTypeFromDropdown() {
+            const select = document.getElementById('orderTypeSelect');
+            currentOrderType = select.value;
+            
+            if (!currentOrderType) {
+                document.getElementById('order-details').classList.add('hidden');
+                return;
+            }
+            
+            // Show order details section
+            const detailsDiv = document.getElementById('order-details');
+            detailsDiv.classList.remove('hidden');
+            
+            // Generate form based on type
+            if (currentOrderType === 'vehicle') {
+                generateVehicleForm();
+            } else if (currentOrderType === 'dealership') {
+                generateDealershipForm();
+            } else if (currentOrderType === 'custom') {
+                generateCustomForm();
+            } else if (currentOrderType === 'template') {
+                generateTemplateForm();
+            } else if (currentOrderType === 'business-cards') {
+                generateBusinessCardsForm();
+            } else if (currentOrderType === 'banners') {
+                generateBannersForm();
+            }
+            
+            updateSummary();
+        }
+
+        function generateVehicleForm() {
+            const html = `
+                <h3>Vehicle Merchandising Details</h3>
+                
+                <div class="form-group">
+                    <label for="vm_productType">Product Type <span class="required">*</span></label>
+                    <select id="vm_productType" onchange="handleVehicleMerchandisingProductType()" required>
+                        <option value="">Please Select:</option>
+                        <option value="windshields">Windshields</option>
+                        <option value="body-sides">Body Sides</option>
+                        <option value="complements">Complements</option>
+                        <option value="Windshield Banners">Windshield Banners</option>
+                        <option value="Side Banners">Side Banners</option>
+                        <option value="Complement Graphics">Complement Graphics</option>
+                        <option value="Specially Sized Graphics">Specially Sized Graphics</option>
+                    </select>
+                </div>
+                
+                <div id="vm_nestedFields"></div>
+
+                <!-- Multiple Items Button Container -->
+                <div id="multipleItemsContainer" class="multiple-items-container hidden">
+                    <button class="btn btn-multiple" onclick="openMultipleItemsModal()">
+                        Enter Multiple Items
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+            currentProductType = '';
+        }
+
+        function handleVehicleMerchandisingProductType() {
+            const select = document.getElementById('vm_productType');
+            const productType = select.value;
+            currentProductType = productType;
+            
+            const container = document.getElementById('vm_nestedFields');
+            container.innerHTML = '';
+            
+            // Show/hide Multiple Items button for new product types
+            setTimeout(() => {
+                const multipleItemsContainer = document.getElementById('multipleItemsContainer');
+                if (multipleItemsContainer) {
+                    if (productType === 'windshields' || productType === 'body-sides' || productType === 'complements') {
+                        multipleItemsContainer.classList.remove('hidden');
+                        console.log('Showing multiple items button for:', productType);
+                    } else {
+                        multipleItemsContainer.classList.add('hidden');
+                        console.log('Hiding multiple items button for:', productType);
+                    }
+                } else {
+                    console.log('Multiple items container not found!');
+                }
+            }, 100);
+            
+            if (!productType) {
+                updateSummary();
+                return;
+            }
+            
+            let nestedHTML = '';
+            
+            switch (productType) {
+                case 'windshields':
+                case 'body-sides':
+                case 'complements':
+                    // These are handled by the multiple items modal
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <p style="color: #666; font-style: italic;">
+                                Click "Enter Multiple Items" below to add ${productType} details.
+                            </p>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Windshield Banners':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="vm_wb_productSize">Product Size <span class="required">*</span></label>
+                                <select id="vm_wb_productSize" name="vm_wb_productSize" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+                                    <option value="X-Large">X-Large</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_wb_materialType">Material Type <span class="required">*</span></label>
+                                <select id="vm_wb_materialType" name="vm_wb_materialType" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Winter Vinyl">Winter Vinyl</option>
+                                    <option value="Summer Vinyl">Summer Vinyl</option>
+                                    <option value="Perforated Vinyl">Perforated Vinyl</option>
+                                    <option value="Poly Vinyl">Poly Vinyl</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_wb_text">Text <span class="required">*</span></label>
+                                <textarea id="vm_wb_text" name="vm_wb_text" required placeholder="Enter banner text..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_wb_designDetails">Design/Layout Details</label>
+                                <textarea id="vm_wb_designDetails" name="vm_wb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Side Banners':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="vm_sb_productSize">Product Size <span class="required">*</span></label>
+                                <select id="vm_sb_productSize" name="vm_sb_productSize" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+                                    <option value="X-Large">X-Large</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_sb_materialType">Material Type <span class="required">*</span></label>
+                                <select id="vm_sb_materialType" name="vm_sb_materialType" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Winter Vinyl">Winter Vinyl</option>
+                                    <option value="Summer Vinyl">Summer Vinyl</option>
+                                    <option value="Perforated Vinyl">Perforated Vinyl</option>
+                                    <option value="Poly Vinyl">Poly Vinyl</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_sb_text">Text <span class="required">*</span></label>
+                                <textarea id="vm_sb_text" name="vm_sb_text" required placeholder="Enter banner text..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_sb_designDetails">Design/Layout Details</label>
+                                <textarea id="vm_sb_designDetails" name="vm_sb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Complement Graphics':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="vm_cg_productSize">Product Size <span class="required">*</span></label>
+                                <select id="vm_cg_productSize" name="vm_cg_productSize" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+                                    <option value="X-Large">X-Large</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_cg_materialType">Material Type <span class="required">*</span></label>
+                                <select id="vm_cg_materialType" name="vm_cg_materialType" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Winter Vinyl">Winter Vinyl</option>
+                                    <option value="Summer Vinyl">Summer Vinyl</option>
+                                    <option value="Perforated Vinyl">Perforated Vinyl</option>
+                                    <option value="Poly Vinyl">Poly Vinyl</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_cg_text">Text <span class="required">*</span></label>
+                                <textarea id="vm_cg_text" name="vm_cg_text" required placeholder="Enter graphic text..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_cg_designDetails">Design/Layout Details</label>
+                                <textarea id="vm_cg_designDetails" name="vm_cg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Specially Sized Graphics':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="vm_ssg_width">Width <span class="required">*</span></label>
+                                <input type="text" id="vm_ssg_width" name="vm_ssg_width" required placeholder="Enter width..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_ssg_height">Height <span class="required">*</span></label>
+                                <input type="text" id="vm_ssg_height" name="vm_ssg_height" required placeholder="Enter height..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_ssg_materialType">Material Type <span class="required">*</span></label>
+                                <select id="vm_ssg_materialType" name="vm_ssg_materialType" required oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Winter Vinyl">Winter Vinyl</option>
+                                    <option value="Summer Vinyl">Summer Vinyl</option>
+                                    <option value="Perforated Vinyl">Perforated Vinyl</option>
+                                    <option value="Poly Vinyl">Poly Vinyl</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_ssg_text">Text <span class="required">*</span></label>
+                                <textarea id="vm_ssg_text" name="vm_ssg_text" required placeholder="Enter graphic text..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vm_ssg_designDetails">Design/Layout Details</label>
+                                <textarea id="vm_ssg_designDetails" name="vm_ssg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            container.innerHTML = nestedHTML;
+            updateSummary();
+        }
+
+        function generateDealershipForm() {
+            const html = `
+                <h3>Dealership Merchandising Details</h3>
+                
+                <div class="form-group">
+                    <label for="dm_installLocation">Install Location</label>
+                    <input type="text" id="dm_installLocation" name="dm_installLocation" placeholder="EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)" oninput="updateSummary()">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dm_productType">Product Type</label>
+                    <select id="dm_productType" name="dm_productType" onchange="handleDealershipMerchandisingProductType()">
+                        <option value="">Please Select:</option>
+                        <option value="Custom Designed Interior Showroom Graphics">Custom Designed Interior Showroom Graphics</option>
+                        <option value="Custom Designed Showroom Graphics">Custom Designed Showroom Graphics</option>
+                    </select>
+                </div>
+                
+                <div id="dm_nestedFields"></div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+        }
+
+        function handleDealershipMerchandisingProductType() {
+            const select = document.getElementById('dm_productType');
+            const productType = select.value;
+            const container = document.getElementById('dm_nestedFields');
+            container.innerHTML = '';
+            
+            if (!productType) {
+                updateSummary();
+                return;
+            }
+            
+            let nestedHTML = '';
+            
+            switch (productType) {
+                case 'Custom Designed Interior Showroom Graphics':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="dm_isg_surfaceType">Surface Type</label>
+                                <select id="dm_isg_surfaceType" name="dm_isg_surfaceType" oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Painted">Painted</option>
+                                    <option value="Concrete">Concrete</option>
+                                    <option value="Glass">Glass</option>
+                                    <option value="Wood">Wood</option>
+                                    <option value="Metal">Metal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_materialType">Material Type</label>
+                                <select id="dm_isg_materialType" name="dm_isg_materialType" oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Premium Indoor Poly Film">Premium Indoor Poly Film</option>
+                                    <option value="Premium Perforated Vinyl">Premium Perforated Vinyl</option>
+                                    <option value="Premium Cast Wrap Vinyl">Premium Cast Wrap Vinyl</option>
+                                    <option value="Premium Calendared Film">Premium Calendared Film</option>
+                                    <option value="Premium Contour Cut Vinyl">Premium Contour Cut Vinyl</option>
+                                    <option value="Premium Intermediate Contour Cut Vinyl">Premium Intermediate Contour Cut Vinyl</option>
+                                    <option value="Concrete/Floor Vinyl">Concrete/Floor Vinyl</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_maxWidth">Max Width</label>
+                                <input type="text" id="dm_isg_maxWidth" name="dm_isg_maxWidth" placeholder="Full width of the space where graphics will be installed" oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_maxHeight">Max Height</label>
+                                <input type="text" id="dm_isg_maxHeight" name="dm_isg_maxHeight" placeholder="Full height of the space where graphics will be installed" oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_graphicWidth">Graphic Width</label>
+                                <input type="text" id="dm_isg_graphicWidth" name="dm_isg_graphicWidth" placeholder="Desired final width (Type 'TBD' if Production should specify)" oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_graphicHeight">Graphic Height</label>
+                                <input type="text" id="dm_isg_graphicHeight" name="dm_isg_graphicHeight" placeholder="Desired final height (Type 'TBD' if Production should specify)" oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_text">Text</label>
+                                <textarea id="dm_isg_text" name="dm_isg_text" placeholder="Enter any text elements..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_isg_designDetails">Design/Layout Details</label>
+                                <textarea id="dm_isg_designDetails" name="dm_isg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Custom Designed Showroom Graphics':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="dm_sg_materialType">Material Type</label>
+                                <select id="dm_sg_materialType" name="dm_sg_materialType" oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Premium Solid Window Film">Premium Solid Window Film</option>
+                                    <option value="Premium Perforated Window Film">Premium Perforated Window Film</option>
+                                    <option value="Premium Perforated Window Mesh">Premium Perforated Window Mesh</option>
+                                    <option value="Premium Contour Cut Graphic Film">Premium Contour Cut Graphic Film</option>
+                                    <option value="Premium Frosted Window Film">Premium Frosted Window Film</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_sg_addLamination">Add Lamination</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" id="dm_sg_lamination_yes" name="dm_sg_addLamination" value="Yes" oninput="updateSummary()">
+                                        Yes
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" id="dm_sg_lamination_no" name="dm_sg_addLamination" value="No" oninput="updateSummary()">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_sg_windowType">Window Type</label>
+                                <select id="dm_sg_windowType" name="dm_sg_windowType" onchange="handleWindowTypeChange()" oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="Single Panel">Single Panel</option>
+                                    <option value="Multi Panel">Multi Panel</option>
+                                </select>
+                            </div>
+                            <div id="dm_sg_multiPanelFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="dm_sg_totalWindows">Total Number of Windows</label>
+                                    <input type="text" id="dm_sg_totalWindows" name="dm_sg_totalWindows" placeholder="Enter total number of windows" oninput="updateSummary()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dm_sg_mullions">Mullions</label>
+                                    <small>Does your project have mullions?</small>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" id="dm_sg_mullions_yes" name="dm_sg_mullions" value="Yes" onchange="handleMullionsChange()" oninput="updateSummary()">
+                                            Yes
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" id="dm_sg_mullions_no" name="dm_sg_mullions" value="No" onchange="handleMullionsChange()" oninput="updateSummary()">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="dm_sg_mullionWidthField" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="dm_sg_mullionWidth">Mullion Width</label>
+                                        <input type="text" id="dm_sg_mullionWidth" name="dm_sg_mullionWidth" placeholder="Enter mullion width" oninput="updateSummary()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_sg_sizeDetails">Size Details</label>
+                                <textarea id="dm_sg_sizeDetails" name="dm_sg_sizeDetails" placeholder="Enter Width and Height of each window (Ex. 1=24&quot; 2=25&quot; 3=24&quot; etc.)" oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_sg_text">Text</label>
+                                <textarea id="dm_sg_text" name="dm_sg_text" placeholder="Enter any text elements..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dm_sg_designDetails">Design/Layout Details</label>
+                                <textarea id="dm_sg_designDetails" name="dm_sg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            container.innerHTML = nestedHTML;
+            updateSummary();
+        }
+
+        function handleWindowTypeChange() {
+            const windowType = document.getElementById('dm_sg_windowType').value;
+            const multiPanelFields = document.getElementById('dm_sg_multiPanelFields');
+            
+            if (windowType === 'Multi Panel') {
+                multiPanelFields.style.display = 'block';
+            } else {
+                multiPanelFields.style.display = 'none';
+                // Clear multi panel fields
+                document.getElementById('dm_sg_totalWindows').value = '';
+                document.querySelectorAll('input[name="dm_sg_mullions"]').forEach(radio => radio.checked = false);
+                document.getElementById('dm_sg_mullionWidth').value = '';
+                document.getElementById('dm_sg_mullionWidthField').style.display = 'none';
+            }
+            updateSummary();
+        }
+
+        function handleMullionsChange() {
+            const mullionsYes = document.getElementById('dm_sg_mullions_yes');
+            const mullionWidthField = document.getElementById('dm_sg_mullionWidthField');
+            
+            if (mullionsYes && mullionsYes.checked) {
+                mullionWidthField.style.display = 'block';
+            } else {
+                mullionWidthField.style.display = 'none';
+                document.getElementById('dm_sg_mullionWidth').value = '';
+            }
+            updateSummary();
+        }
+
+        function generateCustomForm() {
+            const html = `
+                <h3>Custom Special Products</h3>
+                
+                <div class="form-group">
+                    <label for="csp_productDescription">Product Description <span class="required">*</span></label>
+                    <textarea id="csp_productDescription" name="csp_productDescription" required placeholder="Describe the custom product..." oninput="updateSummary()"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="csp_specifications">Specifications</label>
+                    <textarea id="csp_specifications" name="csp_specifications" placeholder="Enter detailed specifications..." oninput="updateSummary()"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="csp_quantity">Quantity</label>
+                    <input type="number" id="csp_quantity" name="csp_quantity" min="1" placeholder="Enter quantity" oninput="updateSummary()">
+                </div>
+                
+                <div class="form-group">
+                    <label for="csp_deadline">Deadline</label>
+                    <input type="date" id="csp_deadline" name="csp_deadline" oninput="updateSummary()">
+                </div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+        }
+
+        function generateTemplateForm() {
+            const html = `
+                <h3>New Template Request</h3>
+                
+                <div class="form-group">
+                    <label for="ntr_templateType">Template Type <span class="required">*</span></label>
+                    <select id="ntr_templateType" name="ntr_templateType" required onchange="handleTemplateTypeChange()">
+                        <option value="">Please Select:</option>
+                        <option value="Windshield Banner">Windshield Banner</option>
+                        <option value="Interior Showroom Graphic">Interior Showroom Graphic</option>
+                        <option value="Exterior Showroom Graphic">Exterior Showroom Graphic</option>
+                        <option value="Flyout Template">Flyout Template</option>
+                    </select>
+                </div>
+                
+                <div id="ntr_nestedFields"></div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+        }
+
+        function handleTemplateTypeChange() {
+            const templateType = document.getElementById('ntr_templateType').value;
+            const container = document.getElementById('ntr_nestedFields');
+            container.innerHTML = '';
+            
+            if (!templateType) {
+                updateSummary();
+                return;
+            }
+            
+            let nestedHTML = '';
+            
+            switch (templateType) {
+                case 'Windshield Banner':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="ntr_wb_size">Size</label>
+                                <input type="text" id="ntr_wb_size" name="ntr_wb_size" placeholder="Enter size..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="ntr_wb_design">Design Requirements</label>
+                                <textarea id="ntr_wb_design" name="ntr_wb_design" placeholder="Describe design requirements..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Flyout Template':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="ntr_ft_templateName">New Template Name</label>
+                                <input type="text" id="ntr_ft_templateName" name="ntr_ft_templateName" placeholder="Enter template name..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="ntr_ft_details">Details</label>
+                                <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
+                                <textarea id="ntr_ft_details" name="ntr_ft_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know" oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="ntr_generic_requirements">Template Requirements</label>
+                                <textarea id="ntr_generic_requirements" name="ntr_generic_requirements" placeholder="Describe template requirements..." oninput="updateSummary()"></textarea>
+                            </div>
+                        </div>
+                    `;
+            }
+            
+            container.innerHTML = nestedHTML;
+            updateSummary();
+        }
+
+        function generateBusinessCardsForm() {
+            const html = `
+                <h3>Business Cards Details</h3>
+                
+                <div class="form-group">
+                    <label for="bc_singleOrDouble">Single or Double Sided</label>
+                    <select id="bc_singleOrDouble" name="bc_singleOrDouble" oninput="updateSummary()">
+                        <option value="">Select</option>
+                        <option value="Single Sided">Single Sided</option>
+                        <option value="Double Sided">Double Sided</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bc_quantity">Quantity</label>
+                    <select id="bc_quantity" name="bc_quantity" oninput="updateSummary()">
+                        <option value="">Select</option>
+                        <option value="250">250</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="2500">2500</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bc_text">Text</label>
+                    <textarea id="bc_text" name="bc_text" placeholder="Email, Phone Number, Name, etc." oninput="updateSummary()"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bc_description">Description</label>
+                    <textarea id="bc_description" name="bc_description" placeholder="Any other additional details like design style or color." oninput="updateSummary()"></textarea>
+                </div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+        }
+
+        function generateBannersForm() {
+            const html = `
+                <h3>Custom Banners Details</h3>
+                
+                <div class="form-group">
+                    <label for="cb_bannerType">Banner Type <span class="required">*</span></label>
+                    <select id="cb_bannerType" name="cb_bannerType" required onchange="handleCustomBannerType()">
+                        <option value="">Please Select</option>
+                        <option value="Standard Banner">Standard Banner</option>
+                        <option value="Pole Banner">Pole Banner</option>
+                    </select>
+                </div>
+                
+                <div id="cb_nestedFields"></div>
+            `;
+            
+            document.getElementById('order-details').innerHTML = html;
+        }
+
+        function handleCustomBannerType() {
+            const bannerType = document.getElementById('cb_bannerType').value;
+            const container = document.getElementById('cb_nestedFields');
+            container.innerHTML = '';
+            
+            if (!bannerType) {
+                updateSummary();
+                return;
+            }
+            
+            let nestedHTML = '';
+            
+            switch (bannerType) {
+                case 'Standard Banner':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="cb_sb_materialType">Material Type</label>
+                                <select id="cb_sb_materialType" name="cb_sb_materialType" oninput="updateSummary()">
+                                    <option value="">Please Select:</option>
+                                    <option value="13oz Banner">13oz Banner</option>
+                                    <option value="18oz Banner">18oz Banner</option>
+                                    <option value="Mesh Banner">Mesh Banner</option>
+                                    <option value="No-Curl/Grey Back Banner">No-Curl/Grey Back Banner</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_sb_width">Width</label>
+                                <input type="text" id="cb_sb_width" name="cb_sb_width" placeholder="Enter width..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_sb_height">Height</label>
+                                <input type="text" id="cb_sb_height" name="cb_sb_height" placeholder="Enter height..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_sb_designNotes">Design Notes</label>
+                                <textarea id="cb_sb_designNotes" name="cb_sb_designNotes" placeholder="Enter design notes..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_sb_finishing">Finishing <span class="required">*</span></label>
+                                <select id="cb_sb_finishing" name="cb_sb_finishing" required onchange="handleFinishingChange()">
+                                    <option value="">Please Select</option>
+                                    <option value="Standard 1&quot; Hems">Standard 1" Hems</option>
+                                    <option value="Double Stick Edges (No Hems)">Double Stick Edges (No Hems)</option>
+                                    <option value="Trimmed to Size (No Hems)">Trimmed to Size (No Hems)</option>
+                                    <option value="Sewn Hems with Webbing">Sewn Hems with Webbing</option>
+                                    <option value="Other/Custom">Other/Custom</option>
+                                </select>
+                            </div>
+                            <div id="cb_sb_customFinishingField" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cb_sb_customFinishing">Custom Finishing Description</label>
+                                    <input type="text" id="cb_sb_customFinishing" name="cb_sb_customFinishing" placeholder="Describe custom finishing..." oninput="updateSummary()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_sb_grommets">Grommets</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" id="cb_sb_grommets_yes" name="cb_sb_grommets" value="Yes" onchange="handleGrommetsChange()">
+                                        Yes
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" id="cb_sb_grommets_no" name="cb_sb_grommets" value="No" onchange="handleGrommetsChange()">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="cb_sb_grommetFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cb_sb_grommetPattern">Grommet Pattern <span class="required">*</span></label>
+                                    <select id="cb_sb_grommetPattern" name="cb_sb_grommetPattern" onchange="handleGrommetPatternChange()">
+                                        <option value="">Please Select:</option>
+                                        <option value="3 Pole Mounting (Corners & Middle)">3 Pole Mounting (Corners & Middle)</option>
+                                        <option value="4 Pole Mounting (Corners & 2 Interior)">4 Pole Mounting (Corners & 2 Interior)</option>
+                                        <option value="Corners Only">Corners Only</option>
+                                        <option value='Every 12" (Approximate)'>Every 12" (Approximate)</option>
+                                        <option value='Every 24" (Approximate)'>Every 24" (Approximate)</option>
+                                        <option value="Custom">Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="cb_sb_customGrommetField" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cb_sb_customGrommet">Custom Grommet Pattern Description</label>
+                                    <input type="text" id="cb_sb_customGrommet" name="cb_sb_customGrommet" placeholder="Describe custom grommet pattern..." oninput="updateSummary()">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'Pole Banner':
+                    nestedHTML = `
+                        <div class="nested-conditional-fields">
+                            <div class="form-group">
+                                <label for="cb_pb_width">Width</label>
+                                <input type="text" id="cb_pb_width" name="cb_pb_width" placeholder="Enter width..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_pb_height">Height</label>
+                                <input type="text" id="cb_pb_height" name="cb_pb_height" placeholder="Enter height..." oninput="updateSummary()">
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_pb_pocketSize">Pocket Size</label>
+                                <textarea id="cb_pb_pocketSize" name="cb_pb_pocketSize" placeholder="Enter pocket size details..." oninput="updateSummary()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cb_pb_needBracket">Do you need Pole Bracket Hardware?</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" id="cb_pb_bracket_yes" name="cb_pb_needBracket" value="Yes" onchange="handleBracketChange()">
+                                        Yes
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" id="cb_pb_bracket_no" name="cb_pb_needBracket" value="No" onchange="handleBracketChange()">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="cb_pb_bracketFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cb_pb_bracketType">Bracket Type</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" id="cb_pb_single_sided" name="cb_pb_bracketType" value="Single Sided Pole Bracket" oninput="updateSummary()">
+                                            Single Sided Pole Bracket
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" id="cb_pb_double_sided" name="cb_pb_bracketType" value="Double Sided Pole Bracket" oninput="updateSummary()">
+                                            Double Sided Pole Bracket
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            container.innerHTML = nestedHTML;
+            updateSummary();
+        }
+
+        function handleFinishingChange() {
+            const finishing = document.getElementById('cb_sb_finishing').value;
+            const customField = document.getElementById('cb_sb_customFinishingField');
+            
+            if (finishing === 'Other/Custom') {
+                customField.style.display = 'block';
+            } else {
+                customField.style.display = 'none';
+                const customInput = document.getElementById('cb_sb_customFinishing');
+                if (customInput) customInput.value = '';
+            }
+            updateSummary();
+        }
+
+        function handleGrommetsChange() {
+            const grommetsYes = document.getElementById('cb_sb_grommets_yes');
+            const grommetFields = document.getElementById('cb_sb_grommetFields');
+            const customGrommetField = document.getElementById('cb_sb_customGrommetField');
+            
+            if (grommetsYes && grommetsYes.checked) {
+                grommetFields.style.display = 'block';
+            } else {
+                grommetFields.style.display = 'none';
+                customGrommetField.style.display = 'none';
+                const grommetPattern = document.getElementById('cb_sb_grommetPattern');
+                if (grommetPattern) grommetPattern.value = '';
+                const customGrommet = document.getElementById('cb_sb_customGrommet');
+                if (customGrommet) customGrommet.value = '';
+            }
+            updateSummary();
+        }
+
+        function handleGrommetPatternChange() {
+            const pattern = document.getElementById('cb_sb_grommetPattern').value;
+            const customField = document.getElementById('cb_sb_customGrommetField');
+            
+            if (pattern === 'Custom') {
+                customField.style.display = 'block';
+            } else {
+                customField.style.display = 'none';
+                const customInput = document.getElementById('cb_sb_customGrommet');
+                if (customInput) customInput.value = '';
+            }
+            updateSummary();
+        }
+
+        function handleBracketChange() {
+            const bracketYes = document.getElementById('cb_pb_bracket_yes');
+            const bracketFields = document.getElementById('cb_pb_bracketFields');
+            
+            if (bracketYes && bracketYes.checked) {
+                bracketFields.style.display = 'block';
+            } else {
+                bracketFields.style.display = 'none';
+                document.querySelectorAll('input[name="cb_pb_bracketType"]').forEach(radio => radio.checked = false);
+            }
+            updateSummary();
+        }
+
+        function openMultipleItemsModal() {
+            const modal = document.getElementById('multipleItemsModal');
+            modal.style.display = 'block';
+            
+            // Initialize spreadsheet with current form fields
+            initializeSpreadsheet();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('multipleItemsModal');
+            modal.style.display = 'none';
+        }
+
+        function initializeSpreadsheet() {
+            const headers = ['Quantity', 'Vehicle Type', 'Message Line 1', 'Message Line 2', 'Price', 'Color', 'Size'];
+            
+            const headerRow = document.getElementById('spreadsheetHeader');
+            headerRow.innerHTML = headers.map(h => `<th>${h}</th>`).join('');
+            
+            // Add initial row
+            const tbody = document.getElementById('spreadsheetBody');
+            tbody.innerHTML = '';
+            addSpreadsheetRow();
+        }
+
+        function addSpreadsheetRow() {
+            const tbody = document.getElementById('spreadsheetBody');
+            const rowCount = tbody.children.length;
+            
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="number" min="1" value="1" data-field="quantity"></td>
+                <td><input type="text" data-field="vehicleType" placeholder="e.g., SUV"></td>
+                <td><input type="text" data-field="message1" placeholder="Main message"></td>
+                <td><input type="text" data-field="message2" placeholder="Secondary message"></td>
+                <td><input type="text" data-field="price" placeholder="$29,999"></td>
+                <td><input type="text" data-field="color" placeholder="Red"></td>
+                <td><input type="text" data-field="size" placeholder="Large"></td>
+            `;
+            
+            tbody.appendChild(row);
+        }
+
+        function applyMultipleItems() {
+            // Collect data from spreadsheet
+            multipleItemsData = [];
+            const rows = document.querySelectorAll('#spreadsheetBody tr');
+            
+            rows.forEach(row => {
+                const rowData = {};
+                row.querySelectorAll('input').forEach(input => {
+                    rowData[input.dataset.field] = input.value;
+                });
+                if (rowData.quantity && rowData.message1) {
+                    multipleItemsData.push(rowData);
+                }
+            });
+            
+            closeModal();
+            updateSummary();
+        }
+
+        function exportToCSV() {
+            // Collect current data from modal if it's open
+            if (document.getElementById('multipleItemsModal').style.display === 'block') {
+                applyMultipleItems();
+            }
+            
+            if (multipleItemsData.length === 0) {
+                alert('Please enter data in Multiple Items before exporting');
+                return;
+            }
+            
+            // Create CSV content - expand quantities into individual rows for VersaWorks
+            const headers = ['Quantity', 'Vehicle Type', 'Message Line 1', 'Message Line 2', 'Price', 'Color', 'Size'];
+            const expandedRows = [];
+            
+            multipleItemsData.forEach(row => {
+                const quantity = parseInt(row.quantity) || 1;
+                // Create individual rows for each quantity
+                for (let i = 0; i < quantity; i++) {
+                    expandedRows.push([
+                        '1', // Each row represents 1 item for VersaWorks
+                        row.vehicleType || '',
+                        row.message1 || '',
+                        row.message2 || '',
+                        row.price || '',
+                        row.color || '',
+                        row.size || ''
+                    ].map(val => `"${val}"`).join(','));
+                }
+            });
+            
+            const csvContent = [headers.join(','), ...expandedRows].join('\n');
+            
+            // Download CSV
+            const blob = new Blob([csvContent], { type: 'text/csv; charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `silver-fox-order-${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('CSV file exported successfully!');
+        }
+        
+        function exportAllToCSV() {
+            if (multipleItemsData.length === 0) {
+                alert('No multiple items data to export. Please use "Enter Multiple Items" button first.');
+                return;
+            }
+            exportToCSV();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('summary-content');
+            let content = `ORDER SUMMARY\n`;
+            content += `═══════════════════════════════\n\n`;
+            content += `Order Type: ${currentOrderType.replace('-', ' ').toUpperCase()}\n`;
+            
+            if (currentProductType) {
+                content += `Product Type: ${currentProductType.replace('-', ' ').toUpperCase()}\n`;
+            }
+            
+            content += `Date: ${new Date().toLocaleDateString()}\n`;
+            content += `Time: ${new Date().toLocaleTimeString()}\n\n`;
+            
+            // Collect all form data
+            const inputs = document.querySelectorAll('#order-details input, #order-details select, #order-details textarea');
+            inputs.forEach(input => {
+                if (input.type === 'radio') {
+                    if (input.checked && input.value) {
+                        const label = input.name.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
+                        content += `${label}: ${input.value}\n`;
+                    }
+                } else if (input.value) {
+                    const label = input.previousElementSibling?.textContent || input.name;
+                    content += `${label}: ${input.value}\n`;
+                }
+            });
+            
+            // Add multiple items data if present
+            if (multipleItemsData.length > 0) {
+                content += `\n═══════════════════════════════\n`;
+                content += `MULTIPLE ITEMS (${multipleItemsData.length} entries):\n\n`;
+                multipleItemsData.forEach((item, index) => {
+                    content += `Item ${index + 1}:\n`;
+                    content += `  Quantity: ${item.quantity}\n`;
+                    content += `  Vehicle Type: ${item.vehicleType || 'N/A'}\n`;
+                    content += `  Message 1: ${item.message1}\n`;
+                    content += `  Message 2: ${item.message2 || 'N/A'}\n`;
+                    content += `  Price: ${item.price || 'N/A'}\n`;
+                    content += `  Color: ${item.color || 'N/A'}\n`;
+                    content += `  Size: ${item.size || 'N/A'}\n\n`;
+                });
+            }
+            
+            summary.textContent = content;
+            
+            // Save to localStorage
+            localStorage.setItem('orderDraft', JSON.stringify({
+                orderType: currentOrderType,
+                productType: currentProductType,
+                formData: content,
+                multipleItems: multipleItemsData
+            }));
+        }
+
+        function copyToClipboard() {
+            const summaryContent = document.getElementById('summary-content').textContent;
+            navigator.clipboard.writeText(summaryContent).then(() => {
+                showNotification('Order summary copied to clipboard!');
+            });
+        }
+
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                document.getElementById('order-details').innerHTML = '';
+                document.getElementById('order-details').classList.add('hidden');
+                document.getElementById('summary-content').textContent = 'Order details will appear here as you fill out the form...';
+                document.getElementById('orderTypeSelect').value = '';
+                currentOrderType = '';
+                currentProductType = '';
+                multipleItemsData = [];
+                localStorage.removeItem('orderDraft');
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Load draft on page load
+        window.onload = function() {
+            const draft = localStorage.getItem('orderDraft');
+            if (draft) {
+                const data = JSON.parse(draft);
+                // You could restore the draft here if needed
+            }
+        };
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('multipleItemsModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
