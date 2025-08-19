@@ -4,10 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinisForum Database Control - Silver Fox Marketing</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2025081902">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/vin_log_update.css') }}?v=2025081902">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2025081920&cache-bust={{ range(1000, 9999) | random }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vin_log_update.css') }}?v=2025081903">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Inline CSS to force display fixes -->
+    <style>
+        .dealership-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+            border: 2px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 16px 20px !important;
+            margin-bottom: 8px !important;
+            cursor: pointer !important;
+            display: flex;
+            align-items: center !important;
+            justify-content: space-between !important;
+            min-height: 60px !important;
+            overflow: visible !important;
+        }
+        
+        .dealership-name {
+            font-weight: 600 !important;
+            flex: 1 !important;
+            color: #1e293b !important;
+            font-size: 1rem !important;
+            line-height: 1.4 !important;
+            padding-right: 12px !important;
+        }
+        
+        .dealership-type {
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+            color: #475569 !important;
+            padding: 4px 12px !important;
+            border-radius: 20px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            border: 1px solid #cbd5e1 !important;
+            min-width: 50px !important;
+            text-align: center !important;
+        }
+        
+        .dealership-type.cao {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+            color: #1e40af !important;
+            border-color: #bfdbfe !important;
+        }
+        
+        .dealership-type.list {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
+            color: #16a34a !important;
+            border-color: #bbf7d0 !important;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -266,7 +318,7 @@
                                     <div class="dealership-search-container">
                                         <input type="text" 
                                                class="search-input" 
-                                               id="dealershipSearchInput" 
+                                               id="vinHistoryDealershipSearchInput" 
                                                placeholder="Search dealerships by name...">
                                         <button class="search-btn" id="searchDealershipsBtn">
                                             <i class="fas fa-search"></i>
@@ -976,6 +1028,7 @@
     </div>
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}?v=2025081902"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}?v=2025081915"></script>
+    
 </body>
 </html>

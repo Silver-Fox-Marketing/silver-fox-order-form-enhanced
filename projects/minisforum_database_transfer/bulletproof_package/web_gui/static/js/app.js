@@ -128,6 +128,15 @@ class MinisFornumApp {
             await this.loadDealerships();
             console.log(`✅ Loaded ${this.dealerships.length} dealerships`);
             console.log('Dealership names:', this.dealerships.map(d => d.name));
+            
+            // Load dealership defaults after dealerships are loaded
+            await this.loadDealershipDefaults();
+            
+            // Re-render dealership list with correct types
+            this.renderDealershipList(this.dealerships);
+            
+            // Set up search functionality after dealerships are loaded
+            this.setupDealershipSearchListeners();
         } catch (error) {
             console.error('❌ Failed to load dealerships:', error);
             this.addTerminalMessage(`Failed to load dealerships: ${error.message}`, 'error');
@@ -1772,6 +1781,12 @@ class MinisFornumApp {
         await this.loadDealershipList();
         await this.loadDealershipDefaults();
         
+        // Re-render dealership list with correct types
+        this.renderDealershipList(this.dealerships);
+        
+        // Set up search functionality when queue management tab is loaded
+        this.setupDealershipSearchListeners();
+        
         // Initialize empty queue
         this.renderQueue();
         
@@ -1984,20 +1999,42 @@ class MinisFornumApp {
     }
     
     renderDealershipList(dealerships) {
+        console.log('🏢 Rendering dealership list...', {
+            dealerships: dealerships ? dealerships.length : 0,
+            hasDefaults: this.dealershipDefaults ? this.dealershipDefaults.size : 0
+        });
+        
         const dealershipList = document.getElementById('dealershipList');
-        if (!dealershipList) return;
+        if (!dealershipList) {
+            console.error('❌ dealershipList element not found');
+            return;
+        }
         
         if (!dealerships || dealerships.length === 0) {
+            console.log('⚠️ No dealerships to render');
             dealershipList.innerHTML = '<div class="loading">No dealerships available</div>';
             return;
         }
         
-        dealershipList.innerHTML = dealerships.map(dealership => `
-            <div class="dealership-item" data-dealership="${dealership.name}">
-                <div class="dealership-name">${dealership.name}</div>
-                <div class="dealership-type">${this.getDealershipDefault(dealership.name)}</div>
-            </div>
-        `).join('');
+        try {
+            const html = dealerships.map(dealership => {
+                const dealershipType = this.getDealershipDefault(dealership.name);
+                const typeClass = dealershipType.toLowerCase(); // 'cao' or 'list'
+                console.log(`🏢 Dealership: ${dealership.name} -> Type: ${dealershipType} -> Class: ${typeClass}`);
+                return `
+                    <div class="dealership-item" data-dealership="${dealership.name}">
+                        <div class="dealership-name">${dealership.name}</div>
+                        <div class="dealership-type ${typeClass}">${dealershipType}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            dealershipList.innerHTML = html;
+            console.log('✅ Dealership list rendered successfully');
+        } catch (error) {
+            console.error('❌ Error rendering dealership list:', error);
+            dealershipList.innerHTML = '<div class="loading error">Error loading dealerships</div>';
+        }
         
         // Set up event delegation for dealership items
         this.setupDealershipEventListeners();
@@ -2023,46 +2060,86 @@ class MinisFornumApp {
         
         // Add event listener using delegation
         dealershipList.addEventListener('click', this.dealershipClickHandler);
-        
-        // Setup dealership search functionality
-        this.setupDealershipSearchListeners();
     }
     
     setupDealershipSearchListeners() {
-        const searchInput = document.getElementById('dealershipSearchInput');
-        const searchBtn = document.getElementById('dealershipSearchBtn');
-        const clearBtn = document.getElementById('clearDealershipSearchBtn');
+        console.log('🔍 Setting up dealership search listeners...');
         
-        if (searchInput && !searchInput.hasSearchListeners) {
-            searchInput.addEventListener('input', () => this.filterDealershipList());
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.filterDealershipList();
-                }
+        // Wait a bit for DOM to be ready
+        setTimeout(() => {
+            const searchInput = document.getElementById('dealershipSearchInput');
+            const searchBtn = document.getElementById('dealershipSearchBtn');
+            const clearBtn = document.getElementById('clearDealershipSearchBtn');
+            
+            console.log('Search elements found:', {
+                searchInput: !!searchInput,
+                searchBtn: !!searchBtn,
+                clearBtn: !!clearBtn
             });
-            searchInput.hasSearchListeners = true;
-        }
-        
-        if (searchBtn && !searchBtn.hasSearchListeners) {
-            searchBtn.addEventListener('click', () => this.filterDealershipList());
-            searchBtn.hasSearchListeners = true;
-        }
-        
-        if (clearBtn && !clearBtn.hasSearchListeners) {
-            clearBtn.addEventListener('click', () => this.clearDealershipSearch());
-            clearBtn.hasSearchListeners = true;
-        }
+            
+            if (searchInput) {
+                console.log('✅ Search input found, adding listeners');
+                
+                // Add fresh listeners (don't try to remove since we don't have references)
+                searchInput.addEventListener('input', () => {
+                    console.log('🔍 Search input changed:', searchInput.value);
+                    this.filterDealershipList();
+                });
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        console.log('🔍 Enter key pressed in search');
+                        this.filterDealershipList();
+                    }
+                });
+                console.log('✅ Search input listeners added');
+                
+                // Clear any existing value and ensure all items are visible
+                console.log('🧪 Clearing search input...');
+                searchInput.value = '';
+                this.filterDealershipList(); // Show all dealerships
+            } else {
+                console.error('❌ Search input not found!');
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    console.log('🔍 Search button clicked');
+                    this.filterDealershipList();
+                });
+                console.log('✅ Search button listener added');
+            }
+            
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    console.log('🔍 Clear button clicked');
+                    this.clearDealershipSearch();
+                });
+                console.log('✅ Clear button listener added');
+            }
+        }, 100);
     }
     
     filterDealershipList() {
+        console.log('🔍 Filtering dealership list...');
         const searchInput = document.getElementById('dealershipSearchInput');
         const clearBtn = document.getElementById('clearDealershipSearchBtn');
         const dealershipList = document.getElementById('dealershipList');
         
-        if (!searchInput || !dealershipList) return;
+        if (!searchInput || !dealershipList) {
+            console.log('❌ Missing search elements:', {
+                searchInput: !!searchInput,
+                dealershipList: !!dealershipList
+            });
+            return;
+        }
         
         const searchTerm = searchInput.value.toLowerCase().trim();
         const dealershipItems = dealershipList.querySelectorAll('.dealership-item');
+        
+        console.log('🔍 Search details:', {
+            searchTerm,
+            itemCount: dealershipItems.length
+        });
         
         // Show/hide clear button
         if (clearBtn) {
@@ -2070,15 +2147,21 @@ class MinisFornumApp {
         }
         
         let visibleCount = 0;
-        dealershipItems.forEach(item => {
+        dealershipItems.forEach((item, index) => {
             const dealershipName = item.querySelector('.dealership-name');
             if (dealershipName) {
                 const name = dealershipName.textContent.toLowerCase();
                 const matches = !searchTerm || name.includes(searchTerm);
-                item.style.display = matches ? 'block' : 'none';
+                item.style.display = matches ? 'flex' : 'none';
                 if (matches) visibleCount++;
+                
+                if (index < 3) { // Log first 3 items for debugging
+                    console.log(`Item ${index}: "${name}" matches "${searchTerm}": ${matches}`);
+                }
             }
         });
+        
+        console.log(`🔍 Filter results: ${visibleCount}/${dealershipItems.length} visible`);
         
         // Show "no results" message if needed
         this.updateDealershipSearchResults(visibleCount, searchTerm);
@@ -2125,6 +2208,35 @@ class MinisFornumApp {
         }
     }
     
+    // Test function that can be called from browser console
+    testDealershipSearch() {
+        console.log('🧪 Testing dealership search functionality...');
+        
+        const searchInput = document.getElementById('dealershipSearchInput');
+        const dealershipList = document.getElementById('dealershipList');
+        const items = dealershipList ? dealershipList.querySelectorAll('.dealership-item') : [];
+        
+        console.log('Test results:', {
+            searchInput: !!searchInput,
+            dealershipList: !!dealershipList,
+            itemCount: items.length
+        });
+        
+        if (searchInput && items.length > 0) {
+            console.log('Manual search test with "bmw":');
+            searchInput.value = 'bmw';
+            this.filterDealershipList();
+        } else {
+            console.error('Missing elements for search test');
+        }
+        
+        return {
+            searchInput: !!searchInput,
+            dealershipList: !!dealershipList,
+            itemCount: items.length
+        };
+    }
+    
     async loadDealershipDefaults() {
         // Set default order types for dealerships - Mix of CAO and LIST
         this.dealershipDefaults.set('Columbia Honda', 'LIST');
@@ -2151,7 +2263,12 @@ class MinisFornumApp {
     }
     
     getDealershipDefault(dealershipName) {
-        return this.dealershipDefaults.get(dealershipName) || 'CAO';
+        if (!this.dealershipDefaults) {
+            console.warn('⚠️ dealershipDefaults not initialized, using CAO default');
+            return 'CAO';
+        }
+        const defaultType = this.dealershipDefaults.get(dealershipName) || 'CAO';
+        return defaultType;
     }
     
     addDayToQueue(day) {
