@@ -251,7 +251,7 @@ class OrderWizard {
         const result = results[0] || results; // Handle both array and single object responses
         
         // Map backend fields to frontend expected fields
-        return {
+        const mappedResult = {
             vehicles_processed: result.new_vehicles || 0,
             files_generated: result.qr_codes_generated || 0,
             success: result.success,
@@ -261,6 +261,8 @@ class OrderWizard {
             csv_file: result.csv_file,
             timestamp: result.timestamp
         };
+        
+        return mappedResult;
     }
     
     skipCAO() {
