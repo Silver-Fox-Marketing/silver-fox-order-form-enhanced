@@ -2829,16 +2829,26 @@ def generate_qr_codes_from_csv():
         
         logger.info(f"[QR GENERATION] Starting QR code generation for {dealership_name} from {csv_filename}")
         
-        # Find the CSV file in multiple possible locations
+        # Find the CSV file in multiple possible locations (search recursively)
         web_gui_orders_dir = Path(__file__).parent / "orders"
         scripts_orders_dir = Path(__file__).parent.parent / "scripts" / "orders"
         bulletproof_orders_dir = Path(__file__).parent.parent / "orders"
         
         csv_file_path = None
         for orders_dir in [web_gui_orders_dir, scripts_orders_dir, bulletproof_orders_dir]:
+            # First try direct path (for compatibility)
             potential_path = orders_dir / csv_filename
             if potential_path.exists():
                 csv_file_path = potential_path
+                break
+            
+            # Then search recursively through subdirectories
+            if orders_dir.exists():
+                for csv_file in orders_dir.rglob(csv_filename):
+                    csv_file_path = csv_file
+                    break
+            
+            if csv_file_path:
                 break
         
         if not csv_file_path:
