@@ -1203,25 +1203,44 @@
                     <div class="qr-status-card" id="qrStatusCard">
                         <div class="qr-info">
                             <h4><i class="fas fa-qrcode"></i> QR Code Generation</h4>
-                            <p>QR codes will be generated for each vehicle URL in your CSV file</p>
-                            <div class="qr-details" id="qrDetails">
-                                <div class="detail-item">
-                                    <span class="label">CSV File:</span>
-                                    <span class="value" id="qrCsvFileName">Loading...</span>
+                            <p>Generate QR codes linking directly to each vehicle's webpage</p>
+                            
+                            <div class="qr-summary-stats">
+                                <div class="summary-stat">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-file-csv"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="qrVehicleCount">0</span>
+                                        <span class="stat-label">Vehicles Ready</span>
+                                    </div>
                                 </div>
-                                <div class="detail-item">
-                                    <span class="label">Vehicle Count:</span>
-                                    <span class="value" id="qrVehicleCount">0</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="label">Order Number:</span>
-                                    <span class="value" id="qrOrderNumber">Not set</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="label">Output Folder:</span>
-                                    <span class="value" id="qrOutputFolder">Will be generated</span>
+                                <div class="summary-stat">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-tag"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="qrOrderNumber">Auto-Generated</span>
+                                        <span class="stat-label">Order Number</span>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="qr-technical-details" id="qrTechnicalDetails" style="display: none;">
+                                <div class="tech-detail">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Source: <code id="qrCsvFileName">Loading...</code></span>
+                                </div>
+                                <div class="tech-detail">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span>Output: <code id="qrOutputFolder">Will be auto-generated</code></span>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-link" onclick="wizard.toggleTechnicalDetails()" id="qrToggleBtn">
+                                <i class="fas fa-chevron-down"></i>
+                                Show Technical Details
+                            </button>
                         </div>
                         
                         <div class="qr-progress" id="qrProgress" style="display: none;">
@@ -1235,21 +1254,28 @@
                         </div>
                         
                         <div class="qr-results" id="qrResults" style="display: none;">
-                            <div class="results-summary">
-                                <div class="result-stat">
-                                    <i class="fas fa-check-circle success"></i>
-                                    <span class="stat-label">Generated</span>
-                                    <span class="stat-value" id="qrGeneratedCount">0</span>
+                            <div class="results-header">
+                                <div class="success-indicator">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span><strong id="qrGeneratedCount">0</strong> QR codes generated successfully</span>
                                 </div>
-                                <div class="result-stat">
-                                    <i class="fas fa-folder"></i>
-                                    <span class="stat-label">Folder</span>
-                                    <span class="stat-value" id="qrFolderName">N/A</span>
+                                <div class="folder-location">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span id="qrFolderName">Output folder</span>
                                 </div>
                             </div>
                             
-                            <div class="qr-file-list" id="qrFileList">
-                                <!-- QR code files will be listed here -->
+                            <div class="qr-preview" id="qrPreview">
+                                <div class="preview-header">
+                                    <h5><i class="fas fa-images"></i> Generated Files Preview</h5>
+                                    <button class="btn-link" onclick="wizard.toggleQRFileList()" id="qrPreviewToggle">
+                                        <i class="fas fa-chevron-down"></i>
+                                        Show Details
+                                    </button>
+                                </div>
+                                <div class="qr-file-list" id="qrFileList" style="display: none;">
+                                    <!-- QR code files will be listed here -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1263,9 +1289,9 @@
                             <i class="fas fa-qrcode"></i>
                             Generate QR Codes
                         </button>
-                        <button class="btn-wizard primary" onclick="wizard.proceedToDataEditor()" id="qrProceedBtn" style="display: none;">
-                            <i class="fas fa-arrow-right"></i>
-                            Continue to Data Editor
+                        <button class="btn-wizard primary" onclick="wizard.completeProcessing()" id="qrProceedBtn" style="display: none;">
+                            <i class="fas fa-check"></i>
+                            Complete Order
                         </button>
                     </div>
                 </div>

@@ -424,6 +424,7 @@ class OrderWizard {
         const qrCsvFileName = document.getElementById('qrCsvFileName');
         const qrVehicleCount = document.getElementById('qrVehicleCount');
         const qrOrderNumber = document.getElementById('qrOrderNumber');
+        const qrOutputFolder = document.getElementById('qrOutputFolder');
         
         if (qrCsvFileName && result.download_csv) {
             // Extract filename from download path
@@ -436,8 +437,41 @@ class OrderWizard {
         }
         
         if (qrOrderNumber) {
-            // Try to get order number from current context or show as "Not set"
-            qrOrderNumber.textContent = this.currentOrderNumber || 'Not set - will be generated';
+            // Try to get order number from current context or show as "Auto-Generated"
+            qrOrderNumber.textContent = this.currentOrderNumber || 'Auto-Generated';
+        }
+        
+        if (qrOutputFolder) {
+            // Show expected output folder pattern
+            const cleanDealership = dealershipName.replace(/[^a-zA-Z0-9]/g, '_');
+            const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+            qrOutputFolder.textContent = `${cleanDealership}_${today}_QRCodes/`;
+        }
+    }
+    
+    toggleTechnicalDetails() {
+        const details = document.getElementById('qrTechnicalDetails');
+        const toggleBtn = document.getElementById('qrToggleBtn');
+        
+        if (details.style.display === 'none') {
+            details.style.display = 'block';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Technical Details';
+        } else {
+            details.style.display = 'none';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show Technical Details';
+        }
+    }
+    
+    toggleQRFileList() {
+        const fileList = document.getElementById('qrFileList');
+        const toggleBtn = document.getElementById('qrPreviewToggle');
+        
+        if (fileList.style.display === 'none') {
+            fileList.style.display = 'block';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
+        } else {
+            fileList.style.display = 'none';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show Details';
         }
     }
     
@@ -494,34 +528,70 @@ class OrderWizard {
             const result = await response.json();
             console.log('[QR GENERATION] Success:', result);
             
-            // Update progress to 100%
-            const progressFill = document.getElementById('qrProgressFill');
-            const progressCount = document.getElementById('qrProgressCount');
-            if (progressFill) progressFill.style.width = '100%';
-            if (progressCount) progressCount.textContent = `${result.qr_codes_generated}/${result.qr_codes_generated}`;
-            
-            // Hide progress and show results
-            setTimeout(() => {
+            // Handle case where QR codes already exist
+            if (result.qr_codes_exist) {
+                // Hide progress and show results immediately
                 qrProgress.style.display = 'none';
                 qrResults.style.display = 'block';
                 
-                // Update result stats
+                // Update result stats for existing QR codes
                 const qrGeneratedCount = document.getElementById('qrGeneratedCount');
                 const qrFolderName = document.getElementById('qrFolderName');
+                const qrVehicleCount = document.getElementById('qrVehicleCount');
                 
-                if (qrGeneratedCount) qrGeneratedCount.textContent = result.qr_codes_generated;
-                if (qrFolderName) qrFolderName.textContent = result.qr_folder_name;
+                if (qrGeneratedCount) qrGeneratedCount.textContent = result.vehicles_with_urls || result.total_vehicles || 'N/A';
+                if (qrFolderName) qrFolderName.textContent = 'Previously Generated';
+                if (qrVehicleCount) qrVehicleCount.textContent = result.total_vehicles || 'N/A';
                 
-                // Render QR file list
-                this.renderQRFileList(result.qr_files);
+                // Show message that QR codes already exist
+                const qrStatusCard = document.querySelector('.qr-status-card');
+                if (qrStatusCard) {
+                    qrStatusCard.innerHTML = `
+                        <div class="qr-info">
+                            <h4><i class="fas fa-check-circle"></i> QR Codes Already Generated</h4>
+                            <p>${result.message}</p>
+                            <p><strong>Total Vehicles:</strong> ${result.total_vehicles}</p>
+                            ${result.vehicles_with_urls ? `<p><strong>Vehicles with URLs:</strong> ${result.vehicles_with_urls}</p>` : ''}
+                            ${result.vehicles_without_urls ? `<p><strong>Vehicles without URLs:</strong> ${result.vehicles_without_urls}</p>` : ''}
+                        </div>
+                    `;
+                }
                 
-                // Store QR result for later use
+                // Store result and show proceed button
                 this.currentQRResult = result;
-                
-                // Show proceed button
                 qrProceedBtn.style.display = 'inline-flex';
                 
-            }, 1000);
+            } else {
+                // Normal QR generation flow
+                // Update progress to 100%
+                const progressFill = document.getElementById('qrProgressFill');
+                const progressCount = document.getElementById('qrProgressCount');
+                if (progressFill) progressFill.style.width = '100%';
+                if (progressCount) progressCount.textContent = `${result.qr_codes_generated}/${result.qr_codes_generated}`;
+                
+                // Hide progress and show results
+                setTimeout(() => {
+                    qrProgress.style.display = 'none';
+                    qrResults.style.display = 'block';
+                    
+                    // Update result stats
+                    const qrGeneratedCount = document.getElementById('qrGeneratedCount');
+                    const qrFolderName = document.getElementById('qrFolderName');
+                    
+                    if (qrGeneratedCount) qrGeneratedCount.textContent = result.qr_codes_generated;
+                    if (qrFolderName) qrFolderName.textContent = result.qr_folder_name;
+                    
+                    // Render QR file list
+                    this.renderQRFileList(result.qr_files);
+                    
+                    // Store QR result for later use
+                    this.currentQRResult = result;
+                    
+                    // Show proceed button
+                    qrProceedBtn.style.display = 'inline-flex';
+                    
+                }, 1000);
+            }
             
         } catch (error) {
             console.error('[QR GENERATION] Error:', error);
@@ -538,31 +608,55 @@ class OrderWizard {
         const qrFileList = document.getElementById('qrFileList');
         if (!qrFileList || !qrFiles || qrFiles.length === 0) return;
         
-        qrFileList.innerHTML = '<h5><i class="fas fa-file-image"></i> Generated QR Code Files:</h5>';
+        // Clear and populate with a cleaner layout
+        qrFileList.innerHTML = '';
         
         const fileListContainer = document.createElement('div');
         fileListContainer.className = 'qr-file-grid';
+        fileListContainer.style.padding = 'var(--spacing-md)';
         
-        qrFiles.forEach(file => {
+        // Show first few files as preview, with option to show all
+        const previewCount = Math.min(3, qrFiles.length);
+        const filesToShow = qrFiles.slice(0, previewCount);
+        
+        filesToShow.forEach((file, index) => {
             const fileItem = document.createElement('div');
             fileItem.className = 'qr-file-item';
             fileItem.innerHTML = `
-                <div class="qr-file-info">
-                    <strong>${file.filename}</strong>
-                    <div class="qr-vehicle-info">
-                        <span class="vin">VIN: ${file.vin}</span>
-                        <span class="vehicle">${file.vehicle_info}</span>
-                        <span class="stock">Stock: ${file.stock}</span>
-                    </div>
+                <div class="qr-file-header">
+                    <span class="file-number">#${index + 1}</span>
+                    <strong class="filename">${file.filename}</strong>
+                </div>
+                <div class="qr-vehicle-info">
+                    <span class="vin"><i class="fas fa-barcode"></i> ${file.vin}</span>
+                    <span class="vehicle"><i class="fas fa-car"></i> ${file.vehicle_info}</span>
+                    ${file.stock ? `<span class="stock"><i class="fas fa-tag"></i> Stock: ${file.stock}</span>` : ''}
                 </div>
                 <div class="qr-file-url">
-                    <small>${file.url}</small>
+                    <i class="fas fa-link"></i>
+                    <span class="url-text">${this.truncateUrl(file.url)}</span>
                 </div>
             `;
             fileListContainer.appendChild(fileItem);
         });
         
+        // If there are more files, show a summary
+        if (qrFiles.length > previewCount) {
+            const moreInfo = document.createElement('div');
+            moreInfo.className = 'qr-more-info';
+            moreInfo.innerHTML = `
+                <i class="fas fa-ellipsis-h"></i>
+                <span>+ ${qrFiles.length - previewCount} more QR codes generated</span>
+            `;
+            fileListContainer.appendChild(moreInfo);
+        }
+        
         qrFileList.appendChild(fileListContainer);
+    }
+    
+    truncateUrl(url) {
+        if (url.length <= 50) return url;
+        return url.substring(0, 25) + '...' + url.substring(url.length - 20);
     }
     
     backToCsvReview() {

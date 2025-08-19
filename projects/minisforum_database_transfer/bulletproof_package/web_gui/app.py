@@ -2862,39 +2862,85 @@ def generate_qr_codes_from_csv():
         
         # Read the CSV file to get vehicle data
         vehicles = []
+        vehicles_without_urls = []
+        total_vehicles = 0
+        
         try:
             with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
-                    if row.get('Vehicle URL') and row.get('Vin'):
-                        vehicles.append({
+                    if row.get('Vin'):  # Only require VIN, not URL
+                        total_vehicles += 1
+                        vehicle_data = {
                             'vin': row.get('Vin', ''),
                             'vehicle_url': row.get('Vehicle URL', ''),
                             'year': row.get('Year', ''),
                             'make': row.get('Make', ''),
                             'model': row.get('Model', ''),
                             'stock': row.get('Stock', '')
-                        })
+                        }
+                        
+                        if vehicle_data['vehicle_url']:
+                            vehicles.append(vehicle_data)
+                        else:
+                            vehicles_without_urls.append(vehicle_data)
         except Exception as e:
             logger.error(f"[QR GENERATION] Error reading CSV file: {e}")
             return jsonify({'error': f'Error reading CSV file: {str(e)}'}), 500
         
-        if not vehicles:
-            return jsonify({'error': 'No vehicles with URLs found in CSV file'}), 400
+        # Check if QR codes already exist (look for QR_Code_Path column)
+        qr_already_exists = False
+        try:
+            with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                fieldnames = reader.fieldnames or []
+                qr_already_exists = 'QR_Code_Path' in fieldnames
+        except:
+            pass
         
-        # Create output folder structure with order number and date
+        if qr_already_exists:
+            return jsonify({
+                'success': True,
+                'message': 'QR codes have already been generated for this order',
+                'qr_codes_exist': True,
+                'total_vehicles': total_vehicles,
+                'vehicles_with_urls': len(vehicles),
+                'vehicles_without_urls': len(vehicles_without_urls)
+            })
+        
+        if not vehicles:
+            error_msg = f'No vehicles with URLs found in CSV file. Found {total_vehicles} vehicles total, but {len(vehicles_without_urls)} are missing Vehicle URLs.'
+            if vehicles_without_urls:
+                vehicle_list = [f"{v['year']} {v['make']} {v['model']} (VIN: {v['vin'][:8]}...)" for v in vehicles_without_urls[:3]]
+                error_msg += f' Missing URLs for: {", ".join(vehicle_list)}'
+                if len(vehicles_without_urls) > 3:
+                    error_msg += f' and {len(vehicles_without_urls) - 3} more vehicles'
+            return jsonify({'error': error_msg}), 400
+        
+        # Create output folder structure organized by dealership
         timestamp = datetime.now()
         date_str = timestamp.strftime('%Y%m%d')
+        time_str = timestamp.strftime('%H%M%S')
         clean_dealership = dealership_name.replace(' ', '_').replace('/', '_').replace('&', 'and')
         
-        # Build folder name: Dealership_OrderNumber_Date_QRCodes
-        if order_number:
-            folder_name = f"{clean_dealership}_{order_number}_{date_str}_QRCodes"
-        else:
-            folder_name = f"{clean_dealership}_{timestamp.strftime('%Y%m%d_%H%M%S')}_QRCodes"
+        # Create dealership-specific folder structure: bulletproof_orders_dir/DealershipName/QRCodes/OrderNumber_Date_Time/
+        dealership_folder = bulletproof_orders_dir / clean_dealership
+        qr_base_folder = dealership_folder / "QRCodes"
         
-        # Use bulletproof_orders_dir as the base for QR codes
-        qr_folder = bulletproof_orders_dir / folder_name
+        # Clear existing QR codes for this dealership (keep only most recent order)
+        if qr_base_folder.exists():
+            import shutil
+            logger.info(f"[QR GENERATION] Clearing existing QR codes for {dealership_name}")
+            shutil.rmtree(qr_base_folder)
+            logger.info(f"[QR GENERATION] Removed existing QR folder: {qr_base_folder}")
+        
+        # Build specific QR folder name
+        if order_number:
+            qr_folder_name = f"Order_{order_number}_{date_str}_{time_str}"
+        else:
+            qr_folder_name = f"QRCodes_{date_str}_{time_str}"
+        
+        qr_folder = qr_base_folder / qr_folder_name
         qr_folder.mkdir(parents=True, exist_ok=True)
         
         logger.info(f"[QR GENERATION] Creating QR codes folder: {qr_folder}")
