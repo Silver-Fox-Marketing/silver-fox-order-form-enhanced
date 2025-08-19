@@ -40,6 +40,17 @@ Updated: 2025-08-08 - DEALERSHIP-SPECIFIC VIN LOGS IMPLEMENTATION
 
 ## 🎯 Major Version Updates
 
+### **v2.4 (August 19, 2025) - Complete Dealership Search Functionality**
+- 🔍 **FIXED: Dealership Search**: Complete resolution of search functionality issues
+- 🎯 **Search Features**: Type-to-filter dealerships in Order Processing tab works perfectly
+- 🐛 **Bug Fixes**: 
+  - Fixed duplicate element IDs causing JavaScript confusion
+  - Removed CSS `!important` override preventing display changes
+  - Fixed display property inconsistency (block vs flex)
+  - Cleaned up debug code and test elements
+- ⚡ **User Experience**: Instant search filtering - type "bmw", "ford", "honda" etc. to filter dealership list
+- 🛠️ **Technical**: Comprehensive debugging process and systematic problem resolution
+
 ### **v2.3 (August 19, 2025) - Enhanced Data Exploration & Dealership Drill-Down**
 - 🏢 **Dealership Drill-Down**: Click dealership counts in scraper imports to view specific dealerships
 - 🎯 **Dealership Modal**: Interactive grid showing all dealerships within an import with vehicle counts
@@ -380,7 +391,29 @@ The system provides intelligent VIN logging control to maintain clean historical
 
 ## 🚨 Troubleshooting
 
-### Common Issues
+### **Search Functionality (FIXED in v2.4)**
+✅ **Dealership search now works perfectly!** If you experience search issues:
+
+1. **Search not responding to typing:**
+   - **Solution**: Fixed in v2.4 - duplicate element IDs resolved
+   - **How to test**: Type "bmw" in Order Processing search box - should filter to only BMW dealerships
+
+2. **Search filtering but not showing/hiding items visually:**
+   - **Solution**: Fixed in v2.4 - removed CSS `!important` override  
+   - **How to test**: Search for "honda" - non-Honda dealerships should disappear from list
+
+3. **If search still not working:**
+   - Clear browser cache (Ctrl+F5)
+   - Check browser console (F12) for errors
+   - Restart web server: `python app.py`
+
+### **How Search Works (Technical)**
+- **Location**: Order Processing tab → Dealership list
+- **Function**: Type any text to filter dealerships by name
+- **Examples**: "bmw", "ford", "honda", "lincoln", "toyota"
+- **Reset**: Clear search box or click X button
+
+### Common Issues  
 1. **PostgreSQL Connection Failed**
    - Verify PostgreSQL 16 is running
    - Check password is correct
