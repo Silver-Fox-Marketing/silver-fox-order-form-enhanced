@@ -2812,6 +2812,157 @@ def regenerate_qr_codes_with_urls():
         logger.error(f"Error regenerating QR codes with URLs: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/qr/generate-from-csv', methods=['POST'])
+def generate_qr_codes_from_csv():
+    """Generate QR codes from CSV file for the Order Processing Wizard"""
+    try:
+        data = request.get_json()
+        csv_filename = data.get('csv_filename')
+        dealership_name = data.get('dealership_name')
+        order_number = data.get('order_number', '')
+        
+        if not csv_filename:
+            return jsonify({'error': 'Missing csv_filename'}), 400
+        
+        if not dealership_name:
+            return jsonify({'error': 'Missing dealership_name'}), 400
+        
+        logger.info(f"[QR GENERATION] Starting QR code generation for {dealership_name} from {csv_filename}")
+        
+        # Find the CSV file in multiple possible locations
+        web_gui_orders_dir = Path(__file__).parent / "orders"
+        scripts_orders_dir = Path(__file__).parent.parent / "scripts" / "orders"
+        bulletproof_orders_dir = Path(__file__).parent.parent / "orders"
+        
+        csv_file_path = None
+        for orders_dir in [web_gui_orders_dir, scripts_orders_dir, bulletproof_orders_dir]:
+            potential_path = orders_dir / csv_filename
+            if potential_path.exists():
+                csv_file_path = potential_path
+                break
+        
+        if not csv_file_path:
+            return jsonify({'error': f'CSV file not found: {csv_filename}'}), 404
+        
+        # Import required modules
+        import csv
+        import qrcode
+        from PIL import Image
+        from datetime import datetime
+        
+        # Read the CSV file to get vehicle data
+        vehicles = []
+        try:
+            with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if row.get('Vehicle URL') and row.get('Vin'):
+                        vehicles.append({
+                            'vin': row.get('Vin', ''),
+                            'vehicle_url': row.get('Vehicle URL', ''),
+                            'year': row.get('Year', ''),
+                            'make': row.get('Make', ''),
+                            'model': row.get('Model', ''),
+                            'stock': row.get('Stock', '')
+                        })
+        except Exception as e:
+            logger.error(f"[QR GENERATION] Error reading CSV file: {e}")
+            return jsonify({'error': f'Error reading CSV file: {str(e)}'}), 500
+        
+        if not vehicles:
+            return jsonify({'error': 'No vehicles with URLs found in CSV file'}), 400
+        
+        # Create output folder structure with order number and date
+        timestamp = datetime.now()
+        date_str = timestamp.strftime('%Y%m%d')
+        clean_dealership = dealership_name.replace(' ', '_').replace('/', '_').replace('&', 'and')
+        
+        # Build folder name: Dealership_OrderNumber_Date_QRCodes
+        if order_number:
+            folder_name = f"{clean_dealership}_{order_number}_{date_str}_QRCodes"
+        else:
+            folder_name = f"{clean_dealership}_{timestamp.strftime('%Y%m%d_%H%M%S')}_QRCodes"
+        
+        # Use bulletproof_orders_dir as the base for QR codes
+        qr_folder = bulletproof_orders_dir / folder_name
+        qr_folder.mkdir(parents=True, exist_ok=True)
+        
+        logger.info(f"[QR GENERATION] Creating QR codes folder: {qr_folder}")
+        
+        # Generate QR codes for each vehicle
+        qr_files = []
+        success_count = 0
+        
+        for idx, vehicle in enumerate(vehicles):
+            try:
+                url = vehicle['vehicle_url']
+                if not url:
+                    continue
+                
+                # Generate QR code
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=10,
+                    border=4,
+                )
+                qr.add_data(url)
+                qr.make(fit=True)
+                
+                # Create QR code image
+                img = qr.make_image(fill_color="rgb(50,50,50)", back_color="white")
+                
+                # Resize to 388x388 as per specification
+                img = img.resize((388, 388), Image.Resampling.LANCZOS)
+                
+                # Generate filename with order number and dealership info
+                if order_number:
+                    filename = f"{clean_dealership}_{order_number}_{date_str}_QR_Code_{idx + 1:03d}.png"
+                else:
+                    filename = f"{clean_dealership}_{date_str}_QR_Code_{idx + 1:03d}.png"
+                
+                filepath = qr_folder / filename
+                img.save(filepath)
+                
+                qr_files.append({
+                    'filename': filename,
+                    'filepath': str(filepath),
+                    'vin': vehicle['vin'],
+                    'vehicle_info': f"{vehicle.get('year', '')} {vehicle.get('make', '')} {vehicle.get('model', '')}".strip(),
+                    'stock': vehicle.get('stock', ''),
+                    'url': url
+                })
+                
+                success_count += 1
+                
+                # Log progress for every 10 QR codes
+                if (idx + 1) % 10 == 0:
+                    logger.info(f"[QR GENERATION] Generated {idx + 1}/{len(vehicles)} QR codes")
+                    
+            except Exception as e:
+                logger.error(f"[QR GENERATION] Error generating QR code for vehicle {vehicle.get('vin', 'unknown')}: {e}")
+                continue
+        
+        logger.info(f"[QR GENERATION] Successfully generated {success_count} QR codes in {qr_folder}")
+        
+        # Return success response with file details
+        return jsonify({
+            'success': True,
+            'dealership_name': dealership_name,
+            'order_number': order_number,
+            'qr_folder': str(qr_folder),
+            'qr_folder_name': folder_name,
+            'qr_codes_generated': success_count,
+            'total_vehicles': len(vehicles),
+            'qr_files': qr_files,
+            'csv_file': str(csv_file_path),
+            'timestamp': timestamp.isoformat()
+        })
+        
+    except Exception as e:
+        logger.error(f"[QR GENERATION] Error generating QR codes: {e}")
+        return jsonify({'error': f'QR code generation failed: {str(e)}'}), 500
+
 # =============================================================================
 # REAL-TIME SCRAPER MANAGEMENT ENDPOINTS
 # =============================================================================

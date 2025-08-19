@@ -993,6 +993,11 @@
                 <span>Review</span>
             </div>
             <i class="fas fa-chevron-right progress-arrow"></i>
+            <div class="progress-step" id="step-qr-generation">
+                <i class="fas fa-qrcode"></i>
+                <span>QR Codes</span>
+            </div>
+            <i class="fas fa-chevron-right progress-arrow"></i>
             <div class="progress-step" id="step-order-number">
                 <i class="fas fa-hashtag"></i>
                 <span>Order #</span>
@@ -1184,6 +1189,85 @@
                         Back to VIN Entry
                     </button>
                     <div></div>
+                </div>
+            </div>
+
+            <!-- Step 4.75: QR Code Generation -->
+            <div class="wizard-step" id="qrGenerationStep">
+                <div class="step-header">
+                    <h2 class="step-title">QR Code Generation</h2>
+                    <p class="step-description">Generate QR codes for vehicle URLs from <span id="qrDealershipName">dealership</span></p>
+                </div>
+                
+                <div class="qr-generation-container">
+                    <div class="qr-status-card" id="qrStatusCard">
+                        <div class="qr-info">
+                            <h4><i class="fas fa-qrcode"></i> QR Code Generation</h4>
+                            <p>QR codes will be generated for each vehicle URL in your CSV file</p>
+                            <div class="qr-details" id="qrDetails">
+                                <div class="detail-item">
+                                    <span class="label">CSV File:</span>
+                                    <span class="value" id="qrCsvFileName">Loading...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Vehicle Count:</span>
+                                    <span class="value" id="qrVehicleCount">0</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Order Number:</span>
+                                    <span class="value" id="qrOrderNumber">Not set</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Output Folder:</span>
+                                    <span class="value" id="qrOutputFolder">Will be generated</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="qr-progress" id="qrProgress" style="display: none;">
+                            <div class="progress-info">
+                                <span class="progress-text">Generating QR codes...</span>
+                                <span class="progress-count" id="qrProgressCount">0/0</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="qrProgressFill"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="qr-results" id="qrResults" style="display: none;">
+                            <div class="results-summary">
+                                <div class="result-stat">
+                                    <i class="fas fa-check-circle success"></i>
+                                    <span class="stat-label">Generated</span>
+                                    <span class="stat-value" id="qrGeneratedCount">0</span>
+                                </div>
+                                <div class="result-stat">
+                                    <i class="fas fa-folder"></i>
+                                    <span class="stat-label">Folder</span>
+                                    <span class="stat-value" id="qrFolderName">N/A</span>
+                                </div>
+                            </div>
+                            
+                            <div class="qr-file-list" id="qrFileList">
+                                <!-- QR code files will be listed here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-actions" id="qrActions">
+                        <button class="btn-wizard secondary" onclick="wizard.backToCsvReview()">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to CSV Review
+                        </button>
+                        <button class="btn-wizard primary" onclick="wizard.generateQRCodes()" id="generateQRBtn">
+                            <i class="fas fa-qrcode"></i>
+                            Generate QR Codes
+                        </button>
+                        <button class="btn-wizard primary" onclick="wizard.proceedToDataEditor()" id="qrProceedBtn" style="display: none;">
+                            <i class="fas fa-arrow-right"></i>
+                            Continue to Data Editor
+                        </button>
+                    </div>
                 </div>
             </div>
 

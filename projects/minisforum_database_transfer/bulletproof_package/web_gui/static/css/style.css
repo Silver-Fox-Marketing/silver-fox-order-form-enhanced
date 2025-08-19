@@ -1343,18 +1343,22 @@ body {
     gap: var(--spacing-xl);
     height: calc(100vh - 160px);
     min-height: 600px;
+    padding: var(--spacing-md);
 }
 
 /* Selection Panel (Left Side) */
 .selection-panel {
-    background: var(--white);
-    border: 1px solid #e0e0e0;
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
     overflow-y: auto;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    position: relative;
 }
 
 .day-selection {
@@ -1365,11 +1369,24 @@ body {
 .day-selection h3,
 .dealership-selection h3 {
     margin: 0 0 var(--spacing-md) 0;
-    color: var(--black);
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px solid #f1f3f4;
-    padding-bottom: var(--spacing-sm);
+    color: #1e293b;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-bottom: 3px solid #e2e8f0;
+    padding-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.day-selection h3:before,
+.dealership-selection h3:before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), #ff6b6b);
+    border-radius: 2px;
 }
 
 .dealership-selection {
@@ -1382,39 +1399,61 @@ body {
 /* Day Buttons */
 .day-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: var(--spacing-sm);
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: var(--spacing-md);
     max-height: 300px;
     overflow-y: auto;
 }
 
 .day-btn {
-    background: #f8f9fa;
-    border: 1px solid #e1e5e9;
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm) var(--spacing-xs);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: var(--spacing-md) var(--spacing-sm);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-xs);
-    font-weight: 500;
-    color: var(--black);
     font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    position: relative;
+    overflow: hidden;
 }
 
 .day-btn:hover {
-    background: var(--white);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border-color: var(--primary-red);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px -8px rgba(231, 76, 60, 0.3), 0 0 0 1px rgba(231, 76, 60, 0.1);
+    color: var(--primary-red);
+}
+
+.day-btn:hover:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 0.6s ease-out;
+}
+
+@keyframes shimmer {
+    to {
+        left: 100%;
+    }
 }
 
 .day-btn.active {
-    background: var(--primary-red);
+    background: linear-gradient(135deg, var(--primary-red) 0%, #ff4757 100%);
     color: var(--white);
     border-color: var(--primary-red);
+    box-shadow: 0 8px 25px -8px rgba(231, 76, 60, 0.4), 0 0 0 1px rgba(231, 76, 60, 0.2);
+    transform: translateY(-1px);
 }
 
 .day-btn i {
@@ -1484,21 +1523,43 @@ body {
 }
 
 .dealership-item {
-    background: #f8f9fa;
-    border: 1px solid #e1e5e9;
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    overflow: visible;
+    min-height: 60px;
 }
 
 .dealership-item:hover {
-    background: var(--white);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border-color: var(--primary-red);
-    transform: translateX(2px);
+    transform: translateX(4px) translateY(-1px);
+    box-shadow: 0 8px 25px -8px rgba(231, 76, 60, 0.25), 0 0 0 1px rgba(231, 76, 60, 0.05);
+}
+
+.dealership-item:hover:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.08), transparent);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    to {
+        left: 100%;
+    }
 }
 
 .dealership-item.selected {
@@ -1508,35 +1569,74 @@ body {
 }
 
 .dealership-name {
-    font-weight: 500;
+    font-weight: 600;
     flex: 1;
+    color: #1e293b;
+    font-size: 1rem;
+    line-height: 1.4;
+    padding-right: 12px;
 }
 
 .dealership-type {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    background: rgba(0,0,0,0.1);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    color: #475569;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #cbd5e1;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* CAO Type Styling */
+.dealership-type.cao {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+/* LIST Type Styling */  
+.dealership-type.list {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    color: #16a34a;
+    border-color: #bbf7d0;
 }
 
 /* Queue Panel (Right Side) */
 .queue-panel {
-    background: var(--white);
-    border: 1px solid #e0e0e0;
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    position: relative;
 }
 
 .queue-panel h3 {
     margin: 0 0 var(--spacing-lg) 0;
-    color: var(--black);
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px solid #f1f3f4;
-    padding-bottom: var(--spacing-sm);
+    color: #1e293b;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-bottom: 3px solid #e2e8f0;
+    padding-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.queue-panel h3:before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), #ff6b6b);
+    border-radius: 2px;
 }
 
 .queue-items {
@@ -1547,8 +1647,12 @@ body {
 
 .empty-queue {
     text-align: center;
-    padding: var(--spacing-xl);
-    color: var(--gray);
+    padding: calc(var(--spacing-xl) * 2);
+    color: #64748b;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    border: 2px dashed #cbd5e1;
+    margin: var(--spacing-lg) 0;
 }
 
 .empty-queue i {
@@ -4352,4 +4456,190 @@ body {
 .setting-actions .btn-sm {
     padding: 6px 12px;
     font-size: 0.85rem;
+}
+
+/* QR Code Generation Step Styles */
+.qr-generation-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.qr-status-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.qr-info h4 {
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.qr-info p {
+    color: var(--gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+.qr-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.detail-item .label {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.9rem;
+}
+
+.detail-item .value {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.qr-progress {
+    margin: var(--spacing-lg) 0;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-text {
+    font-weight: 500;
+    color: var(--black);
+}
+
+.progress-count {
+    font-weight: 600;
+    color: var(--primary-red);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-red) 0%, var(--light-red) 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.qr-results {
+    margin: var(--spacing-lg) 0;
+}
+
+.results-summary {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.result-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: #f8f9fa;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-red);
+}
+
+.result-stat i {
+    font-size: 1.2rem;
+}
+
+.result-stat i.success {
+    color: var(--success-green);
+}
+
+.stat-label {
+    font-weight: 500;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 700;
+    color: var(--black);
+    font-size: 1rem;
+}
+
+.qr-file-list h5 {
+    color: var(--black);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.qr-file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.qr-file-item {
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.qr-file-info strong {
+    color: var(--black);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.qr-vehicle-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.qr-vehicle-info span {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.qr-vehicle-info .vin {
+    font-weight: 600;
+    color: var(--primary-red);
+}
+
+.qr-file-url small {
+    color: var(--text-muted);
+    word-break: break-all;
+}
+
+.qr-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
 }

@@ -8,7 +8,7 @@
 class OrderWizard {
     constructor() {
         this.currentStep = 0;
-        this.steps = ['initialize', 'cao', 'list', 'review', 'order-number', 'complete'];
+        this.steps = ['initialize', 'cao', 'list', 'review', 'qr-generation', 'order-number', 'complete'];
         this.queueData = [];
         this.caoOrders = [];
         this.listOrders = [];
@@ -391,30 +391,197 @@ class OrderWizard {
         // Load CSV data into spreadsheet view
         this.loadCSVIntoSpreadsheet(result);
         
-        // Load QR codes into preview grid
+        // Load QR codes into preview grid (if they exist)
         this.loadQRCodesIntoGrid(result);
     }
     
-    approveOutput() {
-        // Check if we need order number for current dealership
-        if (this.processedOrders.length > 0) {
-            // Get the last processed order
-            const lastOrder = this.processedOrders[this.processedOrders.length - 1];
-            this.showOrderNumberStep(lastOrder.dealership, lastOrder.result);
-        } else {
-            // Move to next dealership or complete
-            this.currentListIndex++;
-            
-            if (this.currentListIndex < this.listOrders.length) {
-                // Show next dealership
-                this.updateProgress('list');
-                this.showStep('listStep');
-                this.showCurrentListOrder();
-            } else {
-                // All list orders complete
-                this.completeProcessing();
-            }
+    // Navigate from CSV review to QR generation
+    proceedToQRGeneration() {
+        if (!this.currentOrderResult) {
+            console.error('No current order result available for QR generation');
+            return;
         }
+        
+        this.showQRGenerationStep(this.currentOrderResult.dealership, this.currentOrderResult);
+    }
+    
+    showQRGenerationStep(dealershipName, result) {
+        this.updateProgress('qr-generation');
+        this.showStep('qrGenerationStep');
+        
+        // Update dealership name in QR step
+        const qrDealershipEl = document.getElementById('qrDealershipName');
+        if (qrDealershipEl) {
+            qrDealershipEl.textContent = dealershipName;
+        }
+        
+        // Populate QR generation details
+        this.setupQRGenerationDetails(dealershipName, result);
+    }
+    
+    setupQRGenerationDetails(dealershipName, result) {
+        // Update QR generation details
+        const qrCsvFileName = document.getElementById('qrCsvFileName');
+        const qrVehicleCount = document.getElementById('qrVehicleCount');
+        const qrOrderNumber = document.getElementById('qrOrderNumber');
+        
+        if (qrCsvFileName && result.download_csv) {
+            // Extract filename from download path
+            const filename = result.download_csv.split('/').pop();
+            qrCsvFileName.textContent = filename;
+        }
+        
+        if (qrVehicleCount) {
+            qrVehicleCount.textContent = result.vehicles_processed || 0;
+        }
+        
+        if (qrOrderNumber) {
+            // Try to get order number from current context or show as "Not set"
+            qrOrderNumber.textContent = this.currentOrderNumber || 'Not set - will be generated';
+        }
+    }
+    
+    async generateQRCodes() {
+        if (!this.currentOrderResult) {
+            console.error('No current order result available');
+            return;
+        }
+        
+        const generateQRBtn = document.getElementById('generateQRBtn');
+        const qrProceedBtn = document.getElementById('qrProceedBtn');
+        const qrProgress = document.getElementById('qrProgress');
+        const qrResults = document.getElementById('qrResults');
+        
+        try {
+            // Show progress and disable button
+            generateQRBtn.disabled = true;
+            generateQRBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+            qrProgress.style.display = 'block';
+            qrResults.style.display = 'none';
+            
+            // Extract CSV filename from the result
+            let csvFilename = '';
+            if (this.currentOrderResult.download_csv) {
+                csvFilename = this.currentOrderResult.download_csv.split('/').pop();
+            } else if (this.currentOrderResult.csv_file) {
+                csvFilename = this.currentOrderResult.csv_file.split('/').pop().replace(/\\\\/g, '/').split('/').pop();
+            }
+            
+            if (!csvFilename) {
+                throw new Error('No CSV file available for QR generation');
+            }
+            
+            console.log('[QR GENERATION] Starting with CSV file:', csvFilename);
+            
+            // Call the QR generation API
+            const response = await fetch('/api/qr/generate-from-csv', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    csv_filename: csvFilename,
+                    dealership_name: this.currentOrderResult.dealership,
+                    order_number: this.currentOrderNumber || ''
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'QR generation failed');
+            }
+            
+            const result = await response.json();
+            console.log('[QR GENERATION] Success:', result);
+            
+            // Update progress to 100%
+            const progressFill = document.getElementById('qrProgressFill');
+            const progressCount = document.getElementById('qrProgressCount');
+            if (progressFill) progressFill.style.width = '100%';
+            if (progressCount) progressCount.textContent = `${result.qr_codes_generated}/${result.qr_codes_generated}`;
+            
+            // Hide progress and show results
+            setTimeout(() => {
+                qrProgress.style.display = 'none';
+                qrResults.style.display = 'block';
+                
+                // Update result stats
+                const qrGeneratedCount = document.getElementById('qrGeneratedCount');
+                const qrFolderName = document.getElementById('qrFolderName');
+                
+                if (qrGeneratedCount) qrGeneratedCount.textContent = result.qr_codes_generated;
+                if (qrFolderName) qrFolderName.textContent = result.qr_folder_name;
+                
+                // Render QR file list
+                this.renderQRFileList(result.qr_files);
+                
+                // Store QR result for later use
+                this.currentQRResult = result;
+                
+                // Show proceed button
+                qrProceedBtn.style.display = 'inline-flex';
+                
+            }, 1000);
+            
+        } catch (error) {
+            console.error('[QR GENERATION] Error:', error);
+            alert(`QR Generation Error: ${error.message}`);
+            
+            // Hide progress and reset button
+            qrProgress.style.display = 'none';
+            generateQRBtn.disabled = false;
+            generateQRBtn.innerHTML = '<i class="fas fa-qrcode"></i> Generate QR Codes';
+        }
+    }
+    
+    renderQRFileList(qrFiles) {
+        const qrFileList = document.getElementById('qrFileList');
+        if (!qrFileList || !qrFiles || qrFiles.length === 0) return;
+        
+        qrFileList.innerHTML = '<h5><i class="fas fa-file-image"></i> Generated QR Code Files:</h5>';
+        
+        const fileListContainer = document.createElement('div');
+        fileListContainer.className = 'qr-file-grid';
+        
+        qrFiles.forEach(file => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'qr-file-item';
+            fileItem.innerHTML = `
+                <div class="qr-file-info">
+                    <strong>${file.filename}</strong>
+                    <div class="qr-vehicle-info">
+                        <span class="vin">VIN: ${file.vin}</span>
+                        <span class="vehicle">${file.vehicle_info}</span>
+                        <span class="stock">Stock: ${file.stock}</span>
+                    </div>
+                </div>
+                <div class="qr-file-url">
+                    <small>${file.url}</small>
+                </div>
+            `;
+            fileListContainer.appendChild(fileItem);
+        });
+        
+        qrFileList.appendChild(fileListContainer);
+    }
+    
+    backToCsvReview() {
+        this.updateProgress('review');
+        this.showStep('reviewStep');
+    }
+    
+    proceedToDataEditor() {
+        // Move to data editor after QR generation
+        this.updateProgress('review'); // Keep review progress for data editor
+        this.showStep('dataEditorStep');
+        
+        // Load CSV data for editing
+        this.loadCSVDataForEditing();
+    }
+    
+    approveOutput() {
+        // Navigate to QR generation step after CSV review
+        this.proceedToQRGeneration();
     }
     
     showDataEditor() {
