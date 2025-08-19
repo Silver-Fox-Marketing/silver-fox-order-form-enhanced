@@ -1782,15 +1782,10 @@ class MinisFornumApp {
         console.log('Loading dealership settings...');
         
         try {
-            const response = await fetch('/api/dealership-settings');
-            const data = await response.json();
+            const response = await fetch('/api/dealerships');
+            const dealerships = await response.json();
             
-            if (data.success) {
-                this.renderDealershipSettings(data.dealerships);
-            } else {
-                console.error('Failed to load dealership settings:', data.error);
-                this.showDealershipSettingsError('Failed to load dealership settings');
-            }
+            this.renderDealershipSettings(dealerships);
         } catch (error) {
             console.error('Error loading dealership settings:', error);
             this.showDealershipSettingsError('Error loading dealership settings');
@@ -1811,43 +1806,59 @@ class MinisFornumApp {
             return;
         }
         
-        container.innerHTML = dealerships.map(dealer => `
-            <div class="dealership-settings-card" data-dealer-id="${dealer.id}">
+        container.innerHTML = dealerships.map(dealer => {
+            const vehicleTypes = dealer.filtering_rules?.vehicle_types || [];
+            const vehicleTypesDisplay = vehicleTypes.length > 0 
+                ? vehicleTypes.map(type => {
+                    const typeDisplay = type.charAt(0).toUpperCase() + type.slice(1);
+                    return `<span class="vehicle-type-tag ${type}">${typeDisplay}</span>`;
+                }).join('')
+                : '<span class="no-types">No vehicle types configured</span>';
+            
+            return `
+            <div class="dealership-settings-card" data-dealer-name="${dealer.name}">
                 <div class="settings-card-header">
                     <h3>${dealer.name}</h3>
-                    <span class="vehicle-count">${dealer.vehicle_count || 0} vehicles</span>
+                    <div class="active-status">
+                        <input type="checkbox" 
+                               id="active-${dealer.name.replace(/\s+/g, '-')}" 
+                               ${dealer.is_active ? 'checked' : ''} 
+                               onchange="app.toggleDealershipActive('${dealer.name}', this.checked)">
+                        <label for="active-${dealer.name.replace(/\s+/g, '-')}">Active</label>
+                    </div>
                 </div>
                 <div class="settings-card-body">
                     <div class="setting-group">
                         <label>Vehicle Types to Process:</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="new" 
-                                    ${dealer.filtering_rules?.vehicle_types?.includes('new') ? 'checked' : ''}>
-                                <span>New</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="used" 
-                                    ${dealer.filtering_rules?.vehicle_types?.includes('used') ? 'checked' : ''}>
-                                <span>Used</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="certified" 
-                                    ${dealer.filtering_rules?.vehicle_types?.includes('certified') ? 'checked' : ''}>
-                                <span>Certified</span>
-                            </label>
+                        <div class="vehicle-types-display">
+                            ${vehicleTypesDisplay}
                         </div>
                     </div>
+                    
                     <div class="setting-group">
-                        <label>
-                            <input type="checkbox" class="active-toggle" data-dealer-id="${dealer.id}" 
-                                ${dealer.is_active ? 'checked' : ''}>
-                            Active
-                        </label>
+                        <label>Configuration:</label>
+                        <div class="config-details">
+                            <span class="config-item">
+                                <i class="fas fa-car"></i>
+                                ${vehicleTypes.length} vehicle type(s) configured
+                            </span>
+                            <span class="config-item">
+                                <i class="fas fa-calendar"></i>
+                                Updated: ${dealer.updated_at ? new Date(dealer.updated_at).toLocaleDateString() : 'Never'}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-actions">
+                        <button class="btn btn-secondary btn-sm" onclick="app.editDealershipSettings('${dealer.name}')">
+                            <i class="fas fa-edit"></i>
+                            Edit Settings
+                        </button>
                     </div>
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
         
         // Setup save button
         const saveBtn = document.getElementById('saveDealershipSettings');
@@ -1877,6 +1888,40 @@ class MinisFornumApp {
                 </button>
             </div>
         `;
+    }
+    
+    async toggleDealershipActive(dealershipName, isActive) {
+        try {
+            const response = await fetch(`/api/dealerships/${encodeURIComponent(dealershipName)}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    is_active: isActive
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.addTerminalMessage(`${dealershipName} ${isActive ? 'activated' : 'deactivated'}`, 'success');
+            } else {
+                this.addTerminalMessage(`Failed to update ${dealershipName}: ${result.error}`, 'error');
+                // Reload settings to reset checkbox state
+                this.loadDealershipSettings();
+            }
+        } catch (error) {
+            console.error('Error toggling dealership active state:', error);
+            this.addTerminalMessage(`Error updating ${dealershipName}`, 'error');
+            // Reload settings to reset checkbox state
+            this.loadDealershipSettings();
+        }
+    }
+    
+    async editDealershipSettings(dealershipName) {
+        console.log(`Editing settings for: ${dealershipName}`);
+        this.addTerminalMessage('Dealership settings editor - Coming soon!', 'info');
     }
     
     async saveDealershipSettings() {
@@ -1978,6 +2023,106 @@ class MinisFornumApp {
         
         // Add event listener using delegation
         dealershipList.addEventListener('click', this.dealershipClickHandler);
+        
+        // Setup dealership search functionality
+        this.setupDealershipSearchListeners();
+    }
+    
+    setupDealershipSearchListeners() {
+        const searchInput = document.getElementById('dealershipSearchInput');
+        const searchBtn = document.getElementById('dealershipSearchBtn');
+        const clearBtn = document.getElementById('clearDealershipSearchBtn');
+        
+        if (searchInput && !searchInput.hasSearchListeners) {
+            searchInput.addEventListener('input', () => this.filterDealershipList());
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.filterDealershipList();
+                }
+            });
+            searchInput.hasSearchListeners = true;
+        }
+        
+        if (searchBtn && !searchBtn.hasSearchListeners) {
+            searchBtn.addEventListener('click', () => this.filterDealershipList());
+            searchBtn.hasSearchListeners = true;
+        }
+        
+        if (clearBtn && !clearBtn.hasSearchListeners) {
+            clearBtn.addEventListener('click', () => this.clearDealershipSearch());
+            clearBtn.hasSearchListeners = true;
+        }
+    }
+    
+    filterDealershipList() {
+        const searchInput = document.getElementById('dealershipSearchInput');
+        const clearBtn = document.getElementById('clearDealershipSearchBtn');
+        const dealershipList = document.getElementById('dealershipList');
+        
+        if (!searchInput || !dealershipList) return;
+        
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const dealershipItems = dealershipList.querySelectorAll('.dealership-item');
+        
+        // Show/hide clear button
+        if (clearBtn) {
+            clearBtn.style.display = searchTerm ? 'inline-block' : 'none';
+        }
+        
+        let visibleCount = 0;
+        dealershipItems.forEach(item => {
+            const dealershipName = item.querySelector('.dealership-name');
+            if (dealershipName) {
+                const name = dealershipName.textContent.toLowerCase();
+                const matches = !searchTerm || name.includes(searchTerm);
+                item.style.display = matches ? 'block' : 'none';
+                if (matches) visibleCount++;
+            }
+        });
+        
+        // Show "no results" message if needed
+        this.updateDealershipSearchResults(visibleCount, searchTerm);
+    }
+    
+    clearDealershipSearch() {
+        const searchInput = document.getElementById('dealershipSearchInput');
+        const clearBtn = document.getElementById('clearDealershipSearchBtn');
+        
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        if (clearBtn) {
+            clearBtn.style.display = 'none';
+        }
+        
+        this.filterDealershipList();
+    }
+    
+    updateDealershipSearchResults(visibleCount, searchTerm) {
+        const dealershipList = document.getElementById('dealershipList');
+        if (!dealershipList) return;
+        
+        // Remove any existing "no results" message
+        const existingNoResults = dealershipList.querySelector('.no-search-results');
+        if (existingNoResults) {
+            existingNoResults.remove();
+        }
+        
+        // Add "no results" message if search term exists but no matches
+        if (searchTerm && visibleCount === 0) {
+            const noResultsDiv = document.createElement('div');
+            noResultsDiv.className = 'no-search-results';
+            noResultsDiv.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #666;">
+                    <i class="fas fa-search"></i>
+                    <p>No dealerships found matching "${searchTerm}"</p>
+                    <button class="btn btn-secondary btn-small" onclick="window.appController.clearDealershipSearch()">
+                        Clear Search
+                    </button>
+                </div>
+            `;
+            dealershipList.appendChild(noResultsDiv);
+        }
     }
     
     async loadDealershipDefaults() {
@@ -4408,8 +4553,15 @@ class MinisFornumApp {
     
     async loadVinLogData(dealershipName) {
         try {
-            const response = await fetch(`/api/dealership-vin-logs/${encodeURIComponent(dealershipName)}`);
+            console.log('Loading VIN data for:', dealershipName);
+            const response = await fetch(`/api/dealership-vin-logs/${encodeURIComponent(dealershipName)}?limit=10000`);
             const data = await response.json();
+            console.log('API Response:', { 
+                success: data.success, 
+                historyCount: data.history?.length || 0,
+                statsTotal: data.stats?.total_vins || 0,
+                firstFewDates: data.history?.slice(0, 5).map(h => h.processed_date) || []
+            });
             
             if (data.success) {
                 // Store the full data for filtering

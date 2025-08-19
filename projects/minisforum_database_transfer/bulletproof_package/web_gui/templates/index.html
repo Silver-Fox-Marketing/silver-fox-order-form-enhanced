@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinisForum Database Control - Silver Fox Marketing</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/vin_log_update.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2025081902">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vin_log_update.css') }}?v=2025081902">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -476,6 +476,18 @@
                                 <!-- Individual Dealerships -->
                                 <div class="dealership-selection">
                                     <h3>Individual Dealerships</h3>
+                                    
+                                    <!-- Dealership Search -->
+                                    <div class="dealership-search">
+                                        <input type="text" id="dealershipSearchInput" placeholder="Search dealerships..." class="search-input">
+                                        <button class="search-btn" id="dealershipSearchBtn">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                        <button class="clear-search-btn" id="clearDealershipSearchBtn" style="display: none;">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    
                                     <div class="dealership-list" id="dealershipList">
                                         <!-- Will be populated dynamically -->
                                         <div class="loading">Loading dealerships...</div>
@@ -770,17 +782,26 @@
                     <p>Upload a CSV file with VIN and order number data to update the <span id="updateDealershipName">dealership</span> VIN log.</p>
                     
                     <div class="csv-format-info">
-                        <h4><i class="fas fa-info-circle"></i> Required CSV Format:</h4>
+                        <h4><i class="fas fa-info-circle"></i> Required CSV Format - Grouped Order Format:</h4>
                         <div class="format-example">
-                            <code>VIN,ORDER_NUMBER,ORDER_DATE</code><br>
-                            <code>1HGBH41JXMN109186,SF24001,2024-01-15</code><br>
-                            <code>2FMDK3GC4DBA54321,SF24002,2024-01-16</code>
+                            <code>ORDER_NUMBER,VIN</code><br>
+                            <code>SF24001,1HGBH41JXMN109186</code><br>
+                            <code>,2FMDK3GC4DBA54321</code><br>
+                            <code>,1FTFW1ET5CFC12345</code><br>
+                            <code></code><br>
+                            <code>SF24002,3FAHP0JA4CR123456</code><br>
+                            <code>,5NPEB4AC7BH987654</code>
                         </div>
                         <ul class="format-requirements">
-                            <li><strong>VIN:</strong> 17-character vehicle identification number</li>
-                            <li><strong>ORDER_NUMBER:</strong> Unique order identifier</li>
-                            <li><strong>ORDER_DATE:</strong> Date in YYYY-MM-DD format (optional)</li>
+                            <li><strong>ORDER_NUMBER:</strong> Unique order identifier in first column, first row of each group only</li>
+                            <li><strong>VIN:</strong> 17-character vehicle identification number in second column</li>
+                            <li><strong>Group Format:</strong> Order number followed by associated VINs, then empty row to separate groups</li>
+                            <li><strong>Multiple VINs:</strong> Leave order number column empty for additional VINs in same order</li>
                         </ul>
+                        <div class="format-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Note:</strong> The system automatically detects both grouped format (shown above) and standard columnar format for flexibility.
+                        </div>
                     </div>
                 </div>
                 
@@ -955,6 +976,6 @@
     </div>
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}?v=2025081902"></script>
 </body>
 </html>
