@@ -8,12 +8,14 @@
 class OrderWizard {
     constructor() {
         this.currentStep = 0;
-        this.steps = ['initialize', 'cao', 'list', 'review', 'complete'];
+        this.steps = ['initialize', 'cao', 'list', 'review', 'order-number', 'complete'];
         this.queueData = [];
         this.caoOrders = [];
         this.listOrders = [];
         this.currentListIndex = 0;
         this.processedOrders = [];
+        this.currentOrderVins = [];
+        this.currentOrderDealership = null;
         this.processingResults = {
             totalDealerships: 0,
             caoProcessed: 0,
@@ -52,6 +54,15 @@ class OrderWizard {
                 console.error('No queue data found');
                 this.showError('No queue data available. Please return to the main dashboard and setup your queue.');
             }
+            
+            // Load testing mode setting from localStorage
+            const testingMode = localStorage.getItem('orderWizardTestingMode') === 'true';
+            const testingCheckbox = document.getElementById('skipVinLogging');
+            if (testingCheckbox) {
+                testingCheckbox.checked = testingMode;
+                console.log('Applied testing mode setting:', testingMode);
+            }
+            
         } catch (error) {
             console.error('Error loading queue data:', error);
             this.showError('Error loading queue data: ' + error.message);
@@ -372,92 +383,35 @@ class OrderWizard {
     }
     
     renderOutputFiles(result) {
-        const csvFileList = document.getElementById('csvFileList');
-        const qrFileList = document.getElementById('qrFileList');
+        // Store the result for later use
+        this.currentOrderResult = result;
         
-        // Handle CSV file display - use download_csv route if available
-        if (csvFileList) {
-            if (result.download_csv) {
-                const csvFileName = result.download_csv.split('/').pop().replace('download_csv/', '');
-                csvFileList.innerHTML = `
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">${csvFileName}</div>
-                            <div class="file-size">${result.new_vehicles || result.vehicles_processed || 0} vehicles</div>
-                        </div>
-                        <div class="file-actions">
-                            <button class="download-btn" onclick="wizard.downloadCSV('${csvFileName}')">
-                                <i class="fas fa-download"></i> Download CSV
-                            </button>
-                            <button class="preview-btn" onclick="wizard.previewCSV('${csvFileName}')">
-                                <i class="fas fa-eye"></i> Preview
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else if (result.csv_files) {
-                csvFileList.innerHTML = result.csv_files.map(file => `
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${file.size || 'Unknown size'}</div>
-                        </div>
-                        <button class="download-btn" onclick="wizard.downloadFile('${file.path}')">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-        }
+        // Load CSV data into spreadsheet view
+        this.loadCSVIntoSpreadsheet(result);
         
-        // Handle QR files display  
-        if (qrFileList) {
-            if (result.qr_folder) {
-                const qrCount = result.qr_codes_generated || result.new_vehicles || 0;
-                qrFileList.innerHTML = `
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">QR Code Files</div>
-                            <div class="file-size">${qrCount} QR codes generated</div>
-                        </div>
-                        <div class="file-actions">
-                            <button class="download-btn" onclick="wizard.downloadQRFolder('${result.qr_folder}')">
-                                <i class="fas fa-download"></i> Download QR Codes
-                            </button>
-                            <button class="preview-btn" onclick="wizard.previewQRFolder('${result.qr_folder}')">
-                                <i class="fas fa-eye"></i> Preview QR Codes
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else if (result.qr_files) {
-                qrFileList.innerHTML = result.qr_files.map(file => `
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${file.count || 0} QR codes</div>
-                        </div>
-                        <button class="download-btn" onclick="wizard.downloadFile('${file.path}')">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-        }
+        // Load QR codes into preview grid
+        this.loadQRCodesIntoGrid(result);
     }
     
     approveOutput() {
-        // Move to next dealership or complete
-        this.currentListIndex++;
-        
-        if (this.currentListIndex < this.listOrders.length) {
-            // Show next dealership
-            this.updateProgress('list');
-            this.showStep('listStep');
-            this.showCurrentListOrder();
+        // Check if we need order number for current dealership
+        if (this.processedOrders.length > 0) {
+            // Get the last processed order
+            const lastOrder = this.processedOrders[this.processedOrders.length - 1];
+            this.showOrderNumberStep(lastOrder.dealership, lastOrder.result);
         } else {
-            // All list orders complete
-            this.completeProcessing();
+            // Move to next dealership or complete
+            this.currentListIndex++;
+            
+            if (this.currentListIndex < this.listOrders.length) {
+                // Show next dealership
+                this.updateProgress('list');
+                this.showStep('listStep');
+                this.showCurrentListOrder();
+            } else {
+                // All list orders complete
+                this.completeProcessing();
+            }
         }
     }
     
@@ -874,11 +828,17 @@ class OrderWizard {
             }
         }
         
-        // Go back to review step
-        this.backToReview();
-        
-        // Show success message
-        this.showSuccess('Data changes applied successfully');
+        // Check if we need order number for current dealership
+        if (this.processedOrders.length > 0) {
+            const lastOrder = this.processedOrders[this.processedOrders.length - 1];
+            this.showOrderNumberStep(lastOrder.dealership, lastOrder.result);
+        } else {
+            // Go back to review step
+            this.backToReview();
+            
+            // Show success message
+            this.showSuccess('Data changes applied successfully');
+        }
     }
     
     backToReview() {
@@ -1296,6 +1256,181 @@ class OrderWizard {
         }
     }
     
+    // ========== ORDER NUMBER STEP METHODS ==========
+    
+    showOrderNumberStep(dealershipName, orderResult) {
+        console.log('Showing order number step for:', dealershipName);
+        
+        // Update progress
+        this.updateProgress('order-number');
+        this.showStep('orderNumberStep');
+        
+        // Store current order info
+        this.currentOrderDealership = dealershipName;
+        this.currentOrderVins = orderResult.processed_vins || [];
+        
+        // Update UI elements
+        const dealershipDisplay = document.getElementById('orderNumberDealershipDisplay');
+        const orderDealershipName = document.getElementById('orderDealershipName');
+        const vinCountDisplay = document.getElementById('orderVinCount');
+        const orderNumberInput = document.getElementById('orderNumberInput');
+        const applyOrderNumberBtn = document.getElementById('applyOrderNumberBtn');
+        const vinPreviewList = document.getElementById('vinPreviewList');
+        
+        if (dealershipDisplay) {
+            dealershipDisplay.textContent = dealershipName;
+        }
+        
+        if (orderDealershipName) {
+            orderDealershipName.textContent = dealershipName;
+        }
+        
+        if (vinCountDisplay) {
+            vinCountDisplay.textContent = this.currentOrderVins.length;
+        }
+        
+        // Generate suggested order number
+        const currentDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const dealershipSlug = dealershipName.toUpperCase().replace(/[^A-Z0-9]/g, '_').replace(/_{2,}/g, '_').replace(/^_|_$/g, '');
+        const orderType = orderResult.order_type || 'CAO';
+        const suggestedOrderNumber = `${dealershipSlug}_${orderType}_${currentDate}_001`;
+        
+        if (orderNumberInput) {
+            orderNumberInput.value = suggestedOrderNumber;
+            orderNumberInput.addEventListener('input', () => {
+                const hasValue = orderNumberInput.value.trim().length > 0;
+                applyOrderNumberBtn.disabled = !hasValue;
+                
+                if (hasValue) {
+                    this.showVinPreview();
+                } else {
+                    document.getElementById('orderNumberPreview').style.display = 'none';
+                }
+            });
+            
+            // Trigger initial preview
+            if (suggestedOrderNumber) {
+                this.showVinPreview();
+                applyOrderNumberBtn.disabled = false;
+            }
+        }
+    }
+    
+    showVinPreview() {
+        const orderNumberInput = document.getElementById('orderNumberInput');
+        const orderNumberPreview = document.getElementById('orderNumberPreview');
+        const vinPreviewList = document.getElementById('vinPreviewList');
+        
+        if (!orderNumberInput?.value.trim()) {
+            orderNumberPreview.style.display = 'none';
+            return;
+        }
+        
+        // Show VIN preview
+        if (this.currentOrderVins.length > 0) {
+            vinPreviewList.innerHTML = this.currentOrderVins
+                .slice(0, 10) // Show first 10 VINs
+                .map(vin => `<div style="padding: 2px 0;">${vin}</div>`)
+                .join('');
+            
+            if (this.currentOrderVins.length > 10) {
+                vinPreviewList.innerHTML += `<div style="color: #999; padding: 5px 0; font-style: italic;">... and ${this.currentOrderVins.length - 10} more VINs</div>`;
+            }
+            
+            orderNumberPreview.style.display = 'block';
+        } else {
+            vinPreviewList.innerHTML = '<div style="color: #999; font-style: italic;">No VINs to update</div>';
+            orderNumberPreview.style.display = 'block';
+        }
+    }
+    
+    async applyOrderNumber() {
+        const orderNumberInput = document.getElementById('orderNumberInput');
+        const applyOrderNumberBtn = document.getElementById('applyOrderNumberBtn');
+        
+        const orderNumber = orderNumberInput?.value.trim();
+        if (!orderNumber) {
+            this.showMessage('Please enter an order number', 'error');
+            return;
+        }
+        
+        if (!this.currentOrderDealership || this.currentOrderVins.length === 0) {
+            this.showMessage('No order data found to update', 'error');
+            return;
+        }
+        
+        // Disable button during processing
+        applyOrderNumberBtn.disabled = true;
+        applyOrderNumberBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Applying...';
+        
+        try {
+            console.log('Applying order number:', orderNumber, 'to', this.currentOrderVins.length, 'VINs for', this.currentOrderDealership);
+            
+            // Call backend to apply order number to VIN log
+            const response = await fetch('/api/orders/apply-order-number', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    dealership_name: this.currentOrderDealership,
+                    order_number: orderNumber,
+                    vins: this.currentOrderVins
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to apply order number: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.showMessage(`Order number ${orderNumber} applied to ${result.updated_vins || this.currentOrderVins.length} VINs`, 'success');
+                
+                // Continue to next dealership or completion
+                this.continueAfterOrderNumber();
+            } else {
+                throw new Error(result.error || 'Unknown error applying order number');
+            }
+            
+        } catch (error) {
+            console.error('Error applying order number:', error);
+            this.showMessage('Error applying order number: ' + error.message, 'error');
+            
+            // Re-enable button
+            applyOrderNumberBtn.disabled = false;
+            applyOrderNumberBtn.innerHTML = '<i class="fas fa-check"></i> Apply Order Number';
+        }
+    }
+    
+    continueAfterOrderNumber() {
+        // Clear current order data
+        this.currentOrderDealership = null;
+        this.currentOrderVins = [];
+        
+        // Remove the processed order from the array since it's complete
+        this.processedOrders.pop();
+        
+        // Move to next dealership or complete
+        this.currentListIndex++;
+        
+        if (this.currentListIndex < this.listOrders.length) {
+            // Show next dealership
+            this.updateProgress('list');
+            this.showStep('listStep');
+            this.showCurrentListOrder();
+        } else {
+            // All list orders complete
+            this.completeProcessing();
+        }
+    }
+    
+    backToDataEditor() {
+        this.updateProgress('review');
+        this.showStep('dataEditorStep');
+    }
+
     showError(message) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'wizard-error';
@@ -1374,6 +1509,275 @@ class OrderWizard {
                 warningDiv.parentNode.removeChild(warningDiv);
             }
         }, 4000);
+    }
+    
+    // =============================================================================
+    // SPREADSHEET VIEW FUNCTIONALITY
+    // =============================================================================
+    
+    async loadCSVIntoSpreadsheet(result) {
+        const spreadsheetContainer = document.getElementById('csvSpreadsheet');
+        const placeholder = document.getElementById('csvPlaceholder');
+        const vehicleCount = document.getElementById('csvVehicleCount');
+        
+        if (!result.download_csv) {
+            // Show placeholder if no CSV available
+            if (spreadsheetContainer) spreadsheetContainer.style.display = 'none';
+            if (placeholder) placeholder.style.display = 'block';
+            if (vehicleCount) vehicleCount.textContent = '0';
+            return;
+        }
+        
+        try {
+            // Fetch CSV content
+            const response = await fetch(result.download_csv);
+            const csvText = await response.text();
+            
+            // Parse CSV
+            const lines = csvText.split('\n').filter(line => line.trim());
+            if (lines.length < 2) {
+                throw new Error('CSV file appears to be empty or invalid');
+            }
+            
+            // Parse header row
+            const headers = this.parseCSVLine(lines[0]);
+            
+            // Parse data rows
+            const rows = [];
+            for (let i = 1; i < lines.length; i++) {
+                const row = this.parseCSVLine(lines[i]);
+                if (row.length > 0) {
+                    rows.push(row);
+                }
+            }
+            
+            // Store the CSV data
+            this.currentCSVData = { headers, rows };
+            
+            // Render the spreadsheet
+            this.renderSpreadsheet(headers, rows);
+            
+            // Update vehicle count
+            if (vehicleCount) vehicleCount.textContent = rows.length.toString();
+            
+            // Show spreadsheet, hide placeholder
+            if (spreadsheetContainer) spreadsheetContainer.style.display = 'table';
+            if (placeholder) placeholder.style.display = 'none';
+            
+        } catch (error) {
+            console.error('Error loading CSV:', error);
+            this.showError('Failed to load CSV data: ' + error.message);
+            
+            // Show placeholder on error
+            if (spreadsheetContainer) spreadsheetContainer.style.display = 'none';
+            if (placeholder) placeholder.style.display = 'block';
+            if (vehicleCount) vehicleCount.textContent = '0';
+        }
+    }
+    
+    parseCSVLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        
+        result.push(current.trim());
+        return result;
+    }
+    
+    renderSpreadsheet(headers, rows) {
+        const thead = document.getElementById('csvTableHead');
+        const tbody = document.getElementById('csvTableBody');
+        
+        if (!thead || !tbody) return;
+        
+        // Render headers
+        thead.innerHTML = `
+            <tr>
+                <th style="width: 80px;">Actions</th>
+                ${headers.map(header => `<th>${this.escapeHtml(header)}</th>`).join('')}
+            </tr>
+        `;
+        
+        // Render rows
+        tbody.innerHTML = rows.map((row, rowIndex) => {
+            return `
+                <tr data-row-index="${rowIndex}">
+                    <td>
+                        <div class="row-actions">
+                            <button class="row-edit-btn" onclick="wizard.editRow(${rowIndex})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </td>
+                    ${row.map((cell, cellIndex) => 
+                        `<td data-cell-index="${cellIndex}" title="${this.escapeHtml(cell)}">${this.escapeHtml(cell)}</td>`
+                    ).join('')}
+                </tr>
+            `;
+        }).join('');
+    }
+    
+    editRow(rowIndex) {
+        const row = document.querySelector(`tr[data-row-index="${rowIndex}"]`);
+        if (!row || row.classList.contains('editing')) return;
+        
+        // Mark as editing
+        row.classList.add('editing');
+        
+        // Store original values
+        const originalValues = [];
+        const cells = row.querySelectorAll('td[data-cell-index]');
+        
+        cells.forEach((cell, cellIndex) => {
+            const originalValue = this.currentCSVData.rows[rowIndex][cellIndex] || '';
+            originalValues.push(originalValue);
+            
+            cell.innerHTML = `
+                <input type="text" class="cell-edit-input" 
+                       value="${this.escapeHtml(originalValue)}" 
+                       data-original="${this.escapeHtml(originalValue)}">
+            `;
+        });
+        
+        // Update action buttons
+        const actionsCell = row.querySelector('td:first-child .row-actions');
+        actionsCell.innerHTML = `
+            <button class="row-save-btn" onclick="wizard.saveRow(${rowIndex})">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <button class="row-cancel-btn" onclick="wizard.cancelEditRow(${rowIndex})">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        `;
+    }
+    
+    saveRow(rowIndex) {
+        const row = document.querySelector(`tr[data-row-index="${rowIndex}"]`);
+        if (!row) return;
+        
+        const cells = row.querySelectorAll('td[data-cell-index]');
+        const newValues = [];
+        
+        // Collect new values
+        cells.forEach(cell => {
+            const input = cell.querySelector('.cell-edit-input');
+            if (input) {
+                newValues.push(input.value);
+            }
+        });
+        
+        // Update the stored data
+        this.currentCSVData.rows[rowIndex] = newValues;
+        
+        // Exit edit mode
+        this.cancelEditRow(rowIndex);
+        
+        // Re-render the row with new values
+        cells.forEach((cell, cellIndex) => {
+            const newValue = newValues[cellIndex] || '';
+            cell.innerHTML = this.escapeHtml(newValue);
+            cell.title = this.escapeHtml(newValue);
+        });
+        
+        this.showSuccess(`Row ${rowIndex + 1} updated successfully`);
+    }
+    
+    cancelEditRow(rowIndex) {
+        const row = document.querySelector(`tr[data-row-index="${rowIndex}"]`);
+        if (!row) return;
+        
+        // Remove editing class
+        row.classList.remove('editing');
+        
+        // Restore original values
+        const cells = row.querySelectorAll('td[data-cell-index]');
+        cells.forEach((cell, cellIndex) => {
+            const input = cell.querySelector('.cell-edit-input');
+            if (input) {
+                const originalValue = input.dataset.original || '';
+                cell.innerHTML = this.escapeHtml(originalValue);
+                cell.title = this.escapeHtml(originalValue);
+            }
+        });
+        
+        // Restore edit button
+        const actionsCell = row.querySelector('td:first-child .row-actions');
+        actionsCell.innerHTML = `
+            <button class="row-edit-btn" onclick="wizard.editRow(${rowIndex})">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+        `;
+    }
+    
+    loadQRCodesIntoGrid(result) {
+        const qrGrid = document.getElementById('qrCodeGrid');
+        if (!qrGrid) return;
+        
+        if (result.qr_folder && result.qr_codes_generated > 0) {
+            // Create QR code items (placeholder since we can't directly access folder contents)
+            const qrCount = result.qr_codes_generated;
+            const qrItems = [];
+            
+            for (let i = 0; i < Math.min(qrCount, 12); i++) { // Show max 12 for preview
+                qrItems.push(`
+                    <div class="qr-item">
+                        <div style="width: 80px; height: 80px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                            <i class="fas fa-qrcode" style="font-size: 2rem; color: #ccc;"></i>
+                        </div>
+                        <div class="qr-label">QR ${i + 1}</div>
+                    </div>
+                `);
+            }
+            
+            if (qrCount > 12) {
+                qrItems.push(`
+                    <div class="qr-item">
+                        <div style="width: 80px; height: 80px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 2px dashed #ccc;">
+                            <span style="font-size: 0.8rem; color: #666;">+${qrCount - 12} more</span>
+                        </div>
+                        <div class="qr-label">More codes...</div>
+                    </div>
+                `);
+            }
+            
+            qrGrid.innerHTML = qrItems.join('');
+        } else {
+            qrGrid.innerHTML = `
+                <div class="qr-item">
+                    <div style="width: 80px; height: 80px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; color: #ffc107;"></i>
+                    </div>
+                    <div class="qr-label">No QR codes</div>
+                </div>
+            `;
+        }
+    }
+    
+    downloadCSV() {
+        if (this.currentOrderResult && this.currentOrderResult.download_csv) {
+            window.open(this.currentOrderResult.download_csv, '_blank');
+        } else {
+            this.showError('No CSV file available for download');
+        }
+    }
+    
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 }
 

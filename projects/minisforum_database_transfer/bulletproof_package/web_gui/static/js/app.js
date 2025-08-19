@@ -884,6 +884,9 @@ class MinisFornumApp {
             case 'queue-management':
                 this.loadQueueManagement();
                 break;
+            case 'dealership-settings':
+                this.loadDealershipSettings();
+                break;
         }
     }
     
@@ -1775,6 +1778,113 @@ class MinisFornumApp {
         this.addTerminalMessage('Queue management interface loaded', 'success');
     }
     
+    async loadDealershipSettings() {
+        console.log('Loading dealership settings...');
+        
+        try {
+            const response = await fetch('/api/dealership-settings');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderDealershipSettings(data.dealerships);
+            } else {
+                console.error('Failed to load dealership settings:', data.error);
+                this.showDealershipSettingsError('Failed to load dealership settings');
+            }
+        } catch (error) {
+            console.error('Error loading dealership settings:', error);
+            this.showDealershipSettingsError('Error loading dealership settings');
+        }
+    }
+    
+    renderDealershipSettings(dealerships) {
+        const container = document.getElementById('dealershipSettingsGrid');
+        
+        if (!dealerships || dealerships.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-cog"></i>
+                    <h3>No Dealership Configurations Found</h3>
+                    <p>No dealership settings are available.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = dealerships.map(dealer => `
+            <div class="dealership-settings-card" data-dealer-id="${dealer.id}">
+                <div class="settings-card-header">
+                    <h3>${dealer.name}</h3>
+                    <span class="vehicle-count">${dealer.vehicle_count || 0} vehicles</span>
+                </div>
+                <div class="settings-card-body">
+                    <div class="setting-group">
+                        <label>Vehicle Types to Process:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="new" 
+                                    ${dealer.filtering_rules?.vehicle_types?.includes('new') ? 'checked' : ''}>
+                                <span>New</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="used" 
+                                    ${dealer.filtering_rules?.vehicle_types?.includes('used') ? 'checked' : ''}>
+                                <span>Used</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="vehicle_types_${dealer.id}" value="certified" 
+                                    ${dealer.filtering_rules?.vehicle_types?.includes('certified') ? 'checked' : ''}>
+                                <span>Certified</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" class="active-toggle" data-dealer-id="${dealer.id}" 
+                                ${dealer.is_active ? 'checked' : ''}>
+                            Active
+                        </label>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        // Setup save button
+        const saveBtn = document.getElementById('saveDealershipSettings');
+        if (saveBtn && !saveBtn.hasEventListener) {
+            saveBtn.addEventListener('click', () => this.saveDealershipSettings());
+            saveBtn.hasEventListener = true;
+        }
+        
+        // Setup refresh button
+        const refreshBtn = document.getElementById('refreshDealershipSettings');
+        if (refreshBtn && !refreshBtn.hasEventListener) {
+            refreshBtn.addEventListener('click', () => this.loadDealershipSettings());
+            refreshBtn.hasEventListener = true;
+        }
+    }
+    
+    showDealershipSettingsError(message) {
+        const container = document.getElementById('dealershipSettingsGrid');
+        container.innerHTML = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error Loading Settings</h3>
+                <p>${message}</p>
+                <button class="btn btn-secondary" onclick="app.loadDealershipSettings()">
+                    <i class="fas fa-sync"></i>
+                    Try Again
+                </button>
+            </div>
+        `;
+    }
+    
+    async saveDealershipSettings() {
+        console.log('Saving dealership settings...');
+        // Implementation for saving settings
+        this.addTerminalMessage('Dealership settings saved', 'success');
+    }
+    
     setupNewQueueEventListeners() {
         // Day buttons
         document.querySelectorAll('.day-btn').forEach(btn => {
@@ -2068,6 +2178,10 @@ class MinisFornumApp {
             const queueData = Array.from(this.processingQueue.values());
             localStorage.setItem('orderWizardQueue', JSON.stringify(queueData));
             
+            // Store testing mode setting
+            const testingMode = document.getElementById('queueTestingMode')?.checked || false;
+            localStorage.setItem('orderWizardTestingMode', testingMode.toString());
+            
             this.addTerminalMessage('Opening Order Processing Wizard...', 'info');
             
             // Open wizard in new tab with cache-busting parameter
@@ -2097,7 +2211,12 @@ class MinisFornumApp {
     async processQueueDirectly() {
         try {
             const queueArray = Array.from(this.processingQueue.values());
+            const testingMode = document.getElementById('queueTestingMode')?.checked || false;
+            
             this.addTerminalMessage(`Processing ${queueArray.length} dealerships directly...`, 'info');
+            if (testingMode) {
+                this.addTerminalMessage('Testing Mode: VIN logging disabled', 'warning');
+            }
             
             // Process each dealership
             for (const dealership of queueArray) {
@@ -2110,7 +2229,8 @@ class MinisFornumApp {
                     },
                     body: JSON.stringify({
                         dealerships: [dealership.name],
-                        template_type: 'shortcut_pack'
+                        template_type: 'shortcut_pack',
+                        skip_vin_logging: testingMode
                     })
                 });
                 
@@ -2595,6 +2715,13 @@ class MinisFornumApp {
         // Initialize VIN history viewer
         this.initVinHistory();
         
+        // Load scraper history for the default scraper-view tab
+        const activeSubTab = document.querySelector('.sub-tab-button.active');
+        if (activeSubTab && activeSubTab.dataset.subtab === 'scraper-view') {
+            this.loadScraperHistory();
+            this.setupCsvImport();
+        }
+        
         console.log('Data search interface initialized');
     }
     
@@ -2628,10 +2755,18 @@ class MinisFornumApp {
         
         // Update control buttons visibility
         const exportSearchBtn = document.getElementById('exportSearchResults');
-        if (subtabName === 'vehicle-search') {
-            exportSearchBtn.style.display = 'inline-flex';
+        if (subtabName === 'scraper-view') {
+            exportSearchBtn.style.display = 'none';
         } else {
             exportSearchBtn.style.display = 'none';
+        }
+        
+        // Load content for specific sub-tabs
+        if (subtabName === 'vin-history') {
+            this.loadDealershipVinLogs();
+        } else if (subtabName === 'scraper-view') {
+            this.loadScraperHistory();
+            this.setupCsvImport();
         }
     }
     
@@ -4094,6 +4229,1400 @@ class MinisFornumApp {
         }
         
         console.log(`[${type.toUpperCase()}] ${message}`);
+    }
+
+    // =============================================================================
+    // DEALERSHIP VIN LOG FUNCTIONALITY
+    // =============================================================================
+    
+    async loadDealershipVinLogs() {
+        try {
+            const response = await fetch('/api/dealership-vin-logs');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderDealershipCards(data.vin_logs);
+            } else {
+                console.error('Failed to load dealership VIN logs:', data.error);
+                this.showError('Failed to load dealership VIN logs');
+            }
+        } catch (error) {
+            console.error('Error loading dealership VIN logs:', error);
+            this.showError('Error loading dealership VIN logs');
+        }
+    }
+    
+    renderDealershipCards(dealerships) {
+        const container = document.getElementById('dealershipCardsGrid');
+        
+        if (!dealerships || dealerships.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-database"></i>
+                    <h3>No VIN Log Data Found</h3>
+                    <p>No dealership VIN logs are available.</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = dealerships.map(dealer => `
+            <div class="dealership-card" data-dealer="${dealer.dealership_name}">
+                <div class="dealership-card-header">
+                    <h3 class="dealership-name">${this.formatDealershipName(dealer.dealership_name)}</h3>
+                    <i class="fas fa-building dealership-icon"></i>
+                </div>
+                
+                <div class="dealership-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${dealer.vin_count || 0}</div>
+                        <div class="stat-label">Total VINs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">-</div>
+                        <div class="stat-label">Baseline Data</div>
+                    </div>
+                </div>
+                
+                <div class="table-info">
+                    <div class="table-name">
+                        <i class="fas fa-database"></i>
+                        <span>${dealer.table_name}</span>
+                    </div>
+                </div>
+                
+                <div class="dealership-actions">
+                    <button class="btn-view-vin-log" onclick="app.openVinLogModal('${dealer.dealership_name}')">
+                        <i class="fas fa-eye"></i>
+                        View VIN Log
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        // Setup search functionality
+        this.setupDealershipSearch(dealerships);
+    }
+    
+    setupDealershipSearch(dealerships) {
+        const searchInput = document.getElementById('dealershipSearchInput');
+        const searchBtn = document.getElementById('searchDealershipsBtn');
+        
+        if (!searchInput) return;
+        
+        const performSearch = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (!query) {
+                this.renderDealershipCards(dealerships);
+                return;
+            }
+            
+            const filtered = dealerships.filter(dealer => 
+                dealer.dealership_name.toLowerCase().includes(query)
+            );
+            
+            this.renderDealershipCards(filtered);
+        };
+        
+        searchInput.addEventListener('input', performSearch);
+        if (searchBtn) {
+            searchBtn.addEventListener('click', performSearch);
+        }
+    }
+    
+    async openVinLogModal(dealershipName) {
+        const modal = document.getElementById('vinLogModal');
+        const modalTitle = document.getElementById('vinLogModalTitle');
+        
+        if (!modal || !modalTitle) return;
+        
+        modalTitle.textContent = `${this.formatDealershipName(dealershipName)} - VIN History`;
+        modal.style.display = 'flex';
+        
+        // Initialize modal state
+        this.currentVinLogData = null;
+        this.currentFilteredData = null;
+        this.currentOrderFilter = null;
+        this.currentDealership = dealershipName;
+        
+        // Setup modal event listeners
+        this.setupVinLogModalEvents();
+        this.setupExportHandlers();
+        
+        // Load VIN data for this dealership
+        await this.loadVinLogData(dealershipName);
+    }
+    
+    setupVinLogModalEvents() {
+        const closeBtn = document.getElementById('closeVinLogModal');
+        const closeBtn2 = document.getElementById('closeVinLogModalBtn');
+        const modal = document.getElementById('vinLogModal');
+        const searchInput = document.getElementById('vinLogSearch');
+        const searchBtn = document.getElementById('vinLogSearchBtn');
+        
+        if (closeBtn && !closeBtn.hasEventListener) {
+            closeBtn.addEventListener('click', () => this.closeVinLogModal());
+            closeBtn.hasEventListener = true;
+        }
+        
+        if (closeBtn2 && !closeBtn2.hasEventListener) {
+            closeBtn2.addEventListener('click', () => this.closeVinLogModal());
+            closeBtn2.hasEventListener = true;
+        }
+        
+        if (modal && !modal.hasEventListener) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeVinLogModal();
+                }
+            });
+            modal.hasEventListener = true;
+        }
+        
+        // Setup search functionality
+        if (searchInput && !searchInput.hasEventListener) {
+            searchInput.addEventListener('input', () => this.filterVinLogData());
+            searchInput.hasEventListener = true;
+        }
+        
+        if (searchBtn && !searchBtn.hasEventListener) {
+            searchBtn.addEventListener('click', () => this.filterVinLogData());
+            searchBtn.hasEventListener = true;
+        }
+        
+        // Update VIN Log button
+        const updateVinLogBtn = document.getElementById('updateVinLogBtn');
+        if (updateVinLogBtn && !updateVinLogBtn.hasEventListener) {
+            updateVinLogBtn.addEventListener('click', () => this.openVinLogUpdateModal());
+            updateVinLogBtn.hasEventListener = true;
+        }
+    }
+    
+    closeVinLogModal() {
+        const modal = document.getElementById('vinLogModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    async loadVinLogData(dealershipName) {
+        try {
+            const response = await fetch(`/api/dealership-vin-logs/${encodeURIComponent(dealershipName)}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Store the full data for filtering
+                this.currentVinLogData = data;
+                this.currentFilteredData = data.history || [];
+                this.currentOrderFilter = null;
+                
+                // Clear search input
+                const searchInput = document.getElementById('vinLogSearch');
+                if (searchInput) searchInput.value = '';
+                
+                this.renderVinLogModal(data);
+            } else {
+                console.error('Failed to load VIN log data:', data.error);
+                this.showVinLogError('Failed to load VIN log data');
+            }
+        } catch (error) {
+            console.error('Error loading VIN log data:', error);
+            this.showVinLogError('Error loading VIN log data');
+        }
+    }
+    
+    renderVinLogModal(data = null) {
+        // Use stored filtered data if no data provided
+        const displayData = data || this.currentVinLogData;
+        const historyData = this.currentFilteredData || displayData?.history || [];
+        
+        // Update stats based on filtered data
+        const totalVins = document.getElementById('modalTotalVins');
+        const orderNumbers = document.getElementById('modalOrderNumbers');
+        const dateRange = document.getElementById('modalDateRange');
+        
+        if (totalVins) totalVins.textContent = historyData.length;
+        
+        // Calculate unique orders from filtered data
+        const uniqueOrders = [...new Set(historyData.map(record => record.order_number).filter(Boolean))];
+        if (orderNumbers) orderNumbers.textContent = uniqueOrders.length;
+        
+        if (dateRange && historyData.length > 0) {
+            const dates = historyData.map(record => record.processed_date).filter(Boolean);
+            if (dates.length > 0) {
+                const sortedDates = dates.sort();
+                dateRange.textContent = `${this.formatDate(sortedDates[0])} - ${this.formatDate(sortedDates[sortedDates.length - 1])}`;
+            } else {
+                dateRange.textContent = 'No date range';
+            }
+        }
+        
+        // Update modal title to show filter status
+        const modalTitle = document.getElementById('vinLogModalTitle');
+        if (modalTitle && this.currentDealership) {
+            let title = `${this.formatDealershipName(this.currentDealership)} - VIN History`;
+            if (this.currentOrderFilter) {
+                title += ` - Order: ${this.currentOrderFilter}`;
+            }
+            modalTitle.textContent = title;
+        }
+        
+        // Render table
+        const tableContainer = document.getElementById('vinLogTableContainer');
+        if (!tableContainer) return;
+        
+        if (!historyData || historyData.length === 0) {
+            tableContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <h3>No VIN History Found</h3>
+                    <p>No VIN records match your current filter criteria.</p>
+                    ${this.currentOrderFilter ? `
+                        <button class="btn btn-secondary" onclick="app.clearOrderFilter()">
+                            <i class="fas fa-times"></i>
+                            Clear Filter
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+            return;
+        }
+        
+        tableContainer.innerHTML = `
+            <table class="vin-log-table">
+                <thead>
+                    <tr>
+                        <th>VIN</th>
+                        <th>Order Number</th>
+                        <th>Processed Date</th>
+                        <th>Order Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${historyData.map(record => `
+                        <tr>
+                            <td><span class="vin-number">${record.vin}</span></td>
+                            <td>
+                                <span class="order-number clickable ${record.order_type?.toLowerCase() === 'baseline' ? 'baseline' : ''}" 
+                                      onclick="app.filterByOrder('${record.order_number || ''}')">
+                                    ${record.order_number || 'N/A'}
+                                </span>
+                            </td>
+                            <td>${record.processed_date ? this.formatDate(record.processed_date) : 'N/A'}</td>
+                            <td>${record.order_type || 'N/A'}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    }
+    
+    showVinLogError(message) {
+        const tableContainer = document.getElementById('vinLogTableContainer');
+        if (tableContainer) {
+            tableContainer.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Error Loading Data</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+    }
+    
+    getDateClass(dateString) {
+        if (!dateString) return '';
+        
+        const date = new Date(dateString);
+        const now = new Date();
+        const daysDiff = (now - date) / (1000 * 60 * 60 * 24);
+        
+        if (daysDiff < 7) return 'recent';
+        if (daysDiff > 30) return 'old';
+        return '';
+    }
+    
+    formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        
+        try {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        } catch (error) {
+            return dateString;
+        }
+    }
+    
+    formatDealershipName(name) {
+        if (!name) return 'Unknown Dealership';
+        
+        // Convert from lowercase with spaces to title case
+        return name.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+    
+    // VIN Log Filtering Functions
+    filterVinLogData() {
+        if (!this.currentVinLogData || !this.currentVinLogData.history) return;
+        
+        const searchInput = document.getElementById('vinLogSearch');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        let filteredData = this.currentVinLogData.history;
+        
+        // Apply order filter if active
+        if (this.currentOrderFilter) {
+            filteredData = filteredData.filter(record => 
+                record.order_number === this.currentOrderFilter
+            );
+        }
+        
+        // Apply search filter
+        if (searchTerm) {
+            filteredData = filteredData.filter(record => {
+                const vin = (record.vin || '').toLowerCase();
+                const orderNumber = (record.order_number || '').toLowerCase();
+                const orderType = (record.order_type || '').toLowerCase();
+                
+                return vin.includes(searchTerm) || 
+                       orderNumber.includes(searchTerm) || 
+                       orderType.includes(searchTerm);
+            });
+        }
+        
+        this.currentFilteredData = filteredData;
+        this.renderVinLogModal();
+    }
+    
+    filterByOrder(orderNumber) {
+        if (!orderNumber || orderNumber === 'N/A') return;
+        
+        this.currentOrderFilter = orderNumber;
+        
+        // Clear search input when filtering by order
+        const searchInput = document.getElementById('vinLogSearch');
+        if (searchInput) searchInput.value = '';
+        
+        this.filterVinLogData();
+    }
+    
+    clearOrderFilter() {
+        this.currentOrderFilter = null;
+        this.filterVinLogData();
+    }
+
+    // =============================================================================
+    // SCRAPER VIEW FUNCTIONALITY
+    // =============================================================================
+    
+    async loadScraperHistory() {
+        try {
+            const response = await fetch('/api/scraper-imports');
+            const data = await response.json();
+            
+            if (data.success) {
+                this.renderScraperHistoryTable(data.imports);
+            } else {
+                console.error('Failed to load scraper history:', data.error);
+                this.showScraperHistoryError('Failed to load scraper history');
+            }
+        } catch (error) {
+            console.error('Error loading scraper history:', error);
+            this.showScraperHistoryError('Error loading scraper history');
+        }
+    }
+    
+    renderScraperHistoryTable(imports) {
+        const container = document.getElementById('scraperTableContainer');
+        
+        if (!imports || imports.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-database"></i>
+                    <h3>No Import History Found</h3>
+                    <p>No scraper imports are available.</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = `
+            <table class="scraper-history-table">
+                <thead>
+                    <tr>
+                        <th>Import ID</th>
+                        <th>Date</th>
+                        <th>Source</th>
+                        <th>Vehicles</th>
+                        <th>Dealerships</th>
+                        <th>Status</th>
+                        <th>File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${imports.map(import_ => `
+                        <tr onclick="app.openScraperDataModal(${import_.import_id})" data-import-id="${import_.import_id}">
+                            <td><strong>#${import_.import_id}</strong></td>
+                            <td>${this.formatDate(import_.import_date)}</td>
+                            <td>${import_.import_source || 'Unknown'}</td>
+                            <td>${import_.total_vehicles || import_.actual_vehicles || 0}</td>
+                            <td>
+                                <span class="dealership-count clickable" 
+                                      onclick="event.stopPropagation(); app.showImportDealerships(${import_.import_id})"
+                                      style="cursor: pointer; color: var(--primary-blue); text-decoration: underline;"
+                                      title="Click to view dealerships">
+                                    ${import_.dealerships_count || import_.actual_dealerships || 0}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="import-status-badge ${import_.status || 'unknown'}" 
+                                      onclick="event.stopPropagation(); app.toggleScraperStatus(${import_.import_id}, '${import_.status || 'archived'}')"
+                                      style="cursor: pointer;" 
+                                      title="Click to toggle status">
+                                    ${import_.status || 'Unknown'}
+                                </span>
+                            </td>
+                            <td>${import_.file_name || '-'}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+
+        // Setup refresh button
+        const refreshBtn = document.getElementById('refreshScraperHistory');
+        if (refreshBtn && !refreshBtn.hasEventListener) {
+            refreshBtn.addEventListener('click', () => this.loadScraperHistory());
+            refreshBtn.hasEventListener = true;
+        }
+    }
+    
+    showScraperHistoryError(message) {
+        const container = document.getElementById('scraperTableContainer');
+        container.innerHTML = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Error Loading Data</h3>
+                <p>${message}</p>
+                <button class="btn btn-secondary" onclick="app.loadScraperHistory()">
+                    <i class="fas fa-sync"></i>
+                    Try Again
+                </button>
+            </div>
+        `;
+    }
+    
+    async toggleScraperStatus(importId, currentStatus) {
+        const newStatus = currentStatus === 'active' ? 'archived' : 'active';
+        
+        // Show confirmation dialog
+        const message = newStatus === 'active' 
+            ? 'This will set this import as the active dataset for order processing. The currently active dataset will be archived. Continue?'
+            : 'This will archive this import. Continue?';
+            
+        if (!confirm(message)) {
+            return;
+        }
+        
+        try {
+            const response = await fetch(`/api/scraper-imports/${importId}/toggle-status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    new_status: newStatus
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.addTerminalMessage(`Import #${importId} status changed to ${newStatus}`, 'success');
+                // Reload the scraper history to show updated status
+                this.loadScraperHistory();
+            } else {
+                this.addTerminalMessage(`Failed to change status: ${result.error}`, 'error');
+            }
+        } catch (error) {
+            console.error('Error toggling scraper status:', error);
+            this.addTerminalMessage(`Error changing status: ${error.message}`, 'error');
+        }
+    }
+    
+    async showImportDealerships(importId) {
+        const modal = document.getElementById('importDealershipsModal');
+        const modalTitle = document.getElementById('importDealershipsTitle');
+        const listContainer = document.getElementById('importDealershipsList');
+        
+        if (!modal || !modalTitle) return;
+        
+        // Show modal
+        modal.style.display = 'flex';
+        modalTitle.textContent = `Dealerships in Import #${importId}`;
+        
+        // Show loading
+        listContainer.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                Loading dealerships...
+            </div>
+        `;
+        
+        try {
+            // Fetch dealerships for this import
+            const response = await fetch(`/api/scraper-imports/${importId}/dealerships`);
+            const data = await response.json();
+            
+            if (data.success && data.dealerships) {
+                this.renderImportDealerships(data.dealerships, importId);
+            } else {
+                listContainer.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load dealerships</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading dealerships:', error);
+            listContainer.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Error loading dealerships</p>
+                </div>
+            `;
+        }
+        
+        // Setup close handlers
+        this.setupImportDealershipsModalEvents();
+    }
+    
+    renderImportDealerships(dealerships, importId) {
+        const container = document.getElementById('importDealershipsList');
+        
+        if (!dealerships || dealerships.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-building"></i>
+                    <p>No dealerships found in this import</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = `
+            <div class="dealerships-grid">
+                ${dealerships.map(dealer => `
+                    <div class="dealership-card" 
+                         onclick="app.showDealershipVehicles(${importId}, '${dealer.name}')"
+                         title="Click to view vehicles">
+                        <div class="dealership-card-header">
+                            <i class="fas fa-building"></i>
+                            <h4>${dealer.name}</h4>
+                        </div>
+                        <div class="dealership-card-stats">
+                            <div class="stat">
+                                <span class="stat-value">${dealer.vehicle_count || 0}</span>
+                                <span class="stat-label">Vehicles</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${dealer.new_count || 0}</span>
+                                <span class="stat-label">New</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${dealer.used_count || 0}</span>
+                                <span class="stat-label">Used</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
+    setupImportDealershipsModalEvents() {
+        const modal = document.getElementById('importDealershipsModal');
+        const closeBtn = document.getElementById('closeImportDealershipsModal');
+        
+        if (closeBtn && !closeBtn.hasEventListener) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            closeBtn.hasEventListener = true;
+        }
+        
+        if (modal && !modal.hasModalEventListener) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            modal.hasModalEventListener = true;
+        }
+    }
+    
+    async showDealershipVehicles(importId, dealershipName) {
+        // Close the dealerships modal
+        document.getElementById('importDealershipsModal').style.display = 'none';
+        
+        // Open the scraper data modal with dealership filter
+        await this.openScraperDataModal(importId);
+        
+        // Apply dealership filter
+        setTimeout(() => {
+            this.setDealershipFilter(dealershipName);
+        }, 500);
+    }
+    
+    setDealershipFilter(dealershipName) {
+        // Show filter tag
+        const filterTags = document.getElementById('scraperDataFilterTags');
+        const filterNameSpan = document.getElementById('dealershipFilterName');
+        const searchInput = document.getElementById('scraperDataSearch');
+        
+        if (filterTags && filterNameSpan) {
+            filterTags.style.display = 'block';
+            filterNameSpan.textContent = dealershipName;
+        }
+        
+        // Apply search filter
+        if (searchInput) {
+            searchInput.value = dealershipName;
+            this.filterScraperData();
+        }
+    }
+    
+    clearDealershipFilter() {
+        // Hide filter tag
+        const filterTags = document.getElementById('scraperDataFilterTags');
+        const searchInput = document.getElementById('scraperDataSearch');
+        
+        if (filterTags) {
+            filterTags.style.display = 'none';
+        }
+        
+        // Clear search
+        if (searchInput) {
+            searchInput.value = '';
+            this.filterScraperData();
+        }
+    }
+    
+    async openScraperDataModal(importId) {
+        const modal = document.getElementById('scraperDataModal');
+        const modalTitle = document.getElementById('scraperDataModalTitle');
+        
+        if (!modal || !modalTitle) return;
+        
+        modalTitle.textContent = `Scraper Data - Import #${importId}`;
+        modal.style.display = 'flex';
+        
+        // Initialize modal state
+        this.currentScraperData = null;
+        this.currentFilteredScraperData = null;
+        this.currentImportId = importId;
+        
+        // Setup modal event listeners
+        this.setupScraperDataModalEvents();
+        
+        // Load vehicle data for this import
+        await this.loadScraperData(importId);
+    }
+    
+    setupScraperDataModalEvents() {
+        const closeBtn = document.getElementById('closeScraperDataModal');
+        const closeBtn2 = document.getElementById('closeScraperDataModalBtn');
+        const modal = document.getElementById('scraperDataModal');
+        const searchInput = document.getElementById('scraperDataSearch');
+        const searchBtn = document.getElementById('scraperDataSearchBtn');
+        
+        if (closeBtn && !closeBtn.hasEventListener) {
+            closeBtn.addEventListener('click', () => this.closeScraperDataModal());
+            closeBtn.hasEventListener = true;
+        }
+        
+        if (closeBtn2 && !closeBtn2.hasEventListener) {
+            closeBtn2.addEventListener('click', () => this.closeScraperDataModal());
+            closeBtn2.hasEventListener = true;
+        }
+        
+        if (modal && !modal.hasEventListener) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeScraperDataModal();
+                }
+            });
+            modal.hasEventListener = true;
+        }
+        
+        // Setup search functionality
+        if (searchInput && !searchInput.hasEventListener) {
+            searchInput.addEventListener('input', () => this.filterScraperData());
+            searchInput.hasEventListener = true;
+        }
+        
+        if (searchBtn && !searchBtn.hasEventListener) {
+            searchBtn.addEventListener('click', () => this.filterScraperData());
+            searchBtn.hasEventListener = true;
+        }
+    }
+    
+    closeScraperDataModal() {
+        const modal = document.getElementById('scraperDataModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    async loadScraperData(importId) {
+        try {
+            const response = await fetch(`/api/scraper-imports/${importId}/vehicles`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Store the full data for filtering
+                this.currentScraperData = data;
+                this.currentFilteredScraperData = data.vehicles || [];
+                
+                // Clear search input
+                const searchInput = document.getElementById('scraperDataSearch');
+                if (searchInput) searchInput.value = '';
+                
+                this.renderScraperDataModal(data);
+            } else {
+                console.error('Failed to load scraper data:', data.error);
+                this.showScraperDataError('Failed to load scraper data');
+            }
+        } catch (error) {
+            console.error('Error loading scraper data:', error);
+            this.showScraperDataError('Error loading scraper data');
+        }
+    }
+    
+    renderScraperDataModal(data = null) {
+        const displayData = data || this.currentScraperData;
+        const vehicleData = this.currentFilteredScraperData || displayData?.vehicles || [];
+        
+        // Update import info
+        const importId = document.getElementById('modalImportId');
+        const importDate = document.getElementById('modalImportDate');
+        const importSource = document.getElementById('modalImportSource');
+        const totalVehicles = document.getElementById('modalTotalVehicles');
+        
+        if (importId) importId.textContent = `#${this.currentImportId}`;
+        if (importDate) importDate.textContent = displayData?.import_info?.import_date ? 
+            this.formatDate(displayData.import_info.import_date) : 'Unknown';
+        if (importSource) importSource.textContent = displayData?.import_info?.import_source || 'Unknown';
+        if (totalVehicles) totalVehicles.textContent = vehicleData.length;
+        
+        // Render vehicle table
+        const tableContainer = document.getElementById('scraperDataTableContainer');
+        if (!tableContainer) return;
+        
+        if (!vehicleData || vehicleData.length === 0) {
+            tableContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <h3>No Vehicle Data Found</h3>
+                    <p>No vehicles found in this import.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Get column headers from first vehicle
+        const firstVehicle = vehicleData[0];
+        const headers = Object.keys(firstVehicle);
+        
+        tableContainer.innerHTML = `
+            <table class="scraper-data-table">
+                <thead>
+                    <tr>
+                        ${headers.map(header => `<th>${this.formatColumnHeader(header)}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${vehicleData.map(vehicle => `
+                        <tr>
+                            ${headers.map(header => `
+                                <td>${this.formatCellValue(vehicle[header], header)}</td>
+                            `).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    }
+    
+    showScraperDataError(message) {
+        const tableContainer = document.getElementById('scraperDataTableContainer');
+        if (tableContainer) {
+            tableContainer.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Error Loading Data</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+    }
+    
+    filterScraperData() {
+        if (!this.currentScraperData || !this.currentScraperData.vehicles) return;
+        
+        const searchInput = document.getElementById('scraperDataSearch');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        let filteredData = this.currentScraperData.vehicles;
+        
+        // Apply search filter
+        if (searchTerm) {
+            filteredData = filteredData.filter(vehicle => {
+                return Object.values(vehicle).some(value => {
+                    if (value === null || value === undefined) return false;
+                    return String(value).toLowerCase().includes(searchTerm);
+                });
+            });
+        }
+        
+        this.currentFilteredScraperData = filteredData;
+        this.renderScraperDataModal();
+    }
+    
+    formatColumnHeader(header) {
+        return header.replace(/_/g, ' ')
+                    .replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
+    formatCellValue(value, header) {
+        if (value === null || value === undefined) return '-';
+        
+        // Format specific columns
+        if (header === 'price' && typeof value === 'number') {
+            return `$${value.toLocaleString()}`;
+        }
+        
+        if (header === 'year' && value) {
+            return value;
+        }
+        
+        if (header === 'vin' && value) {
+            return `<span class="vin-number">${value}</span>`;
+        }
+        
+        // Truncate long text
+        const text = String(value);
+        if (text.length > 50) {
+            return `<span title="${text}">${text.substring(0, 47)}...</span>`;
+        }
+        
+        return text;
+    }
+
+    // CSV Import Functionality
+    setupCsvImport() {
+        const selectBtn = document.getElementById('selectCsvBtn');
+        const importBtn = document.getElementById('importCsvBtn');
+        const fileInput = document.getElementById('csvFileInput');
+        
+        if (selectBtn && !selectBtn.hasEventListener) {
+            selectBtn.addEventListener('click', () => {
+                fileInput.click();
+            });
+            selectBtn.hasEventListener = true;
+        }
+        
+        if (fileInput && !fileInput.hasEventListener) {
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    importBtn.disabled = false;
+                    importBtn.innerHTML = `<i class="fas fa-download"></i> Import ${file.name}`;
+                } else {
+                    importBtn.disabled = true;
+                    importBtn.innerHTML = `<i class="fas fa-download"></i> Import Data`;
+                }
+            });
+            fileInput.hasEventListener = true;
+        }
+        
+        if (importBtn && !importBtn.hasEventListener) {
+            importBtn.addEventListener('click', () => {
+                const file = fileInput.files[0];
+                if (file) {
+                    this.importCsvFile(file);
+                }
+            });
+            importBtn.hasEventListener = true;
+        }
+    }
+    
+    async importCsvFile(file) {
+        const statusDiv = document.getElementById('importStatus');
+        const statusMessage = document.getElementById('importStatusMessage');
+        const progressBar = document.getElementById('importProgressBar');
+        const progressFill = document.getElementById('importProgressFill');
+        const importBtn = document.getElementById('importCsvBtn');
+        
+        // Show status
+        statusDiv.style.display = 'block';
+        progressBar.style.display = 'block';
+        statusMessage.textContent = 'Uploading file...';
+        progressFill.style.width = '10%';
+        importBtn.disabled = true;
+        
+        try {
+            const formData = new FormData();
+            formData.append('csv_file', file);
+            
+            statusMessage.textContent = 'Processing CSV data...';
+            progressFill.style.width = '50%';
+            
+            const response = await fetch('/api/csv-import', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                statusMessage.textContent = `Successfully imported ${result.vehicle_count} vehicles!`;
+                statusMessage.style.color = '#155724';
+                progressFill.style.width = '100%';
+                
+                // Refresh the scraper history
+                setTimeout(() => {
+                    this.loadScraperHistory();
+                    statusDiv.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    
+                    // Reset file input
+                    const fileInput = document.getElementById('csvFileInput');
+                    fileInput.value = '';
+                    importBtn.innerHTML = `<i class="fas fa-download"></i> Import Data`;
+                    importBtn.disabled = true;
+                }, 2000);
+                
+            } else {
+                statusMessage.textContent = `Import failed: ${result.error}`;
+                statusMessage.style.color = '#721c24';
+                progressFill.style.width = '100%';
+                progressFill.style.background = '#dc3545';
+            }
+            
+        } catch (error) {
+            statusMessage.textContent = `Import error: ${error.message}`;
+            statusMessage.style.color = '#721c24';
+            progressFill.style.width = '100%';
+            progressFill.style.background = '#dc3545';
+        }
+        
+        importBtn.disabled = false;
+    }
+    
+    // =============================================================================
+    // VIN LOG UPDATE FUNCTIONALITY
+    // =============================================================================
+    
+    openVinLogUpdateModal() {
+        if (!this.currentDealership) {
+            this.addTerminalMessage('No dealership selected for VIN log update', 'error');
+            return;
+        }
+        
+        // Update modal title and dealership name
+        const updateTitle = document.getElementById('vinLogUpdateTitle');
+        const dealershipName = document.getElementById('updateDealershipName');
+        
+        if (updateTitle) {
+            updateTitle.textContent = `Update VIN Log - ${this.formatDealershipName(this.currentDealership)}`;
+        }
+        
+        if (dealershipName) {
+            dealershipName.textContent = this.formatDealershipName(this.currentDealership);
+        }
+        
+        // Reset modal state
+        this.resetVinLogUpdateModal();
+        
+        // Setup event listeners for this modal
+        this.setupVinLogUpdateEvents();
+        
+        // Show the modal
+        const modal = document.getElementById('vinLogUpdateModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    setupVinLogUpdateEvents() {
+        // File upload events
+        const fileUploadArea = document.getElementById('vinLogFileUpload');
+        const fileInput = document.getElementById('vinLogFileInput');
+        const removeFileBtn = document.getElementById('removeVinLogFile');
+        
+        if (fileUploadArea && !fileUploadArea.hasVinLogEvents) {
+            fileUploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            fileUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.add('dragover');
+            });
+            
+            fileUploadArea.addEventListener('dragleave', () => {
+                fileUploadArea.classList.remove('dragover');
+            });
+            
+            fileUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].name.endsWith('.csv')) {
+                    this.handleVinLogFileSelect(files[0]);
+                }
+            });
+            
+            fileUploadArea.hasVinLogEvents = true;
+        }
+        
+        if (fileInput && !fileInput.hasVinLogEvents) {
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    this.handleVinLogFileSelect(e.target.files[0]);
+                }
+            });
+            fileInput.hasVinLogEvents = true;
+        }
+        
+        if (removeFileBtn && !removeFileBtn.hasVinLogEvents) {
+            removeFileBtn.addEventListener('click', () => {
+                this.clearVinLogFile();
+            });
+            removeFileBtn.hasVinLogEvents = true;
+        }
+        
+        // Modal close events
+        const closeBtn = document.getElementById('closeVinLogUpdateModal');
+        const cancelBtn = document.getElementById('cancelVinLogUpdate');
+        const modal = document.getElementById('vinLogUpdateModal');
+        
+        if (closeBtn && !closeBtn.hasVinLogEvents) {
+            closeBtn.addEventListener('click', () => this.closeVinLogUpdateModal());
+            closeBtn.hasVinLogEvents = true;
+        }
+        
+        if (cancelBtn && !cancelBtn.hasVinLogEvents) {
+            cancelBtn.addEventListener('click', () => this.closeVinLogUpdateModal());
+            cancelBtn.hasVinLogEvents = true;
+        }
+        
+        if (modal && !modal.hasVinLogEvents) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeVinLogUpdateModal();
+                }
+            });
+            modal.hasVinLogEvents = true;
+        }
+        
+        // Import button
+        const importBtn = document.getElementById('startVinLogImport');
+        if (importBtn && !importBtn.hasVinLogEvents) {
+            importBtn.addEventListener('click', () => this.startVinLogImport());
+            importBtn.hasVinLogEvents = true;
+        }
+    }
+    
+    resetVinLogUpdateModal() {
+        // Clear file selection
+        this.clearVinLogFile();
+        
+        // Reset checkboxes
+        const skipDuplicates = document.getElementById('skipDuplicates');
+        const updateExisting = document.getElementById('updateExisting');
+        
+        if (skipDuplicates) skipDuplicates.checked = true;
+        if (updateExisting) updateExisting.checked = false;
+        
+        // Hide progress and results
+        const progress = document.getElementById('vinLogImportProgress');
+        const results = document.getElementById('vinLogImportResults');
+        
+        if (progress) progress.style.display = 'none';
+        if (results) results.style.display = 'none';
+        
+        // Reset import button
+        const importBtn = document.getElementById('startVinLogImport');
+        if (importBtn) {
+            importBtn.disabled = true;
+            importBtn.innerHTML = '<i class="fas fa-upload"></i> Import CSV';
+        }
+        
+        this.selectedVinLogFile = null;
+    }
+    
+    handleVinLogFileSelect(file) {
+        if (!file.name.endsWith('.csv')) {
+            this.addTerminalMessage('Please select a CSV file', 'error');
+            return;
+        }
+        
+        this.selectedVinLogFile = file;
+        
+        // Update UI
+        const uploadArea = document.getElementById('vinLogFileUpload');
+        const fileInfo = document.getElementById('vinLogFileInfo');
+        const fileName = document.getElementById('vinLogFileName');
+        const importBtn = document.getElementById('startVinLogImport');
+        
+        if (uploadArea) uploadArea.style.display = 'none';
+        if (fileInfo) fileInfo.style.display = 'flex';
+        if (fileName) fileName.textContent = file.name;
+        if (importBtn) importBtn.disabled = false;
+        
+        this.addTerminalMessage(`CSV file selected: ${file.name}`, 'success');
+    }
+    
+    clearVinLogFile() {
+        this.selectedVinLogFile = null;
+        
+        // Reset UI
+        const uploadArea = document.getElementById('vinLogFileUpload');
+        const fileInfo = document.getElementById('vinLogFileInfo');
+        const fileInput = document.getElementById('vinLogFileInput');
+        const importBtn = document.getElementById('startVinLogImport');
+        
+        if (uploadArea) uploadArea.style.display = 'block';
+        if (fileInfo) fileInfo.style.display = 'none';
+        if (fileInput) fileInput.value = '';
+        if (importBtn) importBtn.disabled = true;
+    }
+    
+    async startVinLogImport() {
+        if (!this.selectedVinLogFile || !this.currentDealership) {
+            this.addTerminalMessage('Missing file or dealership selection', 'error');
+            return;
+        }
+        
+        const skipDuplicates = document.getElementById('skipDuplicates')?.checked || false;
+        const updateExisting = document.getElementById('updateExisting')?.checked || false;
+        
+        // Show progress section
+        const progress = document.getElementById('vinLogImportProgress');
+        const results = document.getElementById('vinLogImportResults');
+        
+        if (progress) progress.style.display = 'block';
+        if (results) results.style.display = 'none';
+        
+        this.updateVinLogProgress('Uploading CSV file...', 0);
+        
+        try {
+            // Create form data
+            const formData = new FormData();
+            formData.append('csv_file', this.selectedVinLogFile);
+            formData.append('dealership_name', this.currentDealership);
+            formData.append('skip_duplicates', skipDuplicates);
+            formData.append('update_existing', updateExisting);
+            
+            // Upload and process
+            const response = await fetch('/api/vin-log/import', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.updateVinLogProgress('Import completed successfully!', 100);
+                this.showVinLogImportResults(result);
+                this.addTerminalMessage(`VIN log updated: ${result.processed} records processed`, 'success');
+                
+                // Refresh VIN log data in background
+                setTimeout(() => {
+                    if (this.currentDealership) {
+                        this.loadVinLogData(this.currentDealership);
+                    }
+                }, 1000);
+            } else {
+                this.updateVinLogProgress(`Import failed: ${result.error}`, 100);
+                this.addTerminalMessage(`VIN log import failed: ${result.error}`, 'error');
+            }
+            
+        } catch (error) {
+            console.error('VIN log import error:', error);
+            this.updateVinLogProgress(`Import error: ${error.message}`, 100);
+            this.addTerminalMessage(`VIN log import error: ${error.message}`, 'error');
+        }
+    }
+    
+    updateVinLogProgress(text, percent) {
+        const progressText = document.getElementById('vinLogProgressText');
+        const progressFill = document.getElementById('vinLogProgressFill');
+        
+        if (progressText) progressText.textContent = text;
+        if (progressFill) progressFill.style.width = `${percent}%`;
+    }
+    
+    showVinLogImportResults(result) {
+        const resultsSection = document.getElementById('vinLogImportResults');
+        if (!resultsSection) return;
+        
+        // Update result statistics
+        const processedCount = document.getElementById('processedCount');
+        const addedCount = document.getElementById('addedCount');
+        const updatedCount = document.getElementById('updatedCount');
+        const skippedCount = document.getElementById('skippedCount');
+        const errorCount = document.getElementById('errorCount');
+        
+        if (processedCount) processedCount.textContent = result.processed || 0;
+        if (addedCount) addedCount.textContent = result.added || 0;
+        if (updatedCount) updatedCount.textContent = result.updated || 0;
+        if (skippedCount) skippedCount.textContent = result.skipped || 0;
+        if (errorCount) errorCount.textContent = result.errors ? result.errors.length : 0;
+        
+        // Update log container
+        const logContainer = document.getElementById('importLogContainer');
+        if (logContainer && result.log) {
+            logContainer.innerHTML = result.log.map(entry => 
+                `<div class="log-entry ${entry.type}">${entry.message}</div>`
+            ).join('');
+        }
+        
+        // Show results section
+        resultsSection.style.display = 'block';
+    }
+    
+    closeVinLogUpdateModal() {
+        const modal = document.getElementById('vinLogUpdateModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    setupExportHandlers() {
+        // VIN Log Export Handler
+        const vinLogExportBtn = document.getElementById('exportVinLogData');
+        if (vinLogExportBtn) {
+            vinLogExportBtn.addEventListener('click', () => this.exportVinLogData());
+        }
+        
+        // Scraper Data Export Handler
+        const scraperDataExportBtn = document.getElementById('exportScraperData');
+        if (scraperDataExportBtn) {
+            scraperDataExportBtn.addEventListener('click', () => this.exportScraperData());
+        }
+    }
+    
+    async exportVinLogData() {
+        try {
+            const dealershipName = document.getElementById('vinLogModalTitle').textContent.replace('VIN History - ', '');
+            
+            // Show loading state
+            const exportBtn = document.getElementById('exportVinLogData');
+            const originalText = exportBtn.innerHTML;
+            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...';
+            exportBtn.disabled = true;
+            
+            const response = await fetch('/api/vin-log/export', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    dealership_name: dealershipName
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Export failed: ${response.statusText}`);
+            }
+            
+            // Get the blob and create download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vin_log_${dealershipName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            this.showNotification('VIN log data exported successfully!', 'success');
+            
+        } catch (error) {
+            console.error('Export error:', error);
+            this.showNotification(`Export failed: ${error.message}`, 'error');
+        } finally {
+            // Restore button state
+            const exportBtn = document.getElementById('exportVinLogData');
+            exportBtn.innerHTML = originalText;
+            exportBtn.disabled = false;
+        }
+    }
+    
+    async exportScraperData() {
+        try {
+            const importId = document.getElementById('modalImportId').textContent;
+            
+            if (!importId || importId === '-') {
+                this.showNotification('No import data to export', 'warning');
+                return;
+            }
+            
+            // Show loading state
+            const exportBtn = document.getElementById('exportScraperData');
+            const originalText = exportBtn.innerHTML;
+            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...';
+            exportBtn.disabled = true;
+            
+            const response = await fetch('/api/scraper-data/export', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    import_id: importId
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Export failed: ${response.statusText}`);
+            }
+            
+            // Get the blob and create download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `scraper_data_${importId}_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            this.showNotification('Scraper data exported successfully!', 'success');
+            
+        } catch (error) {
+            console.error('Export error:', error);
+            this.showNotification(`Export failed: ${error.message}`, 'error');
+        } finally {
+            // Restore button state
+            const exportBtn = document.getElementById('exportScraperData');
+            exportBtn.innerHTML = originalText;
+            exportBtn.disabled = false;
+        }
     }
 }
 

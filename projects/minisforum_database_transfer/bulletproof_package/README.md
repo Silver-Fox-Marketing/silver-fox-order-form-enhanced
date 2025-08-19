@@ -40,6 +40,27 @@ Updated: 2025-08-08 - DEALERSHIP-SPECIFIC VIN LOGS IMPLEMENTATION
 
 ## 🎯 Major Version Updates
 
+### **v2.3 (August 19, 2025) - Enhanced Data Exploration & Dealership Drill-Down**
+- 🏢 **Dealership Drill-Down**: Click dealership counts in scraper imports to view specific dealerships
+- 🎯 **Dealership Modal**: Interactive grid showing all dealerships within an import with vehicle counts
+- 🚗 **Vehicle Filtering**: Click any dealership to filter vehicle data to that specific dealership
+- 🔄 **Status Toggle**: Click "archived" to change scraper import status from archived to active
+- 🎨 **Enhanced UI**: Improved dealership settings styling with card-based layout
+- 🔧 **Bug Fixes**: Fixed CSV import endpoint, scraper history loading, and dealership API errors
+- ⚡ **Better Error Handling**: Comprehensive error handling and debugging for dealership queries
+
+### **v2.2 (August 18, 2025) - Scraper Import Management & Enhanced Data Tab**
+- 📊 **Scraper Import Tracking**: Complete import session management with archiving
+- 🔄 **Import-Based CAO Logic**: CAO orders now compare ONLY against latest active import
+- 📋 **Redesigned Data Tab**: Shows scraper imports instead of individual vehicles
+- 🔍 **Smart Search**: Direct VIN/Stock search returns individual vehicles instantly
+- 🏢 **VIN Log Viewer**: Read-only dealership VIN log viewer with search/filter
+- 🎯 **Import Details Modal**: Click any import to view complete vehicle data
+- ⚡ **Performance**: Faster data loading with import-level pagination
+- 📤 **Export Functionality**: CSV export for both VIN logs and scraper data
+- 🔄 **CSV Import/Export**: Complete import/export workflow for VIN log management
+- 🛡️ **Data Integrity**: Automatic archiving prevents stale data in CAO processing
+
 ### **v2.1 (August 8, 2025) - Dealership-Specific VIN Logs Architecture**
 - 🏗️ **CRITICAL UPDATE**: Replaced unified VIN history with dealership-specific VIN logs
 - 🎯 **Simplified CAO Logic**: Each dealership compares only against its own historical VINs
@@ -183,6 +204,8 @@ Updated: 2025-08-08 - DEALERSHIP-SPECIFIC VIN LOGS IMPLEMENTATION
 - ✅ **Template System** - Multiple export formats
 - ✅ **QR Integration** - Automatic QR generation
 - ✅ **Comprehensive Testing** - Stress test framework
+- ✅ **CSV Export System** - Export VIN logs and scraper data with one click
+- ✅ **VIN Log Management** - Import/export historical order data for accuracy testing
 
 ## 🏗️ Database Structure
 
@@ -226,6 +249,77 @@ Each dealership has configurable:
 - **Filtering Rules**: Exclude conditions, price ranges, year limits
 - **Output Rules**: Sort order, format preferences, QR inclusion
 - **QR Output Paths**: Custom directory structure
+
+## 📤 Export Functionality
+
+### **VIN Log Export**
+**Feature**: One-click CSV export of dealership-specific VIN logs
+
+**Access**: VIN Log Data Viewer → Export Data button
+
+**Includes**:
+- VIN numbers
+- Order numbers (if available)
+- Processed dates
+- Order types (CAO, LIST)
+- Template types used
+- Creation timestamps
+
+**File naming**: `vin_log_[dealership_name]_[YYYY-MM-DD].csv`
+
+### **Scraper Data Export**
+**Feature**: Complete vehicle inventory export from import sessions
+
+**Access**: Scraper Data Modal → Export Data button
+
+**Includes**:
+- Complete vehicle details (VIN, stock number, make, model, year, etc.)
+- Pricing and mileage information
+- Vehicle URLs and image links
+- Import timestamps and metadata
+- All available vehicle features
+
+**File naming**: `scraper_data_[import_id]_[YYYY-MM-DD].csv`
+
+### **VIN Log Import**
+**Feature**: Import historical order data for testing and validation
+
+**Access**: VIN Log Data Viewer → Update VIN Log button
+
+**Process**:
+1. Upload CSV with VIN and Order Number columns
+2. Automatic validation and duplicate detection
+3. Real-time progress tracking
+4. Detailed import results with error logging
+
+**Use Cases**:
+- Import Nick's historical order data for comparison
+- Restore VIN logs from backups
+- Test CAO accuracy against known baselines
+
+### **Export API Endpoints**
+
+**VIN Log Export**
+```http
+POST /api/vin-log/export
+Content-Type: application/json
+
+{
+  "dealership_name": "BMW of West St. Louis"
+}
+```
+
+**Scraper Data Export**
+```http
+POST /api/scraper-data/export
+Content-Type: application/json
+
+{
+  "import_id": "12345"
+}
+```
+
+Both endpoints return CSV files with proper `Content-Disposition` headers for automatic browser downloads.
 
 ## 🔧 Configuration Examples
 
