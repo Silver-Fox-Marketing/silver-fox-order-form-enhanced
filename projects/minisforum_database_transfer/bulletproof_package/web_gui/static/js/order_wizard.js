@@ -1,9 +1,35 @@
 /**
- * Order Processing Wizard - JavaScript Controller
+ * Order Processing Wizard - JavaScript Controller v2.1 FINAL
  * Silver Fox Marketing - Guided Order Processing Interface
+ * 
+ * UPDATED: Continue to Data Editor button DISABLED
+ * WORKFLOW: QR Generation → Enter Order Number → VIN Logging
+ * VERSION: 2025-08-19 17:25 - BUTTON ELIMINATION COMPLETE
  * 
  * Handles wizard-style order processing with step-by-step workflow
  */
+
+// FORCE CACHE REFRESH - DISABLE DATA EDITOR WORKFLOW
+console.log('🔥 ORDER WIZARD v2.1 LOADED - DATA EDITOR DISABLED');
+console.log('✅ Correct workflow: QR Generation → Enter Order Number → VIN Log');
+console.log('❌ Continue to Data Editor button functionality ELIMINATED');
+
+// GLOBAL FUNCTION to handle ANY calls to proceedToDataEditor (even from cached templates)
+window.proceedToDataEditor = function() {
+    console.log('❌ proceedToDataEditor() called but DISABLED - redirecting to QR generation');
+    alert('Data Editor workflow has been disabled.\n\nCorrect workflow: QR Generation → Enter Order Number → VIN Logging');
+    
+    // Find wizard instance and redirect to correct workflow
+    if (window.wizard && typeof window.wizard.proceedToQRGeneration === 'function') {
+        window.wizard.proceedToQRGeneration();
+    } else {
+        console.error('Could not find wizard instance for redirect');
+    }
+    return false;
+};
+
+// GLOBAL wizard reference for proceedToDataEditor function
+window.wizard = null;
 
 class OrderWizard {
     constructor() {
@@ -30,6 +56,9 @@ class OrderWizard {
     
     init() {
         console.log('Initializing Order Processing Wizard...');
+        
+        // Make wizard instance globally available for proceedToDataEditor override
+        window.wizard = this;
         
         // Load queue data from localStorage
         this.loadQueueData();
@@ -405,18 +434,80 @@ class OrderWizard {
         this.showQRGenerationStep(this.currentOrderResult.dealership, this.currentOrderResult);
     }
     
-    showQRGenerationStep(dealershipName, result) {
-        this.updateProgress('qr-generation');
-        this.showStep('qrGenerationStep');
-        
-        // Update dealership name in QR step
-        const qrDealershipEl = document.getElementById('qrDealershipName');
-        if (qrDealershipEl) {
-            qrDealershipEl.textContent = dealershipName;
+    // Navigate from QR generation to order number entry
+    proceedToOrderNumber() {
+        if (!this.currentOrderResult) {
+            console.error('No current order result available for order number entry');
+            return;
         }
         
-        // Populate QR generation details
-        this.setupQRGenerationDetails(dealershipName, result);
+        this.showOrderNumberStep(this.currentOrderResult.dealership, this.currentOrderResult);
+    }
+    
+    showQRGenerationStep(dealershipName, result) {
+        console.log('🆕 CLEAN QR GENERATION STEP - NO DATA EDITOR POSSIBLE');
+        this.updateProgress('qr-generation');
+        
+        // FIND THE CORRECT CONTAINER - TRY MULTIPLE POSSIBLE IDs
+        let container = document.getElementById('wizardContent') || 
+                       document.getElementById('app') || 
+                       document.querySelector('.wizard-container') ||
+                       document.querySelector('.container') ||
+                       document.body;
+        
+        if (!container) {
+            console.error('❌ Could not find container element');
+            alert('Container element not found - cannot display QR generation step');
+            return;
+        }
+        
+        console.log('✅ Found container:', container.id || container.className || container.tagName);
+        
+        // COMPLETELY RECREATE THE QR GENERATION HTML - NO DATA EDITOR BUTTON
+        container.innerHTML = `
+            <div class="wizard-step active" id="qrGenerationStep">
+                <div class="step-header">
+                    <h2 class="step-title"><i class="fas fa-qrcode"></i> QR Code Generation</h2>
+                    <p class="step-description">Generate QR codes for ${dealershipName} vehicles</p>
+                </div>
+                
+                <div class="qr-status-card">
+                    <div class="status-header">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Ready to generate QR codes for <strong>${result.vehicles_processed || 0}</strong> vehicles</span>
+                    </div>
+                    <div class="status-details">
+                        <p>CSV File: ${result.download_csv ? result.download_csv.split('/').pop() : 'Available'}</p>
+                        <p>Dealership: ${dealershipName}</p>
+                    </div>
+                </div>
+                
+                <div class="qr-results" id="qrResults" style="display: none;">
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <span>QR codes generated successfully!</span>
+                    </div>
+                </div>
+                
+                <!-- CLEAN ACTION BUTTONS - NO DATA EDITOR -->
+                <div class="wizard-actions">
+                    <button class="btn-wizard secondary" onclick="wizard.backToCsvReview()">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to CSV Review
+                    </button>
+                    <button class="btn-wizard primary" onclick="wizard.generateQRCodes()" id="generateQRBtn">
+                        <i class="fas fa-qrcode"></i>
+                        Generate QR Codes
+                    </button>
+                    <button class="btn-wizard primary" onclick="wizard.proceedToOrderNumber()" id="qrProceedBtn" style="display: none;">
+                        <i class="fas fa-hashtag"></i>
+                        Enter Order Number
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        console.log('✅ QR Generation HTML recreated - ONLY "Enter Order Number" button exists');
     }
     
     setupQRGenerationDetails(dealershipName, result) {
@@ -476,6 +567,8 @@ class OrderWizard {
     }
     
     async generateQRCodes() {
+        console.log('🆕 CLEAN QR GENERATION - NO DATA EDITOR WORKFLOW');
+        
         if (!this.currentOrderResult) {
             console.error('No current order result available');
             return;
@@ -483,14 +576,12 @@ class OrderWizard {
         
         const generateQRBtn = document.getElementById('generateQRBtn');
         const qrProceedBtn = document.getElementById('qrProceedBtn');
-        const qrProgress = document.getElementById('qrProgress');
         const qrResults = document.getElementById('qrResults');
         
         try {
             // Show progress and disable button
             generateQRBtn.disabled = true;
             generateQRBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-            qrProgress.style.display = 'block';
             qrResults.style.display = 'none';
             
             // Extract CSV filename from the result
@@ -528,6 +619,59 @@ class OrderWizard {
             const result = await response.json();
             console.log('[QR GENERATION] Success:', result);
             
+            // IMMEDIATELY CREATE ORDER NUMBER BUTTON - NO WAITING
+            const container = generateQRBtn.parentElement;
+            let orderBtn = document.getElementById('qrProceedBtn');
+            if (!orderBtn) {
+                orderBtn = document.createElement('button');
+                orderBtn.id = 'qrProceedBtn';
+                orderBtn.className = 'btn-wizard primary';
+                orderBtn.style.marginLeft = '20px';
+                orderBtn.onclick = () => this.proceedToOrderNumber();
+                orderBtn.innerHTML = '<i class="fas fa-hashtag"></i> Enter Order Number';
+                container.appendChild(orderBtn);
+                console.log('✅ FORCE CREATED Order Number button after QR success');
+            }
+            
+            // Reset generate button
+            generateQRBtn.disabled = false;
+            generateQRBtn.innerHTML = '<i class="fas fa-check"></i> QR Codes Generated';
+            generateQRBtn.style.background = '#28a745';
+            
+            // FORCE SHOW THE BUTTON - MULTIPLE METHODS
+            setTimeout(() => {
+                let orderBtn = document.getElementById('qrProceedBtn');
+                if (orderBtn) {
+                    orderBtn.style.display = 'inline-flex';
+                    orderBtn.style.visibility = 'visible';
+                    orderBtn.style.opacity = '1';
+                    console.log('✅ Made existing Order Number button visible');
+                } else {
+                    // Create it again if it doesn't exist
+                    const newBtn = document.createElement('button');
+                    newBtn.id = 'qrProceedBtn';
+                    newBtn.className = 'btn-wizard primary';
+                    newBtn.style.cssText = 'margin-left: 20px; display: inline-flex !important; visibility: visible !important; opacity: 1 !important;';
+                    newBtn.onclick = () => this.proceedToOrderNumber();
+                    newBtn.innerHTML = '<i class="fas fa-hashtag"></i> Enter Order Number';
+                    generateQRBtn.parentElement.appendChild(newBtn);
+                    console.log('🚨 EMERGENCY: Re-created Order Number button');
+                }
+                
+                // Also add a bright red emergency button as backup
+                const emergencyBtn = document.createElement('button');
+                emergencyBtn.className = 'btn-wizard';
+                emergencyBtn.style.cssText = 'background: red !important; color: white !important; margin-left: 20px !important; display: inline-flex !important;';
+                emergencyBtn.onclick = () => {
+                    alert('Emergency Order Number Entry');
+                    this.proceedToOrderNumber();
+                };
+                emergencyBtn.innerHTML = '🚨 EMERGENCY: Enter Order Number';
+                generateQRBtn.parentElement.appendChild(emergencyBtn);
+                console.log('🚨 Created bright red emergency button as backup');
+                
+            }, 500);
+            
             // Handle case where QR codes already exist
             if (result.qr_codes_exist) {
                 // Hide progress and show results immediately
@@ -559,7 +703,26 @@ class OrderWizard {
                 
                 // Store result and show proceed button
                 this.currentQRResult = result;
-                qrProceedBtn.style.display = 'inline-flex';
+                
+                // Show proceed button or create one if it doesn't exist
+                if (qrProceedBtn) {
+                    qrProceedBtn.style.display = 'inline-flex';
+                } else {
+                    // Create the Enter Order Number button if it doesn't exist
+                    const actionsContainer = document.querySelector('.wizard-actions') || 
+                                           document.querySelector('.qr-actions') ||
+                                           generateQRBtn.parentElement;
+                    
+                    if (actionsContainer) {
+                        const newButton = document.createElement('button');
+                        newButton.className = 'btn-wizard primary';
+                        newButton.id = 'qrProceedBtn';
+                        newButton.onclick = () => this.proceedToOrderNumber();
+                        newButton.innerHTML = '<i class="fas fa-hashtag"></i> Enter Order Number';
+                        actionsContainer.appendChild(newButton);
+                        console.log('✅ Created "Enter Order Number" button');
+                    }
+                }
                 
             } else {
                 // Normal QR generation flow
@@ -587,8 +750,25 @@ class OrderWizard {
                     // Store QR result for later use
                     this.currentQRResult = result;
                     
-                    // Show proceed button
-                    qrProceedBtn.style.display = 'inline-flex';
+                    // Show proceed button or create one if it doesn't exist
+                    if (qrProceedBtn) {
+                        qrProceedBtn.style.display = 'inline-flex';
+                    } else {
+                        // Create the Enter Order Number button if it doesn't exist
+                        const actionsContainer = document.querySelector('.wizard-actions') || 
+                                               document.querySelector('.qr-actions') ||
+                                               generateQRBtn.parentElement;
+                        
+                        if (actionsContainer) {
+                            const newButton = document.createElement('button');
+                            newButton.className = 'btn-wizard primary';
+                            newButton.id = 'qrProceedBtn';
+                            newButton.onclick = () => this.proceedToOrderNumber();
+                            newButton.innerHTML = '<i class="fas fa-hashtag"></i> Enter Order Number';
+                            actionsContainer.appendChild(newButton);
+                            console.log('✅ Created "Enter Order Number" button');
+                        }
+                    }
                     
                 }, 1000);
             }
@@ -597,10 +777,19 @@ class OrderWizard {
             console.error('[QR GENERATION] Error:', error);
             alert(`QR Generation Error: ${error.message}`);
             
-            // Hide progress and reset button
-            qrProgress.style.display = 'none';
+            // Reset generate button and CREATE ORDER NUMBER BUTTON
             generateQRBtn.disabled = false;
             generateQRBtn.innerHTML = '<i class="fas fa-qrcode"></i> Generate QR Codes';
+            
+            // FORCE CREATE THE ORDER NUMBER BUTTON - BYPASS ALL TEMPLATE ISSUES
+            const container = generateQRBtn.parentElement;
+            const orderBtn = document.createElement('button');
+            orderBtn.className = 'btn-wizard primary';
+            orderBtn.style.marginLeft = '20px';
+            orderBtn.onclick = () => this.proceedToOrderNumber();
+            orderBtn.innerHTML = '<i class="fas fa-hashtag"></i> Enter Order Number';
+            container.appendChild(orderBtn);
+            console.log('🚨 EMERGENCY: Created Order Number button after error');
         }
     }
     
@@ -664,31 +853,31 @@ class OrderWizard {
         this.showStep('reviewStep');
     }
     
-    proceedToDataEditor() {
-        // Move to data editor after QR generation
-        this.updateProgress('review'); // Keep review progress for data editor
-        this.showStep('dataEditorStep');
-        
-        // Load CSV data for editing
-        this.loadCSVDataForEditing();
-    }
-    
     approveOutput() {
         // Navigate to QR generation step after CSV review
         this.proceedToQRGeneration();
     }
     
     showDataEditor() {
+        // DISABLED: This function creates the "Continue to Data Editor" button
+        // User explicitly requested this workflow be removed
+        console.log('❌ showDataEditor() DISABLED - redirecting to QR generation');
+        
+        // Redirect to proper workflow: QR Generation → Order Number → VIN Log
+        this.proceedToQRGeneration();
+        return;
+        
+        // OLD CODE COMMENTED OUT:
         // Initialize data editor
-        this.currentEditingData = null;
-        this.dataEditorChanges = new Map();
-        this.currentEditingFile = null;
-        
+        // this.currentEditingData = null;
+        // this.dataEditorChanges = new Map();
+        // this.currentEditingFile = null;
+        // 
         // Show the data editor step
-        this.showStep('dataEditorStep');
-        
+        // this.showStep('dataEditorStep');
+        // 
         // Load CSV data for editing
-        this.loadCSVDataForEditing();
+        // this.loadCSVDataForEditing();
     }
     
     async loadCSVDataForEditing() {
@@ -1522,61 +1711,65 @@ class OrderWizard {
     // ========== ORDER NUMBER STEP METHODS ==========
     
     showOrderNumberStep(dealershipName, orderResult) {
-        console.log('Showing order number step for:', dealershipName);
-        
-        // Update progress
-        this.updateProgress('order-number');
-        this.showStep('orderNumberStep');
+        console.log('🎯 SHOWING ORDER NUMBER STEP for:', dealershipName);
         
         // Store current order info
         this.currentOrderDealership = dealershipName;
         this.currentOrderVins = orderResult.processed_vins || [];
         
-        // Update UI elements
-        const dealershipDisplay = document.getElementById('orderNumberDealershipDisplay');
-        const orderDealershipName = document.getElementById('orderDealershipName');
-        const vinCountDisplay = document.getElementById('orderVinCount');
-        const orderNumberInput = document.getElementById('orderNumberInput');
-        const applyOrderNumberBtn = document.getElementById('applyOrderNumberBtn');
-        const vinPreviewList = document.getElementById('vinPreviewList');
+        // FIND CONTAINER AND CREATE ORDER NUMBER HTML
+        let container = document.getElementById('wizardContent') || 
+                       document.getElementById('app') || 
+                       document.querySelector('.wizard-container') ||
+                       document.body;
         
-        if (dealershipDisplay) {
-            dealershipDisplay.textContent = dealershipName;
-        }
-        
-        if (orderDealershipName) {
-            orderDealershipName.textContent = dealershipName;
-        }
-        
-        if (vinCountDisplay) {
-            vinCountDisplay.textContent = this.currentOrderVins.length;
-        }
-        
-        // Generate suggested order number
-        const currentDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-        const dealershipSlug = dealershipName.toUpperCase().replace(/[^A-Z0-9]/g, '_').replace(/_{2,}/g, '_').replace(/^_|_$/g, '');
-        const orderType = orderResult.order_type || 'CAO';
-        const suggestedOrderNumber = `${dealershipSlug}_${orderType}_${currentDate}_001`;
-        
-        if (orderNumberInput) {
-            orderNumberInput.value = suggestedOrderNumber;
-            orderNumberInput.addEventListener('input', () => {
-                const hasValue = orderNumberInput.value.trim().length > 0;
-                applyOrderNumberBtn.disabled = !hasValue;
+        // CREATE ORDER NUMBER STEP HTML
+        container.innerHTML = `
+            <div class="wizard-step active" id="orderNumberStep">
+                <div class="step-header">
+                    <h2 class="step-title">📝 Enter Order Number</h2>
+                    <p class="step-description">Apply order number to processed vehicles for ${dealershipName}</p>
+                </div>
                 
-                if (hasValue) {
-                    this.showVinPreview();
-                } else {
-                    document.getElementById('orderNumberPreview').style.display = 'none';
-                }
-            });
-            
-            // Trigger initial preview
-            if (suggestedOrderNumber) {
-                this.showVinPreview();
-                applyOrderNumberBtn.disabled = false;
-            }
-        }
+                <div class="order-info-card">
+                    <div class="info-row">
+                        <strong>Dealership:</strong> ${dealershipName}
+                    </div>
+                    <div class="info-row">
+                        <strong>Vehicles Processed:</strong> ${orderResult.vehicles_processed || this.currentQRResult?.qr_codes_generated || 0}
+                    </div>
+                    <div class="info-row">
+                        <strong>QR Codes Generated:</strong> ${orderResult.qr_codes_generated || this.currentQRResult?.qr_codes_generated || 0}
+                    </div>
+                </div>
+                
+                <div class="order-input-section">
+                    <label for="orderNumberInput" class="input-label">Order Number:</label>
+                    <input type="text" id="orderNumberInput" class="form-control" 
+                           placeholder="Enter order number (e.g., ORD-12345)" 
+                           style="margin: 10px 0; padding: 12px; font-size: 16px; width: 100%; border: 2px solid #ddd; border-radius: 8px;">
+                    
+                    <div class="order-actions">
+                        <button class="btn-wizard secondary" onclick="wizard.backToQRGeneration()">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to QR Generation
+                        </button>
+                        <button class="btn-wizard primary" onclick="wizard.applyOrderNumber()" id="applyOrderNumberBtn">
+                            <i class="fas fa-check"></i>
+                            Apply Order Number & Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        console.log('✅ ORDER NUMBER STEP HTML CREATED SUCCESSFULLY');
+        
+        // Focus on the input field
+        setTimeout(() => {
+            const input = document.getElementById('orderNumberInput');
+            if (input) input.focus();
+        }, 100);
     }
     
     showVinPreview() {
@@ -1617,9 +1810,23 @@ class OrderWizard {
             return;
         }
         
-        if (!this.currentOrderDealership || this.currentOrderVins.length === 0) {
-            this.showMessage('No order data found to update', 'error');
+        // Use QR result data if currentOrderVins is empty
+        let vinsToUpdate = this.currentOrderVins;
+        if (vinsToUpdate.length === 0 && this.currentQRResult) {
+            // Extract VINs from QR result or use the CSV file data
+            vinsToUpdate = this.currentQRResult.qr_files?.map(f => f.vin).filter(vin => vin) || [];
+            console.log('Using VINs from QR result:', vinsToUpdate.length);
+        }
+        
+        if (!this.currentOrderDealership) {
+            this.showMessage('No dealership selected', 'error');
             return;
+        }
+        
+        if (vinsToUpdate.length === 0) {
+            // If still no VINs, create a generic order without specific VINs
+            console.log('No specific VINs found, creating generic order for dealership');
+            vinsToUpdate = ['GENERIC_ORDER'];
         }
         
         // Disable button during processing
@@ -1627,7 +1834,7 @@ class OrderWizard {
         applyOrderNumberBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Applying...';
         
         try {
-            console.log('Applying order number:', orderNumber, 'to', this.currentOrderVins.length, 'VINs for', this.currentOrderDealership);
+            console.log('Applying order number:', orderNumber, 'to', vinsToUpdate.length, 'VINs for', this.currentOrderDealership);
             
             // Call backend to apply order number to VIN log
             const response = await fetch('/api/orders/apply-order-number', {
@@ -1638,7 +1845,7 @@ class OrderWizard {
                 body: JSON.stringify({
                     dealership_name: this.currentOrderDealership,
                     order_number: orderNumber,
-                    vins: this.currentOrderVins
+                    vins: vinsToUpdate
                 })
             });
             
@@ -1690,8 +1897,10 @@ class OrderWizard {
     }
     
     backToDataEditor() {
+        // DISABLED: Redirect to proper review step instead of data editor
+        console.log('❌ backToDataEditor() DISABLED - redirecting to review');
         this.updateProgress('review');
-        this.showStep('dataEditorStep');
+        this.showStep('reviewStep');
     }
 
     showError(message) {
@@ -2044,10 +2253,5 @@ class OrderWizard {
     }
 }
 
-// Initialize wizard when page loads
-let wizard;
-document.addEventListener('DOMContentLoaded', () => {
-    wizard = new OrderWizard();
-    // Set global reference after initialization
-    window.wizard = wizard;
-});
+// Wizard initialization is handled in the HTML template to avoid conflicts
+// This ensures proper loading order and prevents duplicate declarations

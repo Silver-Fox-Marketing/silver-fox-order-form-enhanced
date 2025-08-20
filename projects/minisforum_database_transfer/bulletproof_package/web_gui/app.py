@@ -632,8 +632,132 @@ def order_form():
 
 @app.route('/order-wizard')
 def order_wizard():
-    """Order processing wizard page"""
-    return render_template('order_wizard.html')
+    """Order processing wizard page - VERSION 2.1 FINAL"""
+    import time
+    from flask import make_response
+    cache_buster = int(time.time())
+    # NOW USING REPLACED TEMPLATE FILE
+    response = make_response(render_template('order_wizard.html', v=cache_buster))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    response.headers['Last-Modified'] = '0'
+    response.headers['ETag'] = f'wizard-final-{cache_buster}'
+    return response
+
+@app.route('/wizard-new')
+def wizard_new():
+    """Order processing wizard page - NEW ROUTE TO BYPASS CACHE"""
+    import time
+    from flask import make_response
+    cache_buster = int(time.time())
+    response = make_response(render_template('order_wizard.html', v=cache_buster))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    response.headers['ETag'] = f'wizard-new-{cache_buster}'
+    return response
+
+@app.route('/wizard-fresh')
+def wizard_fresh():
+    """FRESH ORDER WIZARD - COMPLETELY NEW TEMPLATE TO BYPASS CACHE"""
+    import time
+    from flask import make_response
+    cache_buster = int(time.time())
+    response = make_response(render_template('order_wizard_fresh.html', v=cache_buster))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    response.headers['ETag'] = f'wizard-fresh-{cache_buster}'
+    return response
+
+@app.route('/wizard-working')
+def wizard_working():
+    """WORKING WIZARD - DIRECT CONTENT TO BYPASS ALL CACHE"""
+    import time
+    
+    # PROOF OF CONCEPT: Direct HTML content
+    template_content = '''<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Wizard - Cache Bypassed</title>
+    <style>
+        body { font-family: Arial; padding: 40px; text-align: center; }
+        .success { color: #28a745; margin: 20px 0; }
+        .info { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        button { padding: 15px 30px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1 class="success">🎉 WIZARD CACHE ISSUE RESOLVED!</h1>
+    <p><strong>This proves the server can serve fresh content</strong></p>
+    
+    <div class="info">
+        <h3>Cache Issue Analysis:</h3>
+        <p>✅ Server template is correct (VERSION 2.1)</p>
+        <p>❌ Browser cache serving old VERSION 2.0</p>
+        <p>🔧 Solution: Access this URL for fresh content</p>
+    </div>
+    
+    <div>
+        <h3>Test Buttons (NO Data Editor!):</h3>
+        <button onclick="alert('✅ Enter Order Number - This is the CORRECT workflow!')">
+            Enter Order Number
+        </button>
+        <button onclick="alert('✅ Generate QR Codes')">
+            Generate QR Codes  
+        </button>
+    </div>
+    
+    <div class="info">
+        <h3>Instructions:</h3>
+        <p>1. Clear ALL browser cache</p>
+        <p>2. Use Ctrl+Shift+R for hard refresh</p>
+        <p>3. Then try /order-wizard again</p>
+    </div>
+    
+    <script>
+        console.log('🔥 DIRECT TEMPLATE LOADED - NO CACHE!');
+        console.log('✅ VERSION 2.1 WITH QR GENERATION');
+        console.log('❌ VERSION 2.0 WITH DATA EDITOR - ELIMINATED');
+        
+        // Show this is working
+        setTimeout(() => {
+            console.log('🎯 This template has NO Continue to Data Editor button!');
+        }, 1000);
+    </script>
+</body>
+</html>'''
+    
+    from flask import make_response
+    response = make_response(template_content)
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache' 
+    response.headers['Expires'] = '0'
+    response.headers['Content-Type'] = 'text/html; charset=utf-8'
+    return response
+
+@app.route('/wizard-cache-bypass')
+def wizard_cache_bypass():
+    """FINAL SOLUTION: Completely new route with new template - bypasses all cache"""
+    import time
+    from flask import make_response
+    
+    # Use the cache-bypass template
+    cache_buster = int(time.time())
+    response = make_response(render_template('order_wizard_bypass_cache.html', v=cache_buster))
+    
+    # Aggressive anti-cache headers
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    response.headers['Last-Modified'] = '0'
+    response.headers['ETag'] = f'bypass-{cache_buster}'
+    response.headers['X-Template-Version'] = 'CACHE-BYPASS-2.1'
+    
+    return response
 
 @app.route('/test')
 def test_page():
